@@ -1,0 +1,11 @@
+sina.signType=${sina.signType}
+sina.inputCharset=${sina.inputCharset}
+sina.members_url=${sina_members_url}
+sina.trades_url=${sina_trades_url}
+sina.partnerId=${sina.partnerId}
+sina.vfundingCompanyAccount=${sina.vfundingCompanyAccount}
+sina.MD5=${sina.MD5}
+sina.RSA=${sina.RSA}
+sina.RSA=${sina.RSA}parm
+sina.returnUrlHost=${sina.returnUrlHost}
+sina.notifyUrlHost=${sina.notifyUrlHost}

@@ -1,0 +1,42 @@
+@charset "utf-8";
+/* CSS Document */
+@import url(base.css);
+
+@import url(top.css);
+
+@import url(bottom.css);
+
+body {
+    background-color: #35005d;
+    font-family: "微软雅黑";
+    font-size: 14px;
+}
+.jzz{   
+	background-image: url("../images/huodong/bj.jpg");
+    background-position: center top;
+        background-repeat: no-repeat;
+    }
+.content {
+    margin: 0 auto;
+    overflow: hidden;
+    padding-bottom: 100px;
+    width: 1000px;
+}
+.div1 {
+    background: url("../images/huodong/one.jpg") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    height: 610px;
+}
+.div2 {
+    background: url("../images/huodong/two.jpg") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    height: 597px;
+}
+.div3, .div5 {
+    color: #fff;
+    line-height: 24px;
+    margin-top: 20px;
+}
+.div4 {
+    background: url("../images/huodong/three.jpg") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    height: 469px;
+    margin-top: 20px;
+}

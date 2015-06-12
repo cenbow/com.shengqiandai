@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.p2p.p2p.biz.baseinfo.dao.IndexParamMapper" >
+  <resultMap id="BaseResultMap" type="cn.p2p.p2p.biz.baseinfo.model.IndexParam" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="borrowIntroduces1" property="borrowintroduces1" jdbcType="VARCHAR" />
+    <result column="borrowIntroduces2" property="borrowintroduces2" jdbcType="VARCHAR" />
+    <result column="borrowApr" property="borrowapr" jdbcType="DECIMAL" />
+    <result column="borrowMoney" property="borrowmoney" jdbcType="DECIMAL" />
+    <result column="borrowLimit" property="borrowlimit" jdbcType="VARCHAR" />
+    <result column="currentIntroduces1" property="currentintroduces1" jdbcType="VARCHAR" />
+    <result column="currentIntroduces2" property="currentintroduces2" jdbcType="VARCHAR" />
+    <result column="currentApr" property="currentapr" jdbcType="DECIMAL" />
+    <result column="currentMoney" property="currentmoney" jdbcType="DECIMAL" />
+    <result column="currentSale" property="currentsale" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, borrowIntroduces1, borrowIntroduces2, borrowApr, borrowMoney, borrowLimit, currentIntroduces1, 
+    currentIntroduces2, currentApr, currentMoney, currentSale
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from p2p_index_param
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from p2p_index_param
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.p2p.p2p.biz.baseinfo.model.IndexParam" >
+    insert into p2p_index_param (id, borrowIntroduces1, borrowIntroduces2, 
+      borrowApr, borrowMoney, borrowLimit, 
+      currentIntroduces1, currentIntroduces2, 
+      currentApr, currentMoney, currentSale
+      )
+    values (#{id,jdbcType=INTEGER}, #{borrowintroduces1,jdbcType=VARCHAR}, #{borrowintroduces2,jdbcType=VARCHAR}, 
+      #{borrowapr,jdbcType=DECIMAL}, #{borrowmoney,jdbcType=DECIMAL}, #{borrowlimit,jdbcType=VARCHAR}, 
+      #{currentintroduces1,jdbcType=VARCHAR}, #{currentintroduces2,jdbcType=VARCHAR}, 
+      #{currentapr,jdbcType=DECIMAL}, #{currentmoney,jdbcType=DECIMAL}, #{currentsale,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.p2p.p2p.biz.baseinfo.model.IndexParam" >
+    insert into p2p_index_param
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="borrowintroduces1 != null" >
+        borrowIntroduces1,
+      </if>
+      <if test="borrowintroduces2 != null" >
+        borrowIntroduces2,
+      </if>
+      <if test="borrowapr != null" >
+        borrowApr,
+      </if>
+      <if test="borrowmoney != null" >
+        borrowMoney,
+      </if>
+      <if test="borrowlimit != null" >
+        borrowLimit,
+      </if>
+      <if test="currentintroduces1 != null" >
+        currentIntroduces1,
+      </if>
+      <if test="currentintroduces2 != null" >
+        currentIntroduces2,
+      </if>
+      <if test="currentapr != null" >
+        currentApr,
+      </if>
+      <if test="currentmoney != null" >
+        currentMoney,
+      </if>
+      <if test="currentsale != null" >
+        currentSale,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="borrowintroduces1 != null" >
+        #{borrowintroduces1,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowintroduces2 != null" >
+        #{borrowintroduces2,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowapr != null" >
+        #{borrowapr,jdbcType=DECIMAL},
+      </if>
+      <if test="borrowmoney != null" >
+        #{borrowmoney,jdbcType=DECIMAL},
+      </if>
+      <if test="borrowlimit != null" >
+        #{borrowlimit,jdbcType=VARCHAR},
+      </if>
+      <if test="currentintroduces1 != null" >
+        #{currentintroduces1,jdbcType=VARCHAR},
+      </if>
+      <if test="currentintroduces2 != null" >
+        #{currentintroduces2,jdbcType=VARCHAR},
+      </if>
+      <if test="currentapr != null" >
+        #{currentapr,jdbcType=DECIMAL},
+      </if>
+      <if test="currentmoney != null" >
+        #{currentmoney,jdbcType=DECIMAL},
+      </if>
+      <if test="currentsale != null" >
+        #{currentsale,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.p2p.p2p.biz.baseinfo.model.IndexParam" >
+    update p2p_index_param
+    <set >
+      <if test="borrowintroduces1 != null" >
+        borrowIntroduces1 = #{borrowintroduces1,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowintroduces2 != null" >
+        borrowIntroduces2 = #{borrowintroduces2,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowapr != null" >
+        borrowApr = #{borrowapr,jdbcType=DECIMAL},
+      </if>
+      <if test="borrowmoney != null" >
+        borrowMoney = #{borrowmoney,jdbcType=DECIMAL},
+      </if>
+      <if test="borrowlimit != null" >
+        borrowLimit = #{borrowlimit,jdbcType=VARCHAR},
+      </if>
+      <if test="currentintroduces1 != null" >
+        currentIntroduces1 = #{currentintroduces1,jdbcType=VARCHAR},
+      </if>
+      <if test="currentintroduces2 != null" >
+        currentIntroduces2 = #{currentintroduces2,jdbcType=VARCHAR},
+      </if>
+      <if test="currentapr != null" >
+        currentApr = #{currentapr,jdbcType=DECIMAL},
+      </if>
+      <if test="currentmoney != null" >
+        currentMoney = #{currentmoney,jdbcType=DECIMAL},
+      </if>
+      <if test="currentsale != null" >
+        currentSale = #{currentsale,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.p2p.p2p.biz.baseinfo.model.IndexParam" >
+    update p2p_index_param
+    set borrowIntroduces1 = #{borrowintroduces1,jdbcType=VARCHAR},
+      borrowIntroduces2 = #{borrowintroduces2,jdbcType=VARCHAR},
+      borrowApr = #{borrowapr,jdbcType=DECIMAL},
+      borrowMoney = #{borrowmoney,jdbcType=DECIMAL},
+      borrowLimit = #{borrowlimit,jdbcType=VARCHAR},
+      currentIntroduces1 = #{currentintroduces1,jdbcType=VARCHAR},
+      currentIntroduces2 = #{currentintroduces2,jdbcType=VARCHAR},
+      currentApr = #{currentapr,jdbcType=DECIMAL},
+      currentMoney = #{currentmoney,jdbcType=DECIMAL},
+      currentSale = #{currentsale,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

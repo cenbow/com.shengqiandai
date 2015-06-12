@@ -1,0 +1,15 @@
+[{    
+    "id": 1,    
+    "text": "点赞活动",    
+    "state": "open", 
+    "lines":  true, 
+    "children": [
+    {    
+        "id": 11,    
+        "text": "详细数据",
+        "attributes":{    
+            "url":"/activity/zan/toListPage"   
+        }
+   	 }
+     ]    
+}]

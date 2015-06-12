@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.vfunding.vfunding.biz.mobile.dao.MobileResponseLogMapper">
+  <resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.mobile.model.MobileResponseLog">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="response_message" jdbcType="VARCHAR" property="responseMessage" />
+    <result column="response_code" jdbcType="VARCHAR" property="responseCode" />
+    <result column="addtime" jdbcType="DATE" property="addtime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.vfunding.vfunding.biz.mobile.model.MobileResponseLog">
+    <result column="response_json" jdbcType="LONGVARCHAR" property="responseJson" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, order_no, response_message, response_code, addtime
+  </sql>
+  <sql id="Blob_Column_List">
+    response_json
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from vf_mobile_response_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from vf_mobile_response_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.vfunding.biz.mobile.model.MobileResponseLog">
+    insert into vf_mobile_response_log (id, order_no, response_message, 
+      response_code, addtime, response_json
+      )
+    values (#{id,jdbcType=INTEGER}, #{orderNo,jdbcType=VARCHAR}, #{responseMessage,jdbcType=VARCHAR}, 
+      #{responseCode,jdbcType=VARCHAR}, #{addtime}, #{responseJson,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.mobile.model.MobileResponseLog">
+    insert into vf_mobile_response_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="responseMessage != null">
+        response_message,
+      </if>
+      <if test="responseCode != null">
+        response_code,
+      </if>
+      <if test="addtime != null">
+        addtime,
+      </if>
+      <if test="responseJson != null">
+        response_json,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="responseMessage != null">
+        #{responseMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="responseCode != null">
+        #{responseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null">
+        #{addtime},
+      </if>
+      <if test="responseJson != null">
+        #{responseJson},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.mobile.model.MobileResponseLog">
+    update vf_mobile_response_log
+    <set>
+      <if test="orderNo != null">
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="responseMessage != null">
+        response_message = #{responseMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="responseCode != null">
+        response_code = #{responseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null">
+        addtime = #{addtime},
+      </if>
+      <if test="responseJson != null">
+        response_json = #{responseJson,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

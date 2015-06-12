@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.system.dao.AllStatisticsMapper" >
+  <resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.system.model.AllStatistics" >
+    <result column="allTenderMoney" property="allTenderMoney" jdbcType="DECIMAL" />
+    <result column="allCashMoney" property="allCashMoney" jdbcType="DECIMAL" />
+    <result column="allRechargeMoney" property="allRechargeMoney" jdbcType="DECIMAL" />
+    <result column="allInterestMoney" property="allInterestMoney" jdbcType="DECIMAL" />
+    <result column="countBorrowSucc" property="countBorrowSucc" jdbcType="INTEGER" />
+    <result column="countBorrowFail" property="countBorrowFail" jdbcType="INTEGER" />
+    <result column="countWaitRepay" property="countWaitRepay" jdbcType="INTEGER" />
+    <result column="countSuccRepay" property="countSuccRepay" jdbcType="INTEGER" />
+    <result column="countForwardRepay" property="countForwardRepay" jdbcType="INTEGER" />
+    <result column="countLateRepay" property="countLateRepay" jdbcType="INTEGER" />
+    <result column="countLate30Days" property="countLate30Days" jdbcType="INTEGER" />
+    <result column="countLate30Days_" property="countLate30Days_" jdbcType="INTEGER" />
+    <result column="countLateNoRepay" property="countLateNoRepay" jdbcType="INTEGER" />
+    
+    <result column="sumRepay" property="sumRepay" jdbcType="DECIMAL" />
+    <result column="countRepay" property="countRepay" jdbcType="INTEGER" />
+    <result column="recentRepay" property="recentRepay" jdbcType="DECIMAL" />
+    <result column="recentRepayTime" property="recentRepayTime" jdbcType="INTEGER" />
+    
+    <result column="sumCollection" property="sumCollection" jdbcType="INTEGER" />
+    <result column="countCollection" property="countCollection" jdbcType="INTEGER" />
+    <result column="recentCollection" property="recentCollection" jdbcType="INTEGER" />
+    <result column="recentCollectionTime" property="recentCollectionTime" jdbcType="INTEGER" />
+    
+    <result column="averageApr" property="averageApr" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    allTenderMoney, allCashMoney,allRechargeMoney,allInterestMoney,countBorrowSucc,countBorrowFail,countWaitRepay,
+    countSuccRepay,countForwardRepay,countLateRepay,countLate30Days,countLate30Days_,countLateNoRepay,sumRepay,countRepay,recentRepay,recentRepayTime,
+    sumCollection,countCollection,recentCollection,recentCollectionTime,averageApr
+  </sql>
+  
+  <!-- 用户历史待收 & 加权收益 -->
+  <select id="selectSumColletionUser" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  	select 
+  	(select ifnull(sum(bc.repay_account),0) from rd_borrow_collection bc LEFT JOIN rd_borrow_tender bt on bc.tender_id=bt.id 
+	where bt.user_id=#{userId,jdbcType=INTEGER} and bt.status=1) as sumCollection,
+  	(select ifnull(ROUND((sum((b.apr-ifnull(fee.b_fee,0)-ifnull(fee.g_fee,0))*bt.account)/sum(bt.account)),2),0)
+	from rd_borrow b left join rd_investors_fee fee on b.id=fee.b_id 
+	left join rd_borrow_tender bt on b.id=bt.borrow_id
+	where bt.user_id=#{userId,jdbcType=INTEGER} and bt.status=1) as averageApr
+  </select>
+  
+  
+  <!-- 用户待收数据 -->
+  <select id="selectColletionForUser" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  	select 
+	ifnull((SELECT collection from rd_account where user_id =#{userId,jdbcType=INTEGER}),0) as sumCollection,
+	(select count(*) from rd_borrow_collection bc LEFT JOIN rd_borrow_tender bt on bc.tender_id=bt.id 
+	where bt.user_id=#{userId,jdbcType=INTEGER} and bc.`status`=0 and bt.status=1) as countCollection,
+	ifnull((select bc.repay_account from rd_borrow_collection bc LEFT JOIN rd_borrow_tender bt on bc.tender_id=bt.id 
+	where bt.user_id=#{userId,jdbcType=INTEGER} and bc.`status`=0 and bt.status=1 ORDER BY bc.repay_time asc limit 0,1),0) as recentCollection,
+	(select bc.repay_time from rd_borrow_collection bc LEFT JOIN rd_borrow_tender bt on bc.tender_id=bt.id 
+	where bt.user_id=#{userId,jdbcType=INTEGER} and bc.`status`=0 and bt.status=1 ORDER BY bc.repay_time asc limit 0,1) as recentCollectionTime
+  </select>
+  <!-- 用户待还数据 -->
+  <select id="selectRepayForUser" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  	select (
+	select sum(br.repayment_account) from rd_borrow_repayment br LEFT JOIN rd_borrow b on br.borrow_id=b.id
+	where b.user_id=#{userId,jdbcType=INTEGER} and br.`status`=0) as sumRepay,
+	(select count(*) from rd_borrow_repayment br LEFT JOIN rd_borrow b on br.borrow_id=b.id
+	where b.user_id=#{userId,jdbcType=INTEGER} and br.`status`=0) as countRepay,
+	(select br.repayment_account from rd_borrow_repayment br LEFT JOIN rd_borrow b on br.borrow_id=b.id
+	where b.user_id=#{userId,jdbcType=INTEGER} and br.`status`=0 order by br.repayment_time asc limit 0,1) as recentRepay,
+	(select br.repayment_time from rd_borrow_repayment br LEFT JOIN rd_borrow b on br.borrow_id=b.id
+	where b.user_id=#{userId,jdbcType=INTEGER} and br.`status`=0 order by br.repayment_time asc limit 0,1) as recentRepayTime
+  </select>
+  
+  <select id="selectAllStatistics" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  select (select ifnull(sum(account),0) from rd_borrow_tender where status=1) as allTenderMoney,
+  (select ifnull(sum(total),0) from rd_account_cash where status=1) as allCashMoney,
+  (select ifnull(sum(money),0) from rd_account_recharge where status=1) as allRechargeMoney,
+  (select ifnull(sum(interest),0) from rd_borrow_collection where status in (1,0,30,40)) as allInterestMoney
+  </select>
+  <select id="selectStatisticsByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  select (select round(ifnull(sum(total),0),2) from rd_account_cash where user_id=#{userId,jdbcType=INTEGER} and `status`=1) as allCashMoney,
+  (select round(ifnull(sum(money),0),2) from rd_account_recharge where user_id=#{userId,jdbcType=INTEGER} and `status`=1) as allRechargeMoney,
+  (select round(ifnull(sum(bc.interest),0),2) from rd_borrow_collection bc LEFT JOIN rd_borrow_tender bt on bc.tender_id=bt.id
+   where bt.user_id=#{userId,jdbcType=INTEGER} and bc.`status` in (1,40)) as allInterestMoney
+  </select>
+  <!-- 统计借款用户发标的相关数据 -->
+  <select id="selectBorrow" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+	select sum(case when `status`=3 and repayment_account=repayment_yesaccount then 1 else 0 end) as countBorrowSucc,
+	sum(case when `status`=5 then 1 else 0 end) as countBorrowFail
+ 	from rd_borrow where user_id=#{userId,jdbcType=INTEGER}
+  </select>
+  <!-- 统计用户还款的相关数据 -->
+  <select id="selectBorrowRepayment" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+	  <![CDATA[ 
+		select sum(case when br.status=0 then 1 else 0 end) as countWaitRepay,
+		sum(case when br.status=1 then 1 else 0 end) as countSuccRepay,
+		sum(case when br.status=1 and br.repayment_yestime>br.repayment_time then 1 else 0 end) as countLateRepay,
+		sum(case when br.status=0 and br.repayment_yestime>br.repayment_time then 1 else 0 end) as countLateNoRepay,
+		sum(case when br.status=1 and br.repayment_yestime-br.repayment_time<=2592000 then 1 else 0 end) as 'countLate30Days',
+		sum(case when br.status=1 and br.repayment_yestime-br.repayment_time>2592000 then 1 else 0 end) as 'countLate30Days_'
+		from rd_borrow_repayment br LEFT JOIN rd_borrow b on br.borrow_id=b.id
+		where b.user_id=#{userId,jdbcType=INTEGER}
+	]]>
+  </select>
+
+</mapper>

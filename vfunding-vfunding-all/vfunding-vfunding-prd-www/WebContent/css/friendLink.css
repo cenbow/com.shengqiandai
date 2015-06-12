@@ -1,0 +1,41 @@
+@charset "utf-8";
+/* CSS Document */
+
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+h3.f-link{
+    color: #0065b4;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 20px 0;
+    padding-left: 50px;
+}
+.friendDiv{
+    width: 900px;
+    overflow: hidden;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 0 30px;
+
+
+
+}
+.friendWrap{
+
+    min-height: 500px;
+    padding-left: 50px;
+
+}
+
+.friendDiv a{
+    width: 142px;
+    height: 52px;
+    display: block;
+    float: left;
+    border: 1px solid #ccc;
+    margin-right: 20px;
+    margin-bottom: 20px;
+
+
+}

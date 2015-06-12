@@ -1,0 +1,75 @@
+@charset "utf-8";
+/* CSS Document */
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+.loginpic{ width:300px; height:70px; background:url(../images/login/0.png) no-repeat left center; margin:10px auto 0; border-bottom:1px solid #e3e3e3;}
+.login_bg{ height:530px; background:url(../images/login/banner.jpg) no-repeat center center; overflow:hidden; }
+.login_sector{ width:1000px; height:530px;  position: relative; margin:0 auto;}
+.login_box_bg{ background:#fff;}
+.login_box{ width:320px; height: auto !important; position:absolute; top:76px; right:0; padding-bottom:10px; opacity:0.9;filter:alpha(opacity=90);}
+#loginForm{ width:262px; margin:0 auto; height: auto !important; overflow:hidden;}
+.ui-form-item{ height:50px; position:relative; margin-top:20px; overflow:hidden;}
+.ui-form .loginName{width:262px;padding:0 5px 0 70px; height:40px;}
+.ui-form .ui-label{ padding-top:2px;}
+.ui-form-item .placeholder{ width:120px; height:20px; line-height:20px; position:absolute; top:8px; left:90px; font-size:13px;}
+.ui-form-item .ui-input{ padding:9px 9px; height:16px;}
+.ui-form-item #username,.ui-form-item #password{ width:164px;font-size:16px;}
+
+.submit-btn-bg{ background:url(../images/login/loginBg.gif) no-repeat;}
+.logining{ background-position:0 -50px;}
+
+#submit_btn{ width:225px; height:50px; display:block; border:0 none; font-size:24px; color:#fff; cursor:pointer; outline:none; margin-left:28px; border-radius:4px;}
+.ui-form .submitBtn{ margin-top:4px; height:50px; padding:0; }
+.ui-form  .login_tip{ width:225px; height:22px;  margin:0 auto;  padding:0; color:red; font-size:12px; text-align: center; line-height:22px;}
+.ui-form .login_tip2{ margin-top:10px;height:22px; padding:0 8px 0 0; overflow:hidden;}
+.forget_reg{ display:inline-block; float:right; font-size:13px;}
+
+.login_input{ width:260px; height:360px; margin:80px auto 0; overflow:hidden;}
+.login_item{ height:31px; margin-top:18px; overflow:hidden; }
+.login_item span{ display:block; width:62px; line-height:31px; color:#444444; font-weight:bold; text-align:right;}
+.input_text{ width:198px; height:31px;}
+#login_name,#login_pwd,#code{ padding:4px 10px; width:176px; height:20px; line-height:20px; border:1px solid #cccccc; }
+.show_tip{ height:20px; line-height:20px; margin:0; display:block;  margin-top:8px; text-align:center;overflow:hidden; color:red;}
+.login_button{ height:52px; position:relative; margin-top:8px;}
+#login_btn{ width:226px; height:50px; display:block; line-height:50px; text-align:center; background:#ff8636; font-size:24px; color:#fff; position:absolute; right:0; top:0;}
+.show_zhuce_pwd{ height:20px;  margin-top:10px; text-align: right;}
+
+.login_box_withcode{ height:354px; background-position:0 0;}
+
+.ui-form-item #submit_btn{ font-family:"微软雅黑";}
+
+
+#loginBox_withCode{ width:262px; margin:80px auto 0; overflow:hidden;}
+.ui-form .codeBox{ width:226px;}
+.ui-form-item .authCode{ width:100px;}
+.ui-form-item .ui-checkcode-input{border:1px solid #c5c5c5;float:left; height:28px;}
+.ui-checkcode-input:hover{
+	
+	    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #00a0e9;
+    border-image: none;
+    border-right: 1px solid #00a0e9;
+    border-style: solid;
+    border-width: 1px;
+	
+	}
+	
+	
+#authCodeImg{ width:68px; height:32px; background:#00a0e9; display:block; float:left; margin-left:4px;}
+#refresh_code{ width:26px; height:28px; float:right; background:yellow;}
+.ui-form .mt20{ margin-top:10px;}
+
+
+.qqwb_bg{ background:url(../images/login/q_wb.png) no-repeat;}
+.q-wb{ height:46px; overflow:hidden; border-bottom:1px solid #e2e5e6; padding:0;}
+.qq-wb{ height:16px; margin:15px 0; position:relative;}
+a.qq,.sina_wb{ height:16px; position:absolute; top:0; display:block; font-size:12px; line-height:13px; *line-height:18px;}
+a.qq{ width:80px; left:30px;  background-position:0 0; text-indent:20px;}
+.sina_wb{ width:90px; left:180px; background-position:0 -16px; text-indent:26px; }
+
+a.qq:hover,.sina_wb:hover,.forget_reg a:hover{ color:#00a0e9;
+}

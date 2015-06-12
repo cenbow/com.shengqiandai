@@ -1,0 +1,50 @@
+@charset "utf-8";
+/* CSS Document */
+
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+
+
+.bid-opt select{ width:auto;}
+
+.pro_name{ width:90px; height:42px; line-height:42px; text-align:right;}
+.product{ height:60px; padding-left:16px;}
+
+
+#putLength{ width:240px;}
+.yCheckbox, .yRadio {
+    cursor: pointer;
+    height: 18px;
+    overflow: hidden;
+    position: relative;
+    width: 18px;
+}
+
+.yCheckbox .ico, .yRadio .ico {
+    background: url(../images/rc.png) no-repeat scroll 0 -40px;
+    cursor: pointer;
+    height: 18px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 18px;
+}
+
+
+.yCheckbox .hover {
+    background-position: 0 0;
+}
+.yCheckbox .selected {
+    background-position: 0 -20px;
+}
+
+.model-box{ border:1px solid #eee;}
+
+.product label{ padding-left:10px;}
+
+.chosen-container-single .chosen-single{width:242px;height:42px; line-height:42px;}
+.chosen-container .chosen-container-single{ width:242px; *width:242px;}
+.chosen-container-single .chosen-search input[type="text"]{ padding:4px 0;}
+.chosen-container-single .chosen-single div{right:-2px;top:10px;}
+.chosen-container .chosen-drop{width:252px; *width:250px;}

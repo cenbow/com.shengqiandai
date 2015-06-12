@@ -1,0 +1,8 @@
+jms.address=${jms.address}
+jms.open=${jms.open}
+file.server=${file.server}
+email.server=${email.server}
+sms.server=${sms.server}
+voice.server=${voice.server}
+AnniversarySeason1TurnplateStart=${AnniversarySeason1TurnplateStart}
+AnniversarySeason1TurnplateEnd=${AnniversarySeason1TurnplateEnd}

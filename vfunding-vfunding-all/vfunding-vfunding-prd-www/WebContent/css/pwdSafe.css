@@ -1,0 +1,150 @@
+@charset "utf-8";
+/* CSS Document */
+@charset "utf-8";
+/* CSS Document */
+@import url(base.css);
+
+@import url(top.css);
+
+@import url(bottom.css);
+
+@import url(accountLeft.css);
+
+.myAccount {
+	height: 940px;
+	margin: 30px 0;
+	clear: both;
+}
+
+/*****账户总览右栏***/
+.rechargeTakeCash {
+	width: 820px;
+	height: 940px;
+}
+
+.rT {
+	height: 940px;
+	background: #fff;
+}
+
+.rTWrap {
+	width: 780px;
+	height: 940px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+.txTop {
+	height: 58px;
+	overflow: hidden;
+	position: relative;
+	margin-top: 20px;
+}
+
+b.midLine {
+	height: 1px;
+	font-size: 0;
+	width: 80%;
+	background: #eeeeee;
+	position: absolute;
+	top: 28px;
+	right: 0;
+	overflow: hidden;
+}
+
+.txTop h2,.excel {
+	height: 22px;
+	line-height: 22px;
+	position: absolute;
+	background-color: #fff;
+}
+
+.txTop h2.zhcz {
+	top: 17px;
+	left: 88px;
+	font-size: 20px;
+	color: #0065b4;
+	padding: 0 6px;
+	z-index: 9;
+}
+
+a.goBack {
+	width: 64px;
+	height: 30px;
+	line-height: 28px;
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 12px;
+	background: url(../images/account/goback.png) no-repeat 12px center;
+	background-color: #cccccc;
+	text-indent: 28px;
+	color: #fff;
+}
+
+a.goBack:hover {
+	background-color: #aaa;
+	text-decoration: none;
+}
+
+.rechargeAmount,.rechargeWay,.threeWay {
+	height: 50px;
+	margin-top: 22px;
+}
+
+.pwdQue {
+	width: 560px;
+	height: 220px;
+	margin: 56px auto 0
+}
+
+.textAlign {
+	text-align: right;
+}
+
+#answer ,#oldAnswer {
+	width: 190px;
+	height: 28px;
+	line-height: 28px;
+	border: 1px solid #eee;
+	padding: 0 5px;
+}
+
+#pwdSafeBtn,#pwdSafeBtn2 {
+	width: 116px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	color: #fff;
+	background-color: #0065b4;
+	font-size: 16px;
+	display: block;
+	border-radius: 3px;
+}
+
+#pwdSafeBtn:hover {
+	background-color: #00a0e9;
+}
+
+.que-select {
+	width: 204px;
+	height: 28px;
+	line-height: 28px;
+}
+
+.chosen-container .chosen-drop {
+	*width: 98.8%;
+}
+
+.chosen-container-single .chosen-search input[type="text"] {
+	padding: 4px 0;
+}
+
+.chosen-container-single .chosen-single {
+	height: 28px;
+	line-height: 28px;
+}
+
+.answerTip,.oldAnswerTip {
+	color: red;
+}

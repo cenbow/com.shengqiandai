@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.week.dao.WeekRepaymentMapper">
+	<resultMap id="BaseResultMap"
+		type="cn.vfunding.vfunding.biz.week.model.WeekRepayment">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="week_id" property="weekId" jdbcType="INTEGER" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="repayment_user" property="repaymentUser"
+			jdbcType="INTEGER" />
+		<result column="repayment_account" property="repaymentAccount"
+			jdbcType="DECIMAL" />
+		<result column="capital" property="capital" jdbcType="DECIMAL" />
+		<result column="interest" property="interest" jdbcType="DECIMAL" />
+		<result column="repayment_time" property="repaymentTime"
+			jdbcType="TIMESTAMP" />
+		<result column="repayment_yestime" property="repaymentYestime"
+			jdbcType="TIMESTAMP" />
+		<result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+		<result column="add_ip" property="addIp" jdbcType="VARCHAR" />
+	</resultMap>
+	<!-- 还款计划resultmap louchen 2014-12-9 -->
+	<resultMap id="WeekRepaymentResultMap"
+		type="cn.vfunding.vfunding.biz.week.vo.WeekRepaymentVO">
+		<result column="id" property="repaymentId" jdbcType="INTEGER" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="week_id" property="weekId" jdbcType="INTEGER" />
+		<result column="week_name" property="weekName" jdbcType="VARCHAR" />
+		<result column="time_limit" property="timeLimit" jdbcType="INTEGER" />
+		<result column="apr" property="apr" jdbcType="DECIMAL" />
+		<result column="capital" property="capital" jdbcType="DECIMAL" />
+		<result column="interest" property="interest" jdbcType="DECIMAL" />
+		<result column="repayment_account" property="repaymentAccount" />
+		<result column="repayment_time" property="repaymentTime" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, week_id, status, repayment_user, repayment_account,
+		capital,
+		interest, repayment_time,
+		repayment_yestime, add_time, add_ip
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from vf_week_repayment
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		vf_week_repayment
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="cn.vfunding.vfunding.biz.week.model.WeekRepayment">
+		insert into vf_week_repayment
+		(id, week_id, status,
+		repayment_user, repayment_account, capital,
+		interest, repayment_time, repayment_yestime,
+		add_time, add_ip)
+		values
+		(#{id,jdbcType=INTEGER}, #{weekId,jdbcType=INTEGER},
+		#{status,jdbcType=INTEGER},
+		#{repaymentUser,jdbcType=INTEGER},
+		#{repaymentAccount,jdbcType=DECIMAL}, #{capital,jdbcType=DECIMAL},
+		#{interest,jdbcType=DECIMAL}, #{repaymentTime,jdbcType=TIMESTAMP},
+		#{repaymentYestime,jdbcType=TIMESTAMP},
+		#{addTime,jdbcType=TIMESTAMP},
+		#{addIp,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.week.model.WeekRepayment">
+		insert into vf_week_repayment
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="weekId != null">
+				week_id,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="repaymentUser != null">
+				repayment_user,
+			</if>
+			<if test="repaymentAccount != null">
+				repayment_account,
+			</if>
+			<if test="capital != null">
+				capital,
+			</if>
+			<if test="interest != null">
+				interest,
+			</if>
+			<if test="repaymentTime != null">
+				repayment_time,
+			</if>
+			<if test="repaymentYestime != null">
+				repayment_yestime,
+			</if>
+			<if test="addTime != null">
+				add_time,
+			</if>
+			<if test="addIp != null">
+				add_ip,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="weekId != null">
+				#{weekId,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="repaymentUser != null">
+				#{repaymentUser,jdbcType=INTEGER},
+			</if>
+			<if test="repaymentAccount != null">
+				#{repaymentAccount,jdbcType=DECIMAL},
+			</if>
+			<if test="capital != null">
+				#{capital,jdbcType=DECIMAL},
+			</if>
+			<if test="interest != null">
+				#{interest,jdbcType=DECIMAL},
+			</if>
+			<if test="repaymentTime != null">
+				#{repaymentTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="repaymentYestime != null">
+				#{repaymentYestime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="addTime != null">
+				#{addTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="addIp != null">
+				#{addIp,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.week.model.WeekRepayment">
+		update vf_week_repayment
+		<set>
+			<if test="weekId != null">
+				week_id = #{weekId,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="repaymentUser != null">
+				repayment_user = #{repaymentUser,jdbcType=INTEGER},
+			</if>
+			<if test="repaymentAccount != null">
+				repayment_account = #{repaymentAccount,jdbcType=DECIMAL},
+			</if>
+			<if test="capital != null">
+				capital = #{capital,jdbcType=DECIMAL},
+			</if>
+			<if test="interest != null">
+				interest = #{interest,jdbcType=DECIMAL},
+			</if>
+			<if test="repaymentTime != null">
+				repayment_time = #{repaymentTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="repaymentYestime != null">
+				repayment_yestime =
+				#{repaymentYestime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="addTime != null">
+				add_time = #{addTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="addIp != null">
+				add_ip = #{addIp,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.week.model.WeekRepayment">
+		update
+		vf_week_repayment
+		set week_id = #{weekId,jdbcType=INTEGER},
+		status =
+		#{status,jdbcType=INTEGER},
+		repayment_user =
+		#{repaymentUser,jdbcType=INTEGER},
+		repayment_account =
+		#{repaymentAccount,jdbcType=DECIMAL},
+		capital =
+		#{capital,jdbcType=DECIMAL},
+		interest = #{interest,jdbcType=DECIMAL},
+		repayment_time = #{repaymentTime,jdbcType=TIMESTAMP},
+		repayment_yestime = #{repaymentYestime,jdbcType=TIMESTAMP},
+		add_time =
+		#{addTime,jdbcType=TIMESTAMP},
+		add_ip = #{addIp,jdbcType=VARCHAR}
+		where
+		id = #{id,jdbcType=INTEGER}
+	</update>
+	
+	<select id="selectWeekRepaymentListPage" resultMap="BaseResultMap"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select
+		<include refid="Base_Column_List" />
+		from
+		vf_week_repayment
+		where 1=1
+		
+		<if
+			test="entity != null and entity.weekIds != null and entity.weekIds!= '' ">
+			and week_id in (#{entity.weekIds,jdbcType=VARCHAR})
+		</if>
+		<if
+			test="entity != null and entity.status != null and entity.status!= '' ">
+			and status=#{entity.status,jdbcType=INTEGER}
+		</if>
+		<if test="entity != null and entity.time != null and entity.time != '' ">
+			<![CDATA[ and repayment_yestime >= #{entity.startTime,jdbcType=TIMESTAMP} ]]>
+		</if>
+		<if test="entity != null and entity.time != null and entity.time != '' ">
+			<![CDATA[ and repayment_yestime <= #{entity.endTime,jdbcType=TIMESTAMP} ]]>
+		</if>
+		order by repayment_yestime desc
+	</select>
+	
+	<!-- 查询还款列表 louchen 2014-12-9 -->
+	<select id="selectWeekRepaymentGroupByWeekIdListPage" resultMap="WeekRepaymentResultMap"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select a.id,a.week_id,a.repayment_time,a.status
+		,b.name as week_name,b.time_limit,b.apr
+		,a.capital
+		,a.interest
+		,a.repayment_account
+		from vf_week_repayment a
+		left join vf_week b on b.id = a.week_id
+		where 1=1
+		<if test="entity != null and entity.weekId!= null and entity.weekId!= '' ">
+			and a.week_id=#{entity.weekId,jdbcType=INTEGER}
+		</if>
+		<if test="entity != null and entity.status!= null  ">
+			and a.status=#{entity.status,jdbcType=INTEGER}
+		</if>
+		<if
+			test="entity != null and entity.startTime != null and entity.startTime != '' ">
+			<![CDATA[ and a.repayment_time >= #{entity.startTime,jdbcType=VARCHAR} ]]>
+		</if>
+		<if
+			test="entity != null and entity.endTime != null and entity.endTime != '' ">
+			<![CDATA[ and a.repayment_time <= #{entity.endTime,jdbcType=VARCHAR} ]]>
+		</if>
+		#GROUP BY a.week_id,a.repayment_time,a.status
+		order by a.repayment_time,a.week_id
+	</select>
+	
+	<!-- 查询还款总金额 louchen 2014-12-9 -->
+	<select id="selectSumWeekRepayment" resultMap="WeekRepaymentResultMap"
+		parameterType="cn.vfunding.vfunding.biz.week.vo.SearchWeekRepaymentVO">
+		select
+		sum(a.capital) as capital
+		,sum(a.interest) as interest
+		,sum(a.repayment_account) as repayment_account
+		from vf_week_repayment a
+		where 1=1
+		<if test="weekId!= null and weekId!= '' ">
+			and a.week_id=#{weekId,jdbcType=INTEGER}
+		</if>
+		<if test="status!= null">
+			and a.status=#{status,jdbcType=INTEGER}
+		</if>
+		<if	test="startTime != null and startTime != '' ">
+			<![CDATA[ and a.repayment_time >= #{startTime,jdbcType=TIMESTAMP} ]]>
+		</if>
+		<if	test="endTime != null and endTime != '' ">
+			<![CDATA[ and a.repayment_time <= #{endTime,jdbcType=TIMESTAMP} ]]>
+		</if>
+	</select>
+
+</mapper>

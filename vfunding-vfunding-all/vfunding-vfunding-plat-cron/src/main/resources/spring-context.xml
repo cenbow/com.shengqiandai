@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.2.xsd
+	http://www.springframework.org/schema/cache  
+	http://www.springframework.org/schema/cache/spring-cache-3.2.xsd
+	http://www.springframework.org/schema/task
+http://www.springframework.org/schema/task/spring-task-3.2.xsd
+	">
+
+	<!-- 支持异步方法执行 -->
+	<task:annotation-driven />
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>file:./conf/*.properties</value>
+			</list>
+		</property>
+		<property name="fileEncoding">
+			<value>UTF-8</value>
+		</property>
+	</bean>
+	<context:component-scan base-package="cn.vfunding.vfunding.biz.activity.component" />
+	<!-- 自动扫描dao和service包(自动注入) -->
+	<context:component-scan
+		base-package="cn.vfunding.vfunding.biz.*.service,cn.vfunding.vfunding.plat.cron">
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+
+
+	<bean id="cronRestInvokerFactory"
+		class="cn.vfunding.common.framework.utils.http.RestInvokerFactory">
+		<property name="baseURL">
+			<value>${cron.record.server}</value>
+		</property>
+	</bean>
+
+	<bean id="inviteRestInvokerFactory"
+		class="cn.vfunding.common.framework.utils.http.RestInvokerFactory">
+		<property name="baseURL">
+			<value>${invite.server}</value>
+		</property>
+	</bean>
+
+
+
+	<!-- 定时任务监控配置 -->
+	<bean id="cronUtil" class="cn.vfunding.common.service.cron.util.CronUtil">
+		<property name="cronRestInvokerFactory" ref="cronRestInvokerFactory"></property>
+	</bean>
+
+	<bean id="aroundInterceptor"
+		class="cn.vfunding.common.service.cron.interceptors.AroundInterceptor" />
+
+	<!-- 用户补发机制代理对象 -->
+	<bean id="userActionAgainLogProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces"
+			value="cn.vfunding.vfunding.biz.cron.service.IAgainLogCronService" />
+		<property name="target" ref="againLogsCronService" />
+		<property name="interceptorNames">
+			<list>
+				<value>aroundInterceptor</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 第三方合作用户信息同步 -->
+	<bean id="thirdSynRecordProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces"
+			value="cn.vfunding.vfunding.plat.cron.interfaces.IThirdSynRecordCronService" />
+		<property name="target" ref="thirdSynRecordCronService" />
+		<property name="interceptorNames">
+			<list>
+				<value>aroundInterceptor</value>
+			</list>
+		</property>
+	</bean>
+
+
+	<!-- 用户退出服务的 AOP代理对象 -->
+
+	<bean id="userTrackServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces"
+			value="cn.vfunding.vfunding.biz.cron.service.IUserTrackCronService" />
+		<property name="target" ref="userTrackCronService" />
+		<property name="interceptorNames">
+			<list>
+				<value>aroundInterceptor</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 还款提醒 and 网站流标 服务的 AOP代理对象 -->
+	<bean id="borrowServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces"
+			value="cn.vfunding.vfunding.biz.cron.service.IBorrowCronService" />
+		<property name="target" ref="borrowCronService" />
+		<property name="interceptorNames">
+			<list>
+				<value>aroundInterceptor</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 网站联盟介绍来的用户的状态服务的 AOP代理对象 -->
+	<bean id="userFromUnionCronServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces"
+			value="cn.vfunding.vfunding.biz.cron.service.IUserFromUnionCronService" />
+		<property name="target" ref="userFromUnionCronService" />
+		<property name="interceptorNames">
+			<list>
+				<value>aroundInterceptor</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 网站联盟用户状态 服务的AOP代理对象 -->
+	<bean id="unionUserStatusServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces"
+			value="cn.vfunding.vfunding.biz.cron.service.IUnionUserStatusCronService" />
+		<property name="target" ref="unionUserStatusService" />
+		<property name="interceptorNames">
+			<list>
+				<value>aroundInterceptor</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- financialPlannerService的AOP代理对象 -->
+	<bean id="financialPlannerServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces"
+			value="cn.vfunding.vfunding.biz.cron.service.IFinancialPlannerCronService" />
+		<property name="target" ref="financialPlannerCronService" />
+		<property name="interceptorNames">
+			<list>
+				<value>aroundInterceptor</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 活期宝currentCronServiceProxy的AOP代理对象 -->
+	<bean id="currentCronServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces"
+			value="cn.vfunding.vfunding.biz.current.service.ICurrentCronService" />
+		<property name="target" ref="currentCronService" />
+		<property name="interceptorNames">
+			<list>
+				<value>aroundInterceptor</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 用户报表和发送邮件服务的AOP代理对象 -->
+	<bean id="userReportAndSendEmaiCronProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces"
+			value="cn.vfunding.vfunding.plat.cron.interfaces.IUserReportAndSendEmailCron" />
+		<property name="target" ref="userReportAndSendEmaiCron" />
+		<property name="interceptorNames">
+			<list>
+				<value>aroundInterceptor</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 营运日报服务的AOP代理对象 -->
+	<bean id="operateReportCronProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces"
+			value="cn.vfunding.vfunding.plat.cron.interfaces.IOperateReportCron" />
+		<property name="target" ref="operateReportCron" />
+		<property name="interceptorNames">
+			<list>
+				<value>aroundInterceptor</value>
+			</list>
+		</property>
+	</bean>
+	<!-- 用户解锁的AOP代理对象 -->
+	<bean id="userUnLockServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces"
+			value="cn.vfunding.vfunding.biz.cron.service.IUserUnLockService" />
+		<property name="target" ref="userUnLockService" />
+		<property name="interceptorNames">
+			<list>
+				<value>aroundInterceptor</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- weekTender状态扫描AOP代理对象 -->
+	<bean id="weekCronProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces"
+			value="cn.vfunding.vfunding.biz.week.service.IWeekCronService" />
+		<property name="target" ref="weekCronService" />
+		<property name="interceptorNames">
+			<list>
+				<value>aroundInterceptor</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 礼品盒红包相关扫描AOP代理对象 -->
+	<bean id="giftboxHongbaoCronProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces"
+			value="cn.vfunding.vfunding.biz.cron.service.IGiftboxHongbaoCronService" />
+		<property name="target" ref="giftboxHongbaoCronService" />
+		<property name="interceptorNames">
+			<list>
+				<value>aroundInterceptor</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 账户闲置资金扫描AOP代理对象 -->
+	<bean id="accountLeaveUnusedCronProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces"
+			value="cn.vfunding.vfunding.biz.cron.service.IAccountCronService" />
+		<property name="target" ref="accountCronService" />
+		<property name="interceptorNames">
+			<list>
+				<value>aroundInterceptor</value>
+			</list>
+		</property>
+	</bean>
+	
+	
+	<!-- 用户注册问候短信扫描AOP代理对象 -->
+	<bean id="userRegisterComplimentCronProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces"
+			value="cn.vfunding.vfunding.biz.cron.service.IUserRegisterComplimentCronService" />
+		<property name="target" ref="userRegisterComplimentCronService" />
+		<property name="interceptorNames">
+			<list>
+				<value>aroundInterceptor</value>
+			</list>
+		</property>
+	</bean>
+	
+	
+	<!-- 用户生日祝福邮件扫描AOP代理对象 -->
+	<bean id="userBirthdayCronProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces"
+			value="cn.vfunding.vfunding.biz.cron.service.IBirthdayUserCronService" />
+		<property name="target" ref="birthdayUserCronService" />
+		<property name="interceptorNames">
+			<list>
+				<value>aroundInterceptor</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 新浪存钱罐余额生息相关扫描AOP代理对象 -->
+	<bean id="sinaBonusCronProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces"
+			value="cn.vfunding.vfunding.biz.cron.service.ISinaBonusCronService" />
+		<property name="target" ref="sinaBonusCronService" />
+		<property name="interceptorNames">
+			<list>
+				<value>aroundInterceptor</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 新浪存钱罐余额生息相关扫描AOP代理对象 -->
+	<bean id="userEmailCronProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces"
+			value="cn.vfunding.vfunding.biz.cron.service.IUserEmailCronService" />
+		<property name="target" ref="userEmailCronService" />
+		<property name="interceptorNames">
+			<list>
+				<value>aroundInterceptor</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 定时任务配置 -->
+	<bean id="quertzScheduler" lazy-init="false" autowire="no"
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers" ref="triggers">
+		</property>
+	</bean>
+
+	<bean id="messageResourceInjector"
+		class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="staticMethod"
+			value="cn.vfunding.common.framework.server.MessageResourceInjector.inject" />
+		<property name="arguments">
+			<list>
+				<value>classpath*:cn/vfunding/vfunding/message/*.message.properties
+				</value>
+			</list>
+		</property>
+	</bean>
+
+
+	<!-- 配置数据源 -->
+	<bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		init-method="init" destroy-method="close">
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<!-- 配置初始化大小、最小、最大 -->
+		<property name="initialSize" value="1" />
+		<property name="maxActive" value="10" />
+		<!-- 配置获取连接等待超时的时间 -->
+		<property name="maxWait" value="60000" />
+
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+		<property name="minEvictableIdleTimeMillis" value="300000" />
+
+		<property name="validationQuery" value="SELECT 'x'" />
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow" value="false" />
+		<property name="testOnReturn" value="false" />
+
+		<!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxPoolPreparedStatementPerConnectionSize"
+			value="20" />
+
+		<!-- 监控数据库 -->
+		<!-- <property name="filters" value="stat" /> -->
+		<property name="filters" value="mergeStat" />
+	</bean>
+
+	<!-- myBatis文件 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations"
+			value="classpath*:cn/*/*/biz/**/mapping/*.xml" />
+	</bean>
+
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="cn.*.*.biz.*.dao" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	</bean>
+
+	<!-- 配置事务管理器 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+
+	<!-- 注解方式配置事物 -->
+	<!-- <tx:annotation-driven transaction-manager="transactionManager" /> -->
+
+	<!-- 拦截器方式配置事物 -->
+	<tx:advice id="transactionAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="append*" propagation="REQUIRED" />
+			<tx:method name="insert*" propagation="REQUIRED" />
+			<tx:method name="save*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="modify*" propagation="REQUIRED" />
+			<tx:method name="edit*" propagation="REQUIRED" />
+			<tx:method name="delete*" propagation="REQUIRED" />
+			<tx:method name="remove*" propagation="REQUIRED" />
+			<tx:method name="repair" propagation="REQUIRED" />
+			<tx:method name="delAndRepair" propagation="REQUIRED" />
+			<tx:method name="start*" propagation="REQUIRED" />
+
+			<tx:method name="get*" propagation="SUPPORTS" />
+			<tx:method name="find*" propagation="SUPPORTS" />
+			<tx:method name="load*" propagation="SUPPORTS" />
+			<tx:method name="search*" propagation="SUPPORTS" />
+			<tx:method name="datagrid*" propagation="SUPPORTS" />
+			<tx:method name="select*" propagation="SUPPORTS" />
+			<tx:method name="*ListPage*" propagation="SUPPORTS" />
+
+			<tx:method name="*" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<aop:config>
+		<aop:pointcut id="transactionPointcut"
+			expression="execution(* cn.vfunding.vfunding.biz.*.service.impl.*.*(..))" />
+		<aop:advisor pointcut-ref="transactionPointcut"
+			advice-ref="transactionAdvice" />
+	</aop:config>
+
+
+	<!-- 文件服务对象 -->
+	<bean id="emailRestInvokerFactory"
+		class="cn.vfunding.common.framework.utils.http.RestInvokerFactory">
+		<property name="baseURL">
+			<value>${email.server}</value>
+		</property>
+	</bean>
+	
+
+	<import resource="classpath:spring-cron.xml" />
+	<import resource="classpath:spring-restinvoker.xml" />
+	<import resource="classpath:spring-redis.xml" />
+</beans>

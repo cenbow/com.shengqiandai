@@ -1,0 +1,88 @@
+@charset "utf-8";
+/* CSS Document */
+
+.myAccount_left{ width:160px;  background:#fff; overflow:hidden;}
+.userSimpleAccount{ width:144px; margin:20px auto 0; border-bottom:1px dotted #cccccc; overflow:hidden;}
+.userSimpleAccount span{ display:block; width:122px; height:14px; line-height:14px; text-align:center; margin:0 auto;}
+.identifications{ height:82px; margin-top:14px;}
+.userIdentification{ width:122px; height:33px; margin:0 auto; position:relative;}
+.userIdentification a{ display:block; width:34px; height:33px; position:absolute; top:0;}
+.renzheng{ background: url(../images/account/renzheng.png) no-repeat;}
+.cardIdentification{ left:0; background-position:0 0;}
+.mobileIdentification{ left:45px; background-position:0 -33px;}
+.passwordIdentification{ left:90px; background-position:0 -66px;}
+.cardIdentification2{left:0; background-position:-34px 0;}
+.mobileIdentification2{left:45px; background-position:-34px -33px;}
+.passwordIdentification2{left:90px; background-position:-34px -66px;}
+
+.progressBar{ width:122px; height:10px; margin:10px auto 0; border:1px solid #ccc; padding:0 1px; border-radius:10px; overflow:hidden;}
+#progressBar{ height:8px;  margin:1px auto; background:#ff5555; float:left;border-radius:10px;  }
+
+.safeLevel{ width:126px; height:16px; line-height:16px; clear:both; margin:8px auto 0; }
+.safeLevel font{ color:#ff5555;font-size:14px;}
+.safeLevel a{ font-size:12px; color:#00a0e9;}
+
+.canUseMoney{ width:144px; height:123px; margin:0 auto; border-bottom:1px dotted #cccccc; overflow:hidden;}
+.canUseMoney span{ text-align:center; font-size:18px; font-weight:bold; display:block; margin-top:16px; }
+.moneyNum{ width:136px; height:20px; line-height:20px; text-align:center; color:#00a0e9; margin-top:6px;}
+a.recharge{ width:115px; height:30px; display:block; margin:0 auto; margin-top:8px; background:#ff8636; line-height:30px; text-align:center; font-size:16px; color:#fff; border-radius:3px;}
+a.recharge:hover{ text-decoration:none;background:#ffa836 ;}
+
+.items{ width:160px;  margin:20px auto 0;}
+.lefticon{background:url(../images/account/lefticon.png) no-repeat;}
+dl.item{ margin-bottom:20px; overflow:hidden;}
+dl.item-lcs{height:34px;line-height:34px;margin:0 0 10px 0;}
+dl.item-lcs dt{text-indent:16px;}
+
+
+.item dt{ text-indent:16px; margin-bottom:7px;}
+.item dt a,.item-lcs dt a{ text-decoration:none;}
+.item dd{ height:34px; line-height:34px;}
+.item dd.current{ background:#f1f1f1; }
+.item dd.current a,.item dd.current a:visited{color:#00a0e9;}
+.item dd a{ display:block; position:relative; text-indent:56px; text-decoration:none;}
+.item dd a:hover{ color:#00a0e9;}
+.item dd a i{ width:18px; height:18px; display:block;   position:absolute; left:30px; top:8px;*top:4px; overflow:hidden;}
+
+
+.item dd i.accountAll{ background-position:0 -126px;}
+.item dd.current i.accountAll,.item dd a:hover i.accountAll{ background-position:-18px -126px;}
+
+.item dd i.moneyRecord{ background-position:0 -144px;}
+.item dd.current i.moneyRecord,.item dd a:hover i.moneyRecord{ background-position:-18px -144px;}
+
+.item dd i.rechargeTx{ background-position:0 -162px;}
+
+.item dd.current i.rechargeTx,.item dd a:hover i.rechargeTx{ background-position:-18px -162px;}
+
+.item dd i.bankCard{ background-position:0 -180px;}
+.item dd.current i.bankCard,.item dd a:hover i.bankCard{ background-position:-18px -180px;}
+
+.item dd i.myGift{ background-position:-1px -218px;}
+.item dd.current i.myGift,.item dd a:hover i.myGift{ background-position:-19px -218px;}
+
+.item dd i.giftbox{ background-position:-1px -234px;}
+.item dd.current i.giftbox,.item dd a:hover i.giftbox{ background-position:-19px -234px;}
+
+.item dd i.investProject{ background-position:0 0;}
+.item dd.current i.investProject,.item dd a:hover i.investProject{ background-position:-18px 0;}
+
+
+.item dd i.debtSubrogation{ background-position:0 -18px;}
+.item dd.current i.debtSubrogation,.item dd a:hover i.debtSubrogation{ background-position:-18px -18px;}
+
+.item dd i.sureMoney{ background-position:0 -36px;}
+.item dd.current i.sureMoney,.item dd a:hover i.sureMoney{ background-position:-18px -36px;}
+
+.item dd a i.autoInvest{ background-position:0 -54px;}
+.item dd.current i.autoInvest,.item dd a:hover i.autoInvest{ background-position:-18px -54px;}
+
+.item dd i.limitApply{ background-position:0 -72px;}
+.item dd.current i.limitApply,.item dd a:hover i.limitApply{ background-position:-18px -72px;}
+
+.item dd i.releaseBorrow{ background-position:0 -90px;}
+.item dd.current i.releaseBorrow,.item dd a:hover i.releaseBorrow{ background-position:-18px -90px;}
+
+.item dd i.borrowRecord{ background-position:0 -108px;}
+.item dd.current i.borrowRecord,.item dd a:hover i.borrowRecord{ background-position:-18px -108px;}
+.item dt a.current{ background:#f1f1f1; display:block; height:34px; line-height:34px; overflow:hidden;}

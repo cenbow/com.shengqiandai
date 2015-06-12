@@ -1,0 +1,870 @@
+@charset "utf-8";
+/* CSS Document */
+@import url(base.css);
+
+@import url(top.css);
+
+@import url(bottom.css);
+
+/****************幻灯片**********************/
+.pic_change {
+	width: 100%;
+	height: 300px;
+}
+
+#kinMaxShow {
+	position: relative;
+	display: none;
+}
+/****************首页登陆框**********************/
+.login_box {
+	width: 300px;
+	height: 250px;
+	*height: 320px;
+	position: absolute;
+	top: 140px;
+	left: 50%;
+	margin-left: 200px;
+	z-index: 99;
+}
+
+.login_sector {
+	width: 270px;
+	height: 226px;
+	margin: 12px auto;
+	overflow: hidden;
+}
+
+.login_sector h1 {
+	font-size: 16px;
+	color: #fff;
+	font-weight: normal;
+}
+
+.login_sector p {
+	height: 80px;
+	line-height: 80px;
+	text-align: center;
+	font-size: 60px;
+	color: #ff8636;
+}
+
+.login_sector span {
+	font-size: 14px;
+	line-height: 23px;
+	color: #fff;
+}
+
+.login_sector span font {
+	color: #ff8636;
+}
+
+.register_btn {
+	width: 246px;
+	height: 50px;
+	display: block;
+	line-height: 50px;
+	text-align: center;
+	font-size: 24px;
+	color: #fff;
+	background: #ff8636;
+	margin: 20px auto 0;
+	border-radius: 3px;
+}
+
+a.register_btn:hover {
+	color: #fff;
+	background: #ff8636
+}
+
+#warm_tip {
+	height: 32px;
+	line-height: 32px;
+	text-align: right;
+	color: #fff;
+	font-size: 12px;
+	font-weight: normal;
+}
+
+#warm_tip a {
+	color: #fff;
+}
+
+#warm_tip a:hover {
+	text-decoration: underline;
+}
+
+.transparent {
+	width: 300px;
+	height: 250px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: #000;
+	opacity: 0.5;
+	filter: alpha(opacity = 50);
+	z-index: -1;
+}
+
+#login_after_box {
+	height: 84px;
+	line-height: 84px;
+	font-size: 20px;
+	color: #fff;
+}
+
+#login_name {
+	height: 34px;
+	line-height: 34px;
+	font-size: 16px;
+	color: #fff;
+}
+
+#login_name font {
+	color: #ff8636;
+}
+/*****************公告*********************/
+#notice {
+	height: 28px;
+	background-color: #0065b4;
+}
+
+#notice p {
+	width: 1000px;
+	height: 28px;
+	margin: 0 auto;
+}
+
+#notice p span {
+	width: 400px;
+	height: 28px;
+	line-height: 28px;
+	display: inline-block;
+	text-indent: 6px;
+	color: #fff;
+}
+
+.notice_bg {
+	width: 20px;
+	height: 28px;
+	display: inline-block;
+	background: url(http://static.vfunding.cn/images/index/notice.png)
+		no-repeat 0 0;
+}
+
+#notice p a {
+	display: inline-block;
+	line-height: 28px;
+	text-align: right;
+	color: #fff;
+}
+
+#notice p a:hover {
+	text-decoration: underline;
+}
+
+/****************主题内容部分*******************/
+#content {
+	width: 1000px;
+	height: 1180px;
+	*height: 1190px;
+	margin: 28px auto 0;
+	position: relative;
+}
+
+.vfunding_advantages {
+	height: 222px;
+}
+
+.advantage_points {
+	height: 76px;
+}
+
+.what_vfunding {
+	height: 110px;
+	margin-top: 36px;
+}
+
+.advantage {
+	width: 226px;
+	height: 76px;
+	display: block;
+}
+
+.a1,.a2 {
+	display: block;
+	width: 76px;
+	height: 76px;
+}
+
+.a3 {
+	display: block;
+	width: 76px;
+	height: 73px;
+}
+
+.a1:hover {
+	background-position: -76px 0;
+}
+
+.a2 {
+	background-position: 0 -79px;
+}
+
+.a2:hover {
+	background-position: -76px -79px;
+}
+
+.a3 {
+	background-position: 0 -155px;
+}
+
+.a3:hover {
+	background-position: -76px -155px;
+}
+
+.show_pic {
+	width: 72px;
+	height: 72px;
+	background-position: 0 -228px;
+}
+
+.advantage_explain {
+	width: 138px;
+	height: 76px;
+	padding-left: 10px;
+	display: block;
+	cursor: pointer;
+}
+
+.advantage_explain h2 {
+	height: 26px;
+	line-height: 18px;
+	font-size: 16px;
+	color: #555;
+}
+
+.advantage_explain p {
+	line-height: 18px;
+	color: #444444;
+	font-size: 13px;
+}
+
+.what_vfunding h1 {
+	height: 34px;
+	font-size: 16px;
+	color: #555;
+}
+
+.vfunding_detail {
+	height: 76px;
+	position: relative;
+}
+
+.vfunding_info {
+	width: 592px;
+	padding-left: 12px;
+	height: 76px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	display: block;
+	cursor: pointer;
+}
+
+.vfunding_info p {
+	line-height: 25px;
+	color: #444444;
+}
+
+/*******************左面 投资列表********************/
+.left_sector {
+	width: 680px;
+	height: 1156px;
+	*height: 1162px;
+	*overflow: hidden;
+}
+
+.toubiao_list {
+	height: 890px;
+	margin-top: 42px;
+}
+
+.toubiao_list h1 {
+	font-size: 20px;
+	line-height: 24px;
+	color: #555;
+}
+
+.tender_list {
+	height: 896px;
+	margin-top: 38px;
+}
+
+.listTitle {
+	height: 28px;
+	position: relative;
+}
+
+.tender_list h1 {
+	font-size: 20px;
+	line-height: 28px;
+	color: #555;
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: block;
+}
+
+.listTitle .lookMore {
+	display: block;
+	width: 58px;
+	height: 20px;
+	line-height: 20px;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+
+.lookMore:hover {
+	color: #00a0e9;
+}
+
+.list {
+	width: 660px;
+	height: 848px;
+	*height: 896px;
+	margin-top: 12px;
+	padding: 0 10px;
+	background-color: #fff;
+}
+
+.sub_list {
+	width: 660px;
+	height: 140px;
+	border-bottom: 1px solid #f6f6f6;
+	overflow: hidden;
+}
+
+.wrap {
+	height: 100px;
+	margin: 20px 0;
+}
+
+a.touxiang {
+	width: 100px;
+	height: 100px;
+	display: block;
+	background: url(http://static.vfunding.cn/images/index/touxiang.png);
+}
+
+.sub_list_content {
+	width: 340px;
+	height: 100px;
+	padding-left: 10px;
+}
+
+a.title {
+	width: 340px;
+	height: 30px;
+	line-height: 22px;
+	display: block;
+	font-size: 16px;
+}
+
+a.title:hover {
+	color: #00a0e9;
+}
+
+.borrow_content {
+	height: 22px;
+}
+
+.borrow_content span {
+	display: inline-block;
+}
+
+.h28 {
+	height: 24px;
+	line-height: 24px;
+}
+
+.span2 {
+	width: 160px;
+}
+
+.span1  img {
+	vertical-align: top;
+}
+
+.number {
+	height: 28px;
+}
+
+.borrow_content span b {
+	font-size: 20px;
+	color: #00a0e9;
+	font-weight: normal;
+}
+
+.bt0 {
+	margin-top: 6px;
+}
+
+.progress_circle {
+	width: 56px;
+	height: 70px;
+	margin: 30px 34px 0 10px;
+	position: relative;
+}
+
+.progress_circle p {
+	width: 56px;
+	height: 24px;
+	line-height: 24px;
+	text-align: center;
+	font-size: 14px;
+	color: #444444;
+	position: absolute;
+	bottom: 6px;
+	left: 2px;
+}
+
+.toubiao {
+	width: 110px;
+	height: 40px;
+	margin: 34px 0;
+	line-height: 40px;
+	text-align: center;
+	font-size: 16px;
+	display: block;
+	border-radius: 3px;
+	background: #00a0e9;
+	color: #fff;
+}
+
+.toubiao:hover {
+	background: #00afff;
+	color: #fff;
+}
+
+a.fresh_enter {
+	height: 222px;
+	background: url(http://static.vfunding.cn/images/index/fresh_enter.jpg)
+		no-repeat;
+	cursor: pointer;
+	display: block;
+}
+
+a.fresh_enter:hover {
+	background: url(http://static.vfunding.cn/images/index/fresh_enter2.jpg)
+		no-repeat;
+}
+/****************右面**************/
+.right_sector {
+	width: 300px;
+	height: 1156px;
+	*overflow: hidden;
+	*height: 1162px;
+}
+
+.right_wrap {
+	height: 896px;
+	margin-top: 38px;
+	*margin-top: 42px;
+}
+
+.right_wrap h1 {
+	font-size: 20px;
+	line-height: 28px;
+	color: #555;
+}
+
+.total_number {
+	height: 113px;
+	background-color: #fff;
+	margin-top: 12px;
+	*margin-top: 8px;
+	padding: 0 10px;
+	overflow: hidden;
+	background: url(http://static.vfunding.cn/images/index/databg.gif);
+	text-indent: 30px;
+}
+
+.total_number span {
+	display: block;
+	height: 60px;
+	line-height: 60px;
+	font-size: 38px;
+	font-family: Arial, Helvetica, sans-serif;
+	margin-top: 10px;
+	color: #ff8636;
+	font-weight: bold;
+}
+
+.total_number span b {
+	font-size: 30px;
+	color: #cccccc;
+}
+
+.total_number a {
+	display: block;
+	width: 150px;
+	height: 20px;
+	line-height: 20px;
+	text-indent: 30px;
+	background: url(http://static.vfunding.cn/images/index/data.png)
+		no-repeat left center;
+	font-size: 14px;
+}
+
+.total_number em {
+	font-style: italic;
+}
+
+.media_reports {
+	height: 38px;
+	margin-top: 20px;
+}
+
+.media_reports a:hover {
+	color: #00a0e9;
+}
+
+.media_reports h1 {
+	width: 108px;
+	height: 38px;
+	line-height: 48px;
+	font-size: 20px;
+	color: #555;
+}
+
+.media_reports a {
+	display: block;
+	width: 90px;
+	height: 20px;
+	line-height: 20px;
+	margin-top: 18px;
+	font-size: 14px;
+}
+
+.report_content {
+	height: 288px;
+	margin-top: 10px;
+	background: #fff;
+	padding: 0 10px;
+	overflow: hidden;
+}
+
+.report_summary {
+	width: 280px;
+	height: 76px;
+	margin-top: 15px;
+}
+
+.report_pic {
+	display: block;
+	width: 106px;
+	height: 70px;
+	border: 1px solid #ececec;
+	margin-top: 2px;
+}
+/*background:url(http://static.vfunding.cn/images/index/news.jpg) no-repeat;*/
+.report_title {
+	width: 160px;
+	height: 76px;
+	dding: 0 10px;
+}
+
+.report_title a {
+	line-height: 25px;
+}
+
+.report_title a:hover {
+	text-decoration: none;
+	color: #00A0E9;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+.tools {
+	padding: 0 10px;
+	height: 248px;
+	*height: 268px;
+	background: #fff;
+	margin-top: 20px;
+	overflow: hidden;
+}
+
+.tools li {
+	height: 49px;
+	padding-left: 8px;
+	border-bottom: 1px dotted #e8e8e8;
+}
+
+.tools li a,.tool_name,.tool_tip {
+	height: 27px;
+	line-height: 27px;
+	margin-top: 11px;
+	display: block;
+}
+
+.tools li a {
+	width: 27px;
+}
+
+.tool1,.tool2,.tool3,.tool4,.tool5 {
+	display: block;
+}
+
+.tool_name {
+	width: 114px;
+	height: 27px;
+	font-size: 18px;
+	padding-left: 10px;
+}
+
+.tool1 {
+	background-position: -152px 0;
+}
+
+.tool2 {
+	background-position: -152px -27px;
+}
+
+.tool3 {
+	background-position: -152px -54px;
+}
+
+.tool4 {
+	background-position: -152px -81px;
+}
+
+.tool5 {
+	background-position: -152px -108px;
+}
+
+.tool_tip {
+	width: 110px;
+	font-size: 12px;
+	color: #888888;
+	text-align: right;
+}
+
+#border_bottom_none {
+	border-bottom: none;
+}
+
+.small_banner {
+	height: 90px;
+	margin-top: 20px;
+	display: block;
+}
+
+#gongju1,#gongju2,#gongju3,#gongju4,#gongju5 {
+	width: 94px;
+	height: 27px;
+	margin: 0;
+	display: inline;
+}
+
+/***********悬浮框*************/
+#float_box {
+	position: fixed;
+	bottom: 30px;
+	left: 50%;
+	margin-left: 520px;
+	width: 85px;
+	z-index: 400;
+}
+
+* html #float_box {
+	position: absolute;
+	top: expression(documentElement.scrollTop + "px");
+	margin: 300px 0 0 0;
+}
+
+#float_box li {
+	margin-bottom: 4px;
+	overflow: hidden;
+}
+
+#top,#share,#reply,#sina,#ceping,#weixin {
+	display: block;
+	width: 85px;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+#top {
+	height: 35px;
+	background: url(http://static.vfunding.cn/images/top.png) no-repeat;
+}
+
+#weixin {
+	height: 35px;
+	background: url(http://static.vfunding.cn/images/weixin.png) no-repeat;
+}
+
+#top:hover {
+	background: url(http://static.vfunding.cn/images/top2.png) no-repeat;
+}
+
+#weixin:hover {
+	background: url(http://static.vfunding.cn/images/weixin2.png) no-repeat;
+}
+
+#ceping {
+	height: 85px;
+	background: url(http://static.vfunding.cn/images/kefu.png) no-repeat;
+}
+
+#ceping:hover {
+	background: url(http://static.vfunding.cn/images/kefu2.png) no-repeat;
+}
+
+#EWM {
+	position: absolute;
+	left: -150px;
+	display: none;
+}
+
+#EWM img {
+	width: 150px;
+	height: 150px;
+}
+
+.progressBar {
+	background: url(http://static.vfunding.cn/images/index/progressBar.png)
+		no-repeat;
+}
+
+.progressBar0 {
+	background-position: 0 0;
+}
+
+.progressBar5 {
+	background-position: -56px 0;
+}
+
+.progressBar10 {
+	background-position: -112px 0;
+}
+
+.progressBar15 {
+	background-position: -168px 0;
+}
+
+.progressBar20 {
+	background-position: -224px 0;
+}
+
+.progressBar25 {
+	background-position: -280px 0;
+}
+
+.progressBar30 {
+	background-position: -336px 0;
+}
+
+.progressBar35 {
+	background-position: -392px 0;
+}
+
+.progressBar40 {
+	background-position: -448px 0;
+}
+
+.progressBar45 {
+	background-position: -504px 0;
+}
+
+.progressBar50 {
+	background-position: -560px 0;
+}
+
+.progressBar55 {
+	background-position: -616px 0;
+}
+
+.progressBar60 {
+	background-position: -672px 0;
+}
+
+.progressBar65 {
+	background-position: -728px 0;
+}
+
+.progressBar70 {
+	background-position: -784px 0;
+}
+
+.progressBar75 {
+	background-position: -840px 0;
+}
+
+.progressBar80 {
+	background-position: -896px 0;
+}
+
+.progressBar85 {
+	background-position: -952px 0;
+}
+
+.progressBar90 {
+	background-position: -1008px 0;
+}
+
+.progressBar95 {
+	background-position: -1064px 0;
+}
+
+.progressBar100 {
+	background-position: -1120px 0;
+}
+
+a.plugin_container {
+	height: 72px;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 72px;
+	z-index: 99;
+	display: block;
+	background: url(../images/click_show.png) no-repeat;
+}
+
+a.plugin_container:hover {
+	background: url(../images/click_show_hover.png) no-repeat;
+}
+
+.tou,.huan,.man,.jie {
+	border-radius: 3px;
+	color: #fff;
+	display: block;
+	font-size: 16px;
+	height: 40px;
+	line-height: 40px;
+	margin: 34px 0;
+	text-align: center;
+	width: 110px;
+}
+
+.tou {
+	background: #00a0e9;
+}
+
+.huan {
+/* 	background: #0065b4 */
+	background: #acc8d5;
+}
+
+.man {
+	/* background: #eb8718 */
+	background: #acc8d5;
+}
+
+.jie {
+/* 	background: #ccc */
+	background: #acc8d5;
+}

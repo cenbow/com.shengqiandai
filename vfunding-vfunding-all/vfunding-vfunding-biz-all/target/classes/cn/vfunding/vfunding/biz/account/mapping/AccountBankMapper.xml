@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.account.dao.AccountBankMapper">
+	<resultMap id="BaseBaseResultMap"
+		type="cn.vfunding.vfunding.biz.account.model.AccountBank">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="account" property="account" jdbcType="VARCHAR" />
+		<result column="bank" property="bank" jdbcType="VARCHAR" />
+		<result column="branch" property="branch" jdbcType="VARCHAR" />
+		<result column="provinceName" property="provinceName" jdbcType="VARCHAR" />
+		<result column="cityName" property="cityName" jdbcType="VARCHAR" />
+		<result column="bind" property="bind" jdbcType="INTEGER" />
+	</resultMap>
+
+	<resultMap id="BaseResultMap"
+		type="cn.vfunding.vfunding.biz.account.model.AccountBank" extends="BaseBaseResultMap">
+		<result column="province" property="province" jdbcType="SMALLINT" />
+		<result column="city" property="city" jdbcType="SMALLINT" />
+		<result column="area" property="area" jdbcType="SMALLINT" />
+		<result column="addtime" property="addtime" jdbcType="INTEGER" />
+		<result column="addip" property="addip" jdbcType="VARCHAR" />
+		<result column="bankName" property="bankName" jdbcType="VARCHAR" />
+		<result column="ktkjfs" property="ktkjfs" jdbcType="VARCHAR" />
+		<result column="scId" property="scId" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="JoinResultMap"
+		type="cn.vfunding.vfunding.biz.account.model.AccountBank" extends="BaseBaseResultMap">
+		<association property="linkage"
+			javaType="cn.vfunding.vfunding.biz.system.model.Linkage">
+			<id column="bank" property="id" jdbcType="SMALLINT" />
+			<result column="name" property="name" jdbcType="VARCHAR" />
+		</association>
+	</resultMap>
+	
+	
+	
+	<sql id="Base_Column_List">
+		id, user_id, account, bank, branch, province,bind, city,
+		area, addtime,addip
+	</sql>
+	<!-- 根据账号查询 -->
+	<select id="selectByAccount" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from rd_account_bank
+		where account = #{account,jdbcType=VARCHAR}
+	</select>
+	<select id="selectByAccountNew" resultMap="BaseResultMap" parameterType="java.lang.String">
+	select 
+		a.id,
+		a.user_id,
+		a.account,
+		a.bank,
+		a.branch,
+		a.bind,
+		b.dic_msg as bankName,
+		c.is_verified as ktkjfs,
+		c.sc_id as scId
+		FROM
+		rd_account_bank AS a
+		JOIN vf_sina_dic AS b ON a.bank = b.dic_code
+		left JOIN vf_sina_card c
+		ON a.account = c.card_id and a.user_id = c.user_id
+		WHERE
+		b.dic_type = 'bankCode'
+		and
+		c.status = '0'
+		and
+		c.is_verified is not null
+		and
+		a.account = #{account}
+		and
+		a.user_id = #{userId}
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from rd_account_bank
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<!-- 查询用户已绑定的银行信息 -->
+	<select id="selectBindByUserId" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+	select
+	a.id,
+	a.user_id,
+	a.account,
+	a.bank,
+	a.branch,
+	a.bind,
+	b.dic_msg as bankName
+	from
+	rd_account_bank as a join vf_sina_dic as b on a.bank=b.dic_Code
+	where a.user_id = #{userId,jdbcType=INTEGER} and bind=1 and b.dic_Type =
+	'BankCode'
+	
+	</select>
+
+	<!-- 根据用户ID查询 -->
+	<select id="selectByUserId" resultMap="BaseBaseResultMap"
+		parameterType="java.lang.Integer">
+		<!-- select a.id,a.user_id,a.account,a.bank,a.branch,a.bind,b.name from 
+			rd_account_bank as a join rd_linkage as b on a.bank=b.id -->
+		<!-- where a.user_id = #{userId,jdbcType=INTEGER} -->
+		<!-- SELECT -->
+		select 
+		a.id,
+		a.user_id,
+		a.account,
+		a.bank,
+		a.branch,
+		a.bind,
+		b.dic_msg as bankName,
+		c.is_verified as ktkjfs,
+		c.sc_id as scId,
+		c.province as provinceName,
+		c.city as cityName
+		FROM
+		rd_account_bank AS a
+		JOIN vf_sina_dic AS b ON a.bank = b.dic_code
+		left JOIN vf_sina_card c
+		ON a.account = c.card_id and a.user_id = c.user_id
+		WHERE
+		a.user_id = #{userId,jdbcType=INTEGER}
+		and
+		b.dic_type = 'bankCode'
+		and
+		c.status = '0'
+		and
+		c.is_verified is not null
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		rd_account_bank
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id"
+		parameterType="cn.vfunding.vfunding.biz.account.model.AccountBank">
+		insert into rd_account_bank (id, user_id, account,
+		bank,
+		branch, province, bind,
+		city, area, addtime,
+		addip)
+		values
+		(#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER},
+		#{account,jdbcType=VARCHAR},
+		#{bank,jdbcType=VARCHAR},
+		#{branch,jdbcType=VARCHAR},
+		#{province,jdbcType=SMALLINT},#{bind,jdbcType=INTEGER},
+		#{city,jdbcType=SMALLINT}, #{area,jdbcType=SMALLINT},
+		#{addtime,jdbcType=INTEGER},
+		#{addip,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" useGeneratedKeys="true"
+		keyProperty="id" parameterType="cn.vfunding.vfunding.biz.account.model.AccountBank">
+		insert into rd_account_bank
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="account != null">
+				account,
+			</if>
+			<if test="bank != null">
+				bank,
+			</if>
+			<if test="branch != null">
+				branch,
+			</if>
+			<if test="province != null">
+				province,
+			</if>
+			<if test="bind != null">
+				bind,
+			</if>
+			<if test="city != null">
+				city,
+			</if>
+
+			<if test="area != null">
+				area,
+			</if>
+			<if test="addtime != null">
+				addtime,
+			</if>
+			<if test="addip != null">
+				addip,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="account != null">
+				#{account,jdbcType=VARCHAR},
+			</if>
+			<if test="bank != null">
+				#{bank,jdbcType=VARCHAR},
+			</if>
+			<if test="branch != null">
+				#{branch,jdbcType=VARCHAR},
+			</if>
+			<if test="province != null">
+				#{province,jdbcType=SMALLINT},
+			</if>
+			<if test="bind != null">
+				#{bind,jdbcType=INTEGER},
+			</if>
+			<if test="city != null">
+				#{city,jdbcType=SMALLINT},
+			</if>
+			<if test="area != null">
+				#{area,jdbcType=SMALLINT},
+			</if>
+			<if test="addtime != null">
+				#{addtime,jdbcType=INTEGER},
+			</if>
+			<if test="addip != null">
+				#{addip,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.account.model.AccountBank">
+		update rd_account_bank
+		<set>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=INTEGER},
+			</if>
+			<if test="account != null">
+				account = #{account,jdbcType=VARCHAR},
+			</if>
+			<if test="bank != null">
+				bank = #{bank,jdbcType=VARCHAR},
+			</if>
+			<if test="branch != null">
+				branch = #{branch,jdbcType=VARCHAR},
+			</if>
+			<if test="province != null">
+				province = #{province,jdbcType=SMALLINT},
+			</if>
+			<if test="bind != null">
+				bind = #{bind,jdbcType=INTEGER},
+			</if>
+			<if test="city != null">
+				city = #{city,jdbcType=SMALLINT},
+			</if>
+			<if test="area != null">
+				area = #{area,jdbcType=SMALLINT},
+			</if>
+			<if test="addtime != null">
+				addtime = #{addtime,jdbcType=INTEGER},
+			</if>
+			<if test="addip != null">
+				addip = #{addip,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.account.model.AccountBank">
+		update
+		rd_account_bank
+		set user_id = #{userId,jdbcType=INTEGER},
+		account =
+		#{account,jdbcType=VARCHAR},
+		bank = #{bank,jdbcType=VARCHAR},
+		branch =
+		#{branch,jdbcType=VARCHAR},
+		province = #{province,jdbcType=SMALLINT},
+		bind = #{bind,jdbcType=SMALLINT},
+		city = #{city,jdbcType=SMALLINT},
+		area = #{area,jdbcType=SMALLINT},
+		addtime =
+		#{addtime,jdbcType=INTEGER},
+		addip = #{addip,jdbcType=VARCHAR}
+		where id
+		= #{id,jdbcType=INTEGER}
+	</update>
+</mapper>

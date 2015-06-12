@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.system.dao.AreaMapper" >
+  <resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.system.model.Area" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="nid" property="nid" jdbcType="VARCHAR" />
+    <result column="pid" property="pid" jdbcType="SMALLINT" />
+    <result column="domain" property="domain" jdbcType="VARCHAR" />
+    <result column="order" property="order" jdbcType="SMALLINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, nid, pid, domain,`order`
+  </sql>
+  
+  <!-- 加载所有数据 -->
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from rd_area
+  </select>
+  
+  <!-- 加载所有城市数据 -->
+  <select id="selectAllCity" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from rd_area where type = 'city'
+  </select>
+  
+   <!-- 根据拼音查找城市信息 -->
+  <select id="selectCityByPinYin" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from rd_area where type = 'city' and nid=#{nid,jdbcType=VARCHAR} ORDER BY id desc LIMIT 0,1
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from rd_area
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from rd_area
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.vfunding.biz.system.model.Area" >
+    insert into rd_area (id, name, nid, 
+      pid, domain, `order`
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{nid,jdbcType=VARCHAR}, 
+      #{pid,jdbcType=SMALLINT}, #{domain,jdbcType=VARCHAR}, #{order,jdbcType=SMALLINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.system.model.Area" >
+    insert into rd_area
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="nid != null" >
+        nid,
+      </if>
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="domain != null" >
+        domain,
+      </if>
+      <if test="order != null" >
+        `order`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="nid != null" >
+        #{nid,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=SMALLINT},
+      </if>
+      <if test="domain != null" >
+        #{domain,jdbcType=VARCHAR},
+      </if>
+      <if test="order != null" >
+        #{order,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.system.model.Area" >
+    update rd_area
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="nid != null" >
+        nid = #{nid,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        pid = #{pid,jdbcType=SMALLINT},
+      </if>
+      <if test="domain != null" >
+        domain = #{domain,jdbcType=VARCHAR},
+      </if>
+      <if test="order != null" >
+        `order` = #{order,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.system.model.Area" >
+    update rd_area
+    set name = #{name,jdbcType=VARCHAR},
+      nid = #{nid,jdbcType=VARCHAR},
+      pid = #{pid,jdbcType=SMALLINT},
+      domain = #{domain,jdbcType=VARCHAR},
+      `order` = #{order,jdbcType=SMALLINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.sina.dao.SinaDicMapper">
+	<resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.sina.model.SinaDic">
+		<result column="dic_code" property="dicCode" jdbcType="VARCHAR" />
+		<result column="dic_msg" property="dicMsg" jdbcType="VARCHAR" />
+		<result column="dic_type" property="dicType" jdbcType="VARCHAR" />
+	</resultMap>
+	<insert id="insert" parameterType="cn.vfunding.vfunding.biz.sina.model.SinaDic">
+		insert into vf_sina_dic (dic_code, dic_msg, dic_type
+		)
+		values (#{dicCode,jdbcType=VARCHAR}, #{dicMsg,jdbcType=VARCHAR},
+		#{dicType,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.sina.model.SinaDic">
+		insert into vf_sina_dic
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="dicCode != null">
+				dic_code,
+			</if>
+			<if test="dicMsg != null">
+				dic_msg,
+			</if>
+			<if test="dicType != null">
+				dic_type,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="dicCode != null">
+				#{dicCode,jdbcType=VARCHAR},
+			</if>
+			<if test="dicMsg != null">
+				#{dicMsg,jdbcType=VARCHAR},
+			</if>
+			<if test="dicType != null">
+				#{dicType,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+
+	<select id="selectByDicType" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select * from vf_sina_dic where dic_type = #{dicType}
+	</select>
+
+	<select id="selectByDicTypeAndDicCode" resultMap="BaseResultMap"
+		parameterType="cn.vfunding.vfunding.biz.sina.model.SinaDic">
+		select * from vf_sina_dic where dic_type = #{dicType} and dic_code =
+		#{dicCode}
+	</select>
+</mapper>

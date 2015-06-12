@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.borrow.dao.BorrowLineMapper" >
+  <resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.borrow.model.BorrowLine" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="site_id" property="siteId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="order" property="order" jdbcType="INTEGER" />
+    <result column="hits" property="hits" jdbcType="INTEGER" />
+    <result column="litpic" property="litpic" jdbcType="VARCHAR" />
+    <result column="flag" property="flag" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="borrow_use" property="borrowUse" jdbcType="INTEGER" />
+    <result column="borrow_qixian" property="borrowQixian" jdbcType="INTEGER" />
+    <result column="province" property="province" jdbcType="INTEGER" />
+    <result column="city" property="city" jdbcType="INTEGER" />
+    <result column="area" property="area" jdbcType="INTEGER" />
+    <result column="account" property="account" jdbcType="VARCHAR" />
+    <result column="pawn" property="pawn" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="xing" property="xing" jdbcType="VARCHAR" />
+    <result column="verify_user" property="verifyUser" jdbcType="INTEGER" />
+    <result column="verify_time" property="verifyTime" jdbcType="VARCHAR" />
+    <result column="verify_remark" property="verifyRemark" jdbcType="VARCHAR" />
+    <result column="addtime" property="addtime" jdbcType="VARCHAR" />
+    <result column="addip" property="addip" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.vfunding.vfunding.biz.borrow.model.BorrowLine" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, site_id, user_id, name, status, order, hits, litpic, flag, type, borrow_use, 
+    borrow_qixian, province, city, area, account, pawn, tel, sex, xing, verify_user, 
+    verify_time, verify_remark, addtime, addip
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from rd_borrow_line
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from rd_borrow_line
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.vfunding.biz.borrow.model.BorrowLine" >
+    insert into rd_borrow_line (id, site_id, user_id, 
+      name, status, order, 
+      hits, litpic, flag, 
+      type, borrow_use, borrow_qixian, 
+      province, city, area, 
+      account, pawn, tel, 
+      sex, xing, verify_user, 
+      verify_time, verify_remark, addtime, 
+      addip, content)
+    values (#{id,jdbcType=INTEGER}, #{siteId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{name,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{order,jdbcType=INTEGER}, 
+      #{hits,jdbcType=INTEGER}, #{litpic,jdbcType=VARCHAR}, #{flag,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{borrowUse,jdbcType=INTEGER}, #{borrowQixian,jdbcType=INTEGER}, 
+      #{province,jdbcType=INTEGER}, #{city,jdbcType=INTEGER}, #{area,jdbcType=INTEGER}, 
+      #{account,jdbcType=VARCHAR}, #{pawn,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{xing,jdbcType=VARCHAR}, #{verifyUser,jdbcType=INTEGER}, 
+      #{verifyTime,jdbcType=VARCHAR}, #{verifyRemark,jdbcType=VARCHAR}, #{addtime,jdbcType=VARCHAR}, 
+      #{addip,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.borrow.model.BorrowLine" >
+    insert into rd_borrow_line
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="siteId != null" >
+        site_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="order != null" >
+        order,
+      </if>
+      <if test="hits != null" >
+        hits,
+      </if>
+      <if test="litpic != null" >
+        litpic,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="borrowUse != null" >
+        borrow_use,
+      </if>
+      <if test="borrowQixian != null" >
+        borrow_qixian,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="account != null" >
+        account,
+      </if>
+      <if test="pawn != null" >
+        pawn,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="xing != null" >
+        xing,
+      </if>
+      <if test="verifyUser != null" >
+        verify_user,
+      </if>
+      <if test="verifyTime != null" >
+        verify_time,
+      </if>
+      <if test="verifyRemark != null" >
+        verify_remark,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="addip != null" >
+        addip,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="siteId != null" >
+        #{siteId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="order != null" >
+        #{order,jdbcType=INTEGER},
+      </if>
+      <if test="hits != null" >
+        #{hits,jdbcType=INTEGER},
+      </if>
+      <if test="litpic != null" >
+        #{litpic,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="borrowUse != null" >
+        #{borrowUse,jdbcType=INTEGER},
+      </if>
+      <if test="borrowQixian != null" >
+        #{borrowQixian,jdbcType=INTEGER},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=INTEGER},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=INTEGER},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=INTEGER},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="pawn != null" >
+        #{pawn,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="xing != null" >
+        #{xing,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyUser != null" >
+        #{verifyUser,jdbcType=INTEGER},
+      </if>
+      <if test="verifyTime != null" >
+        #{verifyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyRemark != null" >
+        #{verifyRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=VARCHAR},
+      </if>
+      <if test="addip != null" >
+        #{addip,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.borrow.model.BorrowLine" >
+    update rd_borrow_line
+    <set >
+      <if test="siteId != null" >
+        site_id = #{siteId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="order != null" >
+        order = #{order,jdbcType=INTEGER},
+      </if>
+      <if test="hits != null" >
+        hits = #{hits,jdbcType=INTEGER},
+      </if>
+      <if test="litpic != null" >
+        litpic = #{litpic,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="borrowUse != null" >
+        borrow_use = #{borrowUse,jdbcType=INTEGER},
+      </if>
+      <if test="borrowQixian != null" >
+        borrow_qixian = #{borrowQixian,jdbcType=INTEGER},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=INTEGER},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=INTEGER},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=INTEGER},
+      </if>
+      <if test="account != null" >
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="pawn != null" >
+        pawn = #{pawn,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="xing != null" >
+        xing = #{xing,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyUser != null" >
+        verify_user = #{verifyUser,jdbcType=INTEGER},
+      </if>
+      <if test="verifyTime != null" >
+        verify_time = #{verifyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyRemark != null" >
+        verify_remark = #{verifyRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=VARCHAR},
+      </if>
+      <if test="addip != null" >
+        addip = #{addip,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.vfunding.vfunding.biz.borrow.model.BorrowLine" >
+    update rd_borrow_line
+    set site_id = #{siteId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      order = #{order,jdbcType=INTEGER},
+      hits = #{hits,jdbcType=INTEGER},
+      litpic = #{litpic,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      borrow_use = #{borrowUse,jdbcType=INTEGER},
+      borrow_qixian = #{borrowQixian,jdbcType=INTEGER},
+      province = #{province,jdbcType=INTEGER},
+      city = #{city,jdbcType=INTEGER},
+      area = #{area,jdbcType=INTEGER},
+      account = #{account,jdbcType=VARCHAR},
+      pawn = #{pawn,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      xing = #{xing,jdbcType=VARCHAR},
+      verify_user = #{verifyUser,jdbcType=INTEGER},
+      verify_time = #{verifyTime,jdbcType=VARCHAR},
+      verify_remark = #{verifyRemark,jdbcType=VARCHAR},
+      addtime = #{addtime,jdbcType=VARCHAR},
+      addip = #{addip,jdbcType=VARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.borrow.model.BorrowLine" >
+    update rd_borrow_line
+    set site_id = #{siteId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      order = #{order,jdbcType=INTEGER},
+      hits = #{hits,jdbcType=INTEGER},
+      litpic = #{litpic,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      borrow_use = #{borrowUse,jdbcType=INTEGER},
+      borrow_qixian = #{borrowQixian,jdbcType=INTEGER},
+      province = #{province,jdbcType=INTEGER},
+      city = #{city,jdbcType=INTEGER},
+      area = #{area,jdbcType=INTEGER},
+      account = #{account,jdbcType=VARCHAR},
+      pawn = #{pawn,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      xing = #{xing,jdbcType=VARCHAR},
+      verify_user = #{verifyUser,jdbcType=INTEGER},
+      verify_time = #{verifyTime,jdbcType=VARCHAR},
+      verify_remark = #{verifyRemark,jdbcType=VARCHAR},
+      addtime = #{addtime,jdbcType=VARCHAR},
+      addip = #{addip,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

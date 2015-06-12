@@ -1,0 +1,69 @@
+@charset "utf-8";
+/* CSS Document */
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+@import url(accountLeft.css);
+.myAccount{  height:940px; margin:30px 0; clear:both;}
+
+
+
+
+/*****账户总览右栏***/
+.rechargeTakeCash{ width:820px; height:940px; }
+
+.rT{ height:940px;  background:#fff;}
+.rTWrap{ width:780px; height:940px; margin:0 auto; overflow:hidden; position:relative;}
+.txTop{ height:58px;overflow:hidden; }
+b.midLine{ height:1px; font-size:0; width:100%; background:#eeeeee; position:absolute; top:28px; left:0;  overflow:hidden;}
+.txTop h2,.excel{ height:22px; line-height:22px; position:absolute;background-color:#fff;}
+.txTop h2{ top:17px; left:24px; font-size:20px; color:#0065b4; padding:0 6px; z-index:9; }
+
+.investAuto{ width:400px; margin:10px auto 0;}
+.On_Off{ height:30px;}
+.onBtn,.offBtn{ width:168px; height:40px; line-height:40px; text-align:center; color:#fff; display:inline-block; margin-left:10px; border-radius:3px;cursor:pointer;}
+.onBtn{ background:#0065b4;font-size:16px;}
+.onBtn:hover{ background:#00a0e9;}
+.offBtn{ background:#cccccc; display:none;}
+.autoForm{ width:650px; margin-top:24px;}
+.autoForm td{ vertical-align:top;}
+.investNum{ height:30px; }
+#investNum{ width:170px; height:28px; line-height:30px; padding:0 5px; border:1px solid #ccc; vertical-align:middle;}
+.autoForm td span.colname{ display:block; text-align:right; height:20px; line-height:20px;margin-top:4px;}
+.autoForm td p{ font-size:12px;}
+span.tb,span.tb2{ display:inline-block; width:69px;}
+p.investTip{ margin:10px 0; color:#ff5555;}
+.txtRight{ text-align:right;}
+.selBox{ height:30px;}
+div.select-box{  width:70px;*width:70px; vertical-align:middle; display:inline-block;}
+
+div.select-box ul.tag-options li a{ width:64px; text-align:center;}
+.biaodi{ width:340px; height:30px; float:left;}
+label.checkbox { background:url(../images/checkbox.png) no-repeat left -21px; }
+label.checked {background-position:left 100%;  } 
+.noTimeLimit{ clear:both; overflow:hidden; line-height:40px; color:#888;}
+
+.biaokind{ height:30px; margin-top:4px;}
+.autoBtn{ width:116px; height:40px; line-height:40px; text-align:center; color:#fff; background:#0065b4; border:none; outline:none; border-radius:3px; font-size:16px; cursor:pointer;}
+.autoBtn:hover{ background:#00a0e9;}
+#select1,#select2,#select3,#select4,#select5,#select6{ width:80px; height:28px; line-height:28px;}
+#select7,#select8,#open-status{ width:174px;}
+.chosen-container .chosen-drop{ *width:98%;}
+.chosen-container-single .chosen-search input[type="text"]{ padding:4px 0;}
+.chosen-container-single .chosen-single{ height:28px; line-height:28px;}
+.status{ display:block; height:30px; line-height:30px; text-align:center; font-size:22px; margin-bottom:50px;}
+.warmTip{  margin-top:22px; padding:20px 0 0 51px; border-top:1px  dotted #ccc; }
+.warmTip h2{font-size:18px; color:#00a0e9; font-weight:normal;}
+.tips{ padding-left:24px; margin-top:18px;}
+.tips p{ line-height:22px; font-size:13px; color:#888888;}
+em.on{
+	color:#ff5555;
+	font-style:normal;
+}
+em.off{
+	font-style:normal;
+}
+._switchDiv{
+	height:50px;
+	padding-top:4px;
+}

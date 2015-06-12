@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.vfunding.vfunding.biz.mobile.dao.MobileRequestLogMapper">
+  <resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.mobile.model.MobileRequestLog">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="token" jdbcType="VARCHAR" property="token" />
+    <result column="os_type" jdbcType="VARCHAR" property="osType" />
+    <result column="method_name" jdbcType="VARCHAR" property="methodName" />
+    <result column="addtime" property="addtime" jdbcType="TIMESTAMP"/>
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.vfunding.vfunding.biz.mobile.model.MobileRequestLog">
+    <result column="request_json" jdbcType="LONGVARCHAR" property="requestJson" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, order_no, token, os_type, method_name, addtime
+  </sql>
+  <sql id="Blob_Column_List">
+    request_json
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from vf_mobile_request_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from vf_mobile_request_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.vfunding.biz.mobile.model.MobileRequestLog">
+    insert into vf_mobile_request_log (id, order_no, token, 
+      os_type, method_name, addtime, 
+      request_json)
+    values (#{id,jdbcType=INTEGER}, #{orderNo,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR}, 
+      #{osType,jdbcType=VARCHAR}, #{methodName,jdbcType=VARCHAR}, #{addtime}, 
+      #{requestJson})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.mobile.model.MobileRequestLog">
+    insert into vf_mobile_request_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="token != null">
+        token,
+      </if>
+      <if test="osType != null">
+        os_type,
+      </if>
+      <if test="methodName != null">
+        method_name,
+      </if>
+      <if test="addtime != null">
+        addtime,
+      </if>
+      <if test="requestJson != null">
+        request_json,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null">
+        #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="osType != null">
+        #{osType,jdbcType=VARCHAR},
+      </if>
+      <if test="methodName != null">
+        #{methodName,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null">
+        #{addtime},
+      </if>
+      <if test="requestJson != null">
+        #{requestJson},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.mobile.model.MobileRequestLog">
+    update vf_mobile_request_log
+    <set>
+      <if test="orderNo != null">
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null">
+        token = #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="osType != null">
+        os_type = #{osType,jdbcType=VARCHAR},
+      </if>
+      <if test="methodName != null">
+        method_name = #{methodName,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null">
+        addtime = #{addtime},
+      </if>
+      <if test="requestJson != null">
+        request_json = #{requestJson},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+    <select id="selectCountByOrderNo" parameterType="java.lang.String" resultType="INTEGER">
+  select ifnull(count(1),0) from vf_mobile_request_log where order_no = #{orderNo}
+  </select>
+</mapper>

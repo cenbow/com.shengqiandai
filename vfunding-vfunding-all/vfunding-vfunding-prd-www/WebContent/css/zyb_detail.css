@@ -1,0 +1,305 @@
+@charset "utf-8";
+/* CSS Document */
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+.zyb-detail-top{
+    height: 440px;
+
+    margin: 20px 0;
+}
+
+.detail-left{
+     width: 680px;
+     height: inherit;
+     background-color: #fff;
+     overflow: hidden;
+    min-height: 440px;
+
+}
+
+.detail-right {
+    width: 300px;
+    height: inherit;
+    background-color: #fff;
+    min-height:440px ;
+}
+
+.detail-left-leftside{
+    width: 380px;
+    margin-left: 20px;
+    height: inherit;
+}
+.detail-title{
+    height: 20px;
+    margin: 20px 0;
+    line-height: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #0065b4;
+}
+
+
+.detail-title a{
+    color: #00a0e9;
+    font-size: 12px;
+}
+
+.safe-promise{
+    height: 20px;
+    line-height: 20px;
+    background: url("/images/bxbz-icon.png") no-repeat left center ;
+    padding-left: 25px;
+    margin-bottom: 20px;
+}
+
+.detail-infos{
+    margin-bottom: 16px;
+    overflow: hidden;
+}
+.detail-info-item{
+    margin-bottom: 30px;
+
+}
+
+.detail-info-item-left{
+     width: 110px;
+     border-right: 1px dashed #ccc;
+}
+.licai-limit,.remain-share{
+    height: 14px;
+    line-height: 14px;
+    margin-bottom: 14px;
+}
+
+.licai-days,.remain-nums,.remain-time{
+    height: 30px;
+    color: #00a0e9;
+}
+
+.detail-info-item-right{
+    margin-left: 20px;
+}
+.days-num{
+    font-size: 30px;
+}
+
+.days-unit{
+    font-size: 14px;
+}
+
+.time-bg{
+    width: 23px;
+    height: 32px;
+    background: url("/images/zyb_icon.png") 0 -27px no-repeat;
+    float: left;
+    margin-left: 2px;
+    font-size: 26px;
+    color: #fff;
+    line-height: 30px;
+    text-align: center;
+}
+
+.time-dot{
+    width: 4px;
+    height: 14px;
+    background: url("/images/zyb_icon.png") 0 -62px no-repeat;
+    float: left;
+    margin: 8px 0 8px 3px;
+}
+
+p.detai-startTime,p.detai-endTime{
+    height: 16px;
+    line-height: 16px;
+    margin-bottom: 16px;
+}
+.start-pot{
+  line-height: 24px;
+    color: #888;
+}
+
+.detail-left-rightside{
+    width: 260px;
+    height: inherit;
+}
+.share-input-box{
+   height: 50px;
+}
+
+input#shares{
+    padding: 15px 5px;
+    line-height: normal;
+    width: 205px;
+    font-size: 16px;
+    vertical-align: middle;
+}
+
+.buy-info{
+    margin-top: 10px;
+}
+.buy-info p{ height: 24px;}
+a#recharge{ color: #00a0e9;}
+.pwd-title{
+    line-height: 34px;
+ }
+input#payPwd{
+    padding: 10px 5px;
+    width: 205px;
+}
+
+p.share-tip,.pwd-tip{
+    color: #ff5555;
+}
+
+.pwd-tip{
+    line-height: 30px;
+}
+.conform-btn{
+     margin-top: 20px;
+ }
+
+.zyb-detail-mid{
+    padding: 10px 20px 20px;
+    background-color: #fff;
+    margin: 20px 0;
+    line-height: 24px;
+}
+
+span.more,span.shouqi{
+    color: #00a0e9;
+    cursor: pointer;
+}
+span.more-cnt,span.shouqi{
+    display: none;
+}
+
+.zyb-detail-bottom{
+    background-color: #fff;
+    padding:0 20px 20px;
+    margin-bottom:20px;
+
+
+}
+.zyb-detail-bottom h2{
+     line-height: 62px;
+    color: #0065b4;
+}
+.product-title li {
+    line-height: 40px;
+    text-align: center;
+    float: left;
+    padding: 2px 80px;
+    cursor: pointer;
+}
+.liColor{
+background: #ececec;
+}
+
+.current{
+    background: #00a0e9;
+    color: #fff;
+}
+.tableList,.tender{
+    margin-top: 10px;
+    display: none;
+}
+.tender{
+    margin-top: 38px;
+}
+.tableDetail th,.tableDetail td{
+
+    height: 50px;
+    width: 25%;
+    text-align: center;
+}
+.tableDetail th{
+    border-top: 1px solid #ececec;
+    border-bottom: 1px solid #ececec;
+    background-color: #f5f7f8;
+}
+.tableDetail td{
+    border-bottom: 1px solid #ececec;
+}
+a.lookInto{
+    cursor: pointer;
+}
+a.lookInto:hover{
+    color: #00a0e9;
+}
+#carDialog{
+
+    padding: 20px 30px;
+    overflow-y: auto;
+    height: 500px;
+}
+.dialog-head h2{ text-align: center;}
+.car-info h3,.profile-audit h3,.biao-pic h3{
+    height: 22px;
+    line-height: 22px;
+    text-align: center;
+    color: #0065b4;
+    margin: 20px 0;
+}
+table#car-info,table#ziliaoshenhe{
+    border-collapse: collapse;
+}
+
+#car-info th,#car-info td{
+    width: 33.33%;
+    height: 40px;
+    border: 1px solid #ececec;
+    text-align: center;
+    font-weight: normal;
+}
+
+#ziliaoshenhe th,#ziliaoshenhe td{
+    width: 25%;
+    height: 40px;
+    border: 1px solid #ececec;
+    text-align: center;
+    font-weight: normal;
+}
+.pass {
+    background-position: 0 -32px;
+    height: 16px;
+    margin: 16px auto;
+    width: 16px;
+}
+.pics{
+    width: 788px;
+    margin:0 auto;
+}
+.pics img{
+    display: block;
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    width: 384px;
+    height: 240px;
+    background: #00a0e9;
+}
+
+#dialog-foot{
+     padding-top: 20px;
+     border-top: 1px solid #ececec;
+     width: 800px;
+    margin-bottom: 30px;
+
+}
+.close-btn{
+    position: relative;
+    left: 50%;
+    margin-left: -108px;
+    cursor: pointer;
+
+}
+
+.confirmBuy{
+    cursor: pointer;
+}
+
+
+h2.product-info{
+    color: #0065b4;
+    line-height: 40px;
+}

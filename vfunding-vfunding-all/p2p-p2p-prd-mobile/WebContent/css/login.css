@@ -1,0 +1,155 @@
+@CHARSET "UTF-8";
+*{
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	list-style: none;
+	font-family: "微软雅黑";
+}
+.page{
+	max-width: 640px;
+	min-width: 320px;
+	width:100%;
+	margin:0 auto;
+	height: auto;
+	position: relative;
+	background-image: url("/images/bg.png");
+}
+.top{
+	max-width:640px;
+	min-width:320px;
+	width: 100%;
+	position: fixed;
+	top:0;
+	background-color: #fff;
+	z-index: 999;
+}
+.top  a{
+	width: 100%;
+	display: block;
+	text-align: center;
+	border-bottom: thin ridge #b4b4b4;
+	padding-bottom: 0.5em;
+	padding-top: 0.5em;
+} 
+.top span{
+	position: absolute;
+	top:20%;
+	left:2%;
+}
+.form{
+	width:85%;
+	height:auto;
+	margin-top:25%;
+	margin-left:7.5%;
+	background:rgba(0,0,0,0.5) none repeat scroll !important;
+	color: #fff;
+	text-shadow: none;
+	border-radius:10px;
+	
+}
+.form li{
+	padding-top: 0.7em;
+	position: relative;
+	overflow: hidden;
+
+}
+.form span{
+	position: absolute;
+ 	top: 25%;
+	left: 3%;
+}
+.text1{
+	width: 84%;
+	margin-left: 15%;
+	font-size: 16px;
+	border-bottom: thin solid #fff;
+	padding-bottom: 0.7em;
+}
+.text1 input{
+	color: #fff;
+	text-shadow: none;
+	width: 98.7%;
+	border: none;
+}
+.text2 input{
+	color: #fff;
+	text-shadow: none;
+	width: 98.7%;
+	border: none;
+}
+.text2{
+	width: 84%;
+	margin-left: 15%;
+	font-size: 16px;
+	padding-bottom: 0.7em;
+}
+.text3{
+	width: 84%;
+	margin-left: 15%;
+	font-size: 16px;
+	padding-bottom: 0.7em;
+}
+.text3 input{
+	color: #fff;
+	text-shadow: none;
+	width: 98.7%;
+	border: none;
+}
+.login a{
+	width: 85%;
+	height:auto;
+	display: block;
+	background-color: #fdb82c;
+	margin-top:8%;
+	margin-left:7.5%;
+	text-align: center;
+	font-size: 25px;
+	font-weight: bold;
+	padding-bottom: 0.5em;
+	padding-top: 0.5em;
+	border-radius:10px;
+}
+.xian{
+	width: 85%;
+	height:30px;
+	margin:0 auto;
+	margin-top: 25px;
+	border-top: 1px solid #fff;
+	position: relative;
+}
+.xian i{
+	width: 30px;
+	height: 30px;
+	background-color: #000;
+	color: #fff;
+	border-radius:15px;
+	text-align: center;
+	line-height: 30px;
+	position: absolute;
+	left:44%;
+	top:-15px;
+	font-style: normal;
+}
+.foot {
+	width: 85%;
+	margin: 0 auto;
+	text-align: center;
+	margin-top: 15px;
+	padding-bottom: 25px;
+}
+.foot a{
+	font-size: 20px;
+	text-decoration: underline;
+}
+.yanzhengma{
+	position: absolute;
+	top:10px;
+	right:20px;;
+	background-color: #999;
+	padding-bottom: 7px;
+	padding-top: 7px;
+	padding-left: 2px;
+	padding-right: 2px;
+	border-radius:5px;
+}

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.p2p.p2p.biz.account.dao.InterestDaysMapper">
+	<resultMap id="BaseResultMap" type="cn.p2p.p2p.biz.account.model.InterestDays">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="type" property="type" jdbcType="INTEGER" />
+		<result column="interest" property="interest" jdbcType="DECIMAL" />
+		<result column="interest_date" property="interestDate"
+			jdbcType="DATE" />
+		<result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, user_id, type, interest, interest_date, addtime
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from p2p_interest_days
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		p2p_interest_days
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="cn.p2p.p2p.biz.account.model.InterestDays">
+		insert into p2p_interest_days
+		(id, user_id, type,
+		interest, interest_date, addtime
+		)
+		values
+		(#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER},
+		#{type,jdbcType=INTEGER},
+		#{interest,jdbcType=DECIMAL},
+		#{interestDate,jdbcType=DATE}, #{addtime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="cn.p2p.p2p.biz.account.model.InterestDays">
+		insert into p2p_interest_days
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="interest != null">
+				interest,
+			</if>
+			<if test="interestDate != null">
+				interest_date,
+			</if>
+			<if test="addtime != null">
+				addtime,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=INTEGER},
+			</if>
+			<if test="interest != null">
+				#{interest,jdbcType=DECIMAL},
+			</if>
+			<if test="interestDate != null">
+				#{interestDate,jdbcType=DATE},
+			</if>
+			<if test="addtime != null">
+				#{addtime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.p2p.p2p.biz.account.model.InterestDays">
+		update p2p_interest_days
+		<set>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=INTEGER},
+			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=INTEGER},
+			</if>
+			<if test="interest != null">
+				interest = #{interest,jdbcType=DECIMAL},
+			</if>
+			<if test="interestDate != null">
+				interest_date = #{interestDate,jdbcType=DATE},
+			</if>
+			<if test="addtime != null">
+				addtime = #{addtime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.p2p.p2p.biz.account.model.InterestDays">
+		update
+		p2p_interest_days
+		set user_id = #{userId,jdbcType=INTEGER},
+		type =
+		#{type,jdbcType=INTEGER},
+		interest = #{interest,jdbcType=DECIMAL},
+		interest_date = #{interestDate,jdbcType=DATE},
+		addtime =
+		#{addtime,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<select id="selectByUserIdSum" resultType="java.math.BigDecimal"
+		parameterType="java.lang.Integer">
+		select
+		ifnull(sum(interest),0)
+		from p2p_interest_days
+		where user_id= #{userId,jdbcType=INTEGER}
+	</select>
+
+	<select id="selectByUserIdYesterday" resultType="java.math.BigDecimal"
+		parameterType="java.lang.Integer">
+		select
+		ifnull(sum(interest),0)
+		from p2p_interest_days
+		where user_id= #{userId,jdbcType=INTEGER} and interest_date =
+		date_sub(curdate(),interval 1 day)
+	</select>
+
+
+	<select id="selectByUserIdListPage" resultMap="BaseResultMap"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select
+		user_id,interest_date,ifnull(sum(interest),0) as
+		interest
+		from p2p_interest_days
+		where user_id =
+		#{entity.userId,jdbcType=INTEGER}
+		group by user_id,interest_date 
+		order by interest_date desc
+	</select>
+
+	<insert id="insertInterestDays" parameterType="java.lang.String">
+		insert into
+		p2p_interest_days(user_id,type,interest,interest_date,addtime)
+		select
+		user_id,2,a.sina_bonus_yesterday,#{dateStr},now() from
+		vf_sina_settlement a where date(a.sync_bonus_date)=#{dateStr}
+		union
+		select b.user_id,0,round(sum(case a.isday when 1 then
+		b.interest/a.time_limit_day when 0 then b.interest/(a.time_limit*31)
+		end),2) as dayinterest,#{dateStr},now()
+		from rd_borrow a
+		left join
+		rd_borrow_tender b on a.id=b.borrow_id
+		where a.status=3 and b.status=1
+		and
+		case a.isday
+		when 1 then
+		a.time_limit_day>TIMESTAMPDIFF(day,from_unixtime(a.success_time),#{dateStr})
+		when 0 then
+		a.time_limit>TIMESTAMPDIFF(month,from_unixtime(a.success_time),#{dateStr})
+		end
+		group by b.user_id
+		union
+		select user_id,1,interest,#{dateStr},now()
+		from p2p_current_interest_log
+		where
+		date(addtime)=#{dateStr}
+	</insert>
+
+
+	<select id="selectByDateStr" resultType="java.lang.Integer"
+		parameterType="java.lang.String">
+		select count(*) from p2p_interest_days where
+		interest_date=#{dateStr}
+	</select>
+
+	<select id="selectByUserDateStr" resultMap="BaseResultMap"
+		parameterType="cn.p2p.p2p.biz.account.model.InterestDays">
+		select * from p2p_interest_days where
+		interest_date=#{interestDate} and user_id =#{userId}
+	</select>
+
+</mapper>

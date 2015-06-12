@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.pdfreport.dao.UserTenderInfoMapper">
+	<resultMap id="BaseResultMap"
+		type="cn.vfunding.vfunding.biz.pdfreport.model.UserTenderInfo">
+		<result column="userId" property="userId" jdbcType="INTEGER" />
+		<result column="tenderName" property="tenderName" jdbcType="INTEGER" />
+		<result column="account" property="account" jdbcType="VARCHAR" />
+		<result column="interest" property="interest" />
+		<result column="tendertime" property="tendertime" />
+		<result column="repaymenttime" property="repaymenttime" />
+	</resultMap>
+	<select id="selectUserTenderInfo" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		a.user_id as
+		userId,a.account,a.interest,DATE_FORMAT(from_unixtime(a.addtime),'%Y-%m-%d')
+		as tendertime,b.name as
+		tenderName,DATE_FORMAT(from_unixtime(b.end_time),'%Y-%m-%d')
+		as
+		repaymenttime
+		from rd_borrow_tender a
+		left join rd_borrow b on
+		a.borrow_id =b.id
+		where
+		DATE_FORMAT(from_unixtime(a.addtime),'%Y%m')=date_format(date_sub(curdate(),interval
+		1 month),'%Y%m')
+		and a.status =1 and a.user_id=#{userId}
+		order by
+		a.user_id,a.addtime
+	</select>
+
+
+	<select id="selectUserRanking" resultType="java.lang.Integer"
+		parameterType="java.lang.Integer">
+		select count(*) as ranking from (
+		select a.user_id as
+		userId,sum(a.account) as sumMoney from rd_borrow_tender
+		a
+		where a.status =1
+		group by
+		a.user_id
+		) a where sumMoney >=
+		ifnull((
+		select sum(a.account) as
+		sumMoney from rd_borrow_tender a
+		where  a.status=1 and a.user_id =#{userId}
+		group by
+		a.user_id
+		),0)
+	</select>
+</mapper>

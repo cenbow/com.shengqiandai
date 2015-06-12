@@ -1,0 +1,13 @@
+http.port=${http.port}
+http.contextPath=${http.contextPath}
+http.workerName=${http.workerName}
+file.server=${file.server}
+jms.address=${jms.address}
+jms.open=${jms.open}
+erweimaUrl=${erweimaUrl} 
+email.server=${email.server}
+sms.server=${sms.server}
+zookeeper.server=${zookeeper.server}
+realname.server=${realname.server}
+CjDao.environment=${CjDao.environment}
+send.sms.status=${send.sms.status}

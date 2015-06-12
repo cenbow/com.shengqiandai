@@ -1,0 +1,312 @@
+@charset "utf-8";
+/* CSS Document */
+
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+.hide{
+    display: none;
+}
+.an-icon{
+    background: url(/images/huodong/an-icon.png) no-repeat;
+}
+.an-first-sector{
+    height: 406px;
+   background: url(/images/huodong/zhounian.jpg) no-repeat center top ;
+
+}
+
+.an-second-sector{
+    height: 564px;
+    background-color: #7e19dc;
+    overflow: hidden;
+}
+
+.main{
+    width: 940px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+.an-second-cnt{
+    height: 564px;
+    overflow: hidden;
+}
+
+.asc-title{
+    height: 80px;
+    margin: 21px 0;
+    border-bottom: 1px solid #bf8cee;
+}
+
+.No{
+    width: 61px;
+    height: 49px;
+    margin-top: 16px;
+    margin-right: 20px;
+}
+.No1{
+    background-position: 0 -524px;
+}
+.No2{
+    background-position: -66px  -524px;
+}
+.No3{
+    background-position: -146px  -524px;
+}
+
+
+.title{
+    font-size: 36px;
+    font-weight: bold;
+    color: #fff;
+    margin-top: 10px;
+}
+.title span{
+    font-size: 48px;
+    font-weight: bold;
+    color: #ffdf00;
+}
+
+.time{
+    font-size: 18px;
+    color: #fff;
+    font-weight: bold;
+    margin-top: 40px;
+}
+
+.asc-cnt{
+    position: relative;
+    overflow: hidden;
+
+}
+.content{
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.content-side{
+    padding: 5px 12px;
+    color: #fff;
+    margin-top: 2px;
+    margin-right: 10px;
+}
+
+.content-main{
+    line-height: 30px;
+    color: #fff;
+}
+
+.content-main a{
+    color: #fff;
+}
+
+
+.cs-bg{
+    background: #5e00b5;
+}
+
+.bgAndBtn{
+    height: 108px;
+    margin-top: 28px;
+}
+.rate-up{
+    width: 313px;
+    height: 106px;
+    background-position: 0 0;
+    margin-left: 60px;
+}
+a.invest-btn{
+    width: 215px;
+    height: 75px;
+    background-position: 0 -106px;
+    display: block;
+    margin-top: 20px;
+
+}
+
+.lookForward{
+    width: 400px;
+    height: 178px;
+    position: absolute;
+    left: 50%;
+    margin-left: -200px;
+    top: 50%;
+    margin-top: -90px;
+    background-position: 0 -181px;
+    z-index: 10;
+}
+
+.an-third-sector{
+    height: 296px;
+    position: relative;
+    overflow: hidden;
+    background:#b7133a ;
+}
+.an-third-cnt{
+    height: 296px;
+    background: url(/images/huodong/rate16.png) no-repeat 94% 126px;
+    overflow: hidden;
+}
+
+.end{
+    width: 311px;
+    height: 164px;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    margin-left: -100px;
+    z-index: 10;
+    background-position: 0 -359px;
+}
+.rotate{
+    margin-bottom: 20px;
+}
+.an-fourth-sector{
+    background: #1377b7;
+    overflow: hidden;
+}
+
+.an-fourth-cnt{
+    overflow: hidden;
+}
+
+.rotate-left{
+     width: 568px;
+}
+.rotate-right{
+    width: 370px;
+    position: relative;
+}
+.rotate-left h3{
+    font-size: 24px;
+    color: #fff;
+    text-align: center;
+    
+}
+.rotate-left h3 span{
+    color: #ffdf00;
+    font-size: 36px;
+    padding:10px;
+}
+.pd{
+    padding: 5px 12px;
+    background: #0063a2;
+    color: #ffdf00;
+    font-weight: bold;
+    text-align: center;
+    font-size: 18px;
+}
+.w108{
+    width: 84px;
+}
+.w158{
+    width: 134px;
+}
+p.lh36{
+    line-height: 36px;
+    color: #fff;
+}
+
+.investNow{
+    height: 36px;
+    color: #fff;
+    line-height: 36px
+}
+.invest-condition{
+    width: 238px;
+
+}
+.invetst-btn-small{
+    width: 78px;
+    height: 27px;
+    background-position: -216px -107px;
+    display: block;
+    margin-top: 5px;
+}
+.rotatebg{
+    width: 548px;
+    height: 547px;
+   /*background: url(/images/huodong/rotate.png) no-repeat;*/
+    margin-top: 10px;
+    position:relative;
+}
+
+.share-box{
+    height: 30px;
+    background: #118ddc;
+    color: #fff;
+    line-height: 30px;
+    padding: 0 10px;
+}
+.share-icon {
+    margin-top: 8px;
+}
+
+.my-record{
+    margin-top: 35px;
+    color: #fff;
+    position: relative;
+    height: 30px;
+}
+
+.mr{
+    position: absolute;
+    z-index: 10;
+    left: 0;
+    margin-right: 10px;
+}
+
+
+ .line{
+     position: absolute;
+     top: 14px;
+     left: 170px;
+     height: 1px;
+     font-size: 0;
+     background:#89bbdb;
+     width: 160px;
+     z-index: 1;
+ }
+
+.dot-more{
+    font-size: 16px;
+    position: absolute;
+    right: 0;
+}
+
+.myPrize{
+    color: #fff;
+    margin: 10px 0;
+ }
+
+.prizeList{
+  height: 162px;
+  overflow: hidden;
+    margin-top: 20px;
+
+}
+.prizeList li{
+    height: 32px;
+    line-height: 32px;
+    color: #fff;
+}
+.wram-tip{
+    padding: 24px;
+    background: #c43e5e;
+    margin:30px 0 50px;
+    color: #fff;
+}
+.lookForward2{
+    width: 400px;
+    height: 178px;
+    position: absolute;
+    right: -30px;
+    top: 150%;
+    background-position: 0 -181px;
+    z-index: 10;
+}
+.lf{
+	left:16px;
+	top:66%;
+	margin-left:300px;
+}

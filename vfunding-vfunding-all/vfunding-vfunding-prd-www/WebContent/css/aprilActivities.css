@@ -1,0 +1,241 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{
+	margin:0;
+	padding:0;
+	text-decoration:none;}
+.wrap{
+	background-color:#f9ce3b;
+	margin:0;
+	padding:0;
+	width:100%;
+	height:auto;}
+.top{
+	background-image:url(../images/aprilActivitiesTop.jpg);
+	width:1100px;
+	height:362px;
+	margin:0 auto;
+	position:relative;}
+.topText{
+	position:absolute;
+	top:290px;
+	right:280px;
+	width:590px;
+	height:52px;
+	}
+.topText h1{
+	font-size:39px;
+	letter-spacing:6px;
+	font-family:"微软雅黑";
+	color:#754800;}
+.centerOne{
+	background-image:url(../images/aprilAtCenter.jpg);
+	width:1100px;
+	height:525px;
+	margin:0 auto;
+	position:relative;}
+.oneText{
+	position: absolute;
+	top:250px;
+	left: 250px;
+	color: #754800;
+}
+.oneText h2{
+	font-size: 23px;
+}
+.oneText h1{
+	font-size: 30px;
+	color: #fdff43;
+}
+.oneText p{
+font-size: 18px;
+  line-height: 45px;
+  font-weight: bold;
+}
+font {
+	color: #c13600;
+	font-size: 30px;
+}
+.centerOneTx{
+	position:absolute;
+	top:420px;
+	left:240px;
+	width:270px;
+	height:62px;
+	}
+
+.click{
+	display:block;
+		width:99%; 
+	height:99%;
+	background-color:#feec1c;
+	border-radius:20px; 
+	border-color:#f9ce3b; 
+	font-size:26px;
+	font-weight:bold;
+	text-align:center;
+	line-height:55px;
+	color: #c13600;
+	font-family:"微软雅黑";
+	cursor:pointer;
+}
+.clickTwo{
+	display: block;
+	width: 99%;
+	height: 99%;
+	background-color:#feec1c;
+	border-radius:20px; 
+	border-color:#f9ce3b; 
+	font-size:18px;
+	font-weight:bold;
+	text-align:center;
+	line-height:35px;
+	color: #c13600;
+	font-family:"微软雅黑";
+	cursor:pointer;
+}
+.centerTwo{
+	position:relative;
+	width:1000px;
+	height:829px;
+	margin:0 auto;
+	background-image:url(../images/aprilAtCenterTwo.jpg);
+	}
+.twoText{
+	position: absolute;
+	top:220px;
+	left:100px;
+	font-size: 20px;
+	color: #754800;
+	line-height: 45px;
+}
+.twoText p{
+	font-size: 18px;
+  line-height: 45px;
+  font-weight: bold;
+}
+.textLie{
+width: 500px;
+  height: 250px;
+  position: absolute;
+  top: 450px;
+  left: 150px;
+  padding: 15px 15px;
+}
+.textLie h2{
+		font-size: 18px;
+  line-height: 30px;
+  font-weight: bold;
+  color: #754800;
+}
+.textLie p{
+	font-size: 17px;
+	line-height: 30px;
+	text-indent: 26px;
+	color: #754800;
+}
+.centerTwoTx{
+	position:absolute;
+	top:165px;
+	left:485px;
+	width:176px;
+	height:38px;
+	}
+
+.centerThree{
+	position:relative;
+	width:1000px;
+	height:647px;
+	margin:0 auto;
+	background-image:url(../images/aprilCenterThree.jpg);}
+.centerThree p{
+	position:absolute;
+	left: 670px;
+	top:70px; 
+	line-height: 30px;
+	font-size: 18px;
+}	
+.textThree{
+	position: absolute;
+	top: 270px;
+	left: 150px;
+	color: #754800;
+}
+.textThree h2{
+	font-size: 25px;
+	line-height: 45px;
+}
+.textThree span{
+font-size: 18px;
+  line-height: 35px;
+  font-weight: bold;
+}
+.textThree h3{
+	font-weight:100;
+	font-size: 18px;
+	margin-top: 40px;
+	
+}
+.centerThreeTx{
+	position:absolute;
+	top:435px;
+	left:180px;
+	width:270px;
+	height:60px;
+	}
+.centerThreeTx button{
+	width:99%;
+	height:99%;
+	background-color:#f9ce3b;
+	border-radius:20px; 
+	border-color:#f9ce3b;
+	font-weight:bold;
+	text-align:center;
+	font-family:"微软雅黑";
+	font-size:26px;
+	cursor:pointer;}
+.centerThreeTx button a{
+	display:block;
+	color:#c13600;}
+.centerFrou{
+	position:relative;
+	width:1000px;
+	height:987px;
+	margin:0 auto;
+	background-image:url(../images/aprilCenterFour.png);}
+.textFrou {
+	position: absolute;
+	top: 300px;
+	left: 50px;
+}
+.textFrou  h1{
+	font-size: 30px;
+	color: #754800;
+}
+.textFrou span{
+	display:block;
+	margin-top: 20px;
+}
+.textFrou i{
+	background-color: #bf4304;
+	width: 20px;
+	height: 20px;
+	display:block;
+	border-radius: 12.5px; 
+	text-align: center;
+	color: #f9ce3b;
+	float: left;
+	margin-top: 7px;
+	 font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  line-height: 20px;
+	
+}
+.textFrou p{
+	width: 800px;
+	margin-left: 35px;
+	font-size: 18px;
+	color: #754800;
+	line-height: 35px;
+}

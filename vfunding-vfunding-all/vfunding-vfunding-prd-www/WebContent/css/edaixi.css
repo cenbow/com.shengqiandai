@@ -1,0 +1,16 @@
+
+
+
+@charset "utf-8";
+/* CSS Document */
+
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+
+.img{
+  width: 1053px;
+  margin: 0 auto;
+  padding: 20px 0;
+
+}

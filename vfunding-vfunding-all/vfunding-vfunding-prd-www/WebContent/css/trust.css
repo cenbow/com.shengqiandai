@@ -1,0 +1,352 @@
+@charset "utf-8";
+/* CSS Document */
+* {
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	font-family: "微软雅黑";
+}
+#warp {
+	margin:0 auto;
+	overflow:hidden;
+	width:100%;
+	background-color: #711818;
+}
+.top {
+	width: 100%;
+	height: 416px;
+}
+.topimg{
+	width: 1524px;
+	height: 416px;
+	margin: 0 auto;
+}
+.introduction {
+	width: 990px;
+	height: 45px;
+	background-color: green;
+	margin:0  auto;
+	background-color: #671010;
+	opacity: 0.5;
+	text-indent: 0.8em;
+	color: #FFF;
+	line-height: 45px;
+	font-size: 18px;
+}
+.introduction span {
+	font-weight: bold;
+}
+.introduction a {
+	font-size:16px;
+	display: block;
+	width: 20%;
+	float: right;
+	text-align: right;
+	color: #FC0;
+	margin-right: 1%;
+}
+.introduction a:hover {
+	color: #FFF;
+}
+.expound {
+	width: 990px;
+	height: 45px;
+	border-top: #900 thin dotted;
+	font-size: 16px;
+	position: relative;
+	top: 0px;
+	background-color: #671010;
+}
+.center_safe {
+	width: 990px;
+	height: 390px;
+	margin:0  auto;
+	padding-bottom: 71px;
+	padding-top: 71px;
+}
+
+.safe1 {
+	width: 50%;
+	height: 390px;
+	float: left;
+	border-right: #900 thin dotted;
+}
+
+.text {
+	width: 90%;
+	height: 143px;
+	margin-left: 5%;
+	font-size: 13px;
+}
+.img {
+	width: 490px;
+	height: 52px;
+	background: url("/images/trustTwo.gif");
+	background-repeat: no-repeat;
+}
+
+.text p {
+	line-height: 25px;
+	margin-top: 20px;
+	color: #dc9f9f;
+	font-size: 16px;
+}
+.bigsafe{
+	width: 490px;
+	height: 224px;
+	margin-top:20px;
+	background: url("/images/trustFrou.gif");
+	background-repeat: no-repeat;
+}
+.safe2 {
+	width: 49%;
+	height: 390px;
+	float: right;
+}
+
+.img2 {
+	width: 490px;
+	height: 52px;
+	background: url("/images/trustThree.gif");
+	background-repeat: no-repeat;
+}
+.bigsafe2{
+	width: 490px;
+	height: 224px;
+	margin-top:15px;
+	background: url("/images/trustFive.gif");
+	background-repeat: no-repeat;
+}
+.center_Profit {
+	width: 900px;
+	height: 360px;
+	margin:0  auto;
+	background: #671010;
+	padding: 45px;
+}
+.img3{
+	width: 490px;
+	height: 52px;
+	background: url("/images/trustSix.gif");
+	background-repeat: no-repeat;
+}
+.left {
+	width: 45%;
+	height: 308px;
+	padding: 2.5%;
+	font-size: 16px;
+	color: #dc9f9f;
+	float: left;
+}
+
+.left_p1 {
+	line-height:25px;
+	margin-top: 5%;
+	color: #dc9f9f;
+	font-size: 16px;
+}
+.left_p2 {
+	line-height:25px;
+	margin-top: 5%;
+	color: #dc9f9f;
+	font-size: 12px;
+}
+
+.left span {
+	font-size: 17px;
+}
+
+.left h1 {
+	color: #ffd00a;
+	text-indent: 0.1em;
+}
+
+.right {
+	padding: 3% 2% 3% 2%;
+	width: 43%;
+	height: 296px;
+	float: right;
+	color: #dc9f9f;
+	font-size: 16px;
+	border: #731f1f thick solid;
+}
+
+.right h1 {
+	font-size: 40px;
+	line-height: 45px;
+	float: left;
+	width: 50%;
+	display: block;
+	color: #ffd00a;
+}
+
+.right p {
+	float: left;
+	line-height: 4em;
+	display: block;
+	width: 25%;
+}
+
+.right_count {
+	width: 100%;
+	height: 25%;
+	margin-top: 20%;
+}
+
+.right_count span {
+	float: left;
+	width: 25%;
+	display: block;
+	line-height: 65px;
+}
+
+.right_count input {
+	float: left;
+	width: 70%;
+	height: 80%;
+	background-color: #6d1717;
+	border: thin groove #731f1f;
+	border-radius: 7px;
+	color: #99C;
+	font-size: 25px;
+	text-indent: 0.5em;
+}
+
+.profit {
+	width: 200px;
+	height: 80px;
+	margin-top: 30px;
+	margin-left: 95px;
+	background-color: #ffd00a;
+	border-radius: 7px;
+	font-size: 40px;
+	color: #731f1f;
+	font-weight: bold;
+	border: #ffd00a;
+	cursor: pointer;
+}
+
+.iMg {
+	width: 990px;
+	height: 710px;
+	margin:0  auto;
+	margin-top: 55px;
+	margin-bottom: 50px;
+
+}
+
+.iMg_center {
+	width: 100%;
+	height: 100%;
+}
+
+.iMg_top {
+	width: 333px;
+	height: 52px;
+	margin:0 auto;
+	background: url("/images/trustSeven.gif");
+	background-repeat: no-repeat;
+	margin-bottom: 15px;
+}
+.iMg_center p {
+	width: 80%;
+	text-align: center;
+	font-size: 16px;
+	color: #dc9f9f;
+	line-height: 25px;
+	margin: 0 auto;
+}
+
+.iMg_img {
+	margin:0 auto;
+	width: 656px;
+	height: 188px;
+	margin-top: 5%;
+	background: url("/images/trustEight.gif");
+	background-repeat: no-repeat;
+}
+
+
+
+.bigimg {
+	width: 718px;
+	height: 325px;
+	margin: 0 auto;
+	margin-top: 35px;
+}
+
+.bigimg_left {
+	float: left;
+	width: 302px;
+	height: 332px;
+
+}
+
+.bigimg_right {
+	float: right;
+	width: 302px;
+	height: 334px;
+
+}
+
+.bigIMG {
+	width: 718px;
+	height: 305px;
+}
+
+.bigimg_bottom {
+	width: 718px;
+	height: 20px;
+}
+
+.for {
+	float: left;
+	width: 41%;
+	height: 100%;
+	text-align: center;
+	font-size: 16px;
+	color: #347ec4;
+}
+
+.ror {
+	float: right;
+	width: 41%;
+	height: 100%;
+	text-align: center;
+	font-size: 16px;
+	color: #347ec4;
+}
+
+.footer_text {
+	padding: 2% 0 0 0;
+	width: 100%;
+	height: 435px;
+	background-color: #671010;
+}
+
+.footer_center_text {
+	width: 910px;
+	height: 100%;
+	margin:0  auto;
+}
+
+.footer_center_top {
+	background: url("/images/trustEleven.gif");
+	background-repeat: no-repeat;
+	width: 184px;
+	height: 52px;
+	margin: 0 auto;
+}
+
+
+.footer_click {
+	width: 907px;
+	height: 296px;
+	margin:25px  auto 25px auto;
+	background: url("/images/trustTwelve.gif");
+	background-repeat: no-repeat;
+
+}

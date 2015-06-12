@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.prize.dao.PrizeMapper" >
+  <resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.prize.model.Prize" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="squad" property="squad" jdbcType="VARCHAR" />
+    <result column="probability" property="probability" jdbcType="DECIMAL" />
+    <result column="count" property="count" jdbcType="DECIMAL" />
+    <result column="reality_count" property="realityCount" jdbcType="DECIMAL" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="add_ip" property="addIp" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap id="ActivityPrizeVOMap" type="cn.vfunding.vfunding.biz.prize.vo.ActivityPrizeVO" >
+   <result column="invite_userid" property="inviteUserid" jdbcType="INTEGER" />
+    <result column="allcount" property="allcount" jdbcType="INTEGER" />
+    <result column="allaccount" property="allaccount" jdbcType="DECIMAL" />
+  </resultMap>
+  
+  
+  
+  <sql id="Base_Column_List" >
+    id, status, name, squad, probability, count, reality_count, price, add_time, add_ip
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from vf_prize
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectListBySquad" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from vf_prize
+    where squad = #{squad,jdbcType=INTEGER}
+    and status = 1
+    order by probability
+  </select>  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from vf_prize
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.vfunding.biz.prize.model.Prize" >
+    insert into vf_prize (id, status, name, 
+      squad, probability, count, 
+      reality_count, price, add_time, 
+      add_ip)
+    values (#{id,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{squad,jdbcType=VARCHAR}, #{probability,jdbcType=DECIMAL}, #{count,jdbcType=DECIMAL}, 
+      #{realityCount,jdbcType=DECIMAL}, #{price,jdbcType=DECIMAL}, #{addTime,jdbcType=TIMESTAMP}, 
+      #{addIp,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.prize.model.Prize" >
+    insert into vf_prize
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="squad != null" >
+        squad,
+      </if>
+      <if test="probability != null" >
+        probability,
+      </if>
+      <if test="count != null" >
+        count,
+      </if>
+      <if test="realityCount != null" >
+        reality_count,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="addIp != null" >
+        add_ip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="squad != null" >
+        #{squad,jdbcType=VARCHAR},
+      </if>
+      <if test="probability != null" >
+        #{probability,jdbcType=DECIMAL},
+      </if>
+      <if test="count != null" >
+        #{count,jdbcType=DECIMAL},
+      </if>
+      <if test="realityCount != null" >
+        #{realityCount,jdbcType=DECIMAL},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addIp != null" >
+        #{addIp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.prize.model.Prize" >
+    update vf_prize
+    <set >
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="squad != null" >
+        squad = #{squad,jdbcType=VARCHAR},
+      </if>
+      <if test="probability != null" >
+        probability = #{probability,jdbcType=DECIMAL},
+      </if>
+      <if test="count != null" >
+        count = #{count,jdbcType=DECIMAL},
+      </if>
+      <if test="realityCount != null" >
+        reality_count = #{realityCount,jdbcType=DECIMAL},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addIp != null" >
+        add_ip = #{addIp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.prize.model.Prize" >
+    update vf_prize
+    set status = #{status,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      squad = #{squad,jdbcType=VARCHAR},
+      probability = #{probability,jdbcType=DECIMAL},
+      count = #{count,jdbcType=DECIMAL},
+      reality_count = #{realityCount,jdbcType=DECIMAL},
+      price = #{price,jdbcType=DECIMAL},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      add_ip = #{addIp,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  <select id="selectRegisterAndSetRealNameFromInvite" resultMap="ActivityPrizeVOMap">
+	select concat(substring(b.username,1,2),'****',substring(b.username,6)) as username,a.invite_userid,count(*) as allcount
+	from rd_user a 
+	left join rd_user b on a.invite_userid = b.user_id
+	where a.invite_userid != '' and a.invite_userid is not null 
+	and a.realname != '' and a.realname is not null 
+	<![CDATA[ and FROM_UNIXTIME(a.addtime) >= '2015-03-16 00:00:00' and FROM_UNIXTIME(a.addtime) <= '2015-04-10 23:59:59' ]]>
+	group by a.invite_userid
+	order by allcount desc
+  </select>  
+  
+  <select id="selectTenderFromInvite" resultMap="ActivityPrizeVOMap" >
+	select concat(substring(c.username,1,2),'****',substring(c.username,6)) as username,a.invite_userid,count(*) as allcount
+	from rd_user a 
+	right join 
+	(
+		select a.tender_id,a.user_id
+		from (
+			select min(a.id) as tender_id,a.user_id
+			from rd_borrow_tender a
+			where 
+			<![CDATA[ FROM_UNIXTIME(a.addtime) >= '2015-03-16 00:00:00' and FROM_UNIXTIME(a.addtime) <= '2015-04-10 23:59:59' ]]>
+			group by a.user_id
+		) a
+		left join (
+			select min(a.id) as tender_id,a.user_id
+			from rd_borrow_tender a
+			group by a.user_id
+		) b on a.user_id = b.user_id
+		<![CDATA[ where a.tender_id <= b.tender_id ]]>
+	) b on a.user_id = b.user_id
+	left join rd_user c on a.invite_userid = c.user_id
+	where a.invite_userid != '' and a.invite_userid is not null 
+	group by a.invite_userid
+	order by allcount desc
+  </select>  
+  
+  <select id="selectAccountFromInvite" resultMap="ActivityPrizeVOMap" >
+	select concat(substring(c.username,1,2),'****',substring(c.username,6)) as username,a.invite_userid,sum(b.sumaccount) as allaccount
+	from rd_user a
+	right join
+	(
+	select round(sum(a.account),2) as sumaccount,a.user_id
+	from rd_borrow_tender a
+	where 
+	<![CDATA[ FROM_UNIXTIME(a.addtime) >= '2015-03-16 00:00:00' and FROM_UNIXTIME(a.addtime) <= '2015-04-10 23:59:59' ]]>
+	group by a.user_id
+	) b on a.user_id = b.user_id
+	left join rd_user c on a.invite_userid = c.user_id
+	where a.invite_userid != '' and a.invite_userid is not null 
+	group by a.invite_userid
+	order by allaccount desc	
+  </select>  
+  
+  <select id="selectTenderFromInviteForMay" resultMap="ActivityPrizeVOMap" >
+	select concat(substring(c.username,1,2),'****',substring(c.username,6)) as username,a.invite_userid,count(*) as allcount
+	from rd_user a 
+		right join 
+		(
+			select a.* from(
+				select a.user_id,sum(a.account) as summoney from rd_borrow_tender a
+				where 
+				<![CDATA[ FROM_UNIXTIME(a.addtime) >= '2015-05-15 00:00:00' and FROM_UNIXTIME(a.addtime) <= '2015-06-02 23:59:59'  ]]>
+				group by a.user_id
+			) a
+			left JOIN (
+				select b.* from(
+					select a.user_id,1 as summary  from rd_borrow_tender a
+					where 
+					<![CDATA[ FROM_UNIXTIME(a.addtime) < '2015-05-15 00:00:00' ]]>      
+					group by a.user_id
+				) b
+			) b on a.user_id=b.user_id
+			where a.summoney>=100 and b.summary is null
+		) b on a.user_id = b.user_id
+	left join rd_user c on a.invite_userid = c.user_id
+	where a.invite_userid != '' and a.invite_userid is not null 
+	group by a.invite_userid
+	order by allcount desc
+  </select>  
+  
+  <select id="selectAccountFromInviteForMay" resultMap="ActivityPrizeVOMap" >
+	select concat(substring(c.username,1,2),'****',substring(c.username,6)) as username,a.invite_userid,sum(b.sumaccount) as allaccount
+	from rd_user a
+	right join
+	(
+	select round(sum(a.account),2) as sumaccount,a.user_id
+	from rd_borrow_tender a
+	where 
+	<![CDATA[ FROM_UNIXTIME(a.addtime) >= '2015-05-15 00:00:00' and FROM_UNIXTIME(a.addtime) <= '2015-06-02 23:59:59' ]]>
+	group by a.user_id
+	) b on a.user_id = b.user_id
+	left join rd_user c on a.invite_userid = c.user_id
+	where a.invite_userid != '' and a.invite_userid is not null 
+	group by a.invite_userid
+	order by allaccount desc	
+  </select>  
+  
+  
+</mapper>

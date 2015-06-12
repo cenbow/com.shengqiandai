@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.borrowMobile.dao.BorrowTenderMobileMapper">
+	<resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.borrowMobile.model.BorrowTenderMobile">
+		<result column="username" property="userName" />
+		<result column="account" property="tenderAccount" />
+		<result column="tenderType" property="tenderType" />
+		<result column="tenderTime" property="tenderTime" />
+	</resultMap>
+
+
+	<select id="selectTenderBorrowByIdCount" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+		select count(*) from rd_borrow_tender where
+		borrow_id=#{id}
+	</select>
+
+	<select id="selectTenderBorrowByIdListPage" resultMap="BaseResultMap" parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select b.username,a.account,if(a.money=a.account,1,0) as
+		tenderType, DATE_FORMAT(from_unixtime(a.addtime),'%Y-%m-%d %H:%i')
+		as
+		tenderTime
+		from rd_borrow_tender a
+		left join rd_user b on
+		a.user_id=b.user_id
+		where
+		a.borrow_id=#{entity}
+		order by a.addtime desc
+	</select>
+
+</mapper>

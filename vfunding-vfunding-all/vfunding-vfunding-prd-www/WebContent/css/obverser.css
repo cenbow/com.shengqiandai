@@ -1,0 +1,41 @@
+@charset "utf-8";
+/* CSS Document */
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video,select{ margin:0; padding:0;}
+body{ font-size:14px; font-family:"微软雅黑"; background-color:#f5f7f8; color:#444444;}
+li{ list-style:none;}
+a{ text-decoration:none; color:#444444;}
+a:hover{ color:#00a0e90;}
+img{ border:none; vertical-align:middle;}
+.clear{zoom:1}
+.clear:after,.clear:before{ display:block; height:0; line-height:0; content:""; visibility:hidden; clear:both;}
+.fl{ float:left;}
+.fr{ float:right;}
+
+.firstSector{ height:725px;}
+.fs-center{ height:725px; margin:0 auto; background:url(../images/huodong/a.jpg) center center;}
+.center{ width:1000px; height:725px; margin:0 auto; position:relative;}
+
+.div1{ width:150px; height:66px; position:absolute; left:702px; top:225px; text-align:center; }
+
+.date1{ height:40px; line-height:40px; font-size:36px;color:#9f1a1f;  }
+.date2{color:#9f1a1f; line-height:30px;}
+.div2{ width:294px; height:134px; position:absolute; left:396px; top:370px; color:#fff; line-height:28px; }
+.secondSector{ height:1310px; background-color:#fbc702; top:-30px;}
+.second-bg{ width:1263px; height:1378px; margin:0 auto; background:url(../images/huodong/a.png) no-repeat center center; position:relative; top:-100px;}
+
+.thirdSector{ height:1494px; background-color:#49b9eb;  }
+
+.apply-step{ width:1006px; height:1494px; margin:0 auto; background:url(../images/huodong/b.png) no-repeat center center;overflow:hidden;position:relative;}
+.div3,.div4{ height:20px; position:absolute; top:262px; font-size:20px;}
+.div3{ width:126px; left:297px;}
+.div4{width:156px;  left:696px;}
+.div5,.div6{ width:432px; height:104px; position:absolute; left:456px;line-height:30px; font-size:20px; color:#fff;}
+.div5{ top:514px;}
+.div2 a,.div5 a{ color:#fff;}
+.div6{  top:788px;}
+a.div7{ position:absolute; left:70px; top:1010px; line-height:34px; display:block; font-size:20px;}
+
+.fourthSector{ height:989px;background:url(../images/huodong/studyTour_c.jpg) no-repeat center center;}

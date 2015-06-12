@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.system.dao.JmsLogMapper">
+	<resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.system.model.JmsLog">
+		<id column="jms_id" property="jmsId" jdbcType="VARCHAR" />
+		<result column="jms_info" property="jmsInfo" jdbcType="VARCHAR" />
+		<result column="jms_category" property="jmsCategory" jdbcType="VARCHAR" />
+		<result column="send_time" property="sendTime" jdbcType="TIMESTAMP" />
+		<result column="receive_time" property="receiveTime" jdbcType="TIMESTAMP" />
+		<result column="complete_time" property="completeTime"
+			jdbcType="TIMESTAMP" />
+		<result column="jms_status" property="jmsStatus" jdbcType="INTEGER" />
+		<result column="jms_result" property="jmsResult" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		jms_id, jms_info, jms_category, send_time,
+		receive_time,complete_time,
+		jms_status,jms_result
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from vf_jsm_log
+		where jms_id = #{jmsId,jdbcType=VARCHAR}
+	</select>
+	<!-- 查询未处理的消息 -->
+	<select id="selectByLose" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from vf_jsm_log
+		where jms_id = #{jmsId,jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 查询未处理的消息 -->
+	<select id="selectStatusByJmsId" resultType="java.lang.Integer" parameterType="java.lang.String">
+		select
+		jms_status
+		from vf_jsm_log
+		where jms_id = #{jmsId,jdbcType=VARCHAR}
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		vf_jsm_log
+		where jms_id = #{jmsId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="cn.vfunding.vfunding.biz.system.model.JmsLog">
+		insert into vf_jsm_log
+		(jms_id, jms_info, jms_category,
+		send_time, receive_time,complete_time,
+		jms_status,jms_result
+		)
+		values (#{jmsId,jdbcType=VARCHAR},
+		#{jmsInfo,jdbcType=VARCHAR},
+		#{jmsCategory,jdbcType=VARCHAR},
+		#{sendTime,jdbcType=TIMESTAMP}, #{receiveTime,jdbcType=TIMESTAMP},
+		#{completeTime,jdbcType=TIMESTAMP}, #{jmsStatus,jdbcType=INTEGER},
+		 #{jmsResult,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.system.model.JmsLog">
+		insert into vf_jsm_log
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="jmsId != null">
+				jms_id,
+			</if>
+			<if test="jmsInfo != null">
+				jms_info,
+			</if>
+			<if test="jmsCategory != null">
+				jms_category,
+			</if>
+			<if test="sendTime != null">
+				send_time,
+			</if>
+			<if test="receiveTime != null">
+				receive_time,
+			</if>
+			<if test="completeTime != null">
+				complete_time,
+			</if>
+			<if test="jmsStatus != null">
+				jms_status,
+			</if>
+			<if test="jmsResult != null">
+				jms_result,
+			</if>
+			
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="jmsId != null">
+				#{jmsId,jdbcType=VARCHAR},
+			</if>
+			<if test="jmsInfo != null">
+				#{jmsInfo,jdbcType=VARCHAR},
+			</if>
+			<if test="jmsCategory != null">
+				#{jmsCategory,jdbcType=VARCHAR},
+			</if>
+			<if test="sendTime != null">
+				#{sendTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="receiveTime != null">
+				#{receiveTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="completeTime != null">
+				#{completeTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="jmsStatus != null">
+				#{jmsStatus,jdbcType=INTEGER},
+			</if>
+			<if test="jmsResult != null">
+				#{jmsResult,jdbcType=VARCHAR},
+			</if>
+			 
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.system.model.JmsLog">
+		update vf_jsm_log
+		<set>
+			<if test="jmsInfo != null">
+				jms_info = #{jmsInfo,jdbcType=VARCHAR},
+			</if>
+			<if test="jmsCategory != null">
+				jms_category = #{jmsCategory,jdbcType=VARCHAR},
+			</if>
+			<if test="sendTime != null">
+				send_time = #{sendTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="receiveTime != null">
+				receive_time = #{receiveTime,jdbcType=TIMESTAMP},
+			</if>
+
+			<if test="completeTime != null">
+				complete_time=#{completeTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="jmsStatus != null">
+				jms_status = #{jmsStatus,jdbcType=INTEGER},
+			</if>
+			
+			<if test="jmsResult != null">
+				jms_result = #{jmsResult,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where jms_id = #{jmsId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.system.model.JmsLog">
+		update vf_jsm_log
+		set jms_info = #{jmsInfo,jdbcType=VARCHAR},
+		jms_category =
+		#{jmsCategory,jdbcType=VARCHAR},
+		send_time =
+		#{sendTime,jdbcType=TIMESTAMP},
+		receive_time =
+		#{receiveTime,jdbcType=TIMESTAMP},
+		complete_time =
+		#{completeTime,jdbcType=TIMESTAMP},
+		jms_status =
+		#{jmsStatus,jdbcType=INTEGER},
+		jms_result = #{jmsResult,jdbcType=VARCHAR}
+		where jms_id = #{jmsId,jdbcType=VARCHAR}
+	</update>
+</mapper>

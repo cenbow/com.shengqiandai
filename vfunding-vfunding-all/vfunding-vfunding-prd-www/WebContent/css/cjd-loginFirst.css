@@ -1,0 +1,39 @@
+@charset "utf-8";
+/* CSS Document */
+
+@import url(cjdBase.css);
+.top{ height:62px; margin:26px 0 22px;}
+.top-left{ width:370px; height:62px; margin-left:25px;}
+.top-right{ width:580px; height:62px;}
+.top-left li{ float:left; height:57px; margin-right:23px;}
+li.logo1{ width:165px; background-position:0 0;}
+li.logo2{ width:150px; background-position:-165px 0;}
+.top-right h3{ font-weight:normal; font-size:18px; margin-top:16px;}
+.top-right p{ line-height:24px;}
+
+
+.content{ margin-top:20px; padding-bottom:120px;}
+.content-top{ height:73px; background:#00a0e9;}
+.login-tip{ width:320px; height:30px; line-height:30px; margin:0 auto;color:#ff5555;}
+.login-div{ width:660px; margin:10px auto 0; overflow:hidden;}
+.ui-form{ margin-top:0;}
+.ui-form input[type="text"],.ui-form input[type="password"]{
+	border:1px solid #ccc;
+	padding:3px 8px;
+	vertical-align:middle;
+	width:224px;
+	height:30px;
+	line-height:30px;
+	}
+.content-top img{ margin:11px 20px 11px 34px;}
+a.login-btn{ width:250px; outline:none; margin:0;}
+
+.ui-form .loginName{padding:0 5px 0 70px; height:40px;}
+.ui-form .submitBtn{ margin-top:4px; height:50px; padding:0; }
+.submit-btn-bg{ background:url(../images/login/loginBg.gif) no-repeat;}
+.logining{ background-position:0 -50px;}
+#submit_btn{ width:225px; height:50px; border:0 none; font-size:24px; 
+color:#fff; cursor:pointer; outline:none; margin-left:170px; border-radius:4px;}
+a.forgetPwd:hover{
+	color:#00a0e9;
+}

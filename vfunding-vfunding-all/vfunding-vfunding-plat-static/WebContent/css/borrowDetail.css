@@ -1,0 +1,459 @@
+@charset "utf-8";
+/* CSS Document */
+@import url(base.css);
+
+@import url(top.css);
+
+@import url(bottom.css);
+
+
+
+.bread {
+	width: 1000px;
+	height: 16px;
+	line-height: 16px;
+	margin: 20px auto;
+}
+
+.bread a:hover,.borrowTitle h3 a:hover,.tenderAll,.goRecharge {
+	color: #00a0e9;
+}
+
+.leftArea {
+	width: 681px;
+	height: auto !important;
+	background: #fff;
+}
+
+.borrowTitle {
+	height: 58px;
+	line-height: 58px;
+	position: relative;
+}
+
+.borrowTitle h3 {
+	text-indent: 20px;
+	font-weight: normal;
+	height:80px;
+	line-height:80px;
+	position:relative;
+}
+
+.borrowTitle h3 a {
+	font-size: 12px;
+	color:#00a0e9;
+}
+.borrowTitle h3 a:hover{color:#00afff;}
+.rightArea {
+	width: 300px;
+	height: 458px;
+	*overflow: hidden;
+}
+
+.borrowDetail {
+	width: 654px;
+	height: 360px;
+	margin: 20px auto;
+}
+
+
+.leftTable {
+	width: 300px;
+	height: 360px;
+	overflow: hidden;
+}
+
+.rightTable {
+	width: 340px;
+	height: 360px;
+	overflow: hidden;
+}
+
+.borMoney {
+	height: 37px;
+	line-height: 37px;
+	color: #ff6600;
+	font-size: 24px;
+}
+
+#leftTable td {
+	padding-left: 6px;
+}
+
+#leftTable span {
+	color: #00a0e9;
+}
+
+.progressBox {
+	width: 116px;
+	height: 10px;
+	padding: 0 1px;
+	border-radius: 10px;
+	overflow: hidden;
+	border: 1px solid #ccc;
+}
+
+.jdt {
+	height: 8px;
+	margin: 1px auto;
+	background: #ff5555;
+	float: left;
+	border-radius: 10px;
+}
+
+input.tenderMoney {
+	width: 194px;
+	height: 48px;
+	line-height: 48px;
+    padding:0 5px;	
+	border: 1px solid #ccc;
+	vertical-align: middle;
+	font-size: 22px;
+	color: #444;
+}
+
+.tenderMoneyWrong {
+	color:#ff5555;
+}
+
+input.zfPwd {
+	width: 150px;
+	height: 28px;
+	padding: 4px 5px;
+	display: block;
+	float: left;
+}
+
+.zfPwdWrong {
+	color: #ff5555;
+}
+
+#rightTable p {
+	width: 216px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	color: #ff8330;
+}
+
+.userAccount {
+	height: 168px;
+	background: #fff;
+	overflow: hidden;
+}
+
+.userIntro {
+	width: 262px;
+	height: 86px;
+	margin: 20px auto 0;
+}
+
+.touxiang {
+	width: 80px;
+	height: 80px;
+	padding: 2px;
+	border: 1px solid #ececec;
+}
+
+.simpleInfo {
+	width: 166px;
+	height: 86px;
+	padding-left: 10px;
+}
+
+.simpleInfo li {
+	height: 28px;
+	line-height: 28px;
+	margin-bottom: 1px;
+}
+
+.rzBar {
+	width: 262px;
+	height: 33px;
+	margin: 10px auto;
+	position: relative;
+	overflow: hidden;
+}
+
+.rz-icon {
+	background: url(../images/account/renzheng.png) no-repeat;
+}
+
+.rzBar a {
+	width: 34px;
+	height: 33px;
+	display: block;
+	position: absolute;
+	top: 0;
+}
+
+
+
+.cardIdentification0,.cardIdentification {
+	left: 0px;
+	background-position: 0px 0px;
+}
+
+.cardIdentification1 {
+	left: 0px;
+	background-position: -34px 0px;
+}
+
+.mobileIdentification0,.mobileIdentification {
+	left: 45px;
+	background-position: 0px -33px;
+}
+
+.mobileIdentification1 {
+	left: 45px;
+	background-position: -34px -33px;
+}
+
+.emailIdentification,.emailIdentification0 {
+	left: 90px;
+	background-position: 0 -99px;
+}
+
+.emailIdentification1 {
+	left: 90px;
+	background-position: -34px -99px;
+}
+
+.videoIdentification0,.videoIdentification {
+	left: 134px;
+	background-position: 0 -132px;
+}
+
+.videoIdentification1 {
+	left: 134px;
+	background-position: -34px -132px;
+}
+
+.realplaceIdentification0,.realplaceIdentification {
+	left: 178px;
+	background-position: 0 -165px;
+}
+
+.realplaceIdentification1 {
+	left: 178px;
+	background-position: -34px -165px;
+}
+
+.ziliaoIdentification0,.ziliaoIdentification {
+	left: 222px;
+	background-position: 0 -198px;
+}
+
+.ziliaoIdentification1 {
+	left: 222px;
+	background-position: -34px -198px;
+}
+
+
+.smallBanner {
+	width: 300px;
+	height: 270px;
+	background: #00a0e9;
+	margin-top: 20px;
+	overflow: hidden;
+}
+
+.desc {
+	height: auto !important;
+	margin: 20px 0;
+	background: #fff;
+	overflow: hidden;
+	padding-bottom:50px;
+}
+
+.bornNav {
+	width: 970px;
+	height: 40px;
+	margin: 22px auto 30px;
+}
+
+.bornNav a {
+	width: 159px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	margin-right: 2px;
+	float: left;
+	display: inline;
+	cursor: pointer;
+	display: inline-block;
+}
+
+.detailItem {
+	width: 970px;
+	height: auto !important;
+	margin: 0 auto;
+	display:none;
+}
+
+#tenderRecord,#borrower,#repayCredit,#dataAudit,#repayRecord,#tenderRewrad,#comment
+	{
+	margin-top: 30px;
+}
+
+.carTable,.borrower,.tenderRecord,.repayCredit,.dataAudit,.repayRecord,.tenderRewrad,.comment
+	{
+	margin-top: 10px;
+}
+
+.tenderRecord td,.borrower td,.repayCredit td,.dataAudit td,.repayRecord td,.tenderRewrad td
+	{
+	text-align: center;
+	border-bottom: 1px solid #eee;
+}
+
+.carTable {
+	height: auto;
+}
+.carTable p{line-height:30px;}
+#carTable td {
+	border-bottom: 1px solid #eee;
+	text-align: center;
+}
+
+#tenderRecord {
+	height: 280px;
+	height: auto !important;
+}
+
+.tenderRecord {
+	height: auto !important;
+}
+
+#moreRecord,#commentH2 {
+	overflow: hidden;
+}
+
+span.sp1,span.sp2 {
+	display: block;
+}
+
+span.sp2 {
+	font-weight: normal;
+	font-size: 14px;
+	display: inline-block;
+	margin-top: 10px;
+}
+
+span.sp2 a {
+	color: #00a0e9;
+}
+
+.tenderRewrad {
+	height: 100px;
+}
+
+.comment {
+	overflow: hidden;
+}
+
+#com-textarea {
+	width: 960px;
+	height: 100px;
+	border: 1px solid #eee;
+}
+
+.btn116 {
+	margin: 12px 0 20px;
+}
+
+.licolor {
+	background: #f5f7f8;
+}
+
+.cur {
+	background: #00a0e9;
+	color: #fff;
+}
+
+.nowStatus {
+	text-indent: 60px;
+}
+
+.btn216 {
+	display: block;
+	cursor: pointer
+}
+
+
+
+/***********悬浮框*************/
+#float_box {
+	position: fixed;
+	bottom: 30px;
+	left: 50%;
+	margin-left: 520px;
+	width: 85px;
+	z-index: 400;
+}
+
+* html #float_box {
+	position: absolute;
+	top: expression(documentElement.scrollTop + "px");
+	margin: 300px 0 0 0;
+}
+
+#float_box li {
+	margin-bottom: 4px;
+	overflow: hidden;
+}
+
+#top,#share,#reply,#sina,#ceping,#weixin {
+	display: block;
+	width: 85px;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+#top {
+	height: 35px;
+	background: url(http://static.vfunding.cn/images/top.png) no-repeat;
+}
+
+#weixin {
+	height: 35px;
+	background: url(http://static.vfunding.cn/images/weixin.png) no-repeat;
+}
+
+#top:hover {
+	background: url(http://static.vfunding.cn/images/top2.png) no-repeat;
+}
+
+#weixin:hover {
+	background: url(http://static.vfunding.cn/images/weixin2.png) no-repeat;
+}
+
+#ceping {
+	height: 85px;
+	background: url(http://static.vfunding.cn/images/kefu.png) no-repeat;
+}
+
+#ceping:hover {
+	background: url(http://static.vfunding.cn/images/kefu2.png) no-repeat;
+}
+
+#EWM {
+	position: absolute;
+	left: -150px;
+	display: none;
+}
+
+#EWM img {
+	width: 150px;
+	height: 150px;
+}
+
+#txt-left1,#txt-left2{height:48px;line-height:48px;text-align:left;margin:0 auto;}
+#txt-left1{width:200px;}
+#txt-left2{width:240px;}
+.borrow-style{width:200px;height:48px;line-height:48px;text-align:left;margin:0 auto;}
+.pass{width:16px;height:16px;background-position:0 -32px;margin:16px auto;}
+.selected{width:74px;height:74px;position:absolute ;top:0; right:0;background: url(http://static.vfunding.cn/images/bxbz.png) no-repeat;}
+
+p#lowest-tip{height:52px;position:absolute; top:12px; left:0;font-size:14px; color:#888; text-align:left; text-indent:10px;}
+a.oumeiya:hover{color:#00a0e9;}

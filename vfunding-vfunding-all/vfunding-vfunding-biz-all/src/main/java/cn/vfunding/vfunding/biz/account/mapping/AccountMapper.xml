@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.account.dao.AccountMapper">
+	<resultMap id="BaseResultMap"
+		type="cn.vfunding.vfunding.biz.account.model.Account">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="total" property="total" jdbcType="DECIMAL" />
+		<result column="use_money" property="useMoney" jdbcType="DECIMAL" />
+		<result column="no_use_money" property="noUseMoney" jdbcType="DECIMAL" />
+		<result column="collection" property="collection" jdbcType="DECIMAL" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs"
+		type="cn.vfunding.vfunding.biz.common.vo.AccountSystemVO" extends="BaseResultMap">
+		<result column="id" property="id" jdbcType="INTEGER" />
+		<result column="total" property="total" jdbcType="DECIMAL" />
+		<result column="useMoney" property="useMoney" jdbcType="DECIMAL" />
+		<result column="noUseMoney" property="noUseMoney" jdbcType="DECIMAL" />
+		<result column="collection" property="collection" jdbcType="DECIMAL" />
+
+		<result column="userName" property="userName" jdbcType="VARCHAR" />
+		<result column="realName" property="realName" jdbcType="VARCHAR" />
+		<result column="addtime" property="addtime" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, user_id, total, use_money, no_use_money, collection
+	</sql>
+
+	<!-- 查询有闲置金额用户 -->
+	<select id="selectByLeaveUnused" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from rd_account
+		where use_money > 50
+	</select>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from rd_account
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+
+	<!-- 后台查询所有账户信息 -->
+	<select id="selectAccountSystemListPage" resultMap="ResultMapWithBLOBs"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select u.username as userName,u.realname as
+		realName,DATE_FORMAT(from_unixtime(u.addtime),'%Y-%m-%d %H:%i:%s') as
+		addtime,
+		a.total as total,a.use_money as useMoney,
+		a.collection as
+		collection,a.no_use_money as noUseMoney,a.id as id
+		from rd_user u left
+		join rd_account a on u.user_id=a.user_id where 1=1
+		<if test="entity.username != null and entity.username != ''">
+			and u.username like
+			CONCAT('%',#{entity.username,jdbcType=VARCHAR},'%')
+		</if>
+		order by u.addtime desc
+	</select>
+
+	<!-- 根据用户ID查询账户信息 -->
+	<select id="selectByUserId" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from rd_account
+		where user_id = #{userId,jdbcType=INTEGER}
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		rd_account
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+
+	<delete id="deleteByUserId" parameterType="java.lang.Integer">
+		delete from rd_account
+		where user_id = #{userId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id"
+		parameterType="cn.vfunding.vfunding.biz.account.model.Account">
+		insert into rd_account (id, user_id, total,
+		use_money,
+		no_use_money, collection
+		)
+		values (#{id,jdbcType=INTEGER},
+		#{userId,jdbcType=INTEGER},
+		#{total,jdbcType=DECIMAL},
+		#{useMoney,jdbcType=DECIMAL}, #{noUseMoney,jdbcType=DECIMAL},
+		#{collection,jdbcType=DECIMAL}
+		)
+	</insert>
+	<insert id="insertSelective" useGeneratedKeys="true"
+		keyProperty="id" parameterType="cn.vfunding.vfunding.biz.account.model.Account">
+		insert into rd_account
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="total != null">
+				total,
+			</if>
+			<if test="useMoney != null">
+				use_money,
+			</if>
+			<if test="noUseMoney != null">
+				no_use_money,
+			</if>
+			<if test="collection != null">
+				collection,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="total != null">
+				#{total,jdbcType=DECIMAL},
+			</if>
+			<if test="useMoney != null">
+				#{useMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="noUseMoney != null">
+				#{noUseMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="collection != null">
+				#{collection,jdbcType=DECIMAL},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.account.model.Account">
+		update rd_account
+		<set>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=INTEGER},
+			</if>
+			<if test="total != null">
+				total = #{total,jdbcType=DECIMAL},
+			</if>
+			<if test="useMoney != null">
+				use_money = #{useMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="noUseMoney != null">
+				no_use_money = #{noUseMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="collection != null">
+				collection = #{collection,jdbcType=DECIMAL},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.account.model.Account">
+		update rd_account
+		set user_id = #{userId,jdbcType=INTEGER},
+		total =
+		#{total,jdbcType=DECIMAL},
+		use_money = #{useMoney,jdbcType=DECIMAL},
+		no_use_money = #{noUseMoney,jdbcType=DECIMAL},
+		collection =
+		#{collection,jdbcType=DECIMAL}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<!-- 根据用户ID修改 -->
+	<update id="updateByUserId" parameterType="cn.vfunding.vfunding.biz.account.model.Account">
+		update rd_account
+		set
+		total = #{total,jdbcType=DECIMAL},
+		use_money =
+		#{useMoney,jdbcType=DECIMAL},
+		no_use_money =
+		#{noUseMoney,jdbcType=DECIMAL},
+		collection =
+		#{collection,jdbcType=DECIMAL}
+		where userId =
+		#{userId,jdbcType=INTEGER}
+	</update>
+
+	<select id="selectSumCashByUserId" parameterType="java.lang.Integer"
+		resultType="java.math.BigDecimal">
+		select round(sum(a.total),2) from
+		rd_account_cash a
+		where
+		a.user_id=#{userId} and a.status =1
+	</select>
+	<select id="selectSumRechargeByUserId" parameterType="java.lang.Integer"
+		resultType="java.math.BigDecimal">
+		select round(sum(a.money),2) from
+		rd_account_recharge a
+		where a.user_id=#{userId} and a.status =1
+	</select>
+
+	<!-- 可用余额综合 对接新浪资金托管平台初次导入用（已弃用） -->
+	<select id="selectSumUseMoney" parameterType="java.lang.Object"
+		resultType="java.math.BigDecimal">
+		select
+		sum(a.use_money) from rd_account a
+		left join rd_user b on a.user_id = b.user_id
+		where
+		a.use_money > 0
+		and
+		(
+		length(b.phone)=11
+		and b.realname!=''
+		and length(b.card_id)>=15
+		)
+	</select>
+	<!-- 可用余额大于0的账户 对接新浪资金托管平台初次导入用（已弃用） -->
+	<select id="selectAccountUseMoneyThanZero" parameterType="java.lang.Object"
+		resultMap="BaseResultMap">
+		<!-- select -->
+		<!-- <include refid="Base_Column_List" /> -->
+		<!-- from rd_account -->
+		<!-- where use_money > 0 -->
+		<!-- order by user_id -->
+
+		select
+		a.* from rd_account a
+		left join rd_user b on a.user_id = b.user_id
+		<!-- where a.use_money > 0 -->
+		<!-- and -->
+		<!-- ( -->
+		<!-- length(b.phone)=11 -->
+		<!-- and b.realname!='' -->
+		<!-- and length(b.card_id)>=15 -->
+		<!-- ) -->
+		where a.use_money > 0
+		and a.user_id in (396)
+	</select>
+
+
+</mapper>

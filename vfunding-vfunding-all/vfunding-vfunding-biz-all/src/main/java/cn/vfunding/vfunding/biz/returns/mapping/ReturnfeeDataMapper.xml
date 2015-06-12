@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.returns.dao.ReturnfeeDataMapper">
+	<resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.returns.model.ReturnFeeData">
+		<result column="status" property="status" />
+		<result column="returnfee" property="returnfee" />
+	</resultMap>
+	<resultMap type="cn.vfunding.vfunding.biz.returns.model.ReturnFeeData" id="detailResultMap" extends="BaseResultMap">
+		<result column="username" property="userName" />
+		<result column="borrowname" property="borrowName" />
+		<result column="account" property="account" />
+		<result column="repaymentTime" property="repaymentTime" />
+		<result column="addtime" property="addtime" />
+	</resultMap>
+
+
+	<!-- 查询用户一个月内投资金额 -->
+	<select id="selectＭonthTenderMoney" resultType="java.math.BigDecimal" parameterType="java.lang.Integer">
+		select ifnull(sum(a.account),0) from rd_borrow_tender a
+		where
+		DATE_FORMAT(from_unixtime(a.addtime),'%Y%m%d')>=date_format(date_sub(curdate(),interval 30 day),'%Y%m%d')
+		and user_id=#{userId}
+	</select>
+
+	<!-- 查询用户子辈投资金额 -->
+	<select id="selectSonＭonthTenderMoney" resultType="java.math.BigDecimal" parameterType="java.lang.Integer">
+		select ifnull(sum(a.account),0) as userSonMoney from
+		rd_borrow_tender a
+		left join rd_user b on a.user_id =b.user_id and
+		DATE_FORMAT(from_unixtime(a.addtime),'%Y%m%d')>=date_format(date_sub(curdate(),interval
+		30 day),'%Y%m%d')
+		where b.invite_userid =#{userId}
+	</select>
+	<select id="selectFirstReturnFee" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		b.status,ifnull(sum(t_fees),0) as returnfee from
+		rd_invite_fees a
+		left join
+		rd_borrow_collection b on a.tender_id =b.tender_id and
+		DATE_FORMAT(from_unixtime(a.repayment_time),'%Y%m%d')=DATE_FORMAT(from_unixtime(b.repay_time),'%Y%m%d')
+		left join rd_borrow c on a.b_id =c.id
+		where
+		c.status=3 and b.status in(0,1)
+		and a.t_user_id =#{userId}
+		group by b.status
+	</select>
+
+	<select id="selectSecondReturnFee" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		b.status,ifnull(sum(g_fees),0) as returnfee from
+		rd_invite_fees a
+		left join
+		rd_borrow_collection b on a.tender_id =b.tender_id and
+		DATE_FORMAT(from_unixtime(a.repayment_time),'%Y%m%d')=DATE_FORMAT(from_unixtime(b.repay_time),'%Y%m%d')
+		left join rd_borrow c on a.b_id =c.id
+		where
+		c.status=3 and b.status in(0,1)
+		and a.g_user_id =#{userId}
+		group by b.status
+	</select>
+
+	<select id="selectThirdReturnFee" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		b.status,ifnull(sum(s_fees),0) as returnFee from
+		rd_invite_fees a
+		left join
+		rd_borrow_collection b on a.tender_id =b.tender_id and
+		DATE_FORMAT(from_unixtime(a.repayment_time),'%Y%m%d')=DATE_FORMAT(from_unixtime(b.repay_time),'%Y%m%d')
+		left join rd_borrow c on a.b_id =c.id
+		where
+		c.status=3 and b.status in(0,1)
+		and a.s_user_id =#{userId}
+		group by b.status
+	</select>
+
+	<!-- 返利详情 -->
+	<select id="selectReturnFeeDatailListPage" resultMap="detailResultMap" parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select
+		DATE_FORMAT(from_unixtime(a.repayment_time),'%Y-%m-%d') as
+		repaymentTime,DATE_FORMAT(from_unixtime(d.addtime),'%Y-%m-%d') as addtime ,
+		e.username,c.name as borrowname,d.account,a.t_fees as returnfee
+		from
+		rd_invite_fees a
+		left join
+		rd_borrow_collection b on a.tender_id =b.tender_id and
+		DATE_FORMAT(from_unixtime(a.repayment_time),'%Y%m%d')=DATE_FORMAT(from_unixtime(b.repay_time),'%Y%m%d')
+		left join rd_borrow c on a.b_id =c.id
+		left
+		join rd_borrow_tender d on a.tender_id=d.id
+		left join rd_user e on d.user_id=e.user_id
+		where b.status=#{entity.status} and c.status=3
+		and a.t_user_id
+		=#{entity.userId}
+		<if test="entity.status==0">
+			order by
+			a.repayment_time
+		</if>
+		<if test="entity.status==1">
+			order by
+			a.repayment_time desc
+		</if>
+	</select>
+	
+	<!-- 新返利详情 -->
+	<select id="selectRebateDatailListPage" resultMap="detailResultMap" parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+	select * from 
+		(select
+				DATE_FORMAT(from_unixtime(a.addtime),'%Y-%m-%d') as
+				repaymentTime,DATE_FORMAT(from_unixtime(d.addtime),'%Y-%m-%d') as addtime ,
+				e.username,c.name as borrowname,d.account,a.t_fees as returnfee
+				from
+				rd_invite_fees a
+				left join
+				rd_borrow_collection b on a.tender_id =b.tender_id and
+				DATE_FORMAT(from_unixtime(a.repayment_time),'%Y%m%d')=DATE_FORMAT(from_unixtime(b.repay_time),'%Y%m%d')
+				left join rd_borrow c on a.b_id =c.id
+				left
+				join rd_borrow_tender d on a.tender_id=d.id
+				left join rd_user e on d.user_id=e.user_id
+				where c.status=3
+				and a.t_user_id
+				=#{entity.userId}
+				
+		UNION
+		
+		select
+				DATE_FORMAT(from_unixtime(a.addtime),'%Y-%m-%d') as
+				repaymentTime,DATE_FORMAT(from_unixtime(d.addtime),'%Y-%m-%d') as addtime ,
+				e.username,c.name as borrowname,d.account,a.g_fees as returnfee
+				from
+				rd_invite_fees a
+				left join
+				rd_borrow_collection b on a.tender_id =b.tender_id and
+				DATE_FORMAT(from_unixtime(a.repayment_time),'%Y%m%d')=DATE_FORMAT(from_unixtime(b.repay_time),'%Y%m%d')
+				left join rd_borrow c on a.b_id =c.id
+				left
+				join rd_borrow_tender d on a.tender_id=d.id
+				left join rd_user e on d.user_id=e.user_id
+				where c.status=3
+				and a.g_user_id
+				=#{entity.userId}
+				
+		UNION
+		
+		select
+				DATE_FORMAT(from_unixtime(a.addtime),'%Y-%m-%d') as
+				repaymentTime,DATE_FORMAT(from_unixtime(d.addtime),'%Y-%m-%d') as addtime ,
+				e.username,c.name as borrowname,d.account,a.s_fees as returnfee
+				from
+				rd_invite_fees a
+				left join
+				rd_borrow_collection b on a.tender_id =b.tender_id and
+				DATE_FORMAT(from_unixtime(a.repayment_time),'%Y%m%d')=DATE_FORMAT(from_unixtime(b.repay_time),'%Y%m%d')
+				left join rd_borrow c on a.b_id =c.id
+				left
+				join rd_borrow_tender d on a.tender_id=d.id
+				left join rd_user e on d.user_id=e.user_id
+				where c.status=3
+				and a.s_user_id
+				=#{entity.userId}
+		) as detail ORDER BY repaymentTime desc
+	</select>
+</mapper>

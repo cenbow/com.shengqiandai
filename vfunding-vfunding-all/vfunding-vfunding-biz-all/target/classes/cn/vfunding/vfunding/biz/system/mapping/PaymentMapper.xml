@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.system.dao.PaymentMapper" >
+  <resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.system.model.Payment" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="nid" property="nid" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="BIT" />
+    <result column="style" property="style" jdbcType="INTEGER" />
+    <result column="fee_type" property="feeType" jdbcType="BIT" />
+    <result column="max_money" property="maxMoney" jdbcType="INTEGER" />
+    <result column="max_fee" property="maxFee" jdbcType="REAL" />
+    <result column="order" property="order" jdbcType="TINYINT" />
+    <result column="reward" property="reward" jdbcType="BIT" />
+    <result column="reward_type" property="rewardType" jdbcType="BIT" />
+    <result column="reward_where" property="rewardWhere" jdbcType="INTEGER" />
+    <result column="reward_bl" property="rewardBl" jdbcType="REAL" />
+    <result column="reward_ed" property="rewardEd" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.vfunding.vfunding.biz.system.model.PaymentWithBLOBs" extends="BaseResultMap" >
+    <result column="config" property="config" jdbcType="LONGVARCHAR" />
+    <result column="description" property="description" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, nid, status, style, fee_type, max_money, max_fee, order, reward, reward_type, 
+    reward_where, reward_bl, reward_ed
+  </sql>
+  <sql id="Blob_Column_List" >
+    config, description
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from rd_payment
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from rd_payment
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.vfunding.biz.system.model.PaymentWithBLOBs" >
+    insert into rd_payment (id, name, nid, 
+      status, style, fee_type, max_money, 
+      max_fee, order, reward, reward_type, 
+      reward_where, reward_bl, reward_ed, 
+      config, description)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{nid,jdbcType=VARCHAR}, 
+      #{status,jdbcType=BIT}, #{style,jdbcType=INTEGER}, #{feeType,jdbcType=BIT}, #{maxMoney,jdbcType=INTEGER}, 
+      #{maxFee,jdbcType=REAL}, #{order,jdbcType=TINYINT}, #{reward,jdbcType=BIT}, #{rewardType,jdbcType=BIT}, 
+      #{rewardWhere,jdbcType=INTEGER}, #{rewardBl,jdbcType=REAL}, #{rewardEd,jdbcType=INTEGER}, 
+      #{config,jdbcType=LONGVARCHAR}, #{description,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.system.model.PaymentWithBLOBs" >
+    insert into rd_payment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="nid != null" >
+        nid,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="style != null" >
+        style,
+      </if>
+      <if test="feeType != null" >
+        fee_type,
+      </if>
+      <if test="maxMoney != null" >
+        max_money,
+      </if>
+      <if test="maxFee != null" >
+        max_fee,
+      </if>
+      <if test="order != null" >
+        order,
+      </if>
+      <if test="reward != null" >
+        reward,
+      </if>
+      <if test="rewardType != null" >
+        reward_type,
+      </if>
+      <if test="rewardWhere != null" >
+        reward_where,
+      </if>
+      <if test="rewardBl != null" >
+        reward_bl,
+      </if>
+      <if test="rewardEd != null" >
+        reward_ed,
+      </if>
+      <if test="config != null" >
+        config,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="nid != null" >
+        #{nid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="style != null" >
+        #{style,jdbcType=INTEGER},
+      </if>
+      <if test="feeType != null" >
+        #{feeType,jdbcType=BIT},
+      </if>
+      <if test="maxMoney != null" >
+        #{maxMoney,jdbcType=INTEGER},
+      </if>
+      <if test="maxFee != null" >
+        #{maxFee,jdbcType=REAL},
+      </if>
+      <if test="order != null" >
+        #{order,jdbcType=TINYINT},
+      </if>
+      <if test="reward != null" >
+        #{reward,jdbcType=BIT},
+      </if>
+      <if test="rewardType != null" >
+        #{rewardType,jdbcType=BIT},
+      </if>
+      <if test="rewardWhere != null" >
+        #{rewardWhere,jdbcType=INTEGER},
+      </if>
+      <if test="rewardBl != null" >
+        #{rewardBl,jdbcType=REAL},
+      </if>
+      <if test="rewardEd != null" >
+        #{rewardEd,jdbcType=INTEGER},
+      </if>
+      <if test="config != null" >
+        #{config,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.system.model.PaymentWithBLOBs" >
+    update rd_payment
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="nid != null" >
+        nid = #{nid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="style != null" >
+        style = #{style,jdbcType=INTEGER},
+      </if>
+      <if test="feeType != null" >
+        fee_type = #{feeType,jdbcType=BIT},
+      </if>
+      <if test="maxMoney != null" >
+        max_money = #{maxMoney,jdbcType=INTEGER},
+      </if>
+      <if test="maxFee != null" >
+        max_fee = #{maxFee,jdbcType=REAL},
+      </if>
+      <if test="order != null" >
+        order = #{order,jdbcType=TINYINT},
+      </if>
+      <if test="reward != null" >
+        reward = #{reward,jdbcType=BIT},
+      </if>
+      <if test="rewardType != null" >
+        reward_type = #{rewardType,jdbcType=BIT},
+      </if>
+      <if test="rewardWhere != null" >
+        reward_where = #{rewardWhere,jdbcType=INTEGER},
+      </if>
+      <if test="rewardBl != null" >
+        reward_bl = #{rewardBl,jdbcType=REAL},
+      </if>
+      <if test="rewardEd != null" >
+        reward_ed = #{rewardEd,jdbcType=INTEGER},
+      </if>
+      <if test="config != null" >
+        config = #{config,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.vfunding.vfunding.biz.system.model.PaymentWithBLOBs" >
+    update rd_payment
+    set name = #{name,jdbcType=VARCHAR},
+      nid = #{nid,jdbcType=VARCHAR},
+      status = #{status,jdbcType=BIT},
+      style = #{style,jdbcType=INTEGER},
+      fee_type = #{feeType,jdbcType=BIT},
+      max_money = #{maxMoney,jdbcType=INTEGER},
+      max_fee = #{maxFee,jdbcType=REAL},
+      order = #{order,jdbcType=TINYINT},
+      reward = #{reward,jdbcType=BIT},
+      reward_type = #{rewardType,jdbcType=BIT},
+      reward_where = #{rewardWhere,jdbcType=INTEGER},
+      reward_bl = #{rewardBl,jdbcType=REAL},
+      reward_ed = #{rewardEd,jdbcType=INTEGER},
+      config = #{config,jdbcType=LONGVARCHAR},
+      description = #{description,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.system.model.Payment" >
+    update rd_payment
+    set name = #{name,jdbcType=VARCHAR},
+      nid = #{nid,jdbcType=VARCHAR},
+      status = #{status,jdbcType=BIT},
+      style = #{style,jdbcType=INTEGER},
+      fee_type = #{feeType,jdbcType=BIT},
+      max_money = #{maxMoney,jdbcType=INTEGER},
+      max_fee = #{maxFee,jdbcType=REAL},
+      order = #{order,jdbcType=TINYINT},
+      reward = #{reward,jdbcType=BIT},
+      reward_type = #{rewardType,jdbcType=BIT},
+      reward_where = #{rewardWhere,jdbcType=INTEGER},
+      reward_bl = #{rewardBl,jdbcType=REAL},
+      reward_ed = #{rewardEd,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

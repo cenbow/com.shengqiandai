@@ -1,0 +1,84 @@
+2015-04-15 11:03:08,732 (FundsController.java:289) INFO [qtp427736678-27] *****[sina 提现 财务审核开始]:[accountCashId:3762]
+2015-04-15 11:03:14,397 (FundsController.java:320) INFO [qtp427736678-27] [sina 提现 修改状态为处理中开始]:[accountCashId:3762,userId:6262]
+2015-04-15 11:03:17,915 (FundsController.java:323) INFO [qtp427736678-27] [sina 提现 修改状态为处理中结束]:[accountCashId:3762,userId:6262]
+2015-04-15 11:03:18,757 (FundsController.java:324) INFO [qtp427736678-27] [sina 提现 审核通过开始]:[accountCashId:3762,userId:6262]
+2015-04-15 11:03:19,604 (FundsController.java:328) INFO [qtp427736678-27] [sina 提现 推送新浪接口开始]:[accountCashId:3762,userId:6262]
+2015-04-15 11:03:20,240 (AccountCashSinaServiceImpl.java:54) INFO [qtp427736678-27] *****[sina 6262  提现   开始]
+2015-04-15 11:03:20,561 (AccountCashSinaServiceImpl.java:91) INFO [qtp427736678-27] 发送请求
+2015-04-15 11:03:24,384 (AccountCashSinaServiceImpl.java:97) INFO [qtp427736678-27] 请求完毕
+2015-04-15 11:03:24,696 (AccountCashSinaServiceImpl.java:130) INFO [qtp427736678-27] #####[sina 6262 提现 失败]:[cardId-银行卡ID不能为空]
+2015-04-15 11:03:24,697 (AccountCashSinaServiceImpl.java:145) INFO [qtp427736678-27] *****[sina 6262 提现 结束]
+2015-04-15 11:03:29,743 (FundsController.java:332) ERROR [qtp427736678-27] [sina 提现 推送新浪接口 异常]:[accountCashId:3762,userId:6262]:[异常内容:
+### Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'jms_result' in 'field list'
+### The error may involve cn.vfunding.vfunding.biz.system.dao.JmsLogMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: insert into vf_jsm_log   (jms_id, jms_info, jms_category,   send_time, receive_time,complete_time,   jms_status,jms_result   )   values (?,   ?,   ?,   ?, ?,   ?, ?,    ?   )
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'jms_result' in 'field list'
+; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'jms_result' in 'field list']
+2015-04-15 11:03:32,252 (FundsController.java:334) INFO [qtp427736678-27] *****[sina 提现 财务审核结束]:[accountCashId:3762]
+2015-04-15 11:04:05,994 (FundsController.java:289) INFO [qtp427736678-26] *****[sina 提现 财务审核开始]:[accountCashId:3766]
+2015-04-15 11:04:08,071 (FundsController.java:320) INFO [qtp427736678-26] [sina 提现 修改状态为处理中开始]:[accountCashId:3766,userId:6498]
+2015-04-15 11:04:09,621 (FundsController.java:323) INFO [qtp427736678-26] [sina 提现 修改状态为处理中结束]:[accountCashId:3766,userId:6498]
+2015-04-15 11:04:09,840 (FundsController.java:324) INFO [qtp427736678-26] [sina 提现 审核通过开始]:[accountCashId:3766,userId:6498]
+2015-04-15 11:04:10,990 (FundsController.java:328) INFO [qtp427736678-26] [sina 提现 推送新浪接口开始]:[accountCashId:3766,userId:6498]
+2015-04-15 11:04:12,301 (AccountCashSinaServiceImpl.java:54) INFO [qtp427736678-26] *****[sina 6498  提现   开始]
+2015-04-15 11:04:12,363 (AccountCashSinaServiceImpl.java:91) INFO [qtp427736678-26] 发送请求
+2015-04-15 11:04:13,072 (AccountCashSinaServiceImpl.java:97) INFO [qtp427736678-26] 请求完毕
+2015-04-15 11:04:13,199 (AccountCashSinaServiceImpl.java:130) INFO [qtp427736678-26] #####[sina 6498 提现 失败]:[cardId-银行卡ID不能为空]
+2015-04-15 11:04:13,202 (AccountCashSinaServiceImpl.java:145) INFO [qtp427736678-26] *****[sina 6498 提现 结束]
+2015-04-15 11:04:52,746 (FundsController.java:332) ERROR [qtp427736678-26] [sina 提现 推送新浪接口 异常]:[accountCashId:3766,userId:6498]:[异常内容:
+### Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'jms_result' in 'field list'
+### The error may involve cn.vfunding.vfunding.biz.system.dao.JmsLogMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: insert into vf_jsm_log   (jms_id, jms_info, jms_category,   send_time, receive_time,complete_time,   jms_status,jms_result   )   values (?,   ?,   ?,   ?, ?,   ?, ?,    ?   )
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'jms_result' in 'field list'
+; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'jms_result' in 'field list']
+2015-04-15 11:04:52,757 (FundsController.java:334) INFO [qtp427736678-26] *****[sina 提现 财务审核结束]:[accountCashId:3766]
+2015-04-15 11:05:03,203 (FundsController.java:289) INFO [qtp427736678-27] *****[sina 提现 财务审核开始]:[accountCashId:3767]
+2015-04-15 11:05:03,213 (FundsController.java:320) INFO [qtp427736678-27] [sina 提现 修改状态为处理中开始]:[accountCashId:3767,userId:7204]
+2015-04-15 11:05:03,303 (FundsController.java:323) INFO [qtp427736678-27] [sina 提现 修改状态为处理中结束]:[accountCashId:3767,userId:7204]
+2015-04-15 11:05:03,303 (FundsController.java:324) INFO [qtp427736678-27] [sina 提现 审核通过开始]:[accountCashId:3767,userId:7204]
+2015-04-15 11:05:03,304 (FundsController.java:328) INFO [qtp427736678-27] [sina 提现 推送新浪接口开始]:[accountCashId:3767,userId:7204]
+2015-04-15 11:05:03,304 (AccountCashSinaServiceImpl.java:53) INFO [qtp427736678-27] *****[sina 7204  提现   开始]
+2015-04-15 11:05:12,004 (AccountCashSinaServiceImpl.java:88) INFO [qtp427736678-27] 发送请求
+2015-04-15 11:05:14,425 (AccountCashSinaServiceImpl.java:93) INFO [qtp427736678-27] 请求完毕
+2015-04-15 11:05:24,400 (AccountCashSinaServiceImpl.java:107) INFO [qtp427736678-27] #####[sina 7204 提现 失败]:[cardId-银行卡ID不能为空]
+2015-04-15 11:05:25,990 (AccountCashSinaServiceImpl.java:114) INFO [qtp427736678-27] *****[sina 7204 提现 结束]
+2015-04-15 11:05:53,926 (FundsController.java:332) ERROR [qtp427736678-27] [sina 提现 推送新浪接口 异常]:[accountCashId:3767,userId:7204]:[异常内容:
+### Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'jms_result' in 'field list'
+### The error may involve cn.vfunding.vfunding.biz.system.dao.JmsLogMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: insert into vf_jsm_log   (jms_id, jms_info, jms_category,   send_time, receive_time,complete_time,   jms_status,jms_result   )   values (?,   ?,   ?,   ?, ?,   ?, ?,    ?   )
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'jms_result' in 'field list'
+; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'jms_result' in 'field list']
+2015-04-15 11:06:08,172 (FundsController.java:334) INFO [qtp427736678-27] *****[sina 提现 财务审核结束]:[accountCashId:3767]
+2015-04-15 11:08:55,949 (FundsController.java:289) INFO [qtp427736678-24] *****[sina 提现 财务审核开始]:[accountCashId:4002]
+2015-04-15 11:08:59,547 (FundsController.java:320) INFO [qtp427736678-24] [sina 提现 修改状态为处理中开始]:[accountCashId:4002,userId:9071]
+2015-04-15 11:09:04,929 (FundsController.java:323) INFO [qtp427736678-24] [sina 提现 修改状态为处理中结束]:[accountCashId:4002,userId:9071]
+2015-04-15 11:09:05,161 (FundsController.java:324) INFO [qtp427736678-24] [sina 提现 审核通过开始]:[accountCashId:4002,userId:9071]
+2015-04-15 11:09:05,745 (FundsController.java:328) INFO [qtp427736678-24] [sina 提现 推送新浪接口开始]:[accountCashId:4002,userId:9071]
+2015-04-15 11:09:06,084 (AccountCashSinaServiceImpl.java:53) INFO [qtp427736678-24] *****[sina 9071  提现   开始]
+2015-04-15 11:09:08,411 (AccountCashSinaServiceImpl.java:88) INFO [qtp427736678-24] 发送请求
+2015-04-15 11:09:09,427 (AccountCashSinaServiceImpl.java:93) INFO [qtp427736678-24] 请求完毕
+2015-04-15 11:09:09,579 (AccountCashSinaServiceImpl.java:107) INFO [qtp427736678-24] #####[sina 9071 提现 失败]:[已设置安全卡用户只能使用安全卡提现]
+2015-04-15 11:09:09,580 (AccountCashSinaServiceImpl.java:114) INFO [qtp427736678-24] *****[sina 9071 提现 结束]
+2015-04-15 11:09:09,589 (FundsController.java:332) ERROR [qtp427736678-24] [sina 提现 推送新浪接口 异常]:[accountCashId:4002,userId:9071]:[异常内容:
+### Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'jms_result' in 'field list'
+### The error may involve cn.vfunding.vfunding.biz.system.dao.JmsLogMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: insert into vf_jsm_log   (jms_id, jms_info, jms_category,   send_time, receive_time,complete_time,   jms_status,jms_result   )   values (?,   ?,   ?,   ?, ?,   ?, ?,    ?   )
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'jms_result' in 'field list'
+; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'jms_result' in 'field list']
+2015-04-15 11:09:09,601 (FundsController.java:334) INFO [qtp427736678-24] *****[sina 提现 财务审核结束]:[accountCashId:4002]
+2015-04-15 11:17:16,384 (FundsController.java:289) INFO [qtp427736678-26] *****[sina 提现 财务审核开始]:[accountCashId:4003]
+2015-04-15 11:17:20,109 (FundsController.java:320) INFO [qtp427736678-26] [sina 提现 修改状态为处理中开始]:[accountCashId:4003,userId:9071]
+2015-04-15 11:17:21,479 (FundsController.java:323) INFO [qtp427736678-26] [sina 提现 修改状态为处理中结束]:[accountCashId:4003,userId:9071]
+2015-04-15 11:17:23,389 (FundsController.java:324) INFO [qtp427736678-26] [sina 提现 审核通过开始]:[accountCashId:4003,userId:9071]
+2015-04-15 11:17:23,870 (FundsController.java:328) INFO [qtp427736678-26] [sina 提现 推送新浪接口开始]:[accountCashId:4003,userId:9071]
+2015-04-15 11:17:24,243 (AccountCashSinaServiceImpl.java:53) INFO [qtp427736678-26] *****[sina 9071  提现   开始]
+2015-04-15 11:17:32,387 (AccountCashSinaServiceImpl.java:88) INFO [qtp427736678-26] 发送请求
+2015-04-15 11:17:34,283 (AccountCashSinaServiceImpl.java:93) INFO [qtp427736678-26] 请求完毕
+2015-04-15 11:17:36,349 (AccountCashSinaServiceImpl.java:107) INFO [qtp427736678-26] #####[sina 9071 提现 失败]:[已设置安全卡用户只能使用安全卡提现]
+2015-04-15 11:17:37,878 (AccountCashSinaServiceImpl.java:114) INFO [qtp427736678-26] *****[sina 9071 提现 结束]
+2015-04-15 11:17:48,553 (FundsController.java:330) INFO [qtp427736678-26] [sina 提现 推送新浪接口结束]:[accountCashId:4003,userId:9071]
+2015-04-15 11:17:58,809 (FundsController.java:381) INFO [qtp427736678-26] *****[sina 提现 财务审核结束]:[accountCashId:4003]

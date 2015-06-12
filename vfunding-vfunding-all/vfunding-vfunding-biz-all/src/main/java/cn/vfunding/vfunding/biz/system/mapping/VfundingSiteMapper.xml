@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.system.dao.VfundingSiteMapper" >
+  <resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.system.model.VfundingSite" >
+    <id column="site_id" property="siteId" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="nid" property="nid" jdbcType="VARCHAR" />
+    <result column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="rank" property="rank" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="aurl" property="aurl" jdbcType="VARCHAR" />
+    <result column="isurl" property="isurl" jdbcType="VARCHAR" />
+    <result column="order" property="order" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="style" property="style" jdbcType="VARCHAR" />
+    <result column="litpic" property="litpic" jdbcType="VARCHAR" />
+    <result column="list_name" property="listName" jdbcType="VARCHAR" />
+    <result column="content_name" property="contentName" jdbcType="VARCHAR" />
+    <result column="sitedir" property="sitedir" jdbcType="VARCHAR" />
+    <result column="visit_type" property="visitType" jdbcType="VARCHAR" />
+    <result column="index_tpl" property="indexTpl" jdbcType="VARCHAR" />
+    <result column="list_tpl" property="listTpl" jdbcType="VARCHAR" />
+    <result column="content_tpl" property="contentTpl" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="keywords" property="keywords" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="addtime" property="addtime" jdbcType="VARCHAR" />
+    <result column="addip" property="addip" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.vfunding.vfunding.biz.system.model.VfundingSite" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    site_id, code, name, nid, pid, rank, url, aurl, isurl, order, status, style, litpic, 
+    list_name, content_name, sitedir, visit_type, index_tpl, list_tpl, content_tpl, title, 
+    keywords, description, user_id, addtime, addip
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from rd_site
+    where site_id = #{siteId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from rd_site
+    where site_id = #{siteId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.vfunding.biz.system.model.VfundingSite" >
+    insert into rd_site (site_id, code, name, 
+      nid, pid, rank, url, 
+      aurl, isurl, order, 
+      status, style, litpic, 
+      list_name, content_name, sitedir, 
+      visit_type, index_tpl, list_tpl, 
+      content_tpl, title, keywords, 
+      description, user_id, addtime, 
+      addip, content)
+    values (#{siteId,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{nid,jdbcType=VARCHAR}, #{pid,jdbcType=INTEGER}, #{rank,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{aurl,jdbcType=VARCHAR}, #{isurl,jdbcType=VARCHAR}, #{order,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{style,jdbcType=VARCHAR}, #{litpic,jdbcType=VARCHAR}, 
+      #{listName,jdbcType=VARCHAR}, #{contentName,jdbcType=VARCHAR}, #{sitedir,jdbcType=VARCHAR}, 
+      #{visitType,jdbcType=VARCHAR}, #{indexTpl,jdbcType=VARCHAR}, #{listTpl,jdbcType=VARCHAR}, 
+      #{contentTpl,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{addtime,jdbcType=VARCHAR}, 
+      #{addip,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.system.model.VfundingSite" >
+    insert into rd_site
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="siteId != null" >
+        site_id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="nid != null" >
+        nid,
+      </if>
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="rank != null" >
+        rank,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="aurl != null" >
+        aurl,
+      </if>
+      <if test="isurl != null" >
+        isurl,
+      </if>
+      <if test="order != null" >
+        order,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="style != null" >
+        style,
+      </if>
+      <if test="litpic != null" >
+        litpic,
+      </if>
+      <if test="listName != null" >
+        list_name,
+      </if>
+      <if test="contentName != null" >
+        content_name,
+      </if>
+      <if test="sitedir != null" >
+        sitedir,
+      </if>
+      <if test="visitType != null" >
+        visit_type,
+      </if>
+      <if test="indexTpl != null" >
+        index_tpl,
+      </if>
+      <if test="listTpl != null" >
+        list_tpl,
+      </if>
+      <if test="contentTpl != null" >
+        content_tpl,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="keywords != null" >
+        keywords,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="addip != null" >
+        addip,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="siteId != null" >
+        #{siteId,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="nid != null" >
+        #{nid,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="rank != null" >
+        #{rank,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="aurl != null" >
+        #{aurl,jdbcType=VARCHAR},
+      </if>
+      <if test="isurl != null" >
+        #{isurl,jdbcType=VARCHAR},
+      </if>
+      <if test="order != null" >
+        #{order,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="style != null" >
+        #{style,jdbcType=VARCHAR},
+      </if>
+      <if test="litpic != null" >
+        #{litpic,jdbcType=VARCHAR},
+      </if>
+      <if test="listName != null" >
+        #{listName,jdbcType=VARCHAR},
+      </if>
+      <if test="contentName != null" >
+        #{contentName,jdbcType=VARCHAR},
+      </if>
+      <if test="sitedir != null" >
+        #{sitedir,jdbcType=VARCHAR},
+      </if>
+      <if test="visitType != null" >
+        #{visitType,jdbcType=VARCHAR},
+      </if>
+      <if test="indexTpl != null" >
+        #{indexTpl,jdbcType=VARCHAR},
+      </if>
+      <if test="listTpl != null" >
+        #{listTpl,jdbcType=VARCHAR},
+      </if>
+      <if test="contentTpl != null" >
+        #{contentTpl,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="keywords != null" >
+        #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=VARCHAR},
+      </if>
+      <if test="addip != null" >
+        #{addip,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.system.model.VfundingSite" >
+    update rd_site
+    <set >
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="nid != null" >
+        nid = #{nid,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        pid = #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="rank != null" >
+        rank = #{rank,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="aurl != null" >
+        aurl = #{aurl,jdbcType=VARCHAR},
+      </if>
+      <if test="isurl != null" >
+        isurl = #{isurl,jdbcType=VARCHAR},
+      </if>
+      <if test="order != null" >
+        order = #{order,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="style != null" >
+        style = #{style,jdbcType=VARCHAR},
+      </if>
+      <if test="litpic != null" >
+        litpic = #{litpic,jdbcType=VARCHAR},
+      </if>
+      <if test="listName != null" >
+        list_name = #{listName,jdbcType=VARCHAR},
+      </if>
+      <if test="contentName != null" >
+        content_name = #{contentName,jdbcType=VARCHAR},
+      </if>
+      <if test="sitedir != null" >
+        sitedir = #{sitedir,jdbcType=VARCHAR},
+      </if>
+      <if test="visitType != null" >
+        visit_type = #{visitType,jdbcType=VARCHAR},
+      </if>
+      <if test="indexTpl != null" >
+        index_tpl = #{indexTpl,jdbcType=VARCHAR},
+      </if>
+      <if test="listTpl != null" >
+        list_tpl = #{listTpl,jdbcType=VARCHAR},
+      </if>
+      <if test="contentTpl != null" >
+        content_tpl = #{contentTpl,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="keywords != null" >
+        keywords = #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=VARCHAR},
+      </if>
+      <if test="addip != null" >
+        addip = #{addip,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where site_id = #{siteId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.vfunding.vfunding.biz.system.model.VfundingSite" >
+    update rd_site
+    set code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      nid = #{nid,jdbcType=VARCHAR},
+      pid = #{pid,jdbcType=INTEGER},
+      rank = #{rank,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      aurl = #{aurl,jdbcType=VARCHAR},
+      isurl = #{isurl,jdbcType=VARCHAR},
+      order = #{order,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      style = #{style,jdbcType=VARCHAR},
+      litpic = #{litpic,jdbcType=VARCHAR},
+      list_name = #{listName,jdbcType=VARCHAR},
+      content_name = #{contentName,jdbcType=VARCHAR},
+      sitedir = #{sitedir,jdbcType=VARCHAR},
+      visit_type = #{visitType,jdbcType=VARCHAR},
+      index_tpl = #{indexTpl,jdbcType=VARCHAR},
+      list_tpl = #{listTpl,jdbcType=VARCHAR},
+      content_tpl = #{contentTpl,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      keywords = #{keywords,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      addtime = #{addtime,jdbcType=VARCHAR},
+      addip = #{addip,jdbcType=VARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where site_id = #{siteId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.system.model.VfundingSite" >
+    update rd_site
+    set code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      nid = #{nid,jdbcType=VARCHAR},
+      pid = #{pid,jdbcType=INTEGER},
+      rank = #{rank,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      aurl = #{aurl,jdbcType=VARCHAR},
+      isurl = #{isurl,jdbcType=VARCHAR},
+      order = #{order,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      style = #{style,jdbcType=VARCHAR},
+      litpic = #{litpic,jdbcType=VARCHAR},
+      list_name = #{listName,jdbcType=VARCHAR},
+      content_name = #{contentName,jdbcType=VARCHAR},
+      sitedir = #{sitedir,jdbcType=VARCHAR},
+      visit_type = #{visitType,jdbcType=VARCHAR},
+      index_tpl = #{indexTpl,jdbcType=VARCHAR},
+      list_tpl = #{listTpl,jdbcType=VARCHAR},
+      content_tpl = #{contentTpl,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      keywords = #{keywords,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      addtime = #{addtime,jdbcType=VARCHAR},
+      addip = #{addip,jdbcType=VARCHAR}
+    where site_id = #{siteId,jdbcType=INTEGER}
+  </update>
+</mapper>

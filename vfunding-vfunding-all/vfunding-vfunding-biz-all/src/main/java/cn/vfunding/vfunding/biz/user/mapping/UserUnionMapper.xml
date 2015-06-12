@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.user.dao.UserUnionMapper" >
+  <resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.user.model.UserUnion" >
+    <id column="union_user_id" property="unionUserId" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="revive_num" property="reviveNum" jdbcType="INTEGER" />
+    <result column="last_revive_time" property="lastReviveTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    union_user_id, user_id, status, revive_num,last_revive_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from rd_user_union
+    where union_user_id = #{unionUserId,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from rd_user_union
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  
+  <!-- 查询可以获利的网站联盟用户 -->
+  <select id="selectCanProfitUser" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from rd_user_union
+    where status = 'Y'
+  </select>
+  
+  <!-- 查询可复活网站联盟用户  -->
+  <select id="selectCanRevive" resultMap="BaseResultMap">
+    select 
+    union_user_id, user_id, status, revive_num,last_revive_time
+    from rd_user_union
+    where status = 'N' and revive_num <![CDATA[ < ]]> 2
+  </select>
+  
+  <!-- 查询不可复活网站联盟用户  -->
+  <select id="selectCanNotRevive" resultMap="BaseResultMap">
+    select 
+    union_user_id, user_id, status, revive_num,last_revive_time
+    from rd_user_union
+    where status = 'N' and revive_num >= 2
+  </select>
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from rd_user_union
+    where union_user_id = #{unionUserId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.vfunding.biz.user.model.UserUnion" >
+    insert into rd_user_union (union_user_id, user_id, status, 
+      revive_num,last_revive_time)
+    values (#{unionUserId,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, 
+      #{reviveNum,jdbcType=INTEGER},#{lastReviveTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.user.model.UserUnion" >
+    insert into rd_user_union
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="unionUserId != null" >
+        union_user_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="reviveNum != null" >
+        revive_num,
+      </if>
+      <if test="lastReviveTime != null" >
+        last_revive_time,
+      </if>
+     
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="unionUserId != null" >
+        #{unionUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="reviveNum != null" >
+        #{reviveNum,jdbcType=INTEGER},
+      </if>
+       <if test="lastReviveTime != null" >
+        #{lastReviveTime,jdbcType=TIMESTAMP},
+      </if>
+       
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.user.model.UserUnion" >
+    update rd_user_union
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="reviveNum != null" >
+        revive_num = #{reviveNum,jdbcType=INTEGER},
+      </if>
+      <if test="lastReviveTime != null" >
+        last_revive_time =  #{lastReviveTime,jdbcType=TIMESTAMP},
+      </if>
+     
+    </set>
+    where union_user_id = #{unionUserId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.user.model.UserUnion" >
+    update rd_user_union
+    set user_id = #{userId,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      revive_num = #{reviveNum,jdbcType=INTEGER},
+      last_revive_time =  #{lastReviveTime,jdbcType=TIMESTAMP}
+    where union_user_id = #{unionUserId,jdbcType=VARCHAR}
+  </update>
+</mapper>

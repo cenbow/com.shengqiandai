@@ -1,0 +1,12 @@
+@charset "utf-8";
+/* CSS Document */
+
+@import url(base.css);
+h1,h2,h3,h4,h5,h6{ font-weight:normal; text-align:center;}
+.content{ width:1100px; background:#fff; margin:30px auto; padding-bottom:10px;}
+.grid900{ width:900px; margin:20px auto;padding-top:30px;}
+.agreement-title{ font-size:25px; text-align:center;}
+.grid900 p{ line-height:20px;}
+.zq-table{ border-collapse:collapse; margin:0 auto 20px;}
+.zq-table td{ border:1px solid #eee; text-align:center;}
+.fb{ font-weight:bold;}

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.borrow.dao.BorrowVouchMapper" >
+  <resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.borrow.model.BorrowVouch" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="borrow_id" property="borrowId" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="account" property="account" jdbcType="VARCHAR" />
+    <result column="vouch_account" property="vouchAccount" jdbcType="DECIMAL" />
+    <result column="award_fund" property="awardFund" jdbcType="VARCHAR" />
+    <result column="award_account" property="awardAccount" jdbcType="DECIMAL" />
+    <result column="addtime" property="addtime" jdbcType="VARCHAR" />
+    <result column="addip" property="addip" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.vfunding.vfunding.biz.borrow.model.BorrowVouch" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, borrow_id, status, account, vouch_account, award_fund, award_account, 
+    addtime, addip
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from rd_borrow_vouch
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from rd_borrow_vouch
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.vfunding.biz.borrow.model.BorrowVouch" >
+    insert into rd_borrow_vouch (id, user_id, borrow_id, 
+      status, account, vouch_account, 
+      award_fund, award_account, addtime, 
+      addip, content)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{borrowId,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{account,jdbcType=VARCHAR}, #{vouchAccount,jdbcType=DECIMAL}, 
+      #{awardFund,jdbcType=VARCHAR}, #{awardAccount,jdbcType=DECIMAL}, #{addtime,jdbcType=VARCHAR}, 
+      #{addip,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.borrow.model.BorrowVouch" >
+    insert into rd_borrow_vouch
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="borrowId != null" >
+        borrow_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="account != null" >
+        account,
+      </if>
+      <if test="vouchAccount != null" >
+        vouch_account,
+      </if>
+      <if test="awardFund != null" >
+        award_fund,
+      </if>
+      <if test="awardAccount != null" >
+        award_account,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="addip != null" >
+        addip,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="borrowId != null" >
+        #{borrowId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="vouchAccount != null" >
+        #{vouchAccount,jdbcType=DECIMAL},
+      </if>
+      <if test="awardFund != null" >
+        #{awardFund,jdbcType=VARCHAR},
+      </if>
+      <if test="awardAccount != null" >
+        #{awardAccount,jdbcType=DECIMAL},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=VARCHAR},
+      </if>
+      <if test="addip != null" >
+        #{addip,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.borrow.model.BorrowVouch" >
+    update rd_borrow_vouch
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="borrowId != null" >
+        borrow_id = #{borrowId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="account != null" >
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="vouchAccount != null" >
+        vouch_account = #{vouchAccount,jdbcType=DECIMAL},
+      </if>
+      <if test="awardFund != null" >
+        award_fund = #{awardFund,jdbcType=VARCHAR},
+      </if>
+      <if test="awardAccount != null" >
+        award_account = #{awardAccount,jdbcType=DECIMAL},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=VARCHAR},
+      </if>
+      <if test="addip != null" >
+        addip = #{addip,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.vfunding.vfunding.biz.borrow.model.BorrowVouch" >
+    update rd_borrow_vouch
+    set user_id = #{userId,jdbcType=INTEGER},
+      borrow_id = #{borrowId,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      account = #{account,jdbcType=VARCHAR},
+      vouch_account = #{vouchAccount,jdbcType=DECIMAL},
+      award_fund = #{awardFund,jdbcType=VARCHAR},
+      award_account = #{awardAccount,jdbcType=DECIMAL},
+      addtime = #{addtime,jdbcType=VARCHAR},
+      addip = #{addip,jdbcType=VARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.borrow.model.BorrowVouch" >
+    update rd_borrow_vouch
+    set user_id = #{userId,jdbcType=INTEGER},
+      borrow_id = #{borrowId,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      account = #{account,jdbcType=VARCHAR},
+      vouch_account = #{vouchAccount,jdbcType=DECIMAL},
+      award_fund = #{awardFund,jdbcType=VARCHAR},
+      award_account = #{awardAccount,jdbcType=DECIMAL},
+      addtime = #{addtime,jdbcType=VARCHAR},
+      addip = #{addip,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,51 @@
+2015-02-13 10:59:37,199 (QuerySinaServiceImpl.java:91) INFO [qtp1608157147-22] *****[sina 9071 查询用户余额, 请求开始]*****
+2015-02-13 11:00:22,276 (QuerySinaServiceImpl.java:91) INFO [qtp1608157147-28] *****[sina 9071 查询用户余额, 请求开始]*****
+2015-02-13 11:01:10,790 (QuerySinaServiceImpl.java:114) INFO [qtp1608157147-28] *****[sina 9071 查询用户余额, 请求完成]*****
+2015-02-13 11:01:10,828 (QuerySinaServiceImpl.java:114) INFO [qtp1608157147-22] *****[sina 9071 查询用户余额, 请求完成]*****
+2015-02-13 11:01:39,964 (QuerySinaServiceImpl.java:91) INFO [qtp1608157147-24] *****[sina 9071 查询用户余额, 请求开始]*****
+2015-02-13 11:01:40,463 (QuerySinaServiceImpl.java:114) INFO [qtp1608157147-24] *****[sina 9071 查询用户余额, 请求完成]*****
+2015-02-13 11:03:11,952 (AccountCashSinaServiceImpl.java:54) INFO [qtp1608157147-29] *****[sina 9071  提现   开始]
+2015-02-13 11:03:20,838 (AccountCashSinaServiceImpl.java:91) INFO [qtp1608157147-29] 发送请求
+2015-02-13 11:03:23,595 (AccountCashSinaServiceImpl.java:97) INFO [qtp1608157147-29] 请求完毕
+2015-02-13 11:03:23,850 (AccountCashSinaServiceImpl.java:145) INFO [qtp1608157147-29] *****[sina 9071 提现 结束]
+2015-02-13 11:04:09,181 (HostingCollectTradeSinaServiceImpl.java:60) INFO [qtp1608157147-29] *****[sina 9071 代收 成功]*****
+2015-02-13 11:05:32,624 (QuerySinaServiceImpl.java:91) INFO [qtp1608157147-24] *****[sina 9071 查询用户余额, 请求开始]*****
+2015-02-13 11:05:33,071 (QuerySinaServiceImpl.java:114) INFO [qtp1608157147-24] *****[sina 9071 查询用户余额, 请求完成]*****
+2015-02-13 11:09:28,177 (QuerySinaServiceImpl.java:91) INFO [qtp1608157147-24] *****[sina 9071 查询用户余额, 请求开始]*****
+2015-02-13 11:09:29,306 (QuerySinaServiceImpl.java:114) INFO [qtp1608157147-24] *****[sina 9071 查询用户余额, 请求完成]*****
+2015-02-13 11:09:46,603 (AccountCashSinaServiceImpl.java:54) INFO [qtp1608157147-27] *****[sina 9071  提现   开始]
+2015-02-13 11:09:48,009 (AccountCashSinaServiceImpl.java:91) INFO [qtp1608157147-27] 发送请求
+2015-02-13 11:09:49,980 (AccountCashSinaServiceImpl.java:97) INFO [qtp1608157147-27] 请求完毕
+2015-02-13 11:09:50,172 (AccountCashSinaServiceImpl.java:145) INFO [qtp1608157147-27] *****[sina 9071 提现 结束]
+2015-02-13 11:09:52,033 (HostingCollectTradeSinaServiceImpl.java:60) INFO [qtp1608157147-27] *****[sina 9071 代收 成功]*****
+2015-02-13 11:10:07,355 (QuerySinaServiceImpl.java:91) INFO [qtp1608157147-22] *****[sina 9071 查询用户余额, 请求开始]*****
+2015-02-13 11:10:09,600 (QuerySinaServiceImpl.java:114) INFO [qtp1608157147-22] *****[sina 9071 查询用户余额, 请求完成]*****
+2015-02-13 11:11:31,809 (QuerySinaServiceImpl.java:91) INFO [qtp1608157147-27] *****[sina 9071 查询用户余额, 请求开始]*****
+2015-02-13 11:11:32,379 (QuerySinaServiceImpl.java:114) INFO [qtp1608157147-27] *****[sina 9071 查询用户余额, 请求完成]*****
+2015-02-13 11:19:18,956 (QuerySinaServiceImpl.java:91) INFO [qtp1608157147-22] *****[sina 9071 查询用户余额, 请求开始]*****
+2015-02-13 11:19:19,521 (QuerySinaServiceImpl.java:114) INFO [qtp1608157147-22] *****[sina 9071 查询用户余额, 请求完成]*****
+2015-02-13 11:20:19,514 (AccountCashSinaServiceImpl.java:54) INFO [qtp1608157147-22] *****[sina 9071  提现   开始]
+2015-02-13 11:20:23,848 (AccountCashSinaServiceImpl.java:91) INFO [qtp1608157147-22] 发送请求
+2015-02-13 11:20:26,672 (AccountCashSinaServiceImpl.java:97) INFO [qtp1608157147-22] 请求完毕
+2015-02-13 11:20:26,879 (AccountCashSinaServiceImpl.java:145) INFO [qtp1608157147-22] *****[sina 9071 提现 结束]
+2015-02-13 11:20:59,365 (HostingCollectTradeSinaServiceImpl.java:60) INFO [qtp1608157147-22] *****[sina 9071 代收 成功]*****
+2015-02-13 11:21:37,665 (QuerySinaServiceImpl.java:91) INFO [qtp1608157147-24] *****[sina 9071 查询用户余额, 请求开始]*****
+2015-02-13 11:21:38,096 (QuerySinaServiceImpl.java:114) INFO [qtp1608157147-24] *****[sina 9071 查询用户余额, 请求完成]*****
+2015-02-13 11:21:43,041 (QuerySinaServiceImpl.java:91) INFO [qtp1608157147-22] *****[sina 9071 查询用户余额, 请求开始]*****
+2015-02-13 11:21:43,359 (QuerySinaServiceImpl.java:114) INFO [qtp1608157147-22] *****[sina 9071 查询用户余额, 请求完成]*****
+2015-02-13 11:21:46,507 (QuerySinaServiceImpl.java:91) INFO [qtp1608157147-24] *****[sina 9071 查询用户余额, 请求开始]*****
+2015-02-13 11:21:46,807 (QuerySinaServiceImpl.java:114) INFO [qtp1608157147-24] *****[sina 9071 查询用户余额, 请求完成]*****
+2015-02-13 11:24:05,771 (QuerySinaServiceImpl.java:91) INFO [qtp1608157147-28] *****[sina 9071 查询用户余额, 请求开始]*****
+2015-02-13 11:24:06,423 (QuerySinaServiceImpl.java:114) INFO [qtp1608157147-28] *****[sina 9071 查询用户余额, 请求完成]*****
+2015-02-13 13:49:21,667 (BindingBankCardSinaServiceImpl.java:47) INFO [qtp1608157147-27] *****[sina 9071 绑卡 开始]
+2015-02-13 13:49:21,667 (BindingBankCardSinaServiceImpl.java:48) INFO [qtp1608157147-27] 新浪接口请求开始
+2015-02-13 13:49:24,235 (BindingBankCardSinaServiceImpl.java:53) INFO [qtp1608157147-27] 新浪接口请求完成
+2015-02-13 13:49:25,591 (BindingBankCardSinaServiceImpl.java:136) INFO [qtp1608157147-27] *****[sina 9071 绑卡 结束]
+2015-02-13 13:50:44,813 (BindingBankCardSinaServiceImpl.java:47) INFO [qtp1608157147-26] *****[sina 9071 绑卡 开始]
+2015-02-13 13:50:44,814 (BindingBankCardSinaServiceImpl.java:48) INFO [qtp1608157147-26] 新浪接口请求开始
+2015-02-13 13:50:45,916 (BindingBankCardSinaServiceImpl.java:53) INFO [qtp1608157147-26] 新浪接口请求完成
+2015-02-13 13:50:47,074 (BindingBankCardSinaServiceImpl.java:136) INFO [qtp1608157147-26] *****[sina 9071 绑卡 结束]
+2015-02-13 13:51:03,420 (BindingBankCardSinaServiceImpl.java:47) INFO [qtp1608157147-22] *****[sina 9071 绑卡 开始]
+2015-02-13 13:51:03,421 (BindingBankCardSinaServiceImpl.java:48) INFO [qtp1608157147-22] 新浪接口请求开始
+2015-02-13 13:51:04,460 (BindingBankCardSinaServiceImpl.java:53) INFO [qtp1608157147-22] 新浪接口请求完成
+2015-02-13 13:51:05,576 (BindingBankCardSinaServiceImpl.java:136) INFO [qtp1608157147-22] *****[sina 9071 绑卡 结束]

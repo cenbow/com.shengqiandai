@@ -1,0 +1,38 @@
+@charset "utf-8";
+/* CSS Document */
+
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+.bread{ height:20px;margin:15px 0 10px;}
+.braed a{display:block; float:left; height:20px; padding:0 10px; line-height:20px;}
+.ui-box-head{border-bottom:1px solid #eee;}
+.ui-box-container{border-bottom:none;}
+.ui-box{ border:1px solid #eee; padding:0 10px; background:#fff;}
+.ui-box-head .text-size-blue,.hot-content{ font-size:20px; color:#0065b4;}
+.white-color-bg{ background:#fff;}
+.ui-box-head{ height:40px; line-height:40px; background:#fff;}
+h3.ui-box-content-title{ line-height:50px; font-size:18px;}
+
+.ui-box-content-time{ margin-bottom:20px;}
+.ui-box-content{ font-size:13px; word-break:break-all; overflow:hidden;}
+.ui-box-content-text { line-height:24px;}
+.ui-box-content-text a span{ color:#0065b4;}
+.ui-box-footer{ height:30px; background:#f5f7f8; margin:10px; font-size:14px;}
+.label{  width:62px;  text-align:center; line-height:30px; color:#fff; background:url(../images/news/label.png) no-repeat;}
+.label-title {  line-height:30px;}
+.label-title li{ float:left; padding: 0 10px;}
+.share{ height:30px; margin:8px;}
+.ad-img{ display:block; margin:0 auto 18px;}
+.hot-content{ height:25px;line-height:25px;}
+.ui-list li{ height:30px; font-size:13px;}
+.ui-list li a{ color:#444; float:left;display:inline-block; line-height:30px; font-size:13px;}
+i.rect{ width:16px; height:16px; margin:7px 7px 7px 0; line-height:16px; text-align:center; color:#fff; display:inline-block; font-style:normal;}
+i.blue-bg{ background:#00a0e9;}
+i.gray-bg{ background:#ccc;}
+.hot-label a{ line-height:24px; padding:2px 3px; }
+.hot-label a:hover{ color:#00a0e9;}
+.pd0{ padding:0;}
+.sumit{ width:600px; padding:10px; margin:20px auto; background:#f5f7f8;}
+.text-center{ text-align:center;}
+.ui-box-wrap{padding-bottom:10px; border-bottom:1px dashed #ccc;}

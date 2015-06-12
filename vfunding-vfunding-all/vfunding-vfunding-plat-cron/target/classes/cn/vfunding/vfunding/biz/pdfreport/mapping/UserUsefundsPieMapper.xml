@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.pdfreport.dao.UserUsefundsPieMapper">
+	<resultMap
+		id="BaseResultMap"
+		type="cn.vfunding.vfunding.biz.pdfreport.model.UserUsefundsPie">
+		<result
+			column="userId"
+			property="userId" />
+		<result
+			column="tenderUserId"
+			property="tenderUserId" />
+		<result
+			column="cashFeeMoney"
+			property="cashFeeMoney" />
+		<result
+			column="userHavaInterestMoney"
+			property="userHavaInterestMoney" />
+		<result
+			column="userSonMoney"
+			property="userSonMoney" />
+	</resultMap>
+	<select
+		id="selectUserUsefundsPie"
+		resultMap="BaseResultMap">
+	 <![CDATA[
+		select
+		d.userId,ifnull(d.tenderUserId,0) as
+		tenderUserId,a.userHavaInterestMoney,b.cashFeeMoney,c.userSonMoney
+		from
+		(
+		select e.userId as userId,d.userId as tenderUserId from (
+		select
+		a.user_id as userId from rd_user a
+		left join rd_user_type b on
+		a.type_id=b.type_id
+		where b.type=2) e
+		left join
+		(
+		select a.user_id as
+		userId from rd_borrow_tender a where
+		DATE_FORMAT(from_unixtime(a.addtime),'%Y%m%d')>=date_format(date_sub(curdate(),interval
+		3 month),'%Y%m%d') and 	DATE_FORMAT(from_unixtime(a.addtime),'%Y%m%d')<=date_format(date_sub(curdate(),interval
+		1 month),'%Y%m%d')
+		group by a.user_id
+		) d on e.userId=d.userId
+		) d LEFT
+		join
+		(
+		select a.user_id as
+		userId,sum(interest) as
+		'userHavaInterestMoney'
+		from rd_borrow_tender a
+		group by a.user_id
+		) a on
+		d.userId=a.userId
+		left join
+		(
+		select a.user_id
+		as userId,sum(fee) as
+		'cashFeeMoney' from rd_account_cash a
+        where a.status=1
+		group by
+		a.user_id
+		) b on
+		a.userId=b.userId
+		left join
+		(
+		select
+		a.userId,(ifnull(a.fees,0)+ifnull(b.fees,0)+ifnull(c.fees,0)) as
+		userSonMoney from (
+		select a.t_user_id as userId,sum(t_fees) as fees
+		from rd_invite_fees a
+		left join rd_borrow_repayment b on a.b_id =b.borrow_id 
+		where  b.status = 1
+		group by a.t_user_id) a
+		LEFT join
+		(
+		select
+		a.g_user_id as userId,sum(g_fees) as fees from rd_invite_fees a
+		left join rd_borrow_repayment b on a.b_id =b.borrow_id 
+		where  b.status = 1
+		group
+		by a.g_user_id
+		) b on a.userId=b.userId
+		left join
+		(
+		select a.s_user_id as
+		userId,sum(s_fees) as fees from rd_invite_fees a
+		left join rd_borrow_repayment b on a.b_id =b.borrow_id 
+		where  b.status = 1
+		group by a.s_user_id
+		)
+		c on a.userId = c.userId
+		) c on a.userId = c.userId
+		
+		  ]]>
+	</select>
+</mapper>

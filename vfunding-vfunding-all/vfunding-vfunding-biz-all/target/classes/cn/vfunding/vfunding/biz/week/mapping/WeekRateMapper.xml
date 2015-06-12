@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.week.dao.WeekRateMapper" >
+  <resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.week.model.WeekRate" >
+    <id column="week_id" property="weekId" jdbcType="INTEGER" />
+    <result column="week_rate" property="weekRate" jdbcType="DECIMAL" />
+    <result column="platform_rate" property="platformRate" jdbcType="DECIMAL" />
+    <result column="guarantee_rate" property="guaranteeRate" jdbcType="DECIMAL" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    week_id, week_rate, platform_rate, guarantee_rate, add_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from vf_week_rate
+    where week_id = #{weekId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from vf_week_rate
+    where week_id = #{weekId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.vfunding.biz.week.model.WeekRate" >
+    insert into vf_week_rate (week_id, week_rate, platform_rate, 
+      guarantee_rate, add_time)
+    values (#{weekId,jdbcType=INTEGER}, #{weekRate,jdbcType=DECIMAL}, #{platformRate,jdbcType=DECIMAL}, 
+      #{guaranteeRate,jdbcType=DECIMAL}, #{addTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.week.model.WeekRate" >
+    insert into vf_week_rate
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="weekId != null" >
+        week_id,
+      </if>
+      <if test="weekRate != null" >
+        week_rate,
+      </if>
+      <if test="platformRate != null" >
+        platform_rate,
+      </if>
+      <if test="guaranteeRate != null" >
+        guarantee_rate,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="weekId != null" >
+        #{weekId,jdbcType=INTEGER},
+      </if>
+      <if test="weekRate != null" >
+        #{weekRate,jdbcType=DECIMAL},
+      </if>
+      <if test="platformRate != null" >
+        #{platformRate,jdbcType=DECIMAL},
+      </if>
+      <if test="guaranteeRate != null" >
+        #{guaranteeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.week.model.WeekRate" >
+    update vf_week_rate
+    <set >
+      <if test="weekRate != null" >
+        week_rate = #{weekRate,jdbcType=DECIMAL},
+      </if>
+      <if test="platformRate != null" >
+        platform_rate = #{platformRate,jdbcType=DECIMAL},
+      </if>
+      <if test="guaranteeRate != null" >
+        guarantee_rate = #{guaranteeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where week_id = #{weekId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.week.model.WeekRate" >
+    update vf_week_rate
+    set week_rate = #{weekRate,jdbcType=DECIMAL},
+      platform_rate = #{platformRate,jdbcType=DECIMAL},
+      guarantee_rate = #{guaranteeRate,jdbcType=DECIMAL},
+      add_time = #{addTime,jdbcType=TIMESTAMP}
+    where week_id = #{weekId,jdbcType=INTEGER}
+  </update>
+</mapper>

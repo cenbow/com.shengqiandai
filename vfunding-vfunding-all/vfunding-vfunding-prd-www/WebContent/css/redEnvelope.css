@@ -1,0 +1,118 @@
+@charset "utf-8";
+/* CSS Document */
+* {
+	margin: 0;
+	padding: 0;
+	font-family: "微软雅黑";
+	text-decoration: none;
+}
+html,body{height:100%;overflow:hidden;white-space:nowrap;}
+body {
+	font-family: Helvetica, Arial, sans-serif;
+	font-weight: normal;
+	line-height: normal;
+	-webkit-font-smoothing: antialiased;
+}
+
+#wrap{
+	margin:0 auto;
+	width:100%;
+	height:100%;
+	position:absolute;
+	top:0px;
+	margin: 0 auto;
+}
+#text {
+	width: 57%;
+	height: 33%;
+	position:absolute;
+	top:48%;
+	right: 2%;
+    background-color: rgba(200, 0, 0, 0.5); 
+}
+#tell {
+	width: 90%;
+	height: 20%;
+	position: absolute;
+	top:5%;
+	right: 3%;
+	border: #b8163b medium solid;
+}
+#verification {
+	width: 91%;
+	height: 20%;
+	position: absolute;
+	top:33%;
+	right: 3.5%;
+	float: right;
+	line-height: 2em;
+}
+#veri {
+	width: 45%;
+	height: 100%;
+	position:absolute;
+	left:0;
+	border: #b8163b medium solid;
+	font-size: 1.2em;
+}
+#proving {
+	width: 46%;
+	height: 100%;
+	float: right;
+	text-align: center;
+	font-size: 15em;
+}
+#get {
+	width: 47%;
+	height: 100%;
+	position: absolute;
+	top:0;
+	right: 0;
+	background-color:#b8163b ;
+	text-align: center;
+	color: #FFF;
+}
+
+.hide {
+	display:none;}
+#buTTon {
+	width: 91%;
+	height: 25%;
+	position:absolute;
+	top:61%;
+	right: 3.5%; 
+}
+.obtain{
+	color: #fff; 
+	width: 100%;
+	height: 100%;
+	line-height: 250%;
+}
+ 
+#error {
+	width: 91%;
+	height: 14%;
+	position: absolute;
+	top:86%;
+	right:3.5%;
+	color: #FFF;
+	line-height: 2;
+}
+#hoad{
+	width: 100%;
+	height: 9%;
+	background-color: #b8163b;
+	position: absolute;
+	bottom: 4%;
+	text-align: center;
+	line-height: 3em;
+}
+#hoad a {
+	display: block;
+	width: 45%;
+	height:100%;
+	margin: 0 auto;
+	color: #FFF;
+
+}
+

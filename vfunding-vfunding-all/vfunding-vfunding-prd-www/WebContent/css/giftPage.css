@@ -1,0 +1,361 @@
+@charset "utf-8";
+/* CSS Document */
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+@import url(accountLeft.css);
+.myAccount{  height:940px; margin:30px 0; clear:both;}
+
+/*****账户总览右栏***/
+.rechargeTakeCash{ width:820px; height:940px; }
+
+.rT{ height:940px;  background:#fff;}
+.rTWrap{ width:780px; height:940px; margin:0 auto; overflow:hidden; position:relative;}
+.txTop{ height:58px;overflow:hidden; }
+b.midLine{ height:1px; font-size:0; width:100%; background:#eeeeee; position:absolute; top:28px; left:0;  overflow:hidden;}
+.txTop h2,.excel{ height:22px; line-height:22px; position:absolute;background-color:#fff;}
+.txTop h2{ top:17px; left:24px; font-size:20px; color:#0065b4; padding:0 6px; z-index:9; }
+.giftDiv,.giftUl{
+    height: 40px;
+}
+.giftDiv{
+	border-bottom:2px solid #00a0e9;
+}
+.giftUl li{
+    width: 158px;
+    height: 40px;
+    float: left;
+    line-height: 40px;
+    text-align: center;
+    margin-right: 2px;
+    cursor: pointer;
+}
+
+.unactive{
+    background: #f5f7f8;
+}
+.active{
+    background: #00a0e9;
+    color: #fff;
+}
+
+.gift-cnt{
+    margin: 18px 0;
+    overflow: hidden;
+    display:none;
+}
+
+.gift-cnt ul{
+   float: left;
+}
+
+.gift-cnt-title a,.gift-cnt-title li{
+    padding: 4px 10px;
+    float: left;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.giftDetail{
+    margin-top: 16px;
+}
+.giftDetail table{
+    border-collapse: collapse;
+}
+.giftDetail th{
+    border-top: 1px solid #eee;
+    background-color: #f5f7f8;
+    font-weight: normal;
+}
+.giftDetail th,td{
+    border-bottom: 1px solid #eee;
+    text-align: center;
+    word-break: break-all;
+    /*overflow: hidden;*/
+    text-overflow: ellipsis;
+   /* width: 200px;*/
+}
+.giftDetail th{
+	width: 200px;
+	
+}
+.redbagUse{
+    display:none;
+}
+
+.redbagUse td{
+    position: relative;
+    text-align: left;
+   
+}
+.redbagUse span{
+  width:670px;
+  min-height:30px;
+  line-height:30px;
+  float:left;
+  overflow: hidden;
+}
+
+a.use{
+   display: block;
+   width:50px;
+   height:30px;
+   line-height:30px;
+   text-align:center;
+   float:right;
+   margin:10px;
+   background-color: #00a0e9;
+   color: #fff;
+   border-radius: 3px;
+   cursor: pointer;
+}
+
+a.clickDetail:hover{
+    color: #00a0e9;
+    cursor: pointer;
+}
+
+.card{
+	background-color:#f5f7f8;
+	height:90px;
+	margin:0 0 20px;
+	overflow:hidden;
+	position:relative;
+}
+
+.card-icon{
+	background:url(/images/card-icon.png) no-repeat;
+}
+
+.card-left{
+	width:90px;
+	height:90px;
+}
+
+.card-mid{
+	
+	position:relative;
+	height:90px;
+	overflow:hidden;
+}
+.card-right{
+	width:10px;
+	height:90px;
+}
+
+.light-red{
+	background:#fe6e6e;
+}
+
+.dark-red{
+	background:#ff5555;
+}
+
+.light-yellow{
+	background:#fe9957;
+}
+
+.dark-yellow{
+	background:#ff8636;
+}
+.redbag-icon{
+	width:39px;
+	height:50px;
+	margin:20px 25px;
+	background-position:-20px 0;
+}
+
+.rate-icon,.takecash-icon{
+	width:66px;
+	height:48px;
+	margin:26px 12px;
+}
+.rate-icon{
+   background-position:-59px 0;
+}
+.takecash-icon{
+	  background-position:-125px 0;
+}
+.caret-red,.caret-yellow{
+	height:0;
+	line-height:0;
+	border-width:7px;
+	border-style:dashed dashed dashed solid;
+
+	display:block;
+	position:absolute;
+	left:0;
+	top:42px;
+}
+
+.caret-red{
+		border-color:transparent  transparent transparent #fe6e6e; 
+}
+.caret-yellow{
+	border-color:transparent  transparent transparent #fe9957; 
+}
+em.rmb-icon{
+	font-style:normal;
+	width:32px;
+	height:37px;
+	margin:26px 0 0 10px;
+	color:#fff;
+	font-size:32px;
+	font-weight:bold;
+	display:inline-block;
+	overflow:hidden;
+}
+
+.num{
+	display:inline-block;
+	font-size:48px;
+	padding:10px 10px 0 0;
+	font-weight:bold;
+	color:#fff;
+}
+
+.dark-red-bg{
+	background-position:0 0;
+}
+.dark-yellow-bg{
+	background-position:-10px 0;
+}
+
+.card-rightside{
+	height:90px;
+}
+a.oneKey-use{
+	padding:7px 24px;
+	color:#fff;
+	font-size:16px;
+	background:#ff5555;
+	position:absolute;
+	right:20px;
+	top:26px;
+	border-radius:3px;
+}
+
+.card-rightside{
+	position:absolute;
+	right:0;
+	top:0;
+	height:90px;
+	padding-right:20px;
+}
+
+.card-topbar{
+	margin-top:20px;
+	text-align:right;
+}
+
+.card-bottombar{
+	font-size:12px;
+	margin-top:20px;
+	text-align:right;
+	color:#888;
+}
+
+.use-now{
+	padding:4px 22px;
+	color:#fff;
+	font-size:16px;
+	background:#ff8636;
+	border-radius:3px;
+}
+
+.cnt-box{
+	background:#ececec;
+	height:44px;
+}
+.cnt-title{
+	width:300px;
+	padding-left:120px;
+}
+a.item-title{
+	width:400px;
+}
+.item-num,.cnt-num{
+	width:180px;
+}
+
+.item-time,.cnt-time{
+	width:160px;
+	
+}
+.item-num,.cnt-num,.item-time,.cnt-time{
+	text-align:center;
+}
+.cnt-box div{
+	float:left;
+	height:44px;
+	line-height:44px;
+}
+
+#cnt-items li{
+	position:relative;
+	border-bottom:1px dashed #ececec;
+}
+#cnt-items li a,#cnt-items li div{
+	float:left;
+	line-height:44px;
+	margin-top:6px;
+}
+
+#cnt-items li a{
+	text-align:left;
+	padding-left:20px;
+	font-weight:bold;
+}
+
+i.dot{
+	width:6px;
+	height:6px;
+	border-radius:6px;
+	background:#000;
+	display:inline-block;
+	postion:absolute;
+	left:10px;
+	top:17px;
+	margin-right:20px;
+}
+
+.card-cnt-tip{
+	padding:10px 20px;
+	margin:0 20px 10px;
+	background:#f5f7f8;
+}
+
+.mt10{
+	color:#888;
+	font-size:12px;
+}
+
+.ml20{
+	margin-left:20px;
+}
+/*未读*/
+.soll{
+	background-image:url("/images/account/centericon.gif");
+	background-position:-19px 0px; 
+	float: left;
+	margin-top: 25px;
+	background-repeat: no-repeat;;
+}
+
+/*已读*/
+.holl{
+	background-image:url("/images/account/centericon2.gif");
+	background-position:0px 0px; 
+	float: left;
+	margin-top: 25px;
+	background-repeat: no-repeat;;
+}
+
+.titleCss{
+	  margin-left: 20px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+	
+}

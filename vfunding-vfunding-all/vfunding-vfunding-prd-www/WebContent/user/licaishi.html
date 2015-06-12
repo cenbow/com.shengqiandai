@@ -1,0 +1,613 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>微积金-理财师管理</title>
+    <link href="../css/tip.css" type="text/css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../css/licaishi.css"/>
+<script src="../js/jquery1.8.3.js"></script>
+</head>
+
+<body>
+<!--头部-->
+<div id="header">
+
+
+<div id="header_top">
+   <div id="tip_bar">
+   
+     <div id="tip_left" class="fl">
+      
+       <span class="hotline"><i class="ww tel-icon"></i>服务热线：400-991-9999</span>
+
+
+       <span class="attention">
+       
+       <a class="we">关注我们</a>
+       <a href="#" class="ww sina-weibo"></a>
+       <a href="#" class="ww tt-weixin"></a>
+       
+       
+       </span>
+     </div>
+     <div id="tip_right" class="fr">
+       
+       <ul>
+         <li class="pd20 border_right"><a href="#" target="_blank">登录</a></li>
+         <li class="pd20 border_right"><a href="#" target="_blank">注册</a></li>
+         <li class="pd20 border_right"><a href="#" target="_blank">新手入门</a></li>
+         <li class="pd20 border_right"><a href="#" target="_blank">工具箱</a></li>
+         <li class="pd20" id="help" ><a href="#" target="_blank">帮助中心</a></li>
+       </ul>
+     
+     </div>
+   
+   </div>
+ </div>
+
+
+   <!--<div id="header_top">
+   <div id="tip_bar">
+     <div id=" tip_left" class="login_after_left fl">
+      
+       <span class="hotline"><i class="ww tel-icon"></i>服务热线：400-991-9999</span>
+      
+      
+      
+      
+      
+      
+      
+             <span class="attention">
+       
+       <a class="we">关注我们</a>
+       <a href="#" class="ww sina-weibo"></a>
+       <a href="#" class="ww tt-weixin"></a>
+       
+       
+       </span>
+       
+
+
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+     </div>
+     <div id="login_after_right" class="fr">
+       <ul>
+        <li style=" width:200px;">欢迎来到微积金，<a href="#" target="_blank">rancui1985</a></li>
+         <li class="pd10 border_right"><a href="#">退出</a></li>
+         <li class="pd20 border_right"><a href="#">消息（20）</a></li>
+         <li class="pd20 border_right"><a href="#">工具箱</a></li>
+         <li class="pd20" id="help" ><a href="#">帮助中心</a></li>
+       </ul>
+     
+     </div>
+   
+   </div>
+ </div>-->
+
+
+
+
+<div id="logo_navs">
+
+ <div class="logo_img fl"><img src="images/header/logo.png"/></div>
+ <div class="nav fr">
+   <ul class="nav_ul clear">
+ <li>
+     <a href="#" id="index" class="font_color" target="_blank">首页</a>   
+
+ </li>
+ <li>
+    <a href="#" class="font_color" target="_blank">我要投资</a>
+    <div class="nav_items">
+    <div class="box">
+        <em class="arrow">
+           <i></i>
+        </em>
+        <div class="dropdown">
+           <a href="#" target="_blank">招标中的借款标</a>
+           <a href="#" target="_blank">复审中的借款标</a>
+           <a href="#" target="_blank">完成的借款标</a>
+           <a href="#" target="_blank">逾期的借款标</a>
+                 
+        </div>
+      </div>
+    </div>
+  </li>
+   
+ <li>
+    <a href="#" class="font_color" target="_blank">我要借款</a>
+    <div class="nav_items">
+    <div class="box">
+        <em class="arrow">
+           <i></i>
+        </em>
+        <div class="dropdown">
+           <a href="#" target="_blank">发布信用标</a>
+           <a href="#" target="_blank">发布净值标</a>
+           <a href="#" target="_blank">发布抵押标</a>       
+        </div>
+      </div>
+    </div>
+  </li>
+  <li>
+    <a href="#" class="font_color" target="_blank">我的账户</a>
+    <div class="nav_items">
+    <div class="box">
+        <em class="arrow">
+           <i></i>
+        </em>
+        <div class="dropdown">
+           <a href="#" target="_blank">招标中的借款标</a>
+           <a href="#" target="_blank">复审中的借款标</a>
+           <a href="#" target="_blank">完成的借款标</a>
+           <a href="#" target="_blank">逾期的借款标</a>
+                 
+        </div>
+      </div>
+    </div>
+  </li>
+  
+
+    
+ <li>
+    <a href="#" class="font_color">关于我们</a>
+    <div class="nav_items">
+    <div class="box">
+        <em class="arrow">
+           <i></i>
+        </em>
+        <div class="dropdown">
+           <a href="#" target="_blank">公司简介</a>
+           <a href="#" target="_blank">常见问题</a>
+           <a href="#" target="_blank" >招贤纳士</a>
+           <a href="#" target="_blank">联系我们</a>
+        </div>
+      </div>
+    </div>
+  </li>
+    
+   
+   
+   </ul>
+ 
+ </div>
+
+</div>
+
+</div>
+
+<!--中间-->
+
+<div class="content">
+
+  <div class="myAccount">
+   
+    <div class="myAccount_left fl">
+    
+     <div class="userSimpleAccount">
+      <span>Hi，XXXXXXXXX</span>
+      <div class="identifications">
+        <div class="userIdentification">
+         <a href="#" title="##" class="cardIdentification"></a>
+         <a href="#" title="##" class="mobileIdentification"></a>
+         <a href="#" title="##" class="passwordIdentification"></a>
+        </div>
+      
+      
+      <div class="progressBar">
+        
+        <div style="width:80%;" id="progressBar"></div>
+      
+      </div>
+      
+      <div class="safeLevel">
+      
+       安全等级：<font>低</font>&nbsp; <a href="#">[提升]</a>
+      
+      </div>
+      </div>
+     
+     
+     </div>
+    
+    <div class="canUseMoney">
+     <span>可用余额</span>
+     <p class="moneyNum">￥10,000,000.00</p>
+    
+    <a href="#" target="_blank" class="recharge">立即充值</a>
+    
+    </div>
+    
+    <div class="items">
+          <dl class="item">
+         <dt>我的账户</dt>
+         <dd>
+          <a href="#">
+            <i class="lefticon accountAll"></i>
+            账户总览
+          </a>
+         </dd>
+         <dd>
+          <a href="#">
+            <i class="lefticon moneyRecord "></i>
+        资金记录
+          </a>
+         </dd>
+         <dd>
+          <a href="#"   class="current">
+            <i class="lefticon rechargeTx "></i>
+            充值提现
+          </a>
+         </dd>
+         <dd>
+          <a href="#">
+            <i class="lefticon bankCard "></i>
+            银行卡
+          </a>
+         </dd>
+        <dd>
+          <a href="#">
+            <i class="lefticon myGift "></i>
+            我的礼品
+          </a>
+         </dd>
+
+         </dd>
+       </dl>  
+       
+       <dl class="item">
+         <dt>我的投资</dt>
+         <dd>
+          <a href="#">
+            <i class="lefticon investProject "></i>
+            投资记录
+          </a>
+         </dd>
+         
+         <dd>
+          <a href="#">
+            <i class="lefticon debtSubrogation  "></i>
+            债权转让
+          </a>
+         </dd>
+         <dd>
+          <a href="#">
+            <i class="lefticon sureMoney "></i>
+           定期宝
+          </a>
+         </dd>
+         <dd>
+          <a href="#">
+            <i class="lefticon autoInvest "></i>
+            设置自动投资
+          </a>
+         </dd>
+
+         </dd>
+       </dl>
+              <dl class="item">
+         <dt>我的借款</dt>
+         <dd>
+          <a href="#">
+            <i class="lefticon borrowRecord "></i>
+          借款记录
+          </a>
+         </dd>
+         <dd>
+          <a href="#">
+            <i class="lefticon limitApply "></i>
+            申请额度
+          </a>
+         </dd>
+         
+         <dd>
+          <a href="#">
+            <i class="lefticon releaseBorrow "></i>
+            发布借款
+          </a>
+         </dd>
+
+
+
+       </dl>
+       
+       
+   <dl class="item" >
+   <dt> <a href="#" target="_blank">安全中心</a></dt>
+       </dl>  
+       
+ 
+       
+     <dl class="item">
+   <dt><a href="#" target="_blank">好友管理</a></dt>
+       </dl>  
+    </div>
+    
+    </div>
+    
+    
+    
+<div class="rechargeTakeCash fr">
+  <div class="rT box-shadow">
+    <div class="rTWrap">
+    
+      <div class="txTop">
+        <b class="midLine"></b>
+        <h2>理财师管理</h2>
+      </div>
+      
+ <div class="licaishiManage">
+   <ul>
+     <li class="light-gray light-blue">邀请好友</li>
+     <li class="light-gray">规则</li>
+     <li class="light-gray">好友管理</li>
+     <li class="light-gray">排行榜</li>
+   </ul>
+ </div>
+
+ <!--邀请好友-->
+    <div class="lcs-content" style="display: block;">
+
+        <div class="return-detail clear">
+            <div class="last-month fl">上月返利总收入：<em>￥</em><span>1200000.00</span></div>
+            <div class="all-return fl">返利累计收入：<em>￥</em><span>1200000.00</span></div>
+            <a class="look-into fl">查看明细</a>
+        </div>
+       <div class="lcs-invite">
+           <div class="erweima">
+               <h3 class="i-invite">我要邀请</h3>
+               <p>1.通过扫描二维码分享给好友</p>
+               <div class="erweima-pic">
+                   <div class="ewm"></div>
+                   <a class="yulan">预览</a>
+               </div>
+
+           </div>
+           <div class="friend">
+               <p>2.通过好友注册时输入介绍人（我）的手机号码</p>
+               <p class="tel">18601652029</p>
+           </div>
+           <div class="copy">
+               <p>3.通过复制链接邀请好友注册</p>
+               <div class="copy-box">
+                   <input type="text" id="url">
+                   <a class="btn-copy">复制</a>
+               </div>
+           </div>
+
+           <div class="share">
+               <p>4.分享给好友</p>
+                   <div class="bdsharebuttonbox">
+
+                       <a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"><span>新浪微博邀请</span></a>
+                       <a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq" ><span>腾讯微博邀请</span></a>
+
+                       <a title="分享到QQ好友" href="#" class="bds_sqq" data-cmd="sqq"><span>QQ邀请</span></a>
+                       <a href="#" class="bds_more" data-cmd="more"><span>更多邀请方式</span></a>
+                   </div>
+                   <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+                   <style>
+                       .bdshare-button-style0-24 a, .bdshare-button-style0-24 .bds_more{
+                           line-height: 18px;
+                       }
+                   </style>
+           </div>
+       </div>
+    </div>
+
+<!--理财师规则-->
+ <div class="lcs-content" style="padding-left: 20px;">
+     <h3 class="lcs-rule">理财师规则</h3>
+     <div class="lcs-rule-item">
+         <p>* 成功邀请一位好友注册后，即可获得微积金理财师资格。</p>
+         <p>* 理财师权益表现为：</p>
+         <p class="pl10">1、享受最多三层被邀请好友的投资收益；</p>
+         <p class="pl10">2、可以完成<span class="task">任务</span><a class="showTip tipcion" title="关注理财师活动页面，完成任务获得加息收益" href="javascript:;"></a> 获得加息提升自身投资收益；</p>
+     </div>
+     <div class="lcs-step"><img src="./images/account/lcs-step.png"></div>
+     <div class="demo">
+     <h3 class="lcs-rule">示例：</h3>
+     <p class="lcs-demo">小微注册并投资成为微积金正式用户后，她邀请了她的男票小A也注册了微积金并完成了一笔10000元的投资，小A又邀请了他的同事小B成为微积金的用户投资了10000万，小B又邀请了他的家人C投资了微积金10000元。</p>
+     <p class="lcs-demo">则小微作为最上级理财她一共可以获得：<br/>小A的10000X0.72%（年化）+小B10000X0.09%（年化）+C的10000X0.09%（年化）</p>
+     <p class="lcs-demo">由于小A成为正是用户后，邀请了小B进行投资，则小A也自动成为微积金理财师，则小A可以获得的收益为：<br/>小B的10000X0.72%（年化）+小C的10000X0.09%（年化）</p>
+     </div>
+ </div>
+   <!--好友管理-->
+   <div class="lcs-content" ></div>
+   <!--理财师排行榜-->
+    <div class="lcs-content" >
+        <div class="rangeBar clear">
+            <div class="range-item fl">
+                <div class="table-title clear">
+                    <h3 class="table-title-left fl">返利达人榜</h3>
+                    <span class="table-title-right fr">您获得的累计返利位列第968位</span>
+                </div>
+              <table cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td class="light-gray" width="90" height="40">排行</td>
+                        <td class="light-gray" width="160">用户名</td>
+                        <td class="light-gray" width="130">返利</td>
+                    </tr>
+                    <tr>
+                        <td width="90" height="40">1</td>
+                        <td width="160">1***6</td>
+                        <td width="130">188888.99</td>
+                    </tr>
+                  <tr>
+                      <td width="90" height="40" class="mid-blue">2</td>
+                      <td width="160" class="mid-blue">1***6(你的位置)</td>
+                      <td width="130" class="mid-blue">188888.99</td>
+                  </tr>
+                </table>
+            </div>
+            <div class="range-item fr" style="margin-right: 0;">
+
+                <div class="table-title clear">
+                    <h3 class="table-title-left fl">人气排行榜</h3>
+                    <span class="table-title-right fr">您获得的累计返利位列第968位</span>
+                </div>
+                <table cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td class="light-gray" width="90" height="40">排行</td>
+                        <td class="light-gray" width="160">用户名</td>
+                        <td class="light-gray" width="130">返利</td>
+                    </tr>
+                    <tr>
+                        <td width="90" height="40">1</td>
+                        <td width="160">1***6</td>
+                        <td width="130">188888.99</td>
+                    </tr>
+                    <tr>
+                        <td width="90" height="40" class="mid-blue">2</td>
+                        <td width="160" class="mid-blue">1***6(你的位置)</td>
+                        <td width="130" class="mid-blue">188888.99</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+   </div>
+    </div>
+</div>
+</div>
+</div>
+
+<!------尾部------>
+<div id="footer">
+<div class="liner clear"></div>
+
+<div class="footer_info">
+
+  <div class="footer_info_left fl">
+  
+   <div class="footer-nav">
+    <ul>
+      <li>
+       <a href="#" target="_blank">公司介绍</a>
+      </li>
+      <li>
+       <a href="#" target="_blank">安全保障</a>
+      </li>
+      <li>
+       <a href="#" target="_blank">新手指引</a>
+      </li>
+      <li>
+       <a href="#" target="_blank">理财攻略</a>
+      </li>
+      <li>
+       <a href="#" target="_blank">网站地图</a>
+      </li>
+      
+      <li>
+       <a href="#" target="_blank">帮助中心</a>
+      </li>
+    </ul>
+   </div>
+  
+
+  <div class="kind-tools">
+    <ul>
+      <li class="kt1">关注我们</li>
+      <li class="kt2">
+        <a href="#" class="kindtool wb-sina fl"></a>
+        <a href="#" class="kindtool wb-tencent fr"></a>
+      </li>
+      <li class="kt3">微积金APP</li>
+      <li class="kt4">
+        <a href="#" class="kindtool andriod fl"></a>
+        <a href="#" class="kindtool apple fr"></a>
+      </li>
+  
+    </ul>
+  </div>
+  
+  </div>
+  
+  
+ <div class="footer_info_right fr">
+   <span class="kefu-time">客服热线（工作时间：9:00~17:30）</span>
+   <h2 class="kefu-tel">400-991-9999</h2>
+   <span class="kefu-qq">QQ咨询：2775156774     QQ群号：315344877</span>
+ 
+ 
+ </div>
+
+   
+
+</div>
+
+
+
+<div class="license">
+  <a href="#" target="_blank" class="license1 index_bg fl"></a>
+  <a href="#" target="_blank" class="license2 index_bg fl"></a>
+  <a href="#" target="_blank" class="license3 index_bg fl"></a>
+  <a href="#" target="_blank" class="license4 index_bg fl"></a>
+  <a href="#" target="_blank" class="license5 index_bg fl"></a>
+    <a href="#" target="_blank" class="license6 index_bg fl"></a>
+
+  </div>
+  <p class="copyright">Copyright @ Reserved 2013 微积金  &nbsp; 版权所有沪ICP备13037766号</p>
+    <p class="copyright">容塔金融信息服务（上海）有限公司    &nbsp;  &nbsp; 地址：浦北路7号中星城8楼整层</p>
+
+  </div>
+
+<script src="./js/tip.min.js"></script>
+<script>
+    $(function(){
+
+
+        $(".licaishiManage li").live("click",function(){
+            var index = $(".licaishiManage").find("li").index($(this));
+            $(this).addClass("light-blue").siblings("li").removeClass("light-blue");
+            $(".lcs-content").eq(index).show().siblings(".lcs-content").hide();
+
+        });
+
+        function popLayer(){
+            $("body").append('<div id="poplayer"></div><div class="poplayer-box"><div class="btn-close"></div></div>');
+            var tmpHeight=$(document.body).height();
+            $("#poplayer").css({position:'absolute',left:0,top:0,right:0,bottom:0, height:tmpHeight,background:'#000000','z-index':'999'});
+            $("#poplayer").fadeIn(500);
+        }
+
+        function popLayerHide(){
+            $("#poplayer").remove();
+            $(".poplayer-box").remove();
+        }
+
+        $(".yulan").click(function(){
+            popLayer()
+        });
+
+        $("#poplayer,.btn-close").live('click',function(){
+            popLayerHide();
+        });
+
+
+        $('.showTip').poshytip({
+            className : 'tip-yellowsimple',
+            showTimeout : 1,
+            alignTo : 'target',
+            alignX : 'center',
+            offsetY : 8,
+            allowTipHover : true
+        });
+
+    });
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+@charset "utf-8";
+/* CSS Document */
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+@import url(accountLeft.css);
+.myAccount{  height:940px; margin:30px 0; clear:both;}
+
+/*****账户总览右栏***/
+.rechargeTakeCash{ width:820px; height:940px;  }
+
+.rT{ height:940px;  background:#fff;}
+.rTWrap{ width:780px; height:940px; margin:0 auto; overflow:hidden; position:relative;}
+.txTop{ height:58px;overflow:hidden; }
+b.midLine{ height:1px; font-size:0; width:100%; background:#eeeeee; position:absolute; top:28px; left:0;  overflow:hidden;}
+.txTop h2,.excel{ height:22px; line-height:22px; position:absolute;background-color:#fff;}
+.txTop h2{ top:17px; left:24px; font-size:20px; color:#0065b4; padding:0 6px; z-index:9; }
+.excel{ top:17px; left:640px;  cursor:pointer; background-image:url(../images/account/arrowBg.png); background-repeat:no-repeat; background-position: right center;padding:0 18px 0 8px; z-index:9;}
+
+.excel a{color:#888888;}
+.excel a:hover{ color:#0065b4; text-decoration:none;}
+
+
+
+.remainExplain{ width:16px; height:16px; background:url(../images/account/tipicon.png) no-repeat 0 0; display:inline-block; vertical-align:middle; margin-top:-4px;*margin-top:-2px; overflow:hidden;}
+
+
+.asset{
+    height: 80px;
+}
+
+.asset div{
+   margin-right: 30px;
+   height: 80px;
+   width: 150px;
+}
+
+i.czicon{ width:12px; height:14px; background-position:0 0; display:inline-block; overflow:hidden; position:absolute; left:20px; top:20px; overflow:hidden;}
+i.txicon{ width:16px; height:14px; display:inline-block; background-position:0 -14px; position:absolute; left:20px; top:20px; overflow:hidden;}
+.date{ height:28px; margin-top:40px;}
+.startEndDate{ width:56px; height:28px; line-height:28px; margin-right:24px; display:inline;}
+.dateInput{ width:260px; height:28px; position:relative;}
+.dateInput input{ vertical-align:middle;}
+ .startTime,.endTime{ width:112px; height:22px; line-height:22px; padding:2px 4px ;border:1px solid #cccccc; display:inline-block;background:url(../images/account/dateicon.png) no-repeat 98% center;}
+
+ .kindsOfdate,.exchangeType{ width:330px; height:28px;  margin-left:12px; display:inline;}
+ .kindsOfdate li,.exchangeType li{ height:28px; line-height:28px; text-align:center; padding:0 10px; float:left; margin-right:10px;  border-radius:3px; cursor:pointer;}
+ .liColor{ background-color:#0065b4; color:#fff;}
+ .exchangeRecords{ margin-top:24px; overflow:hidden; margin-bottom:0;}
+.dataShow{ width:780px;height:auto; overflow:hidden; clear:both; margin-top:20px; display:none;}
+.dataShow table{border-top:1px solid #eeeeee;}
+.dataShow table td{ border:none; border-bottom:1px solid #eeeeee; text-align:center; font-size:12px;}
+.dataShow table td span{ color:red;}
+.asset-hold{
+    height: 22px;
+    margin-top: 26px;
+}
+.asset-amount{
+    height: 32px;
+    line-height: 32px;
+    color: #ff8636;
+    font-size: 18px;
+
+}
+i.rmb-icon{
+     font-size: 14px;
+    font-style: normal;
+}
+a.btn-yellow{
+    display: block;
+    width: 116px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: #fff;
+    background-color: #ff8636;
+    font-size: 16px;
+    margin-top: 40px;
+    border-radius: 3px;
+}
+#asset-fourth{
+    margin-right: 0;
+}
+

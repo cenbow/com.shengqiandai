@@ -1,0 +1,34 @@
+@charset "utf-8";
+/* CSS Document */
+
+.right_sector{ width:300px; height:1156px;}
+.right_wrap{ height:896px; margin-top:38px;*margin-top:42px;}
+.right_wrap h1{font-size:24px; line-height:24px; color:#444444;}
+.total_number{ height:113px; background-color:#fff; margin-top:12px; padding:0 10px; overflow:hidden;}
+.total_number span{ display:block; height:60px; line-height:60px;  font-size:44px; font-family:Arial, Helvetica, sans-serif; margin-top:13px; color:#ff8636;}
+.total_number span b{ font-size:30px; color:#cccccc;}
+.total_number a{ display:block;width:150px; height:20px; line-height:20px; text-indent:30px; background:url(../images/index/data.png) no-repeat left center; font-size:14px;}
+.total_number em{ font-style:italic;}
+.media_reports{ height:38px; margin-top:24px;}
+.media_reports h1{ width:108px; height:38px; line-height:38px; font-size:24px; color:#444444;}
+.media_reports a{ display:block; width:90px; height:20px; line-height:20px; margin-top:18px; font-size:14px;}
+.report_content{ height:288px; margin-top:10px; background:#fff; padding:0 10px; overflow:hidden;}
+.report_summary{ width:280px; height:76px; margin-top:15px;}
+.report_pic{ display:block; width:106px; height:70px; border:1px solid #ececec; margin-top:2px; background:url(../images/index/news.jpg) no-repeat;}
+.report_title{ width:150px; height:76px;dding:0 10px;}
+.report_title a{ line-height:25px;}
+.report_title a:hover{ text-decoration:underline;}
+.tools{ padding:0 10px; height:248px; background:#fff; margin-top:20px; overflow:hidden;}
+.tools li{ height:49px; padding-left:8px; border-bottom:1px dotted #e8e8e8;}
+.tools li a,.tool_name,.tool_tip{ height:27px; line-height:27px; margin-top:11px; display:block;}
+.tools li a{ width:27px; }
+.tool1,.tool2,.tool3,.tool4,.tool5{ display:block;}
+.tool_name{  width:94px; height:27px;  padding-left:10px; font-size:18px;}
+.tool1{ background-position:-152px 0;}
+.tool2{ background-position:-152px -27px;}
+.tool3{ background-position:-152px -54px;}
+.tool4{ background-position:-152px -81px;}
+.tool5{ background-position:-152px -108px;}
+.tool_tip{ width:110px;  font-size:12px; color:#888888; text-align:right;}
+#border_bottom_none{ border-bottom:none;}
+.small_banner{ height:90px; margin-top:20px; display:block;}

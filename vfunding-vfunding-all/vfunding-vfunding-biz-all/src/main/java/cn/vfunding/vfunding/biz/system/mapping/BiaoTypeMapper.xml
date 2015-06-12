@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.system.dao.BiaoTypeMapper" >
+  <resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.system.model.BiaoType" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="biao_type_name" property="biaoTypeName" jdbcType="VARCHAR" />
+    <result column="available" property="available" jdbcType="TINYINT" />
+    <result column="password_model" property="passwordModel" jdbcType="TINYINT" />
+    <result column="day_model" property="dayModel" jdbcType="TINYINT" />
+    <result column="auto_verify" property="autoVerify" jdbcType="TINYINT" />
+    <result column="auto_full_verify" property="autoFullVerify" jdbcType="TINYINT" />
+    <result column="min_amount" property="minAmount" jdbcType="INTEGER" />
+    <result column="max_amount" property="maxAmount" jdbcType="INTEGER" />
+    <result column="min_interest_rate" property="minInterestRate" jdbcType="DECIMAL" />
+    <result column="max_interest_rate" property="maxInterestRate" jdbcType="DECIMAL" />
+    <result column="advance_time" property="advanceTime" jdbcType="TINYINT" />
+    <result column="advance_scope" property="advanceScope" jdbcType="TINYINT" />
+    <result column="advance_vip_scope" property="advanceVipScope" jdbcType="TINYINT" />
+    <result column="late_interest_rate" property="lateInterestRate" jdbcType="DECIMAL" />
+    <result column="borrow_fee_rate_start" property="borrowFeeRateStart" jdbcType="DECIMAL" />
+    <result column="borrow_fee_rate_start_month_num" property="borrowFeeRateStartMonthNum" jdbcType="TINYINT" />
+    <result column="borrow_fee_rate" property="borrowFeeRate" jdbcType="DECIMAL" />
+    <result column="borrow_day_fee_rate" property="borrowDayFeeRate" jdbcType="DECIMAL" />
+    <result column="interest_fee_rate" property="interestFeeRate" jdbcType="DECIMAL" />
+    <result column="frost_rate" property="frostRate" jdbcType="DECIMAL" />
+    <result column="advance_rate" property="advanceRate" jdbcType="DECIMAL" />
+    <result column="advance_vip_rate" property="advanceVipRate" jdbcType="DECIMAL" />
+    <result column="late_customer_interest_rate" property="lateCustomerInterestRate" jdbcType="DECIMAL" />
+    <result column="late_interest_scope" property="lateInterestScope" jdbcType="TINYINT" />
+    <result column="max_tender_times" property="maxTenderTimes" jdbcType="TINYINT" />
+    <result column="show_name" property="showName" jdbcType="VARCHAR" />
+    <result column="extract_rate" property="extractRate" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, biao_type_name, available, password_model, day_model, auto_verify, auto_full_verify, 
+    min_amount, max_amount, min_interest_rate, max_interest_rate, advance_time, advance_scope, 
+    advance_vip_scope, late_interest_rate, borrow_fee_rate_start, borrow_fee_rate_start_month_num, 
+    borrow_fee_rate, borrow_day_fee_rate, interest_fee_rate, frost_rate, advance_rate, 
+    advance_vip_rate, late_customer_interest_rate, late_interest_scope, max_tender_times, 
+    show_name, extract_rate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from rd_biao_type
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByTypeName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from rd_biao_type
+    where biao_type_name = #{typeName,jdbcType=VARCHAR}
+  </select>
+  
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from rd_biao_type
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.vfunding.biz.system.model.BiaoType" >
+    insert into rd_biao_type (id, biao_type_name, available, 
+      password_model, day_model, auto_verify, 
+      auto_full_verify, min_amount, max_amount, 
+      min_interest_rate, max_interest_rate, advance_time, 
+      advance_scope, advance_vip_scope, late_interest_rate, 
+      borrow_fee_rate_start, borrow_fee_rate_start_month_num, 
+      borrow_fee_rate, borrow_day_fee_rate, interest_fee_rate, 
+      frost_rate, advance_rate, advance_vip_rate, 
+      late_customer_interest_rate, late_interest_scope, 
+      max_tender_times, show_name, extract_rate
+      )
+    values (#{id,jdbcType=INTEGER}, #{biaoTypeName,jdbcType=VARCHAR}, #{available,jdbcType=TINYINT}, 
+      #{passwordModel,jdbcType=TINYINT}, #{dayModel,jdbcType=TINYINT}, #{autoVerify,jdbcType=TINYINT}, 
+      #{autoFullVerify,jdbcType=TINYINT}, #{minAmount,jdbcType=INTEGER}, #{maxAmount,jdbcType=INTEGER}, 
+      #{minInterestRate,jdbcType=DECIMAL}, #{maxInterestRate,jdbcType=DECIMAL}, #{advanceTime,jdbcType=TINYINT}, 
+      #{advanceScope,jdbcType=TINYINT}, #{advanceVipScope,jdbcType=TINYINT}, #{lateInterestRate,jdbcType=DECIMAL}, 
+      #{borrowFeeRateStart,jdbcType=DECIMAL}, #{borrowFeeRateStartMonthNum,jdbcType=TINYINT}, 
+      #{borrowFeeRate,jdbcType=DECIMAL}, #{borrowDayFeeRate,jdbcType=DECIMAL}, #{interestFeeRate,jdbcType=DECIMAL}, 
+      #{frostRate,jdbcType=DECIMAL}, #{advanceRate,jdbcType=DECIMAL}, #{advanceVipRate,jdbcType=DECIMAL}, 
+      #{lateCustomerInterestRate,jdbcType=DECIMAL}, #{lateInterestScope,jdbcType=TINYINT}, 
+      #{maxTenderTimes,jdbcType=TINYINT}, #{showName,jdbcType=VARCHAR}, #{extractRate,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.system.model.BiaoType" >
+    insert into rd_biao_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="biaoTypeName != null" >
+        biao_type_name,
+      </if>
+      <if test="available != null" >
+        available,
+      </if>
+      <if test="passwordModel != null" >
+        password_model,
+      </if>
+      <if test="dayModel != null" >
+        day_model,
+      </if>
+      <if test="autoVerify != null" >
+        auto_verify,
+      </if>
+      <if test="autoFullVerify != null" >
+        auto_full_verify,
+      </if>
+      <if test="minAmount != null" >
+        min_amount,
+      </if>
+      <if test="maxAmount != null" >
+        max_amount,
+      </if>
+      <if test="minInterestRate != null" >
+        min_interest_rate,
+      </if>
+      <if test="maxInterestRate != null" >
+        max_interest_rate,
+      </if>
+      <if test="advanceTime != null" >
+        advance_time,
+      </if>
+      <if test="advanceScope != null" >
+        advance_scope,
+      </if>
+      <if test="advanceVipScope != null" >
+        advance_vip_scope,
+      </if>
+      <if test="lateInterestRate != null" >
+        late_interest_rate,
+      </if>
+      <if test="borrowFeeRateStart != null" >
+        borrow_fee_rate_start,
+      </if>
+      <if test="borrowFeeRateStartMonthNum != null" >
+        borrow_fee_rate_start_month_num,
+      </if>
+      <if test="borrowFeeRate != null" >
+        borrow_fee_rate,
+      </if>
+      <if test="borrowDayFeeRate != null" >
+        borrow_day_fee_rate,
+      </if>
+      <if test="interestFeeRate != null" >
+        interest_fee_rate,
+      </if>
+      <if test="frostRate != null" >
+        frost_rate,
+      </if>
+      <if test="advanceRate != null" >
+        advance_rate,
+      </if>
+      <if test="advanceVipRate != null" >
+        advance_vip_rate,
+      </if>
+      <if test="lateCustomerInterestRate != null" >
+        late_customer_interest_rate,
+      </if>
+      <if test="lateInterestScope != null" >
+        late_interest_scope,
+      </if>
+      <if test="maxTenderTimes != null" >
+        max_tender_times,
+      </if>
+      <if test="showName != null" >
+        show_name,
+      </if>
+      <if test="extractRate != null" >
+        extract_rate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="biaoTypeName != null" >
+        #{biaoTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="available != null" >
+        #{available,jdbcType=TINYINT},
+      </if>
+      <if test="passwordModel != null" >
+        #{passwordModel,jdbcType=TINYINT},
+      </if>
+      <if test="dayModel != null" >
+        #{dayModel,jdbcType=TINYINT},
+      </if>
+      <if test="autoVerify != null" >
+        #{autoVerify,jdbcType=TINYINT},
+      </if>
+      <if test="autoFullVerify != null" >
+        #{autoFullVerify,jdbcType=TINYINT},
+      </if>
+      <if test="minAmount != null" >
+        #{minAmount,jdbcType=INTEGER},
+      </if>
+      <if test="maxAmount != null" >
+        #{maxAmount,jdbcType=INTEGER},
+      </if>
+      <if test="minInterestRate != null" >
+        #{minInterestRate,jdbcType=DECIMAL},
+      </if>
+      <if test="maxInterestRate != null" >
+        #{maxInterestRate,jdbcType=DECIMAL},
+      </if>
+      <if test="advanceTime != null" >
+        #{advanceTime,jdbcType=TINYINT},
+      </if>
+      <if test="advanceScope != null" >
+        #{advanceScope,jdbcType=TINYINT},
+      </if>
+      <if test="advanceVipScope != null" >
+        #{advanceVipScope,jdbcType=TINYINT},
+      </if>
+      <if test="lateInterestRate != null" >
+        #{lateInterestRate,jdbcType=DECIMAL},
+      </if>
+      <if test="borrowFeeRateStart != null" >
+        #{borrowFeeRateStart,jdbcType=DECIMAL},
+      </if>
+      <if test="borrowFeeRateStartMonthNum != null" >
+        #{borrowFeeRateStartMonthNum,jdbcType=TINYINT},
+      </if>
+      <if test="borrowFeeRate != null" >
+        #{borrowFeeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="borrowDayFeeRate != null" >
+        #{borrowDayFeeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="interestFeeRate != null" >
+        #{interestFeeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="frostRate != null" >
+        #{frostRate,jdbcType=DECIMAL},
+      </if>
+      <if test="advanceRate != null" >
+        #{advanceRate,jdbcType=DECIMAL},
+      </if>
+      <if test="advanceVipRate != null" >
+        #{advanceVipRate,jdbcType=DECIMAL},
+      </if>
+      <if test="lateCustomerInterestRate != null" >
+        #{lateCustomerInterestRate,jdbcType=DECIMAL},
+      </if>
+      <if test="lateInterestScope != null" >
+        #{lateInterestScope,jdbcType=TINYINT},
+      </if>
+      <if test="maxTenderTimes != null" >
+        #{maxTenderTimes,jdbcType=TINYINT},
+      </if>
+      <if test="showName != null" >
+        #{showName,jdbcType=VARCHAR},
+      </if>
+      <if test="extractRate != null" >
+        #{extractRate,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.system.model.BiaoType" >
+    update rd_biao_type
+    <set >
+      <if test="biaoTypeName != null" >
+        biao_type_name = #{biaoTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="available != null" >
+        available = #{available,jdbcType=TINYINT},
+      </if>
+      <if test="passwordModel != null" >
+        password_model = #{passwordModel,jdbcType=TINYINT},
+      </if>
+      <if test="dayModel != null" >
+        day_model = #{dayModel,jdbcType=TINYINT},
+      </if>
+      <if test="autoVerify != null" >
+        auto_verify = #{autoVerify,jdbcType=TINYINT},
+      </if>
+      <if test="autoFullVerify != null" >
+        auto_full_verify = #{autoFullVerify,jdbcType=TINYINT},
+      </if>
+      <if test="minAmount != null" >
+        min_amount = #{minAmount,jdbcType=INTEGER},
+      </if>
+      <if test="maxAmount != null" >
+        max_amount = #{maxAmount,jdbcType=INTEGER},
+      </if>
+      <if test="minInterestRate != null" >
+        min_interest_rate = #{minInterestRate,jdbcType=DECIMAL},
+      </if>
+      <if test="maxInterestRate != null" >
+        max_interest_rate = #{maxInterestRate,jdbcType=DECIMAL},
+      </if>
+      <if test="advanceTime != null" >
+        advance_time = #{advanceTime,jdbcType=TINYINT},
+      </if>
+      <if test="advanceScope != null" >
+        advance_scope = #{advanceScope,jdbcType=TINYINT},
+      </if>
+      <if test="advanceVipScope != null" >
+        advance_vip_scope = #{advanceVipScope,jdbcType=TINYINT},
+      </if>
+      <if test="lateInterestRate != null" >
+        late_interest_rate = #{lateInterestRate,jdbcType=DECIMAL},
+      </if>
+      <if test="borrowFeeRateStart != null" >
+        borrow_fee_rate_start = #{borrowFeeRateStart,jdbcType=DECIMAL},
+      </if>
+      <if test="borrowFeeRateStartMonthNum != null" >
+        borrow_fee_rate_start_month_num = #{borrowFeeRateStartMonthNum,jdbcType=TINYINT},
+      </if>
+      <if test="borrowFeeRate != null" >
+        borrow_fee_rate = #{borrowFeeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="borrowDayFeeRate != null" >
+        borrow_day_fee_rate = #{borrowDayFeeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="interestFeeRate != null" >
+        interest_fee_rate = #{interestFeeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="frostRate != null" >
+        frost_rate = #{frostRate,jdbcType=DECIMAL},
+      </if>
+      <if test="advanceRate != null" >
+        advance_rate = #{advanceRate,jdbcType=DECIMAL},
+      </if>
+      <if test="advanceVipRate != null" >
+        advance_vip_rate = #{advanceVipRate,jdbcType=DECIMAL},
+      </if>
+      <if test="lateCustomerInterestRate != null" >
+        late_customer_interest_rate = #{lateCustomerInterestRate,jdbcType=DECIMAL},
+      </if>
+      <if test="lateInterestScope != null" >
+        late_interest_scope = #{lateInterestScope,jdbcType=TINYINT},
+      </if>
+      <if test="maxTenderTimes != null" >
+        max_tender_times = #{maxTenderTimes,jdbcType=TINYINT},
+      </if>
+      <if test="showName != null" >
+        show_name = #{showName,jdbcType=VARCHAR},
+      </if>
+      <if test="extractRate != null" >
+        extract_rate = #{extractRate,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.system.model.BiaoType" >
+    update rd_biao_type
+    set biao_type_name = #{biaoTypeName,jdbcType=VARCHAR},
+      available = #{available,jdbcType=TINYINT},
+      password_model = #{passwordModel,jdbcType=TINYINT},
+      day_model = #{dayModel,jdbcType=TINYINT},
+      auto_verify = #{autoVerify,jdbcType=TINYINT},
+      auto_full_verify = #{autoFullVerify,jdbcType=TINYINT},
+      min_amount = #{minAmount,jdbcType=INTEGER},
+      max_amount = #{maxAmount,jdbcType=INTEGER},
+      min_interest_rate = #{minInterestRate,jdbcType=DECIMAL},
+      max_interest_rate = #{maxInterestRate,jdbcType=DECIMAL},
+      advance_time = #{advanceTime,jdbcType=TINYINT},
+      advance_scope = #{advanceScope,jdbcType=TINYINT},
+      advance_vip_scope = #{advanceVipScope,jdbcType=TINYINT},
+      late_interest_rate = #{lateInterestRate,jdbcType=DECIMAL},
+      borrow_fee_rate_start = #{borrowFeeRateStart,jdbcType=DECIMAL},
+      borrow_fee_rate_start_month_num = #{borrowFeeRateStartMonthNum,jdbcType=TINYINT},
+      borrow_fee_rate = #{borrowFeeRate,jdbcType=DECIMAL},
+      borrow_day_fee_rate = #{borrowDayFeeRate,jdbcType=DECIMAL},
+      interest_fee_rate = #{interestFeeRate,jdbcType=DECIMAL},
+      frost_rate = #{frostRate,jdbcType=DECIMAL},
+      advance_rate = #{advanceRate,jdbcType=DECIMAL},
+      advance_vip_rate = #{advanceVipRate,jdbcType=DECIMAL},
+      late_customer_interest_rate = #{lateCustomerInterestRate,jdbcType=DECIMAL},
+      late_interest_scope = #{lateInterestScope,jdbcType=TINYINT},
+      max_tender_times = #{maxTenderTimes,jdbcType=TINYINT},
+      show_name = #{showName,jdbcType=VARCHAR},
+      extract_rate = #{extractRate,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

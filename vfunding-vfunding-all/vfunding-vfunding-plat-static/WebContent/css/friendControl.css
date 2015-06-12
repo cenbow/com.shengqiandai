@@ -1,0 +1,75 @@
+@charset "utf-8";
+/* CSS Document */
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+@import url(accountLeft.css);
+.myAccount{  height:940px; margin:30px 0; clear:both;}
+
+
+/*****账户总览右栏***/
+.rechargeTakeCash{ width:820px; height:940px; }
+
+.rT{ height:940px;  background:#fff;}
+.rTWrap{ width:780px; height:940px; margin:0 auto; overflow:hidden; position:relative;}
+.txTop{ height:58px;overflow:hidden; }
+b.midLine{ height:1px; font-size:0; width:100%; background:#eeeeee; position:absolute; top:28px; left:0;  overflow:hidden;}
+.txTop h2,.excel{ height:22px; line-height:22px; position:absolute;background-color:#fff;}
+.txTop h2{ top:17px; left:24px; font-size:20px; color:#0065b4; padding:0 6px; z-index:9; }
+.friendManage{  height:40px; margin-bottom:20px; }
+.friendManage li{ width:158px; height:40px; line-height:40px; text-align:center; margin-right:2px; float:left; background-color:#f5f7f8; cursor:pointer;}
+
+.friends table{ border:1px solid #ccc; border-collapse:collapse;}
+.invited0,.myFriend{ display:none;}
+.myFriend table{ margin-bottom:20px;}
+.myFriend td{ text-align:center; border-top:1px solid #eee;}
+.friendBg{ background:#f5f7f8;}
+#myFriend{ overflow:hidden;}
+#myFriend td{ border-bottom:1px solid #eee;}
+
+
+
+.aBg{ background-color:#0065b4;}
+
+
+.invitIncome font{ font-size:24px; color:#ff8636;}
+
+.invitIncome a{ color:#00a0e9; cursor:pointer;}
+
+.link{ margin-top:30px;}
+#link{ width:610px; height:28px; border:1px solid #ccc; padding:0 4px;}
+.copy{ width:78px; height:30px; display:inline-block; line-height:30px; text-align:center; background:#0065b4; color: #fff; border-radius:3px;}
+.sweetTip{ margin-top:22px; color:#888;}
+.p5{ margin-top:36px;}
+.licaishi{ margin-top:10px;}
+.licaishi td{ text-align:center; border-top:1px solid #ffe4b3; color:#8c6114;}
+.licaiBg{ background-color:#fff2da;}
+.friendItem{ height:30px; margin-top:30px;}
+.haoyouItem{ width:400px; height:30px;}
+.haoyouItem li{ padding:0 10px; line-height:30px; text-align:center; float:left; display:inline; margin-right:10px;}
+.friendSearch{ height:30px; margin:30px 0 10px; }
+input#friendSearch{ width:202px; padding:6px 5px; border:1px solid #ccc;}
+.friendTable{margin-top:10px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

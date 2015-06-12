@@ -1,0 +1,139 @@
+@CHARSET "UTF-8";
+*{
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	list-style: none;
+	font-family: "微软雅黑";
+	text-shadow: none;
+}
+.page{
+	max-width: 640px;
+	min-width: 320px;
+	width:100%;
+	margin:0 auto;
+	height: auto;
+	position: relative;
+	background-color: #b4b4b4;
+}
+.top{
+	max-width: 640px;
+	min-width: 320px;
+	width:100%;
+	width: 100%;
+	background-color: #fff;
+	z-index: 999;
+}
+.top img {
+	float: left;
+}
+.top  a{
+	width: 100%;
+	display: block;
+	text-align: center;
+	padding-bottom: 0.5em;
+	padding-top: 0.5em;
+} 
+.top span{
+	position: absolute;
+	top:2%;
+	left:2%;
+}
+.navigation{
+	width: 90%;
+	margin: 0 auto;
+	margin-top: 15px;
+	text-align: center;
+	border: 2px solid #008ef2;
+	padding-bottom: 40px;
+	border-radius:8px;
+	font-size: 18px;
+}
+.card{
+	width: 50%;
+	float: left;
+	line-height: 40px;
+	border-radius:5px 0 0 5px;
+	background-color:#008ef2;
+}
+.balance{
+	width: 50%;
+	float: left;
+	line-height: 40px;
+	border-radius:0 5px 5px 0;
+	background-color: #fff;
+}
+.bank{
+	width: 100%;
+	margin-top: 15px;
+	padding-top: 10px;
+	background-color: #fff;
+	position: relative;
+	padding-bottom: 20px;
+}
+.bank img {
+	margin-left: 15px;
+	margin-top: 2px;
+
+}
+.bank ul{
+	position: absolute;
+	top:10px;
+	left:60px;
+}
+.bank ul li h4{
+	font-size: 18px;
+}
+.scord{
+	margin-top: 5px;
+	font-size: 16px;
+	color: #666;
+}
+.scord font{
+	color: red;
+}
+.atm{
+	margin-top: 15px;
+	width: 100%;
+	height: 155px;
+}
+.atm li{
+	background-color: #fff;
+	padding-bottom: 1px;
+	width: 100%;
+	float: left;
+	border-bottom: 1px solid #f0f0f0;
+}
+.atm h4{
+	margin-left: 15px;
+	font-size: 18px;
+	line-height: 50px;
+	float: left;
+}
+.atm input{
+	width: 60%;
+	float: left;
+	font-size: 18px;
+}
+.atm label {
+	font-size: 18px;
+	margin-top: 14px;
+	display: block;
+	font-weight: bold;
+}
+.ture{
+	width: 90%;
+	margin: 15px auto;
+	line-height: 40px;
+	background-color: #fdb82c;
+	text-align: center;
+	display: block;
+	font-size: 20px;
+	border-radius:5px;
+}
+.pp{
+	text-align: center;
+	margin-top: 15px;
+	margin-bottom: 40px;
+	color: #666;
+}

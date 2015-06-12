@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.message.dao.GiftotherMessageMapper" >
+  <resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.message.model.GiftotherMessage" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="send_user" property="sendUser" jdbcType="INTEGER" />
+    <result column="receive_user" property="receiveUser" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="is_look" property="isLook" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, send_user, receive_user, title, is_look, type, content, addtime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from vf_giftother_message
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from vf_giftother_message
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.vfunding.biz.message.model.GiftotherMessage" >
+    insert into vf_giftother_message (id, send_user, receive_user, 
+      title, is_look, type, 
+      content, addtime)
+    values (#{id,jdbcType=INTEGER}, #{sendUser,jdbcType=INTEGER}, #{receiveUser,jdbcType=INTEGER}, 
+      #{title,jdbcType=VARCHAR}, #{isLook,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, 
+      #{content,jdbcType=VARCHAR}, #{addtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.message.model.GiftotherMessage" useGeneratedKeys="true" keyProperty="id" >
+    insert into vf_giftother_message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sendUser != null" >
+        send_user,
+      </if>
+      <if test="receiveUser != null" >
+        receive_user,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="isLook != null" >
+        is_look,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sendUser != null" >
+        #{sendUser,jdbcType=INTEGER},
+      </if>
+      <if test="receiveUser != null" >
+        #{receiveUser,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="isLook != null" >
+        #{isLook,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.message.model.GiftotherMessage" >
+    update vf_giftother_message
+    <set >
+      <if test="sendUser != null" >
+        send_user = #{sendUser,jdbcType=INTEGER},
+      </if>
+      <if test="receiveUser != null" >
+        receive_user = #{receiveUser,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="isLook != null" >
+        is_look = #{isLook,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.message.model.GiftotherMessage" >
+    update vf_giftother_message
+    set send_user = #{sendUser,jdbcType=INTEGER},
+      receive_user = #{receiveUser,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      is_look = #{isLook,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      content = #{content,jdbcType=VARCHAR},
+      addtime = #{addtime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  	<!-- 查询礼品盒个人未查看的礼品 louchen 2014-12-19 -->
+	<select id="selectUnLookByUserId" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from vf_giftother_message
+		where receive_user = #{userId,jdbcType=INTEGER}
+		and is_look = 0
+	</select>
+	
+	<!-- 查询礼品盒louchen 2014-12-19 -->
+	<select id="selectGiftboxMessageListPage" resultMap="BaseResultMap"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select
+		<include refid="Base_Column_List" />
+		from vf_giftother_message
+		where 1=1
+		<if test="entity != null and entity.type != null  ">
+			and type = #{entity.type,jdbcType=INTEGER}
+		</if>
+		<if test="entity != null and entity.isLook != null  ">
+			and is_look = #{entity.isLook,jdbcType=INTEGER}
+		</if>
+		<if test="entity != null and entity.receiveUser != null  ">
+			and receive_user = #{entity.receiveUser,jdbcType=INTEGER}
+		</if>
+		order by addtime desc
+	</select>
+	
+	
+  <select id="selectJiuXianTopTenCountDay" resultType="java.lang.Integer">
+	select count(*) from vf_giftother_message where title='酒仙网活动红酒奖励！' 
+	<![CDATA[ 
+	and addtime >=  #{start} 
+	and addtime <=  #{end} 	
+	]]>
+  </select>
+  
+  <select id="selectJiuXianTopTenCountDayByUserId" resultType="java.lang.Integer">
+	select count(*) from vf_giftother_message where 
+	receive_user = #{userId}
+	and title='酒仙网活动红酒奖励！' 
+	<![CDATA[ 
+	and addtime >=  #{start} 
+	and addtime <=  #{end} 	
+	]]>
+  </select>
+</mapper>

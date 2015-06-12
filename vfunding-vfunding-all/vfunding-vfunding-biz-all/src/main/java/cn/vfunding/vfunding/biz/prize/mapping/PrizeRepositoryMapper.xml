@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.prize.dao.PrizeRepositoryMapper" >
+  <resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.prize.model.PrizeRepository" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="sn" property="sn" jdbcType="VARCHAR" />
+    <result column="prize_id" property="prizeId" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="choose_user" property="chooseUser" jdbcType="INTEGER" />
+    <result column="choose_time" property="chooseTime" jdbcType="TIMESTAMP" />
+    <result column="choose_ip" property="chooseIp" jdbcType="VARCHAR" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="add_ip" property="addIp" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="PrizeChooseResultMap" type="cn.vfunding.vfunding.biz.prize.vo.PrizeRepositoryVO" >
+    <result column="choose_time" property="chooseTime" jdbcType="TIMESTAMP" />
+    <result column="prize_name" property="prizeName" jdbcType="VARCHAR" />
+    <result column="username" property="userName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, sn, prize_id, status, choose_user, choose_time, choose_ip, add_time, add_ip
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from vf_prize_repository
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByEntity" resultMap="BaseResultMap" parameterType="cn.vfunding.vfunding.biz.prize.model.PrizeRepository" >
+    select 
+    <include refid="Base_Column_List" />
+    from vf_prize_repository
+    where 1=1
+    <if test="prizeId != null" >
+        and prize_id = #{prizeId,jdbcType=INTEGER}
+    </if>
+    <if test="chooseUser != null" >
+        and choose_user = #{chooseUser,jdbcType=INTEGER}
+    </if>
+    <if test="startIndex != null and endIndex != null" >
+       order by choose_time desc
+       limit #{startIndex,jdbcType=INTEGER},#{endIndex,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="selectMyPrizeChoose" resultMap="PrizeChooseResultMap" parameterType="cn.vfunding.vfunding.biz.prize.model.PrizeRepository" >
+    select 
+    a.choose_time,b.name as prize_name
+    from vf_prize_repository a
+    left join vf_prize b on b.id = a.prize_id
+    where 1=1
+    <if test="chooseUser != null" >
+        and a.choose_user = #{chooseUser,jdbcType=INTEGER}
+    </if>
+    <if test="startIndex != null and endIndex != null" >
+       order by a.choose_time desc
+       limit #{startIndex,jdbcType=INTEGER},#{endIndex,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="selectMyPrizeChooseForSeasonTwo" resultMap="PrizeChooseResultMap" parameterType="cn.vfunding.vfunding.biz.prize.model.PrizeRepository" >
+    select 
+    a.choose_time,b.name as prize_name
+    from vf_prize_repository a
+    left join vf_prize b on b.id = a.prize_id
+    where 1=1 and b.squad = 'season2'
+    <if test="chooseUser != null" >
+        and a.choose_user = #{chooseUser,jdbcType=INTEGER}
+    </if>
+    <if test="startIndex != null and endIndex != null" >
+       order by a.choose_time desc
+       limit #{startIndex,jdbcType=INTEGER},#{endIndex,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="selectPrizeChoose" resultMap="PrizeChooseResultMap" parameterType="java.util.Map" >
+	select 
+	b.name as prize_name
+	,concat(substring(c.username,1,2),'****',substring(c.username,6)) as username
+	from vf_prize_repository a
+	left join vf_prize b on b.id = a.prize_id
+	left join rd_user c  on c.user_id = a.choose_user
+	where 1=1
+    <if test="startIndex != null and endIndex != null" >
+       order by a.choose_time desc
+       limit #{startIndex,jdbcType=INTEGER},#{endIndex,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="selectPrizeChooseForSeasonTwo" resultMap="PrizeChooseResultMap" parameterType="java.util.Map" >
+	select 
+	b.name as prize_name
+	,concat(substring(c.username,1,2),'****',substring(c.username,6)) as username
+	from vf_prize_repository a
+	left join vf_prize b on b.id = a.prize_id
+	left join rd_user c  on c.user_id = a.choose_user
+	where 1=1 and b.squad = 'season2'
+    <if test="startIndex != null and endIndex != null" >
+       order by a.choose_time desc
+       limit #{startIndex,jdbcType=INTEGER},#{endIndex,jdbcType=INTEGER}
+    </if>
+  </select>  
+  <select id="selectInternalUserPrizeCount" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+	select ifnull(count(*),0) from vf_prize_repository a
+	left join rd_user b on a.choose_user = b.user_id
+	where b.type_id in(27,31) 
+	and prize_id=#{prizeId,jdbcType=INTEGER}
+  </select>
+  <select id="selectExternalUserPrizeCount" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+	select ifnull(count(*),0) from vf_prize_repository a
+	left join rd_user b on a.choose_user = b.user_id
+	where b.type_id not in(27,31) 
+	and prize_id=#{prizeId,jdbcType=INTEGER}
+  </select>
+  <select id="selectPrizeCount" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+	select ifnull(count(*),0) from vf_prize_repository a
+	where prize_id=#{prizeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from vf_prize_repository
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.vfunding.biz.prize.model.PrizeRepository" >
+    insert into vf_prize_repository (id, sn, prize_id, 
+      status, choose_user, choose_time, 
+      choose_ip, add_time, add_ip
+      )
+    values (#{id,jdbcType=INTEGER}, #{sn,jdbcType=VARCHAR}, #{prizeId,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{chooseUser,jdbcType=INTEGER}, #{chooseTime,jdbcType=TIMESTAMP}, 
+      #{chooseIp,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, #{addIp,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" 
+  			useGeneratedKeys="true"
+ 			keyProperty="id" 
+  			parameterType="cn.vfunding.vfunding.biz.prize.model.PrizeRepository" >
+    insert into vf_prize_repository
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sn != null" >
+        sn,
+      </if>
+      <if test="prizeId != null" >
+        prize_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="chooseUser != null" >
+        choose_user,
+      </if>
+      <if test="chooseTime != null" >
+        choose_time,
+      </if>
+      <if test="chooseIp != null" >
+        choose_ip,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="addIp != null" >
+        add_ip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sn != null" >
+        #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="prizeId != null" >
+        #{prizeId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="chooseUser != null" >
+        #{chooseUser,jdbcType=INTEGER},
+      </if>
+      <if test="chooseTime != null" >
+        #{chooseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="chooseIp != null" >
+        #{chooseIp,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addIp != null" >
+        #{addIp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.prize.model.PrizeRepository" >
+    update vf_prize_repository
+    <set >
+      <if test="sn != null" >
+        sn = #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="prizeId != null" >
+        prize_id = #{prizeId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="chooseUser != null" >
+        choose_user = #{chooseUser,jdbcType=INTEGER},
+      </if>
+      <if test="chooseTime != null" >
+        choose_time = #{chooseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="chooseIp != null" >
+        choose_ip = #{chooseIp,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addIp != null" >
+        add_ip = #{addIp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.prize.model.PrizeRepository" >
+    update vf_prize_repository
+    set sn = #{sn,jdbcType=VARCHAR},
+      prize_id = #{prizeId,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      choose_user = #{chooseUser,jdbcType=INTEGER},
+      choose_time = #{chooseTime,jdbcType=TIMESTAMP},
+      choose_ip = #{chooseIp,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      add_ip = #{addIp,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

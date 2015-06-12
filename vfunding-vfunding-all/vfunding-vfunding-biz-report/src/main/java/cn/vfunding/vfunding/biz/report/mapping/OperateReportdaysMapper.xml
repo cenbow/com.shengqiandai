@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.report.dao.OperateReportdaysMapper">
+	<resultMap id="BaseResultMap"
+		type="cn.vfunding.vfunding.biz.report.model.OperateReportdays">
+		<result column="zyh" property="zyh" />
+		<result column="dyxzyh" property="dyxzyh" />
+		<result column="drxzyh" property="drxzyh" />
+		<result column="dryhdls" property="dryhdls" />
+		<result column="drdlzs" property="drdlzs" />
+		<result column="dqczzrs" property="dqczzrs" />
+		<result column="drczrs" property="drczrs" />
+		<result column="drtbrs" property="drtbrs" />
+		<result column="drczze" property="drczze" />
+		<result column="dqczze" property="dqczze" />
+		<result column="drtbze" property="drtbze" />
+		<result column="dryhzye" property="dryhzye" />
+		<result column="drfbze" property="drfbze" />
+		<result column="dqzbs" property="dqzbs" />
+		<result column="dqcgzbs" property="dqcgzbs" />
+		<result column="dqptbze" property="dqptbze" />
+		<result column="fromAddtime" property="fromaddtime" />
+	</resultMap>
+	<select id="selectListPage" resultMap="BaseResultMap"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		SELECT
+			*
+		FROM
+			rd_operate_reportdays a
+		WHERE
+			1 = 1
+		<if test="entity != null and entity.startTime!=null">
+		<![CDATA[	AND a.fromaddtime >= #{entity.startTime}  ]]>
+		</if>
+		<if test="entity != null and entity.endTime!=null">
+		<![CDATA[	AND a.fromaddtime <= #{entity.endTime}  ]]>
+		</if>
+		ORDER BY
+			a.fromAddtime DESC
+	</select>
+
+
+	<select id="selectOperateReportdays" resultMap="BaseResultMap"
+		parameterType="cn.vfunding.vfunding.biz.report.model.OperateReportdays">
+
+		SELECT
+			*
+		FROM
+			rd_operate_reportdays a
+		WHERE
+			1 = 1
+		<if test="startTime!=null">
+		<![CDATA[	AND a.fromaddtime >= #{startTime}  ]]>
+		</if>
+		<if test="endTime!=null">
+		<![CDATA[	AND a.fromaddtime <= #{endTime}  ]]>
+		</if>
+		ORDER BY
+			a.fromAddtime DESC
+
+	</select>
+	<select id="callProcedure" statementType="CALLABLE">
+        <![CDATA[
+                { CALL pro_operate_reportdays()}
+        ]]>
+	</select>
+
+	
+</mapper>

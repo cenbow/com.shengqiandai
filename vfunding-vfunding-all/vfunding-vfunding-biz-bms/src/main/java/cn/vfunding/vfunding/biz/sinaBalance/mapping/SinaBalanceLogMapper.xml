@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.sinaBalance.dao.SinaBalanceLogMapper">
+	<resultMap id="BaseResultMap"
+		type="cn.vfunding.vfunding.biz.sinaBalance.model.SinaBalanceLog">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="balance" property="balance" jdbcType="DECIMAL" />
+		<result column="available_balance" property="availableBalance"
+			jdbcType="DECIMAL" />
+		<result column="bonus_yesterday" property="bonusYesterday"
+			jdbcType="DECIMAL" />
+		<result column="bonus_month" property="bonusMonth" jdbcType="DECIMAL" />
+		<result column="bonus_total" property="bonusTotal" jdbcType="DECIMAL" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, user_id, balance, available_balance, bonus_yesterday, bonus_month,
+		bonus_total
+	</sql>
+
+	<insert id="insertSelective"
+		parameterType="cn.vfunding.vfunding.biz.sinaBalance.model.SinaBalanceLog">
+		insert into vf_sina_balance_log
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="balance != null">
+				balance,
+			</if>
+			<if test="availableBalance != null">
+				available_balance,
+			</if>
+			<if test="bonusYesterday != null">
+				bonus_yesterday,
+			</if>
+			<if test="bonusMonth != null">
+				bonus_month,
+			</if>
+			<if test="bonusTotal != null">
+				bonus_total,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id},
+			</if>
+			<if test="userId != null">
+				#{userId},
+			</if>
+			<if test="balance != null">
+				#{balance},
+			</if>
+			<if test="availableBalance != null">
+				#{availableBalance},
+			</if>
+			<if test="bonusYesterday != null">
+				#{bonusYesterday},
+			</if>
+			<if test="bonusMonth != null">
+				#{bonusMonth},
+			</if>
+			<if test="bonusTotal != null">
+				#{bonusTotal},
+			</if>
+		</trim>
+	</insert>
+
+	<select id="selectTotelNotZeroId" resultMap="BaseResultMap">
+		select distinct(a.user_id) from rd_account_log a
+		where a.total>0
+	</select>
+	<delete id="deleteAll">
+		delete from vf_sina_balance_log;
+	</delete>
+</mapper>

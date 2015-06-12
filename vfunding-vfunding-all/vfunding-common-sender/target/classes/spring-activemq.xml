@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<!--创建连接工厂 -->
+	<bean id="jms.connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+		<property name="brokerURL"
+			value="${jms.address}" />
+	</bean>
+	<!--连接池配置 -->
+	<bean id="jms.cachingConnectionFactory"
+		class="org.springframework.jms.connection.CachingConnectionFactory">
+		<!--  目标ConnectionFactory对应真实的可以产生JMS Connection的ConnectionFactory  -->
+		<property name="targetConnectionFactory" ref="jms.connectionFactory" />
+		<!--   Session缓存数量,这里属性也可以直接在这里配置 -->
+		<property name="sessionCacheSize" value="100" />
+	</bean>
+
+	<!-- 声明ActiveMQ消息目标,目标可以是一个队列，也可以是一个主题ActiveMQTopic -->
+	<bean id="jms.destination.system" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg index="0" value="vfunding.system"></constructor-arg><!-- 
+			通道 -->
+	</bean>
+
+	<bean id="jms.template.system" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="jms.cachingConnectionFactory"></property>
+		<property name="defaultDestination" ref="jms.destination.system"></property>
+		<property name="receiveTimeout" value="3000"></property>
+		<!-- 区别它采用的模式为false是p2p为true是订阅 -->  
+		<property name="pubSubDomain" value="false" />
+	</bean>
+	
+	 <bean id="jms.sender.system" class="cn.vfunding.common.framework.jms.activemq.JmsSender">
+    	<property name="jmsTemplate" ref="jms.template.system"></property>  
+    </bean>
+	
+	<!-- 用户行为消息配置 -->
+	<!-- 声明ActiveMQ消息目标,目标可以是一个队列，也可以是一个主题ActiveMQTopic -->
+	<bean id="jms.destination.useraction" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg index="0" value="vfunding.useraction"></constructor-arg><!-- 
+			通道 -->
+	</bean>
+
+
+	<bean id="jms.template.useraction" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="jms.cachingConnectionFactory"></property>
+		<property name="defaultDestination" ref="jms.destination.useraction"></property>
+		<property name="receiveTimeout" value="3000"></property>
+		 <!-- 区别它采用的模式为false是p2p为true是订阅 -->  
+		<property name="pubSubDomain" value="false" />
+	</bean>
+	
+	<bean id="jms.sender.useraction" class="cn.vfunding.common.framework.jms.activemq.JmsSender">
+		<property name="jmsTemplate" ref="jms.template.useraction"></property>
+	</bean>
+	
+
+</beans>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.borrowMobile.dao.OutBorrowMapper">
+	<resultMap id="BaseResultMap"
+		type="cn.vfunding.vfunding.biz.borrowMobile.model.OutBorrowVO">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="name" property="name" />
+		<result column="account" property="account" />
+		<result column="account_yes" property="accountYes" />
+		<result column="time_limit" property="timeLimit" />
+		<result column="expectApr" property="expectApr" />
+		<result column="status" property="status" />
+		<result column="repayment_account" property="repaymentAccount" />
+		<result column="repayment_yesaccount" property="repaymentYesAccount" />
+		<result column="biao_type" property="biaoType" />
+		<result column="time_limit_day" property="daylimit" />
+		<result column="isday" property="isday" />
+		<result column="username" property="userName" />
+		<result column="lowest_account" property="lowestAccount" />
+		<result column="most_account" property="mostAccount" />
+		<result column="tenderEndtime" property="tenderEndtime" />
+		<result column="style" property="style" />
+		<result column="success_time" property="successTime" />
+		<result column="verify_time" property="verifyTime" />
+	</resultMap>
+
+	<!-- 标的详细信息 -->
+	<select id="selectOutBorrowById" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select a.id,
+		c.username,
+		a.name, a.time_limit,
+		a.account,a.time_limit_day,a.isday,
+		a.account_yes,a.status,a.style,
+		a.danbao, DATE_FORMAT(from_unixtime(a.verify_time),'%Y-%m-%d
+		%H:%i:%s') as verify_time,
+		DATE_FORMAT(from_unixtime(a.repayment_time),'%Y-%m-%d %H:%i:%s') as
+		success_time,a.apr-ifnull(b.b_fee,0)-ifnull(b.g_fee,0)
+		as
+		expectApr
+		,a.repayment_account,a.repayment_yesaccount,a.biao_type,a.lowest_account
+		from
+		rd_borrow a
+		left join
+		rd_investors_fee b on a.id
+		=b.b_id
+		left join
+		rd_user c on a.user_id=c.user_id
+		where (a.status= 1 or (a.status
+		= 3 and	<![CDATA[ a.is_lz<>1))]]>
+		and a.id
+		=#{id}
+	</select>
+
+
+	<select id="selectOutBorrowListPage" resultMap="BaseResultMap"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select a.id,
+		c.username,
+		a.name, a.time_limit,
+		a.account,a.time_limit_day,a.isday,
+		a.account_yes,a.status,a.style,
+		a.danbao, DATE_FORMAT(from_unixtime(a.verify_time),'%Y-%m-%d
+		%H:%i:%s') as verify_time,
+		DATE_FORMAT(from_unixtime(a.repayment_time),'%Y-%m-%d %H:%i:%s') as
+		success_time,a.apr-ifnull(b.b_fee,0)-ifnull(b.g_fee,0)
+		as
+		expectApr
+		,a.repayment_account,a.repayment_yesaccount,a.biao_type,a.lowest_account
+		from
+		rd_borrow a
+		left join
+		rd_investors_fee b on a.id
+		=b.b_id
+		left join
+		rd_user c on a.user_id=c.user_id
+		where (a.status= 1 or (a.status
+		= 3 and	<![CDATA[ a.is_lz<>1))]]>
+		order by a.account_yes/a.account
+		asc,a.verify_time
+		desc
+	</select>
+
+
+	<select id="selectMidaiNewListPage" resultMap="BaseResultMap"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select a.id,
+		c.username,
+		a.name, a.time_limit,
+		a.account,a.time_limit_day,a.isday,
+		a.account_yes,a.status,a.style,
+		a.danbao, DATE_FORMAT(from_unixtime(a.verify_time),'%Y-%m-%d %H:%i') as verify_time,
+		DATE_FORMAT(from_unixtime(a.repayment_time),'%Y-%m-%d %H:%i') as
+		success_time,a.apr-ifnull(b.b_fee,0)-ifnull(b.g_fee,0)
+		as
+		expectApr
+		,a.repayment_account,a.repayment_yesaccount,a.biao_type,a.lowest_account
+		from
+		rd_borrow a
+		left join
+		rd_investors_fee b on a.id
+		=b.b_id
+		left join
+		rd_user c on a.user_id=c.user_id
+		where a.status =1
+		and
+		DATE_FORMAT(from_unixtime(a.verify_time),'%Y%m%d')=#{entity.datetime}
+		order by
+		a.account_yes/a.account
+		asc,a.success_time
+		desc
+	</select>
+
+
+	<select id="selectMidaiSuccessListPage" resultMap="BaseResultMap"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select a.id,
+		c.username,
+		a.name, a.time_limit,
+		a.account,a.time_limit_day,a.isday,
+		a.account_yes,a.status,a.style,
+		a.danbao, DATE_FORMAT(from_unixtime(a.verify_time),'%Y-%m-%d %H:%i') as verify_time,
+		DATE_FORMAT(from_unixtime(a.repayment_time),'%Y-%m-%d %H:%i') as
+		success_time,a.apr-ifnull(b.b_fee,0)-ifnull(b.g_fee,0)
+		as
+		expectApr
+		,a.repayment_account,a.repayment_yesaccount,a.biao_type,a.lowest_account
+		from
+		rd_borrow a
+		left join
+		rd_investors_fee b on a.id
+		=b.b_id
+		left join
+		rd_user c on a.user_id=c.user_id
+		where a.status =3
+		and
+		DATE_FORMAT(from_unixtime(a.success_time),'%Y%m%d')=#{entity.datetime}
+		order by
+		a.account_yes/a.account
+		asc,a.success_time
+		desc
+	</select>
+</mapper>

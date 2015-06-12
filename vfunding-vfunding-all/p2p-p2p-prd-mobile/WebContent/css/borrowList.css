@@ -1,0 +1,153 @@
+@CHARSET "UTF-8";
+*{
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	list-style: none;
+	font-family: "微软雅黑";
+	text-shadow: none;
+}
+.page{
+	max-width: 640px;
+	min-width: 320px;
+	width:100%;
+	margin:0 auto;
+	height: auto;
+	position: relative;
+}
+.top{
+	max-width: 640px;
+	min-width: 320px;
+	width:100%;
+	width: 100%;
+	background-color: #fff;
+	z-index: 999;
+	position: fixed;
+	top:0;
+	border-bottom: 1px solid #f0f0f0;
+}
+.top img {
+	float: left;
+}
+.top  a{
+	width: 100%;
+	display: block;
+	text-align: center;
+	padding-bottom: 0.5em;
+	padding-top: 0.5em;
+} 
+.top span{
+	position: absolute;
+	top:20%;
+	left:2%;
+}
+.navigation{
+	width: 100%;
+	height:40px;
+	margin-top: 40px;
+	background-color: #fff;
+	border-bottom: 3px solid #f0f0f0;
+	
+}
+.navigation li{
+	width: 50%;
+	overflow: hidden;
+	float: left;
+	text-align: center;
+}
+.navigation li a{
+	width: 50%;
+	line-height: 41px;
+	display: block;
+	margin-left: 25%;
+	font-size: 16px;
+	cursor: pointer;	
+}
+.cur{
+	border-bottom: 3px solid #008ef2;
+	color:#008ef2; 
+}
+.product{
+	width: 95%;
+	overflow: hidden;
+	margin-top: 1px;
+	padding: 10px 2.5%;
+	background-color: #fff;
+	position: relative;
+}
+.product a{
+	display: block;
+}
+.leftIntroduction{
+	width: 55%;
+	overflow: hidden;
+}
+.leftIntroduction span{
+	overflow: hidden;
+	float: left;
+}
+.leftIntroduction span label{
+	margin-bottom: 5px;
+	display: block;
+	color: #000;
+}
+.leftIntroduction span p{
+	font-size: 13px;
+	line-height: 20px;
+	color: #666;
+}
+.leftIntroduction span p font{
+	color: #fdb82c;
+	font-size: 16px;
+}
+.list{
+	width: 100%;
+	overflow: hidden;
+	margin-top: 15px;
+}
+.listLi{
+	width: 95%;
+	padding: 10px 2.5%;
+	float: left;
+	overflow: hidden;
+	background-color: #fff;
+	border-bottom: 1px solid #f0f0f0;
+}
+.listLi li{
+	width: 25%;
+	float: left;
+	text-align: center;
+	font-size: 15px;
+}
+.listLi a{
+	display: block;
+	overflow: hidden;
+}
+.bu{
+	width: 100%;
+	height: 65px;
+}
+.foot{
+	max-width:640px;
+	min-width:320px;
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	height: 50px;
+	border-top: thin solid #f0f0f0;
+	background-color: #fff;
+}
+.foot ul{
+	width: 100%;
+	height: 100%;
+}
+.foot ul li{
+	width: 25%;
+	height:100%;
+	float: left;
+	text-align: center;
+}
+.foot ul li h4{
+	margin-top: -7px;
+	color: #666;
+}

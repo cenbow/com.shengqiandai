@@ -1,0 +1,412 @@
+
+@charset "utf-8";
+/* CSS Document */
+
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+
+body{
+    background-color: #80d1c2;
+    color: #26968a;
+}
+.mar{
+    overflow: hidden;
+}
+.mar-top{
+    height: 606px;
+    background: url(../images/huodong/m1.png) no-repeat center top;
+}
+
+.w1000{
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.h606{
+    height: 606px;
+}
+.pos-r{
+    position: relative;
+}
+.pos-a{
+    position: absolute;
+}
+
+.actvity-time{
+    position: absolute;
+    top:76px;
+    right:10px;
+}
+
+.actvity-time p{
+    line-height: 40px;
+    color: #26968a;
+    font-size: 22px;
+}
+
+.mar-top-cnt{
+    top:340px;
+    right:0;
+}
+
+.mar-top-cnt h1{
+  font-size: 42px;
+  color: #26968a;
+  line-height: 60px;
+  margin-bottom: 10px;
+ }
+.mar-top-cnt p{
+    font-size: 28px;
+    color:#26968a;
+    line-height: 40px;
+}
+
+.mar-sector-first{
+  height: 310px;
+}
+
+.h47{
+    height: 47px;
+}
+.m2bg{
+    background: url(../images/huodong/m2.png) no-repeat;
+}
+.m2bg1{
+    background-position: 0 0;
+}
+.m2bg2{
+    background-position: 0 -47px;
+}
+.m2bg3{
+    background-position: 0 -94px;
+    margin:40px 0 0;
+}
+.m2bg4{
+    background-position: 0 -141px;
+}
+
+.mar-sector-first-cnt{
+    margin-top: 50px;
+}
+.m2bg-small{
+    width: 384px;
+    height: 195px;
+    background-position: 0 -186px;
+}
+
+.mar-sector-first-cnt p{
+    line-height: 60px;
+    color: #26968a;
+    font-size: 30px;
+}
+
+.mar-sector-first-cnt p span{
+    font-size: 36px;
+    color: #dcffcb;
+}
+
+.mar-sector-second-cnt{
+    margin-top: 20px;
+    line-height: 30px;
+    font-size:18px;
+}
+.mar-sector-second-rotate{
+    height: 648px;
+    margin-top: 20px;
+    background-position: 0 -1425px;
+    overflow: hidden;
+}
+
+
+.rotate-box{
+    width: 548px;
+    height: 548px;
+    background-position:0 -862px;
+    margin-top: 20px;
+    overflow: hidden;
+}
+.rotate-title{
+    width: 530px;
+    height: 53px;
+    line-height: 46px;
+    text-align: center;
+    margin-top: 20px;
+}
+.rotate-title{
+    font-size: 24px;
+}
+.rotate-title span{
+    color: #ff9999;
+    font-size: 36px;
+}
+.qualification{
+    top: 64px;
+    left:590px;
+}
+.qualification p{
+    height: 30px;
+}
+.qualification a.btn-invest{
+    padding:5px 10px;
+    background: #ff9999;
+    color: #fff;
+    border-radius: 3px;
+}
+
+.share-box {
+    background: #ccddd7;
+    color: #fff;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    margin-top: 10px;
+}
+.share-icon {
+    margin-top: 8px;
+}
+.share-to{
+    color: #26968a;
+}
+.reward-record{
+    top: 230px;
+    left: 590px;
+    width: 360px;
+}
+.more{
+    text-align: right;
+    display: block;
+    line-height: 30px;
+}
+.more a{
+    color: #26968a;
+}
+
+.myPrize {
+    color: #fff;
+    margin: 10px 0;
+    color: #26968a;
+}
+
+.rewardList{
+    top:480px;
+    left: 590px;
+    width: 360px;
+    height: 140px;
+    overflow: hidden;
+}
+.rewardList li {
+    color: #26968a;
+    height: 34px;
+    line-height: 34px;
+}
+
+.mar-sector-third-cnt{
+    text-align: center;
+    padding: 10px 0;
+    font-size:18px;
+}
+.mar-sector-third-bg{
+    background-position: 0 -381px;
+    width: 988px;
+    height: 481px;
+    margin: 16px auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.card{
+    width: 280px;
+    height: 481px;
+    padding: 0 20px;
+    position: absolute;
+}
+.card-first{
+   left: 2px;
+   top:0;
+}
+
+.top-cnt{
+    margin-top: 110px;
+    line-height: 30px;
+    font-size: 18px;
+    color: #b06629;
+}
+
+.top-cnt span{
+    font-size: 23px;
+    color: #fa882b;
+}
+
+a.btn-link{
+    width: 148px;
+    padding: 5px 10px;
+    border-radius: 16px;
+    color: #fff;
+    background: #f79e55;
+    display: block;
+    text-align: center;
+    margin: 37px auto 0;
+    font-size: 18px;
+}
+
+#mt68{
+    margin-top: 68px;
+}
+
+#mt10{
+    margin-top: 10px;
+}
+.card-foot{
+    padding-top: 20px;
+    margin-top: 16px;
+    border-top: 1px dashed #b06629;
+    font-size: 18px;
+    color: #b06629;
+}
+
+.card-foot-title{
+  line-height: 30px;
+}
+.no-open{
+    width: 254px;
+    height: 70px;
+    line-height: 70px;
+    margin: 20px auto 0;
+    background-position: -564px -1322px;
+    font-weight: bold;
+}
+.card-second{
+    left: 334px;
+    top: 0;
+}
+.card-third{
+  right: 0;
+    top: 0;
+}
+
+.no-open span{
+    color: #fff;
+    font-size: 38px;
+}
+
+a.click-more{
+    width: 616px;
+    height: 78px;
+    background-position: -382px -204px;
+    display: block;
+    margin: 47px auto;
+}
+
+.mar-sector-fourth{
+    overflow: hidden;
+}
+
+
+.rules{
+    overflow: hidden;
+    margin: 20px 0 60px;
+}
+
+.rules li{
+    position: relative;
+    overflow: hidden;
+    line-height: 34px;
+    padding-left: 30px;
+    font-size:18px;
+}
+
+i.dot{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    border-radius: 50%;
+    background: #26968a;
+    left: 0;
+    top:6px;
+    color: #fff;
+    display: block;
+    font-style: normal;
+
+}
+p.owner{
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.wait{
+    position: absolute;
+   width: 400px;
+    height: 196px;
+    right:30px;
+    top:50%;
+    background-position: -596px -862px;
+}
+.wait2{
+    position: absolute;
+   width: 400px;
+    height: 196px;
+    left:50%;
+    top:50%;
+    margin-left:-200px;
+    margin-top:-98px;
+    background-position: -596px -862px;
+}
+
+.rotatebg {
+	width: 548px;
+    height: 547px;
+    position: relative;
+    overflow: hidden;
+}
+
+.mar-modal{
+	background:url(/images/huodong/mar-madel.png) no-repeat;
+}
+.top-daren,.top-renxing,.top-niuren{
+	width:269px;
+	height:67px;
+	margin:20px auto;
+}
+.top-daren{
+	background-position:0 -138px;
+}
+
+.top-renxing{
+	background-position:0 -70px;
+}
+
+.top-niuren{
+	background-position:0 0;
+}
+
+table.ruturn-rule{
+	 border-collapse: collapse;
+	 padding:0;
+	 margin:0 auto;
+}
+
+table.ruturn-rule td{
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    color: #888;
+    text-align: center;
+}
+
+.light-gray{
+    background-color: #f5f7f8;
+}
+
+.light-yellow{
+	  background-color: #ff8636;
+}
+.close{
+	position:absolute;
+	top:10px;
+	right:10px;
+	width:38px;
+	height:38px;
+	background-position:0 -213px;
+}

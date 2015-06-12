@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:cache="http://www.springframework.org/schema/cache" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.2.xsd
+	http://www.springframework.org/schema/cache  
+	http://www.springframework.org/schema/cache/spring-cache-3.2.xsd
+	">
+
+	<!-- 所有触发任务 -->
+	<bean id="triggers" class="java.util.ArrayList">
+		<constructor-arg>
+			<list>
+				<ref bean="financial.upordown.judge" />
+				<ref bean="operate.report.execute" />
+				<ref bean="union.user.status.cron.checkClearOldUserAndRevive" />
+				<ref bean="union.user.status.cron.checkToStopUnionUser" />
+				<ref bean="union.user.status.cron.checkReviveUnionUser" />
+				<ref bean="user.report.sendeamail.execute" />
+				<ref bean="union.user.status.cron.updateUserPeriods" />
+				<ref bean="flow.borrow.cron" />
+				<ref bean="send.willRepay.borrow.cron" />
+				<ref bean="user.unlock" />
+				<ref bean="current.interest.create" />
+				<!-- <ref bean="userTrackOut.cron" /> -->
+				<ref bean="thirdSynRecord.cron" />
+				<ref bean="week.cron" />
+				<ref bean="userAction.cron" />
+				<ref bean="giftboxHongbao.cron" />
+				<ref bean="giftboxHongbaoRemind.cron" />
+				<ref bean="accountLeaveUnused.cron" />
+				<ref bean="userRegisterCompliment.cron" />
+				<ref bean="userBirthday.cron"/>
+				<ref bean="sinaBonusCreate.cron"/>
+				<ref bean="sinaBonusSync.cron"/>
+				<ref bean="userNoLogin.cron"/>
+				<ref bean="userNoTender.cron"/>
+				<ref bean="jj2Activiy.cron"/>
+			</list>
+		</constructor-arg>
+	</bean>
+	
+	<!-- 只注册验证邮箱的新用户邮件提醒 -->
+	<bean id="userNoLogin.cron" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<bean
+				class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+				<property name="targetObject" ref="userEmailCronProxy" />
+				<property name="targetMethod" value="sendEmailForNoLogin" />
+				<property name="concurrent" value="false" />
+			</bean>
+		</property>
+		<property name="cronExpression" value="${sendEmailForNoLogin.time}" />
+	</bean>
+	
+	
+	<!-- 用户长时间没有投资/闲置邮件提醒 -->
+	<bean id="userNoTender.cron" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<bean
+				class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+				<property name="targetObject" ref="userEmailCronProxy" />
+				<property name="targetMethod" value="sendEmailForNoTender" />
+				<property name="concurrent" value="false" />
+			</bean>
+		</property>
+		<property name="cronExpression" value="${sendEmailForNoTender.time}" />
+	</bean>
+	
+	
+	<!-- 用户生日提醒 -->
+	<bean id="userBirthday.cron" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<bean
+				class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+				<property name="targetObject" ref="userBirthdayCronProxy" />
+				<property name="targetMethod" value="sendEmailForBirthdayUser" />
+				<property name="concurrent" value="false" />
+			</bean>
+		</property>
+		<property name="cronExpression" value="${user.birthday.cron.time}" />
+	</bean>
+	
+
+	<!-- 用户动作补发机制 -->
+	<bean id="userAction.cron" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<bean
+				class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+				<property name="targetObject" ref="userActionAgainLogProxy" />
+				<property name="targetMethod" value="retryRequest" />
+				<property name="concurrent" value="false" />
+			</bean>
+		</property>
+		<property name="cronExpression" value="${retry.request.cron.time}" />
+	</bean>
+
+	<!-- 用户自动退出 -->
+	<bean id="thirdSynRecord.cron" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<bean
+				class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+				<property name="targetObject" ref="thirdSynRecordProxy" />
+				<property name="targetMethod" value="thirdSysRecord" />
+				<property name="concurrent" value="false" />
+			</bean>
+		</property>
+		<property name="cronExpression" value="${thirdSynRecord.time}" />
+	</bean>
+
+	<!-- 用户自动退出 -->
+
+	<bean id="userTrackOut.cron" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<bean
+				class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+				<property name="targetObject" ref="userTrackServiceProxy" />
+				<property name="targetMethod" value="outUserService" />
+				<property name="concurrent" value="false" />
+			</bean>
+		</property>
+		<property name="cronExpression" value="${outuser.time}" />
+	</bean>
+
+	<!-- 即将到期还款短信提醒 -->
+	<bean id="send.willRepay.borrow.cron" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<bean
+				class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+				<property name="targetObject" ref="borrowServiceProxy" />
+				<property name="targetMethod" value="willRepayBorrow" />
+				<property name="concurrent" value="false" />
+			</bean>
+		</property>
+		<property name="cronExpression" value="${send.willRepay.borrow.cron.time}" />
+	</bean>
+
+	<!-- 流标 -->
+	<bean id="flow.borrow.cron" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<bean
+				class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+				<property name="targetObject" ref="borrowServiceProxy" />
+				<property name="targetMethod" value="flowBorrow" />
+				<property name="concurrent" value="false" />
+			</bean>
+		</property>
+		<property name="cronExpression" value="${flow.borrow.cron.time}" />
+	</bean>
+
+	<!-- 根据用户信息来判断用户的升降级 -->
+	<bean id="financial.upordown.judge" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<bean
+				class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+				<property name="targetObject" ref="financialPlannerServiceProxy" />
+				<property name="targetMethod" value="selectUserFinancialplanner" />
+				<property name="concurrent" value="false" />
+			</bean>
+		</property>
+		<property name="cronExpression" value="${financial.upordown.judge.time}" />
+	</bean>
+
+	<!-- 活期宝利息计算 -->
+	<bean id="current.interest.create" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<bean
+				class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+				<property name="targetObject" ref="currentCronServiceProxy" />
+				<property name="targetMethod" value="updateAllCurrentInfo" />
+				<property name="concurrent" value="false" />
+			</bean>
+		</property>
+		<property name="cronExpression" value="${current.interest.create.time}" />
+	</bean>
+
+	<!--用户解锁 -->
+	<bean id="user.unlock" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<bean
+				class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+				<property name="targetObject" ref="userUnLockServiceProxy" />
+				<property name="targetMethod" value="deleteUserLock" />
+				<property name="concurrent" value="false" />
+			</bean>
+		</property>
+		<property name="cronExpression" value="${user.unlock.time}" />
+	</bean>
+
+
+	<!-- 更新网站联盟用户的可分利状态 -->
+	<bean id="union.user.status.cron.checkToStopUnionUser" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<bean
+				class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+				<property name="targetObject" ref="unionUserStatusServiceProxy" />
+				<property name="targetMethod" value="stopUnionUser" />
+				<property name="concurrent" value="false" />
+			</bean>
+		</property>
+		<property name="cronExpression" value="${checkToStopUnionUser.time}" />
+	</bean>
+
+	<!-- 更新复活网站联盟用户结算状态 -->
+	<bean id="union.user.status.cron.checkReviveUnionUser" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<bean
+				class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+				<property name="targetObject" ref="unionUserStatusServiceProxy" />
+				<property name="targetMethod" value="reviveUnionUser" />
+				<property name="concurrent" value="false" />
+			</bean>
+		</property>
+		<property name="cronExpression" value="${checkReviveUnionUser.time}" />
+	</bean>
+
+	<!-- 网站联盟用户清零复活 -->
+	<bean id="union.user.status.cron.checkClearOldUserAndRevive"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<bean
+				class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+				<property name="targetObject" ref="unionUserStatusServiceProxy" />
+				<property name="targetMethod" value="clearOldUserAndRevive" />
+				<property name="concurrent" value="false" />
+			</bean>
+		</property>
+		<property name="cronExpression" value="${checkClearOldUserAndRevive.time}" />
+	</bean>
+
+	<!-- 更新网站联盟介绍来的用的分利期数 -->
+	<bean id="union.user.status.cron.updateUserPeriods" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<bean
+				class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+				<property name="targetObject" ref="userFromUnionCronServiceProxy" />
+				<property name="targetMethod" value="updatePeriods" />
+				<property name="concurrent" value="false" />
+			</bean>
+		</property>
+		<property name="cronExpression" value="${updateUserPeriods.time}" />
+	</bean>
+
+
+	<!-- 每天6点执行用户报表和发送邮件 -->
+	<bean id="user.report.sendeamail.execute" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<bean
+				class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+				<property name="targetObject" ref="userReportAndSendEmaiCronProxy" />
+				<property name="targetMethod" value="userReportAndSendEmail" />
+				<property name="concurrent" value="false" />
+			</bean>
+		</property>
+		<property name="cronExpression" value="${user.report.sendeamail.execute.time}" />
+	</bean>
+
+	<!-- 每天执行运营日报 -->
+	<bean id="operate.report.execute" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<bean
+				class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+				<property name="targetObject" ref="operateReportCronProxy" />
+				<property name="targetMethod" value="callProcedure" />
+				<property name="concurrent" value="false" />
+			</bean>
+		</property>
+		<property name="cronExpression" value="${operate.report.execute.time}" />
+	</bean>
+
+	<!-- 每天执行weekTender扫描任务 -->
+	<bean id="week.cron" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<bean
+				class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+				<property name="targetObject" ref="weekCronProxy" />
+				<property name="targetMethod" value="updateWeekInfo" />
+				<property name="concurrent" value="false" />
+			</bean>
+		</property>
+		<property name="cronExpression" value="${week.cron.time}" />
+	</bean>
+
+	<!-- 每天执行礼品盒红包扫描任务 -->
+	<bean id="giftboxHongbao.cron" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<bean
+				class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+				<property name="targetObject" ref="giftboxHongbaoCronProxy" />
+				<property name="targetMethod" value="updateGiftboxHongbaoExpireStatus" />
+				<property name="concurrent" value="false" />
+			</bean>
+		</property>
+		<property name="cronExpression" value="${giftboxHongbao.cron.time}" />
+	</bean>
+
+	<!-- 每天执行礼品盒红包即将过期提醒扫描任务 -->
+	<bean id="giftboxHongbaoRemind.cron" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<bean
+				class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+				<property name="targetObject" ref="giftboxHongbaoCronProxy" />
+				<property name="targetMethod" value="sendMessageByGiftboxHongbaoExpire" />
+				<property name="concurrent" value="false" />
+			</bean>
+		</property>
+		<property name="cronExpression" value="${giftboxHongbao.cron.remind.time}" />
+	</bean>
+
+
+	<!-- 每周执行闲置资金提醒扫描任务 -->
+	<bean id="accountLeaveUnused.cron" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<bean
+				class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+				<property name="targetObject" ref="accountLeaveUnusedCronProxy" />
+				<property name="targetMethod" value="leaveUnusedMoney" />
+				<property name="concurrent" value="false" />
+			</bean>
+		</property>
+		<property name="cronExpression" value="${leaveUnusedMoney.cron.time}" />
+	</bean>
+	
+	<!-- 每天执行用户注册问候短信扫描任务 -->
+	<bean id="userRegisterCompliment.cron" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<bean
+				class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+				<property name="targetObject" ref="userRegisterComplimentCronProxy" />
+				<property name="targetMethod" value="userRegisterCompliment" />
+				<property name="concurrent" value="false" />
+			</bean>
+		</property>
+		<property name="cronExpression" value="${userRegisterCompliment.cron.time}" />
+	</bean>
+
+	<!-- 每天执行新浪存钱罐生息生成中间表数据任务 -->
+	<bean id="sinaBonusCreate.cron" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<bean
+				class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+				<property name="targetObject" ref="sinaBonusCronProxy" />
+				<property name="targetMethod" value="loadCreate" />
+				<property name="concurrent" value="false" />
+			</bean>
+		</property>
+		<property name="cronExpression" value="${sinaBonus.cron.time}" />
+	</bean>
+	
+	<!-- 每天执行新浪存钱罐生息同步微积金用户账户余额任务 -->
+	<bean id="sinaBonusSync.cron" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<bean
+				class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+				<property name="targetObject" ref="sinaBonusCronProxy" />
+				<property name="targetMethod" value="loadSync" />
+				<property name="concurrent" value="false" />
+			</bean>
+		</property>
+		<property name="cronExpression" value="${sinaBonusSync.cron.time}" />
+	</bean>
+	
+	<!-- jj斗地主二期活动 -->
+	<bean id="jj2Activiy.cron" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<bean
+				class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+				<property name="targetObject" ref="jj2ActivityCronService" />
+				<property name="targetMethod" value="scanUser" />
+				<property name="concurrent" value="false" />
+			</bean>
+		</property>
+		<property name="cronExpression" value="${jj2Activiy.cron.time}"></property>
+		<!-- <property name="cronExpression" value="0 0/10 * * * ?" />  -->
+	</bean>
+</beans>

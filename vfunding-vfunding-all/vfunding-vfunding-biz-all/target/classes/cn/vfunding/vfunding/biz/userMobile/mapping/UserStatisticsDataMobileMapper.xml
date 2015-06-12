@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="cn.vfunding.vfunding.biz.userMobile.dao.UserStatisticsDataMobileMapper">
+	<resultMap
+		id="BaseResultMap"
+		type="cn.vfunding.vfunding.biz.userMobile.model.UserStatisticsDataMobile">
+		<result
+			column="status"
+			property="status" />
+		<result
+			column="sumAccount"
+			property="sumWaitAccount" />
+		<result
+			column="sumInterest"
+			property="sumWaitInterest" />
+	</resultMap>
+
+	<!-- 已赚利息和代收利息 -->
+	<select
+		id="selectUserEarnedAndWaitByUserId"
+		resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select a.status,round(sum(a.repay_account),2) as
+		sumAccount,round(sum(a.interest),2) sumInterest from
+		rd_borrow_collection a left join
+		rd_borrow_tender b on b.id=a.tender_id
+		left join
+		rd_borrow c on b.borrow_id=c.id
+		where c.status=3 and
+		b.user_id=#{id}
+		group by a.status
+	</select>
+
+
+	<!-- 已转好友返利 -->
+	<select
+		id="selectUserSumEarnedInterestOfSonByUserId"
+		resultType="java.math.BigDecimal"
+		parameterType="java.lang.Integer">
+		select round(tfees+gfees+sfees,2) as sumWaitInterest
+		from (
+		select sum(t_fees) as tfees from rd_invite_fees a
+		left join
+		rd_borrow_collection b on a.tender_id =b.tender_id and
+		DATE_FORMAT(from_unixtime(a.repayment_time),'%Y%m%d')=DATE_FORMAT(from_unixtime(b.repay_time),'%Y%m%d')
+		left join rd_borrow c on a.b_id =c.id
+		where b.status=1 and c.status=3
+		and a.t_user_id =#{id}
+		) a,
+		(
+		select ifnull(sum(g_fees),0) as gfees from
+		rd_invite_fees a
+		left join rd_borrow_collection b on a.tender_id
+		=b.tender_id and
+		DATE_FORMAT(from_unixtime(a.repayment_time),'%Y%m%d')=DATE_FORMAT(from_unixtime(b.repay_time),'%Y%m%d')
+		left join rd_borrow c on a.b_id =c.id
+		where b.status=1 and c.status=3
+		and a.g_user_id =#{id}
+		) b,(
+		select ifnull(sum(s_fees),0) as sfees from
+		rd_invite_fees a
+		left join rd_borrow_collection b on a.tender_id
+		=b.tender_id and
+		DATE_FORMAT(from_unixtime(a.repayment_time),'%Y%m%d')=DATE_FORMAT(from_unixtime(b.repay_time),'%Y%m%d')
+		left join rd_borrow c on a.b_id =c.id
+		where b.status=1 and c.status=3
+		and a.s_user_id =#{id}
+		) c
+	</select>
+
+	<!--代收好友返利 -->
+	<select
+		id="selectUserSumWaitInterestOfSonByUserId"
+		resultType="java.math.BigDecimal"
+		parameterType="java.lang.Integer">
+		select round(tfees+gfees+sfees,2) as sumWaitInterest
+		from (
+		select
+		sum(t_fees) as tfees from rd_invite_fees a
+		left join
+		rd_borrow_collection b on a.tender_id =b.tender_id and
+		DATE_FORMAT(from_unixtime(a.repayment_time),'%Y%m%d')=DATE_FORMAT(from_unixtime(b.repay_time),'%Y%m%d')
+		left join rd_borrow c on a.b_id =c.id
+		where b.status=0 and c.status=3
+		and a.t_user_id =#{id}
+		) a,
+		(
+		select ifnull(sum(g_fees),0) as gfees from
+		rd_invite_fees a
+		left join rd_borrow_collection b on a.tender_id
+		=b.tender_id and
+		DATE_FORMAT(from_unixtime(a.repayment_time),'%Y%m%d')=DATE_FORMAT(from_unixtime(b.repay_time),'%Y%m%d')
+		left join rd_borrow c on a.b_id =c.id
+		where b.status=0 and c.status=3
+		and a.g_user_id =#{id}
+		) b,(
+		select ifnull(sum(s_fees),0) as sfees from
+		rd_invite_fees a
+		left join rd_borrow_collection b on a.tender_id
+		=b.tender_id and
+		DATE_FORMAT(from_unixtime(a.repayment_time),'%Y%m%d')=DATE_FORMAT(from_unixtime(b.repay_time),'%Y%m%d')
+		left join rd_borrow c on a.b_id =c.id
+		where b.status=0 and c.status=3
+		and a.s_user_id =#{id}
+		) c
+	</select>
+
+	<!-- 累计投资金额 -->
+	<select
+		id="selectSumTenderMoney"
+		resultType="java.math.BigDecimal"
+		parameterType="java.lang.Integer">
+		select round(sum(a.account),2) from rd_borrow_tender a
+		left join
+		rd_borrow b on a.borrow_id=b.id
+		where a.status=1 and
+		b.status=3 and
+		a.user_id=#{id}
+	</select>
+	<!-- 累计充值金额 -->
+	<select
+		id="selectSumRechargeMoney"
+		resultType="java.math.BigDecimal"
+		parameterType="java.lang.Integer">
+		select round(sum(a.money),2) from rd_account_recharge a
+		where a.user_id =
+		#{id} and status=1
+	</select>
+
+	<!-- 累计提现金额 -->
+	<select
+		id="selectSumCashMoney"
+		resultType="java.math.BigDecimal"
+		parameterType="java.lang.Integer">
+		select round(sum(a.total)) from rd_account_cash a
+		where
+		a.user_id = #{id} and status=1
+	</select>
+
+</mapper>

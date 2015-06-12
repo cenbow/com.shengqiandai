@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.union.plat.mq.dao.ProfitRecordInfoMapper" >
+  <resultMap id="BaseBaseResultMap" type="cn.vfunding.union.plat.mq.model.ProfitRecordInfo" >
+    <result column="union_user_id" property="unionUserId" jdbcType="VARCHAR" />
+    <result column="invest_num" property="investNum" jdbcType="INTEGER" />
+    <result column="invest_money" property="investMoney" jdbcType="REAL" />
+    <result column="interests" property="interests" jdbcType="REAL" />   
+  </resultMap>
+  
+  <resultMap id="BaseResultMap" type="cn.vfunding.union.plat.mq.model.ProfitRecordInfo" extends="BaseBaseResultMap" >
+    <id column="id" property="id" jdbcType="VARCHAR" />  
+    <result column="insert_time" property="insertTime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, union_user_id, invest_num, invest_money, interests, insert_time, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from profit_record_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <!-- 从投资详细表创建月报表数据  -->
+  <select id="createMouthData" resultMap="BaseBaseResultMap" parameterType="cn.vfunding.union.plat.mq.model.ProfitStatisticsVO" >
+    select union_user_id ,sum(interests) as interests,sum(invest_money) as invest_money ,count(invest_id) as invest_num from invest_info 
+	 where invest_time BETWEEN #{start,jdbcType=VARCHAR} and #{end,jdbcType=VARCHAR} 
+	group by union_user_id
+  </select>
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from profit_record_info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.union.plat.mq.model.ProfitRecordInfo" >
+    insert into profit_record_info (id, union_user_id, invest_num, 
+      invest_money, interests, insert_time, 
+      remark)
+    values (#{id,jdbcType=VARCHAR}, #{unionUserId,jdbcType=VARCHAR}, #{investNum,jdbcType=INTEGER}, 
+      #{investMoney,jdbcType=REAL}, #{interests,jdbcType=REAL}, #{insertTime,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.vfunding.union.plat.mq.model.ProfitRecordInfo" >
+    insert into profit_record_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="unionUserId != null" >
+        union_user_id,
+      </if>
+      <if test="investNum != null" >
+        invest_num,
+      </if>
+      <if test="investMoney != null" >
+        invest_money,
+      </if>
+      <if test="interests != null" >
+        interests,
+      </if>
+      <if test="insertTime != null" >
+        insert_time,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="unionUserId != null" >
+        #{unionUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="investNum != null" >
+        #{investNum,jdbcType=INTEGER},
+      </if>
+      <if test="investMoney != null" >
+        #{investMoney,jdbcType=REAL},
+      </if>
+      <if test="interests != null" >
+        #{interests,jdbcType=REAL},
+      </if>
+      <if test="insertTime != null" >
+        #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.union.plat.mq.model.ProfitRecordInfo" >
+    update profit_record_info
+    <set >
+      <if test="unionUserId != null" >
+        union_user_id = #{unionUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="investNum != null" >
+        invest_num = #{investNum,jdbcType=INTEGER},
+      </if>
+      <if test="investMoney != null" >
+        invest_money = #{investMoney,jdbcType=REAL},
+      </if>
+      <if test="interests != null" >
+        interests = #{interests,jdbcType=REAL},
+      </if>
+      <if test="insertTime != null" >
+        insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.vfunding.union.plat.mq.model.ProfitRecordInfo" >
+    update profit_record_info
+    set union_user_id = #{unionUserId,jdbcType=VARCHAR},
+      invest_num = #{investNum,jdbcType=INTEGER},
+      invest_money = #{investMoney,jdbcType=REAL},
+      interests = #{interests,jdbcType=REAL},
+      insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

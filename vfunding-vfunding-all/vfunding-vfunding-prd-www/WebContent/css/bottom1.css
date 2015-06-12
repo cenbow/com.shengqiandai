@@ -1,0 +1,43 @@
+@charset "utf-8";
+/* CSS Document */
+.index_bg{ background:url(../images/index/index_bg.png) no-repeat;}
+#footer{ width:100%; height:260px; background:#e2e6e8; clear:both; overflow:hidden;}
+.footer_info{ width:1000px; height:130px; margin:20px auto 0; border-bottom:1px solid #d3d9db;}
+.footer_info_left{ width:570px; height:120px;}
+.footer_info_right{ width:228px; height:120px;}
+.er_wei_ma{ width:100px; height:100px; display:block; margin-top:10px; background:url(../images/index/erweima.png) no-repeat;}
+.infomations{ width:452px; padding-left:10px; height:120px; overflow:hidden;}
+.p1,.p2{ line-height:38px;}
+.weibo{ height:27px; margin-top:10px;}
+.weibo span{ display:block; line-height:27px;}
+.sina_tencent{ width:420px; height:27px;}
+.sina{ margin-left:18px;}
+.sina,.tencent{ width:152px; height:27px; display:block; margin-right:26px; display:inline;}
+
+.sina_link,.tencent_link{ display:block; height:27px;}
+.sina_link{ background-position:0 -304px;}
+.sina_link:hover{ background-position:0 -331px;}
+.tencent_link{ background-position:-152px -304px;}
+.tencent_link:hover{ background-position:-152px -331px;}
+
+
+.p3,.p4{ text-align:right;color:#888888; }
+.p3{ height:28px; line-height:28px; margin-top:40px; font-size:18px;}
+.p4{ height:44px; line-height:44px; font-size:30px;  }
+
+.license{ width:448px; height:36px; margin:20px auto 10px; }
+.license a{height:36px; margin-right:20px; display:inline-block;}
+.license1{ width:96px; margin-left:20px; }
+.license1{ background-position:0 -358px;}
+.license1:hover{ background-position:0 -408px;}
+.license2{ width:65px; background-position:-96px -358px;}
+.license2:hover{background-position:-96px -408px;}
+.license3{ width:42px; background-position:-162px -358px;}
+.license3:hover{ background-position:-162px -408px;}
+.license4{ width:28px; background-position:-204px -358px;}
+.license4:hover{ background-position:-204px -408px;}
+.license5{ width:95px; background-position:-250px -358px;}
+.license5:hover{ background-position:-250px -408px;}
+
+.copyright{ width:370px; height:20px; margin:10px auto; text-align:center; line-height:20px;font-size:12px; color:#888888;}
+.liner{ height:10px; background:url(../images/liner.png) repeat-x;}

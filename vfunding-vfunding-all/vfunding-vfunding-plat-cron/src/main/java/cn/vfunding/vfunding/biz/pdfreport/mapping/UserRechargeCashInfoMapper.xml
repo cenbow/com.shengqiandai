@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="cn.vfunding.vfunding.biz.pdfreport.dao.UserRechargeCashInfoMapper">
+	<resultMap id="BaseResultMap"
+		type="cn.vfunding.vfunding.biz.pdfreport.model.UserRechargeCashInfo">
+		<result column="userId" property="userId" />
+		<result column="money" property="money" />
+		<result column="fee" property="fee"/>
+		<result column="actionType" property="actionType" />
+		<result column="addtime" property="addtime" />
+	</resultMap>
+	<select id="selectUserRechargeCash" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+			select * from (
+		select a.user_id as userid,a.money,a.fee,'充值' as
+		actionType,DATE_FORMAT(from_unixtime(a.addtime),'%Y-%m-%d') as
+		addtime from rd_account_recharge a
+		where
+		DATE_FORMAT(from_unixtime(a.addtime),'%Y%m')=date_format(date_sub(curdate(),interval
+		1 month),'%Y%m')
+		and a.status =1 and a.user_id=#{userId}
+		union all
+		select a.user_id as userid,a.credited,a.fee,'提现' as
+		actionType,DATE_FORMAT(from_unixtime(a.addtime),'%Y-%m-%d') as
+		rechargetime from rd_account_cash a
+		where
+		DATE_FORMAT(from_unixtime(a.addtime),'%Y%m')=date_format(date_sub(curdate(),interval
+		1 month),'%Y%m')
+		and a.status=1 and a.user_id=#{userId}
+		) a 
+		order by a.addtime
+	</select>
+</mapper>

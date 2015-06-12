@@ -1,0 +1,1409 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.user.dao.UserMapper">
+	<resultMap id="BaseBaseResultMap" type="cn.vfunding.vfunding.biz.user.model.User">
+		<id column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="phone" property="phone" jdbcType="VARCHAR" />
+	</resultMap>
+	<!-- 我的好友resultMap -->
+	<resultMap id="FriendResultMap" type="cn.vfunding.vfunding.biz.user.model.User">
+		<id column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="realname" property="realname" jdbcType="VARCHAR" />
+		<result column="addtime" property="addtime" jdbcType="VARCHAR" />
+		<association property="userType"
+			javaType="cn.vfunding.vfunding.biz.user.model.UserType">
+			<id column="type_id" property="typeId" jdbcType="INTEGER" />
+			<result column="name" property="name" jdbcType="VARCHAR" />
+		</association>
+	</resultMap>
+
+	<resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.user.model.User"
+		extends="BaseBaseResultMap">
+		<id column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="type_id" property="typeId" jdbcType="INTEGER" />
+		<result column="order" property="order" jdbcType="INTEGER" />
+		<result column="purview" property="purview" jdbcType="VARCHAR" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="paypassword" property="paypassword" jdbcType="VARCHAR" />
+		<result column="islock" property="islock" jdbcType="INTEGER" />
+		<result column="invite_userid" property="inviteUserid"
+			jdbcType="VARCHAR" />
+		<result column="invite_money" property="inviteMoney" jdbcType="VARCHAR" />
+		<result column="real_status" property="realStatus" jdbcType="VARCHAR" />
+		<result column="card_type" property="cardType" jdbcType="VARCHAR" />
+		<result column="card_id" property="cardId" jdbcType="VARCHAR" />
+		<result column="card_pic1" property="cardPic1" jdbcType="VARCHAR" />
+		<result column="card_pic2" property="cardPic2" jdbcType="VARCHAR" />
+		<result column="nation" property="nation" jdbcType="VARCHAR" />
+		<result column="realname" property="realname" jdbcType="VARCHAR" />
+		<result column="integral" property="integral" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="avatar_status" property="avatarStatus"
+			jdbcType="INTEGER" />
+		<result column="email_status" property="emailStatus" jdbcType="VARCHAR" />
+		<result column="phone_status" property="phoneStatus" jdbcType="VARCHAR" />
+		<result column="video_status" property="videoStatus" jdbcType="INTEGER" />
+		<result column="scene_status" property="sceneStatus" jdbcType="INTEGER" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+		<result column="sex" property="sex" jdbcType="VARCHAR" />
+		<result column="litpic" property="litpic" jdbcType="VARCHAR" />
+		<result column="tel" property="tel" jdbcType="VARCHAR" />
+		<result column="phone" property="phone" jdbcType="VARCHAR" />
+		<result column="qq" property="qq" jdbcType="VARCHAR" />
+		<result column="wangwang" property="wangwang" jdbcType="VARCHAR" />
+		<result column="question" property="question" jdbcType="VARCHAR" />
+		<result column="answer" property="answer" jdbcType="VARCHAR" />
+		<result column="birthday" property="birthday" jdbcType="VARCHAR" />
+		<result column="province" property="province" jdbcType="VARCHAR" />
+		<result column="city" property="city" jdbcType="VARCHAR" />
+		<result column="area" property="area" jdbcType="VARCHAR" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="logintime" property="logintime" jdbcType="INTEGER" />
+		<result column="addtime" property="addtime" jdbcType="VARCHAR" />
+		<result column="addip" property="addip" jdbcType="VARCHAR" />
+		<result column="uptime" property="uptime" jdbcType="VARCHAR" />
+		<result column="upip" property="upip" jdbcType="VARCHAR" />
+		<result column="lasttime" property="lasttime" jdbcType="VARCHAR" />
+		<result column="lastip" property="lastip" jdbcType="VARCHAR" />
+		<result column="is_phone" property="isPhone" jdbcType="INTEGER" />
+		<result column="memberLevel" property="memberlevel" jdbcType="INTEGER" />
+		<result column="serial_id" property="serialId" jdbcType="VARCHAR" />
+		<result column="serial_status" property="serialStatus"
+			jdbcType="VARCHAR" />
+		<result column="hongbao" property="hongbao" jdbcType="DECIMAL" />
+		<result column="connect_openid" property="connectOpenid"
+			jdbcType="VARCHAR" />
+		<result column="forum_key" property="forumKey" jdbcType="VARCHAR" />
+		<result column="forum_accredit" property="forumAccredit"
+			jdbcType="BIT" />
+		<result column="encryption" property="encryption" jdbcType="VARCHAR" />
+		<result column="user_status" property="userStatus" jdbcType="VARCHAR" />
+		<result column="user_icon" property="userIcon" jdbcType="VARCHAR" />
+		<result column="from_type" property="fromType" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs"
+		type="cn.vfunding.vfunding.biz.user.model.UserWithBLOBs" extends="BaseResultMap">
+		<result column="remind" property="remind" jdbcType="LONGVARCHAR" />
+		<result column="privacy" property="privacy" jdbcType="LONGVARCHAR" />
+	</resultMap>
+
+	<resultMap id="ResultUser2SinamemberMap"
+		type="cn.vfunding.vfunding.biz.user.model.User2Sinamember" extends="BaseResultMap">
+		<result column="use_money" property="use_money" jdbcType="DECIMAL" />
+	</resultMap>
+
+	<resultMap id="NumberInvitationVO"
+		type="cn.vfunding.vfunding.biz.user.model.NumberInvitationVO">
+		<result column="userId" property="userId" jdbcType="INTEGER" />
+		<result column="number" property="number" jdbcType="INTEGER" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<!-- 用户管理列表 lx -->
+	<resultMap type="cn.vfunding.vfunding.biz.common.vo.UserLxVO"
+		id="userLxVO">
+		<result column="userId" property="userId" />
+		<result column="userName" property="userName" />
+		<result column="realName" property="realName" />
+		<result column="sex" property="sex" />
+		<result column="email" property="email" />
+		<result column="qq" property="qq" />
+		<result column="phone" property="phone" />
+		<result column="address" property="address" />
+		<result column="cardId" property="cardId" />
+		<result column="addtime" property="addtime" />
+		<result column="status" property="status" />
+		<result column="name" property="name" />
+		<result column="VIPstatus" property="VIPstatus" />
+		<result column="phoneStatus" property="phoneStatus" />
+		<result column="videoStatus" property="videoStatus" />
+		<result column="avatarStatus" property="avatarStatus" />
+
+	</resultMap>
+	<!-- 可发送邮件的用户 -->
+	<resultMap type="cn.vfunding.vfunding.biz.user.model.User"
+		id="sendEmailResultMap">
+		<result column="userId" property="userId" />
+		<result column="username" property="username" />
+		<result column="email" property="email" />
+	</resultMap>
+
+	<!-- 查询可发送邮件的用户 -->
+	<select id="selectForEmail" resultMap="sendEmailResultMap">
+
+		select
+		user_id,username,email from rd_user where email_status='1' and email
+		is not null
+
+	</select>
+
+	<!--查询长时间没有投资/闲置用户 -->
+	<select id="selectNoTenderUser" resultMap="sendEmailResultMap"
+		parameterType="java.lang.String">
+		select c.user_id,c.email,c.username from (
+		select
+		b.user_id,from_unixtime(max(a.repay_time)) as repayTime from
+		rd_borrow_collection a
+		left join rd_borrow_tender b on a.tender_id=b.id
+		where b.user_id is not null
+		group by b.user_id
+		) a
+		left join rd_account b
+		on a.user_id=b.user_id
+		left join rd_user c on b.user_id=c.user_id
+		where
+		#{day,jdbcType=VARCHAR} > a.repayTime and c.email is not null
+
+	</select>
+
+	<!--查询只注册验证邮箱的新用户 -->
+	<select id="selectNoLoginUser" resultMap="sendEmailResultMap"
+		parameterType="java.lang.Integer">
+		select a.username,a.user_id,a.email from rd_user a
+		left join rd_borrow_tender b on a.user_id=b.user_id
+		where a.email is not null and (b.id is null or b.status>10) and
+		TIMESTAMPDIFF(day,from_unixtime(a.lasttime),now())=#{day,jdbcType=INTEGER}
+
+	</select>
+
+
+	<!--当天生日的用户 -->
+	<select id="selectForEmailByBirthday" resultMap="sendEmailResultMap"
+		parameterType="java.lang.String">
+		select
+		user_id,username,email from rd_user where
+		email_status='1' and email
+		is not null and
+		birthday=#{day,jdbcType=VARCHAR}
+
+	</select>
+
+
+	<sql id="Base_Column_List">
+		user_id, type_id, `order`, purview, username, password,
+		paypassword, islock,
+		invite_userid,
+		invite_money, real_status,
+		card_type, card_id, card_pic1, card_pic2, nation,
+		realname,
+		integral,
+		`status`, avatar_status, email_status, phone_status, video_status,
+		scene_status,
+		email, sex, litpic, tel, phone, qq, wangwang, question,
+		answer, birthday,
+		province,
+		city, area, address, logintime, addtime,
+		addip, uptime, upip, lasttime,
+		lastip, is_phone,
+		memberLevel, serial_id,
+		serial_status, hongbao, connect_openid, forum_key,
+		forum_accredit,
+		encryption, user_status,user_icon,from_type
+	</sql>
+	<sql id="Blob_Column_List">
+		remind, privacy
+	</sql>
+
+	<!-- 需要注册问候短信对象 -->
+	<select id="selectByRegisterCompliment" resultMap="BaseBaseResultMap">
+		select
+		user_id,username,phone from rd_user where
+		DATE_FORMAT(FROM_UNIXTIME(addtime),'%Y-%m-%d')
+		=DATE_FORMAT(DATE_SUB(NOW(),INTERVAL 1 DAY),'%Y-%m-%d')
+	</select>
+	<!-- 我的好友 -->
+	<select id="selectFriendByUserIdListPage" resultMap="FriendResultMap"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select user_id,username,realname,a.addtime,a.type_id ,b.`name` from
+		rd_user as a
+		join
+		rd_user_type as b on a.type_id=b.type_id
+		where
+		invite_userid=#{entity.inviteUserid,jdbcType=VARCHAR}
+		<if
+			test="entity != null and entity.username != null and entity.username!= '' ">
+			and username like CONCAT(CONCAT('%',
+			#{entity.username,jdbcType=VARCHAR}), '%')
+		</if>
+		order by a.addtime desc
+	</select>
+
+
+	<!-- 查询用户管理列表 lx -->
+	<select id="selectFriendByUserListPage" resultMap="userLxVO"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select
+		u.user_id as userId,
+		u.username as userName,
+		u.realname as
+		realName,
+		u.sex as sex,
+		u.email as email,
+		u.qq as qq,
+		u.phone as phone,
+		u.address as address,
+		u.card_id as cardId,
+		u.addtime as addtime,
+		u.status as status,
+		t.name as name,
+		c.vip_status as VIPstatus,
+		u.avatar_status avatarStatus,
+		u.phone_status as phoneStatus,
+		u.video_status as videoStatus
+		from rd_user u
+		left join rd_user_type t on
+		u.type_id=t.type_id
+		left join rd_user_cache c on
+		u.user_id=c.user_id
+		where 1=1
+		<if test="entity.userName != null and entity.userName != ''">
+			and u.username like
+			concat('%',#{entity.userName,jdbcType=VARCHAR},'%')
+			<!-- concat('%',#{entity.username,jdbcType=VARCHAR},'%') -->
+		</if>
+		<if test="entity.email != null and entity.email != ''">
+			and u.email like
+			concat('%',#{entity.email,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="entity.realName != null and entity.realName != ''">
+			and u.realname like
+			concat('%',#{entity.realName,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="entity.phone != null and entity.phone != ''">
+			and u.phone like
+			concat('%',#{entity.phone,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="entity.typeId != null and entity.typeId != ''">
+			and u.type_id = #{entity.typeId,jdbcType=VARCHAR}
+		</if>
+		order by u.addtime desc
+	</select>
+
+
+
+
+	<!-- 注册时查询介绍人信息 -->
+	<select id="selectIntroducer" resultMap="BaseBaseResultMap"
+		parameterType="java.lang.String">
+		select user_id,username,phone
+		from rd_user
+		where
+		username=#{value,jdbcType=VARCHAR} or email=#{value,jdbcType=VARCHAR}
+		or phone=#{value,jdbcType=VARCHAR}
+	</select>
+	<select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from rd_user
+		where user_id = #{userId,jdbcType=INTEGER}
+	</select>
+	<select id="selectByUserName" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from rd_user
+		where username = #{userName}
+	</select>
+	<!-- 根据用户身份证号码查询 -->
+	<select id="selectByCardId" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from rd_user
+		where card_id = #{cardId,jdbcType=VARCHAR}
+	</select>
+	<!-- 根据用户名查询用户ID，author:liuyijun -->
+	<select id="selectUserIdByUserName" resultType="java.lang.Integer"
+		parameterType="java.lang.String">
+		select user_id from rd_user
+		where username =
+		#{userName,jdbcType=VARCHAR}
+	</select>
+
+	<!-- 注册时检测用户名、邮箱、和手机号的唯一性 -->
+	<select id="checkRegister" resultType="java.lang.Integer"
+		parameterType="java.lang.String">
+		select count(user_id) from rd_user
+		where
+		username=#{value,jdbcType=VARCHAR} or email=#{value,jdbcType=VARCHAR}
+		or phone=#{value,jdbcType=VARCHAR}
+	</select>
+	<!-- 根据可登陆值(用户名、邮箱、手机号码)查询用户对象 ，author:liuyijun -->
+	<select id="selectByLogin" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from rd_user
+		where username=#{value,jdbcType=VARCHAR} or
+		email=#{value,jdbcType=VARCHAR}
+		or phone=#{value,jdbcType=VARCHAR}
+	</select>
+
+	<!-- 根据用户ID查询红包 -->
+	<select id="selectHongbaoByUserId" resultType="java.math.BigDecimal"
+		parameterType="java.lang.Integer">
+		select hongbao
+		from rd_user
+		where user_id =
+		#{userId,jdbcType=INTEGER}
+	</select>
+
+
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		rd_user
+		where user_id = #{userId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" useGeneratedKeys="true" keyProperty="userId"
+		parameterType="cn.vfunding.vfunding.biz.user.model.UserWithBLOBs">
+		insert into rd_user (user_id, type_id, `order`,
+		purview,
+		username, password,
+		paypassword, islock, invite_userid,
+		invite_money,
+		real_status, card_type,
+		card_id, card_pic1, card_pic2,
+		nation, realname,
+		integral,
+		status, avatar_status, email_status,
+		phone_status,
+		video_status, scene_status,
+		email, sex, litpic,
+		tel, phone, qq,
+		wangwang,
+		question, answer, birthday,
+		province, city, area,
+		address,
+		logintime, addtime,
+		addip, uptime, upip,
+		lasttime, lastip, is_phone,
+		memberLevel, serial_id, serial_status,
+		hongbao, connect_openid,
+		forum_key,
+		forum_accredit, encryption, user_status,
+		remind,
+		privacy,user_icon,from_type)
+		values (#{userId,jdbcType=INTEGER},
+		#{typeId,jdbcType=INTEGER},
+		#{order,jdbcType=INTEGER},
+		#{purview,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR},
+		#{password,jdbcType=VARCHAR},
+		#{paypassword,jdbcType=VARCHAR},
+		#{islock,jdbcType=INTEGER},
+		#{inviteUserid,jdbcType=VARCHAR},
+		#{inviteMoney,jdbcType=VARCHAR}, #{realStatus,jdbcType=VARCHAR},
+		#{cardType,jdbcType=VARCHAR},
+		#{cardId,jdbcType=VARCHAR},
+		#{cardPic1,jdbcType=VARCHAR},
+		#{cardPic2,jdbcType=VARCHAR},
+		#{nation,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR},
+		#{integral,jdbcType=VARCHAR},
+		#{status,jdbcType=INTEGER},
+		#{avatarStatus,jdbcType=INTEGER},
+		#{emailStatus,jdbcType=VARCHAR},
+		#{phoneStatus,jdbcType=VARCHAR}, #{videoStatus,jdbcType=INTEGER},
+		#{sceneStatus,jdbcType=INTEGER},
+		#{email,jdbcType=VARCHAR},
+		#{sex,jdbcType=VARCHAR},
+		#{litpic,jdbcType=VARCHAR},
+		#{tel,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
+		#{qq,jdbcType=VARCHAR},
+		#{wangwang,jdbcType=VARCHAR},
+		#{question,jdbcType=VARCHAR}, #{answer,jdbcType=VARCHAR},
+		#{birthday,jdbcType=VARCHAR},
+		#{province,jdbcType=VARCHAR},
+		#{city,jdbcType=VARCHAR},
+		#{area,jdbcType=VARCHAR},
+		#{address,jdbcType=VARCHAR}, #{logintime,jdbcType=INTEGER},
+		#{addtime,jdbcType=VARCHAR},
+		#{addip,jdbcType=VARCHAR},
+		#{uptime,jdbcType=VARCHAR},
+		#{upip,jdbcType=VARCHAR},
+		#{lasttime,jdbcType=VARCHAR}, #{lastip,jdbcType=VARCHAR},
+		#{isPhone,jdbcType=INTEGER},
+		#{memberlevel,jdbcType=INTEGER},
+		#{serialId,jdbcType=VARCHAR},
+		#{serialStatus,jdbcType=VARCHAR},
+		#{hongbao,jdbcType=DECIMAL}, #{connectOpenid,jdbcType=VARCHAR},
+		#{forumKey,jdbcType=VARCHAR},
+		#{forumAccredit,jdbcType=BIT},
+		#{encryption,jdbcType=VARCHAR},
+		#{userStatus,jdbcType=VARCHAR},
+		#{remind,jdbcType=LONGVARCHAR}, #{privacy,jdbcType=LONGVARCHAR},
+		#{userIcon,jdbcType=VARCHAR},#{fromType,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" useGeneratedKeys="true"
+		keyProperty="userId" parameterType="cn.vfunding.vfunding.biz.user.model.UserWithBLOBs">
+		insert into rd_user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="typeId != null">
+				type_id,
+			</if>
+			<if test="order != null">
+				`order`,
+			</if>
+			<if test="purview != null">
+				purview,
+			</if>
+			<if test="username != null">
+				username,
+			</if>
+			<if test="password != null">
+				password,
+			</if>
+			<if test="paypassword != null">
+				paypassword,
+			</if>
+			<if test="islock != null">
+				islock,
+			</if>
+			<if test="inviteUserid != null">
+				invite_userid,
+			</if>
+			<if test="inviteMoney != null">
+				invite_money,
+			</if>
+			<if test="realStatus != null">
+				real_status,
+			</if>
+			<if test="cardType != null">
+				card_type,
+			</if>
+			<if test="cardId != null">
+				card_id,
+			</if>
+			<if test="cardPic1 != null">
+				card_pic1,
+			</if>
+			<if test="cardPic2 != null">
+				card_pic2,
+			</if>
+			<if test="nation != null">
+				nation,
+			</if>
+			<if test="realname != null">
+				realname,
+			</if>
+			<if test="integral != null">
+				integral,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="avatarStatus != null">
+				avatar_status,
+			</if>
+			<if test="emailStatus != null">
+				email_status,
+			</if>
+			<if test="phoneStatus != null">
+				phone_status,
+			</if>
+			<if test="videoStatus != null">
+				video_status,
+			</if>
+			<if test="sceneStatus != null">
+				scene_status,
+			</if>
+			<if test="email != null">
+				email,
+			</if>
+			<if test="sex != null">
+				sex,
+			</if>
+			<if test="litpic != null">
+				litpic,
+			</if>
+			<if test="tel != null">
+				tel,
+			</if>
+			<if test="phone != null">
+				phone,
+			</if>
+			<if test="qq != null">
+				qq,
+			</if>
+			<if test="wangwang != null">
+				wangwang,
+			</if>
+			<if test="question != null">
+				question,
+			</if>
+			<if test="answer != null">
+				answer,
+			</if>
+			<if test="birthday != null">
+				birthday,
+			</if>
+			<if test="province != null">
+				province,
+			</if>
+			<if test="city != null">
+				city,
+			</if>
+			<if test="area != null">
+				area,
+			</if>
+			<if test="address != null">
+				address,
+			</if>
+			<if test="logintime != null">
+				logintime,
+			</if>
+			<if test="addtime != null">
+				addtime,
+			</if>
+			<if test="addip != null">
+				addip,
+			</if>
+			<if test="uptime != null">
+				uptime,
+			</if>
+			<if test="upip != null">
+				upip,
+			</if>
+			<if test="lasttime != null">
+				lasttime,
+			</if>
+			<if test="lastip != null">
+				lastip,
+			</if>
+			<if test="isPhone != null">
+				is_phone,
+			</if>
+			<if test="memberlevel != null">
+				memberLevel,
+			</if>
+			<if test="serialId != null">
+				serial_id,
+			</if>
+			<if test="serialStatus != null">
+				serial_status,
+			</if>
+			<if test="hongbao != null">
+				hongbao,
+			</if>
+			<if test="connectOpenid != null">
+				connect_openid,
+			</if>
+			<if test="forumKey != null">
+				forum_key,
+			</if>
+			<if test="forumAccredit != null">
+				forum_accredit,
+			</if>
+			<if test="encryption != null">
+				encryption,
+			</if>
+			<if test="userStatus != null">
+				user_status,
+			</if>
+			<if test="remind != null">
+				remind,
+			</if>
+			<if test="privacy != null">
+				privacy,
+			</if>
+			<if test="userIcon != null">
+				user_icon,
+			</if>
+			<if test="fromType != null">
+				from_type,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="typeId != null">
+				#{typeId,jdbcType=INTEGER},
+			</if>
+			<if test="order != null">
+				#{order,jdbcType=INTEGER},
+			</if>
+			<if test="purview != null">
+				#{purview,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				#{username,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="paypassword != null">
+				#{paypassword,jdbcType=VARCHAR},
+			</if>
+			<if test="islock != null">
+				#{islock,jdbcType=INTEGER},
+			</if>
+			<if test="inviteUserid != null">
+				#{inviteUserid,jdbcType=VARCHAR},
+			</if>
+			<if test="inviteMoney != null">
+				#{inviteMoney,jdbcType=VARCHAR},
+			</if>
+			<if test="realStatus != null">
+				#{realStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="cardType != null">
+				#{cardType,jdbcType=VARCHAR},
+			</if>
+			<if test="cardId != null">
+				#{cardId,jdbcType=VARCHAR},
+			</if>
+			<if test="cardPic1 != null">
+				#{cardPic1,jdbcType=VARCHAR},
+			</if>
+			<if test="cardPic2 != null">
+				#{cardPic2,jdbcType=VARCHAR},
+			</if>
+			<if test="nation != null">
+				#{nation,jdbcType=VARCHAR},
+			</if>
+			<if test="realname != null">
+				#{realname,jdbcType=VARCHAR},
+			</if>
+			<if test="integral != null">
+				#{integral,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="avatarStatus != null">
+				#{avatarStatus,jdbcType=INTEGER},
+			</if>
+			<if test="emailStatus != null">
+				#{emailStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="phoneStatus != null">
+				#{phoneStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="videoStatus != null">
+				#{videoStatus,jdbcType=INTEGER},
+			</if>
+			<if test="sceneStatus != null">
+				#{sceneStatus,jdbcType=INTEGER},
+			</if>
+			<if test="email != null">
+				#{email,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				#{sex,jdbcType=VARCHAR},
+			</if>
+			<if test="litpic != null">
+				#{litpic,jdbcType=VARCHAR},
+			</if>
+			<if test="tel != null">
+				#{tel,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				#{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="qq != null">
+				#{qq,jdbcType=VARCHAR},
+			</if>
+			<if test="wangwang != null">
+				#{wangwang,jdbcType=VARCHAR},
+			</if>
+			<if test="question != null">
+				#{question,jdbcType=VARCHAR},
+			</if>
+			<if test="answer != null">
+				#{answer,jdbcType=VARCHAR},
+			</if>
+			<if test="birthday != null">
+				#{birthday,jdbcType=VARCHAR},
+			</if>
+			<if test="province != null">
+				#{province,jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				#{city,jdbcType=VARCHAR},
+			</if>
+			<if test="area != null">
+				#{area,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="logintime != null">
+				#{logintime,jdbcType=INTEGER},
+			</if>
+			<if test="addtime != null">
+				#{addtime,jdbcType=VARCHAR},
+			</if>
+			<if test="addip != null">
+				#{addip,jdbcType=VARCHAR},
+			</if>
+			<if test="uptime != null">
+				#{uptime,jdbcType=VARCHAR},
+			</if>
+			<if test="upip != null">
+				#{upip,jdbcType=VARCHAR},
+			</if>
+			<if test="lasttime != null">
+				#{lasttime,jdbcType=VARCHAR},
+			</if>
+			<if test="lastip != null">
+				#{lastip,jdbcType=VARCHAR},
+			</if>
+			<if test="isPhone != null">
+				#{isPhone,jdbcType=INTEGER},
+			</if>
+			<if test="memberlevel != null">
+				#{memberlevel,jdbcType=INTEGER},
+			</if>
+			<if test="serialId != null">
+				#{serialId,jdbcType=VARCHAR},
+			</if>
+			<if test="serialStatus != null">
+				#{serialStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="hongbao != null">
+				#{hongbao,jdbcType=DECIMAL},
+			</if>
+			<if test="connectOpenid != null">
+				#{connectOpenid,jdbcType=VARCHAR},
+			</if>
+			<if test="forumKey != null">
+				#{forumKey,jdbcType=VARCHAR},
+			</if>
+			<if test="forumAccredit != null">
+				#{forumAccredit,jdbcType=BIT},
+			</if>
+			<if test="encryption != null">
+				#{encryption,jdbcType=VARCHAR},
+			</if>
+			<if test="userStatus != null">
+				#{userStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="remind != null">
+				#{remind,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="privacy != null">
+				#{privacy,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="userIcon != null">
+				#{userIcon,jdbcType=VARCHAR},
+			</if>
+			<if test="fromType != null">
+				#{fromType,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.user.model.UserWithBLOBs">
+		update rd_user
+		<set>
+			<if test="typeId != null">
+				type_id = #{typeId,jdbcType=INTEGER},
+			</if>
+			<if test="order != null">
+				`order` = #{order,jdbcType=INTEGER},
+			</if>
+			<if test="purview != null">
+				purview = #{purview,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				username = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				password = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="paypassword != null">
+				paypassword = #{paypassword,jdbcType=VARCHAR},
+			</if>
+			<if test="islock != null">
+				islock = #{islock,jdbcType=INTEGER},
+			</if>
+			<if test="inviteUserid != null">
+				invite_userid = #{inviteUserid,jdbcType=VARCHAR},
+			</if>
+			<if test="inviteMoney != null">
+				invite_money = #{inviteMoney,jdbcType=VARCHAR},
+			</if>
+			<if test="realStatus != null">
+				real_status = #{realStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="cardType != null">
+				card_type = #{cardType,jdbcType=VARCHAR},
+			</if>
+			<if test="cardId != null">
+				card_id = #{cardId,jdbcType=VARCHAR},
+			</if>
+			<if test="cardPic1 != null">
+				card_pic1 = #{cardPic1,jdbcType=VARCHAR},
+			</if>
+			<if test="cardPic2 != null">
+				card_pic2 = #{cardPic2,jdbcType=VARCHAR},
+			</if>
+			<if test="nation != null">
+				nation = #{nation,jdbcType=VARCHAR},
+			</if>
+			<if test="realname != null">
+				realname = #{realname,jdbcType=VARCHAR},
+			</if>
+			<if test="integral != null">
+				integral = #{integral,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="avatarStatus != null">
+				avatar_status = #{avatarStatus,jdbcType=INTEGER},
+			</if>
+			<if test="emailStatus != null">
+				email_status = #{emailStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="phoneStatus != null">
+				phone_status = #{phoneStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="videoStatus != null">
+				video_status = #{videoStatus,jdbcType=INTEGER},
+			</if>
+			<if test="sceneStatus != null">
+				scene_status = #{sceneStatus,jdbcType=INTEGER},
+			</if>
+			<if test="email != null">
+				email = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				sex = #{sex,jdbcType=VARCHAR},
+			</if>
+			<if test="litpic != null">
+				litpic = #{litpic,jdbcType=VARCHAR},
+			</if>
+			<if test="tel != null">
+				tel = #{tel,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				phone = #{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="qq != null">
+				qq = #{qq,jdbcType=VARCHAR},
+			</if>
+			<if test="wangwang != null">
+				wangwang = #{wangwang,jdbcType=VARCHAR},
+			</if>
+			<if test="question != null">
+				question = #{question,jdbcType=VARCHAR},
+			</if>
+			<if test="answer != null">
+				answer = #{answer,jdbcType=VARCHAR},
+			</if>
+			<if test="birthday != null">
+				birthday = #{birthday,jdbcType=VARCHAR},
+			</if>
+			<if test="province != null">
+				province = #{province,jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				city = #{city,jdbcType=VARCHAR},
+			</if>
+			<if test="area != null">
+				area = #{area,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				address = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="logintime != null">
+				logintime = #{logintime,jdbcType=INTEGER},
+			</if>
+			<if test="addtime != null">
+				addtime = #{addtime,jdbcType=VARCHAR},
+			</if>
+			<if test="addip != null">
+				addip = #{addip,jdbcType=VARCHAR},
+			</if>
+			<if test="uptime != null">
+				uptime = #{uptime,jdbcType=VARCHAR},
+			</if>
+			<if test="upip != null">
+				upip = #{upip,jdbcType=VARCHAR},
+			</if>
+			<if test="lasttime != null">
+				lasttime = #{lasttime,jdbcType=VARCHAR},
+			</if>
+			<if test="lastip != null">
+				lastip = #{lastip,jdbcType=VARCHAR},
+			</if>
+			<if test="isPhone != null">
+				is_phone = #{isPhone,jdbcType=INTEGER},
+			</if>
+			<if test="memberlevel != null">
+				memberLevel = #{memberlevel,jdbcType=INTEGER},
+			</if>
+			<if test="serialId != null">
+				serial_id = #{serialId,jdbcType=VARCHAR},
+			</if>
+			<if test="serialStatus != null">
+				serial_status = #{serialStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="hongbao != null">
+				hongbao = #{hongbao,jdbcType=DECIMAL},
+			</if>
+			<if test="connectOpenid != null">
+				connect_openid = #{connectOpenid,jdbcType=VARCHAR},
+			</if>
+			<if test="forumKey != null">
+				forum_key = #{forumKey,jdbcType=VARCHAR},
+			</if>
+			<if test="forumAccredit != null">
+				forum_accredit = #{forumAccredit,jdbcType=BIT},
+			</if>
+			<if test="encryption != null">
+				encryption = #{encryption,jdbcType=VARCHAR},
+			</if>
+			<if test="userStatus != null">
+				user_status = #{userStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="remind != null">
+				remind = #{remind,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="privacy != null">
+				privacy = #{privacy,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="userIcon != null">
+				user_icon= #{userIcon,jdbcType=VARCHAR},
+			</if>
+			<if test="fromType != null">
+				from_type= #{fromType,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where user_id = #{userId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.vfunding.vfunding.biz.user.model.UserWithBLOBs">
+		update
+		rd_user
+		set type_id = #{typeId,jdbcType=INTEGER},
+		`order` =
+		#{order,jdbcType=INTEGER},
+		purview = #{purview,jdbcType=VARCHAR},
+		username = #{username,jdbcType=VARCHAR},
+		password =
+		#{password,jdbcType=VARCHAR},
+		paypassword =
+		#{paypassword,jdbcType=VARCHAR},
+		islock = #{islock,jdbcType=INTEGER},
+		invite_userid = #{inviteUserid,jdbcType=VARCHAR},
+		invite_money =
+		#{inviteMoney,jdbcType=VARCHAR},
+		real_status =
+		#{realStatus,jdbcType=VARCHAR},
+		card_type =
+		#{cardType,jdbcType=VARCHAR},
+		card_id = #{cardId,jdbcType=VARCHAR},
+		card_pic1 = #{cardPic1,jdbcType=VARCHAR},
+		card_pic2 =
+		#{cardPic2,jdbcType=VARCHAR},
+		nation = #{nation,jdbcType=VARCHAR},
+		realname = #{realname,jdbcType=VARCHAR},
+		integral =
+		#{integral,jdbcType=VARCHAR},
+		status = #{status,jdbcType=INTEGER},
+		avatar_status = #{avatarStatus,jdbcType=INTEGER},
+		email_status =
+		#{emailStatus,jdbcType=VARCHAR},
+		phone_status =
+		#{phoneStatus,jdbcType=VARCHAR},
+		video_status =
+		#{videoStatus,jdbcType=INTEGER},
+		scene_status =
+		#{sceneStatus,jdbcType=INTEGER},
+		email = #{email,jdbcType=VARCHAR},
+		sex
+		= #{sex,jdbcType=VARCHAR},
+		litpic = #{litpic,jdbcType=VARCHAR},
+		tel =
+		#{tel,jdbcType=VARCHAR},
+		phone = #{phone,jdbcType=VARCHAR},
+		qq =
+		#{qq,jdbcType=VARCHAR},
+		wangwang = #{wangwang,jdbcType=VARCHAR},
+		question = #{question,jdbcType=VARCHAR},
+		answer =
+		#{answer,jdbcType=VARCHAR},
+		birthday = #{birthday,jdbcType=VARCHAR},
+		province = #{province,jdbcType=VARCHAR},
+		city =
+		#{city,jdbcType=VARCHAR},
+		area = #{area,jdbcType=VARCHAR},
+		address =
+		#{address,jdbcType=VARCHAR},
+		logintime = #{logintime,jdbcType=INTEGER},
+		addtime = #{addtime,jdbcType=VARCHAR},
+		addip =
+		#{addip,jdbcType=VARCHAR},
+		uptime = #{uptime,jdbcType=VARCHAR},
+		upip =
+		#{upip,jdbcType=VARCHAR},
+		lasttime = #{lasttime,jdbcType=VARCHAR},
+		lastip = #{lastip,jdbcType=VARCHAR},
+		is_phone =
+		#{isPhone,jdbcType=INTEGER},
+		memberLevel =
+		#{memberlevel,jdbcType=INTEGER},
+		serial_id =
+		#{serialId,jdbcType=VARCHAR},
+		serial_status =
+		#{serialStatus,jdbcType=VARCHAR},
+		hongbao =
+		#{hongbao,jdbcType=DECIMAL},
+		connect_openid =
+		#{connectOpenid,jdbcType=VARCHAR},
+		forum_key =
+		#{forumKey,jdbcType=VARCHAR},
+		forum_accredit =
+		#{forumAccredit,jdbcType=BIT},
+		encryption =
+		#{encryption,jdbcType=VARCHAR},
+		user_status =
+		#{userStatus,jdbcType=VARCHAR},
+		remind =
+		#{remind,jdbcType=LONGVARCHAR},
+		privacy =
+		#{privacy,jdbcType=LONGVARCHAR},
+		user_icon=
+		#{userIcon,jdbcType=VARCHAR},
+		from_type=
+		#{fromType,jdbcType=VARCHAR}
+		where user_id = #{userId,jdbcType=INTEGER}
+	</update>
+
+
+	<update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.user.model.User">
+		update rd_user
+		set
+		type_id = #{typeId,jdbcType=INTEGER},
+		`order` =
+		#{order,jdbcType=INTEGER},
+		purview = #{purview,jdbcType=VARCHAR},
+		username = #{username,jdbcType=VARCHAR},
+		password =
+		#{password,jdbcType=VARCHAR},
+		paypassword =
+		#{paypassword,jdbcType=VARCHAR},
+		islock = #{islock,jdbcType=INTEGER},
+		invite_userid = #{inviteUserid,jdbcType=VARCHAR},
+		invite_money =
+		#{inviteMoney,jdbcType=VARCHAR},
+		real_status =
+		#{realStatus,jdbcType=VARCHAR},
+		card_type =
+		#{cardType,jdbcType=VARCHAR},
+		card_id = #{cardId,jdbcType=VARCHAR},
+		card_pic1 = #{cardPic1,jdbcType=VARCHAR},
+		card_pic2 =
+		#{cardPic2,jdbcType=VARCHAR},
+		nation = #{nation,jdbcType=VARCHAR},
+		realname = #{realname,jdbcType=VARCHAR},
+		integral =
+		#{integral,jdbcType=VARCHAR},
+		status = #{status,jdbcType=INTEGER},
+		avatar_status = #{avatarStatus,jdbcType=INTEGER},
+		email_status =
+		#{emailStatus,jdbcType=VARCHAR},
+		phone_status =
+		#{phoneStatus,jdbcType=VARCHAR},
+		video_status =
+		#{videoStatus,jdbcType=INTEGER},
+		scene_status =
+		#{sceneStatus,jdbcType=INTEGER},
+		email = #{email,jdbcType=VARCHAR},
+		sex
+		= #{sex,jdbcType=VARCHAR},
+		litpic = #{litpic,jdbcType=VARCHAR},
+		tel =
+		#{tel,jdbcType=VARCHAR},
+		phone = #{phone,jdbcType=VARCHAR},
+		qq =
+		#{qq,jdbcType=VARCHAR},
+		wangwang = #{wangwang,jdbcType=VARCHAR},
+		question = #{question,jdbcType=VARCHAR},
+		answer =
+		#{answer,jdbcType=VARCHAR},
+		birthday = #{birthday,jdbcType=VARCHAR},
+		province = #{province,jdbcType=VARCHAR},
+		city =
+		#{city,jdbcType=VARCHAR},
+		area = #{area,jdbcType=VARCHAR},
+		address =
+		#{address,jdbcType=VARCHAR},
+		logintime = #{logintime,jdbcType=INTEGER},
+		addtime = #{addtime,jdbcType=VARCHAR},
+		addip =
+		#{addip,jdbcType=VARCHAR},
+		uptime = #{uptime,jdbcType=VARCHAR},
+		upip =
+		#{upip,jdbcType=VARCHAR},
+		lasttime = #{lasttime,jdbcType=VARCHAR},
+		lastip = #{lastip,jdbcType=VARCHAR},
+		is_phone =
+		#{isPhone,jdbcType=INTEGER},
+		memberLevel =
+		#{memberlevel,jdbcType=INTEGER},
+		serial_id =
+		#{serialId,jdbcType=VARCHAR},
+		serial_status =
+		#{serialStatus,jdbcType=VARCHAR},
+		hongbao =
+		#{hongbao,jdbcType=DECIMAL},
+		connect_openid =
+		#{connectOpenid,jdbcType=VARCHAR},
+		forum_key =
+		#{forumKey,jdbcType=VARCHAR},
+		forum_accredit =
+		#{forumAccredit,jdbcType=BIT},
+		encryption =
+		#{encryption,jdbcType=VARCHAR},
+		user_status =
+		#{userStatus,jdbcType=VARCHAR},
+		user_icon=
+		#{userIcon,jdbcType=VARCHAR},
+		from_type=
+		#{fromType,jdbcType=VARCHAR}
+		where user_id = #{userId,jdbcType=INTEGER}
+	</update>
+
+
+
+
+	<!-- 跟新用户类型 -->
+	<update id="updateUserType" parameterType="cn.vfunding.vfunding.biz.user.model.User">
+		update rd_user
+		set
+		type_id = #{typeId,jdbcType=INTEGER}
+		where user_id =
+		#{userId,jdbcType=INTEGER}
+	</update>
+	<!--上传更新用户身份证图片 (实名认证) -->
+	<update id="updateUserCardImage" parameterType="cn.vfunding.vfunding.biz.user.model.User">
+		update rd_user
+		set card_pic1 = #{cardPic1,jdbcType=VARCHAR},
+		card_pic2 =
+		#{cardPic2,jdbcType=VARCHAR},
+		real_status =
+		#{realStatus,jdbcType=VARCHAR},
+		card_type =
+		#{cardType,jdbcType=VARCHAR},
+		card_id = #{cardId,jdbcType=VARCHAR},
+		nation = #{nation,jdbcType=VARCHAR},
+		realname =
+		#{realname,jdbcType=VARCHAR},
+		sex = #{sex,jdbcType=VARCHAR},
+		province =
+		#{province,jdbcType=VARCHAR},
+		city = #{city,jdbcType=VARCHAR},
+		birthday
+		= #{birthday,jdbcType=VARCHAR},
+		area = #{area,jdbcType=VARCHAR}
+		where
+		user_id = #{userId,jdbcType=INTEGER}
+	</update>
+
+	<!--更新登录信息 -->
+	<update id="updateLoginInfo" parameterType="cn.vfunding.vfunding.biz.user.model.User">
+		update rd_user
+		set
+		lasttime = #{lasttime,jdbcType=VARCHAR},
+		lastip =
+		#{lastip,jdbcType=VARCHAR}
+		where user_id = #{userId,jdbcType=INTEGER}
+	</update>
+
+	<!--更新密码保护 -->
+	<update id="updateQuestion" parameterType="cn.vfunding.vfunding.biz.user.model.User">
+		update rd_user
+		set
+		question = #{question,jdbcType=VARCHAR},
+		answer =
+		#{answer,jdbcType=VARCHAR}
+		where user_id = #{userId,jdbcType=INTEGER}
+	</update>
+
+	<!--Java版实名认证 -->
+	<update id="updateRealName" parameterType="cn.vfunding.vfunding.biz.user.model.User">
+		update rd_user
+		set
+		card_id = #{cardId,jdbcType=VARCHAR},
+		realname
+		=#{realname,jdbcType=VARCHAR},
+		real_status
+		=#{realStatus,jdbcType=VARCHAR},
+		birthday
+		=#{birthday,jdbcType=VARCHAR}
+		<if test="hongbao != null">
+			,hongbao =
+			#{hongbao,jdbcType=DECIMAL}
+		</if>
+		where user_id =#{userId,jdbcType=INTEGER}
+	</update>
+
+	<!--视频认证申请 -->
+	<update id="updateVideo" parameterType="cn.vfunding.vfunding.biz.user.model.User">
+		update rd_user
+		set
+		video_status=1
+		where user_id = #{userId,jdbcType=INTEGER}
+	</update>
+
+	<!--现场认证申请 -->
+	<update id="updateScene" parameterType="cn.vfunding.vfunding.biz.user.model.User">
+		update rd_user
+		set
+		scene_status=1
+		where user_id = #{userId,jdbcType=INTEGER}
+	</update>
+
+	<!--修改登录密码 -->
+	<update id="updateLoginPassword" parameterType="cn.vfunding.vfunding.biz.user.model.User">
+		update rd_user
+		set password=#{password,jdbcType=VARCHAR}
+		where user_id =
+		#{userId,jdbcType=INTEGER}
+	</update>
+
+	<!--修改支付密码 -->
+	<update id="updatePayPassword" parameterType="cn.vfunding.vfunding.biz.user.model.User">
+		update rd_user
+		set
+		paypassword=#{paypassword,jdbcType=VARCHAR}
+		where user_id =
+		#{userId,jdbcType=INTEGER}
+	</update>
+
+	<!--修改手机 -->
+	<update id="updatePhone" parameterType="cn.vfunding.vfunding.biz.user.model.User">
+		update rd_user
+		set
+		phone=#{phone,jdbcType=VARCHAR}
+		where user_id =
+		#{userId,jdbcType=INTEGER}
+	</update>
+
+	<!--修改邮箱 -->
+	<update id="updateEmail" parameterType="cn.vfunding.vfunding.biz.user.model.User">
+		update rd_user
+		set
+		email=#{email,jdbcType=VARCHAR},
+		email_status='0'
+		where user_id =
+		#{userId,jdbcType=INTEGER}
+	</update>
+
+	<!--添加邮箱 -->
+	<update id="addEmail" parameterType="cn.vfunding.vfunding.biz.user.model.User">
+		update rd_user
+		set
+		email=#{email,jdbcType=VARCHAR},
+		email_status='0'
+		where user_id =
+		#{userId,jdbcType=INTEGER}
+	</update>
+
+	<!--认证邮箱 -->
+	<update id="checkEmail" parameterType="cn.vfunding.vfunding.biz.user.model.User">
+		update rd_user
+		set
+		email_status=1
+		<if test="hongbao != null">
+			,hongbao =
+			#{hongbao,jdbcType=DECIMAL}
+		</if>
+		where user_id =
+		#{userId,jdbcType=INTEGER}
+	</update>
+	<!-- 修改基本信息 -->
+	<update id="saveInfo" parameterType="cn.vfunding.vfunding.biz.user.model.User">
+		update rd_user
+		set
+		sex=#{sex,jdbcType=VARCHAR},
+		address=#{address,jdbcType=VARCHAR}
+		where
+		user_id = #{userId,jdbcType=INTEGER}
+	</update>
+
+	<select id="selectUsersByListPage" resultMap="BaseResultMap"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select * from rd_user
+	</select>
+
+	<select id="selectAllUsersByBalanceOrRedListPage" resultMap="ResultUser2SinamemberMap"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select a.*,b.use_money from
+		rd_user a
+		left join
+		rd_account
+		b
+		on
+		a.user_id=b.user_id
+		left join
+		(select DISTINCT(c.receive_user) as
+		user_id from vf_giftbox_message c where
+		c.`status`=0) c
+		on
+		a.user_id=c.user_id
+		where
+		b.total>0
+		or
+		c.user_id is not null
+		order by
+		a.user_id
+	</select>
+
+	<select id="selectNumberInvitationLeaderboard" resultMap="NumberInvitationVO">
+		select
+		t.*,u.username from
+		(
+		select invite_userid userId,count(invite_userid)
+		number
+		from
+		rd_user
+		where
+		invite_userid>0
+		group by
+		invite_userid
+		) t ,
+		rd_user u
+		where
+		u.user_id = t.userId
+		order by
+		number desc;
+	</select>
+
+	<select id="getInviteCount" resultType="java.lang.Integer"
+		parameterType="java.lang.Integer">
+		select count(1) from rd_user
+		where invite_userid =
+		#{userId,jdbcType=INTEGER}
+	</select>
+
+	<select id="getInviteFirstUser" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select * from rd_user
+		where invite_userid =
+		#{userId,jdbcType=INTEGER} limit 0,1
+	</select>
+
+	<select id="selectInviteAllUser" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select * from rd_user
+		where invite_userid =
+		#{userId,jdbcType=INTEGER}
+	</select>
+
+
+</mapper>

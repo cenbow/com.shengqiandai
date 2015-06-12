@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.credit.dao.CreditMapper">
+	<resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.credit.model.Credit">
+		<id column="user_id" property="userId" jdbcType="INTEGER" />
+
+		<result column="value" property="value" jdbcType="INTEGER" />
+		<result column="op_user" property="opUser" jdbcType="INTEGER" />
+		<result column="addtime" property="addtime" jdbcType="INTEGER" />
+		<result column="addip" property="addip" jdbcType="VARCHAR" />
+		<result column="updatetime" property="updatetime" jdbcType="VARCHAR" />
+		<result column="updateip" property="updateip" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<!-- 根据用户ID查询用户积分 -->
+	<select id="selectValueByUserId" resultType="java.lang.Integer"
+		parameterType="java.lang.Integer">
+		select `value`
+		from rd_credit
+		where user_id = #{userId,jdbcType=INTEGER}
+	</select>
+
+
+
+	<insert id="insert" parameterType="cn.vfunding.vfunding.biz.credit.model.Credit">
+		insert into rd_credit (user_id, value, op_user,
+		addtime, addip, updatetime,
+		updateip)
+		values (#{userId,jdbcType=INTEGER}, #{value,jdbcType=INTEGER},
+		#{opUser,jdbcType=INTEGER},
+		#{addtime,jdbcType=INTEGER}, #{addip,jdbcType=VARCHAR}, #{updatetime,jdbcType=VARCHAR},
+		#{updateip,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.credit.model.Credit">
+		insert into rd_credit
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="value != null">
+				value,
+			</if>
+			<if test="opUser != null">
+				op_user,
+			</if>
+			<if test="addtime != null">
+				addtime,
+			</if>
+			<if test="addip != null">
+				addip,
+			</if>
+			<if test="updatetime != null">
+				updatetime,
+			</if>
+			<if test="updateip != null">
+				updateip,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="value != null">
+				#{value,jdbcType=INTEGER},
+			</if>
+			<if test="opUser != null">
+				#{opUser,jdbcType=INTEGER},
+			</if>
+			<if test="addtime != null">
+				#{addtime,jdbcType=INTEGER},
+			</if>
+			<if test="addip != null">
+				#{addip,jdbcType=VARCHAR},
+			</if>
+			<if test="updatetime != null">
+				#{updatetime,jdbcType=VARCHAR},
+			</if>
+			<if test="updateip != null">
+				#{updateip,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+
+	<!-- 更新 -->
+	<update id="updataByUserId" parameterType="cn.vfunding.vfunding.biz.credit.model.Credit">
+		update rd_credit
+		set
+		value=#{value,jdbcType=INTEGER},
+		op_user=#{opUser,jdbcType=INTEGER},
+		addtime=#{addtime,jdbcType=INTEGER},
+		addip=#{addip,jdbcType=VARCHAR},
+		updatetime=#{updatetime,jdbcType=VARCHAR},
+		updateip=#{updateip,jdbcType=VARCHAR}
+		where user_id = #{userId,jdbcType=INTEGER}
+	</update>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+		delete from rd_credit
+		where user_id = #{userId,jdbcType=INTEGER}
+	</delete>
+
+</mapper>

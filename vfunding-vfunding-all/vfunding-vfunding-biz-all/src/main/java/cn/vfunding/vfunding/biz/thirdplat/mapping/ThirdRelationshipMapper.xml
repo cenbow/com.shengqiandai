@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.thirdplat.dao.ThirdRelationshipMapper">
+	<resultMap id="BaseResultMap"
+		type="cn.vfunding.vfunding.biz.thirdplat.model.ThirdRelationship">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="from_type" property="fromType" jdbcType="VARCHAR" />
+		<result column="v_id" property="vid" jdbcType="INTEGER" />
+		<result column="v_name" property="vname" jdbcType="VARCHAR" />
+		<result column="third_id" property="thirdId" jdbcType="VARCHAR" />
+		<result column="third_name" property="thirdName" jdbcType="VARCHAR" />
+		<result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+		<result column="user_tracktime" property="userTracktime" jdbcType="TIMESTAMP" />
+		<result column="user_type" property="userType" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, from_type, v_id, v_name, third_id, third_name, add_time,user_type,user_tracktime
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from vf_third_relationship
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectByUserIdType" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from vf_third_relationship
+		where v_id = #{userId,jdbcType=INTEGER}
+		<if test="type != null">
+			and from_type = #{type,jdbcType=INTEGER}
+		</if>
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		vf_third_relationship
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert"
+		parameterType="cn.vfunding.vfunding.biz.thirdplat.model.ThirdRelationship">
+		insert into vf_third_relationship (id, from_type, v_id,
+		v_name, third_id, third_name,
+		add_time,user_type,user_tracktime)
+		values (#{id,jdbcType=INTEGER},
+		#{fromType,jdbcType=VARCHAR},
+		#{vid,jdbcType=INTEGER},
+		#{vname,jdbcType=VARCHAR}, #{thirdId,jdbcType=VARCHAR},
+		#{thirdName,jdbcType=VARCHAR},
+		#{addTime,jdbcType=TIMESTAMP},
+		#{userType,jdbcType=INTEGER},
+		#{userTracktime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	<insert id="insertSelective"
+		parameterType="cn.vfunding.vfunding.biz.thirdplat.model.ThirdRelationship">
+		insert into vf_third_relationship
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="fromType != null">
+				from_type,
+			</if>
+			<if test="vid != null">
+				v_id,
+			</if>
+			<if test="vname != null">
+				v_name,
+			</if>
+			<if test="thirdId != null">
+				third_id,
+			</if>
+			<if test="thirdName != null">
+				third_name,
+			</if>
+			<if test="addTime != null">
+				add_time,
+			</if>
+			<if test="userType != null">
+				user_type,
+			</if>
+			<if test="userTracktime != null">
+				user_tracktime,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="fromType != null">
+				#{fromType,jdbcType=VARCHAR},
+			</if>
+			<if test="vid != null">
+				#{vid,jdbcType=INTEGER},
+			</if>
+			<if test="vname != null">
+				#{vname,jdbcType=VARCHAR},
+			</if>
+			<if test="thirdId != null">
+				#{thirdId,jdbcType=VARCHAR},
+			</if>
+			<if test="thirdName != null">
+				#{thirdName,jdbcType=VARCHAR},
+			</if>
+			<if test="addTime != null">
+				#{addTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="userType != null">
+				#{userType,jdbcType=INTEGER},
+			</if>
+			<if test="userTracktime != null">
+				#{userTracktime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="cn.vfunding.vfunding.biz.thirdplat.model.ThirdRelationship">
+		update vf_third_relationship
+		<set>
+			<if test="fromType != null">
+				from_type = #{fromType,jdbcType=VARCHAR},
+			</if>
+			<if test="vid != null">
+				v_id = #{vid,jdbcType=INTEGER},
+			</if>
+			<if test="vname != null">
+				v_name = #{vname,jdbcType=VARCHAR},
+			</if>
+			<if test="thirdId != null">
+				third_id = #{thirdId,jdbcType=VARCHAR},
+			</if>
+			<if test="thirdName != null">
+				third_name = #{thirdName,jdbcType=VARCHAR},
+			</if>
+			<if test="addTime != null">
+				add_time = #{addTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="userType != null">
+				user_type = #{userType,jdbcType=INTEGER},
+			</if>
+			<if test="userTracktime != null">
+				user_tracktime = #{userTracktime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="cn.vfunding.vfunding.biz.thirdplat.model.ThirdRelationship">
+		update vf_third_relationship
+		set from_type =
+		#{fromType,jdbcType=VARCHAR},
+		v_id = #{vid,jdbcType=INTEGER},
+		v_name =
+		#{vname,jdbcType=VARCHAR},
+		third_id = #{thirdId,jdbcType=VARCHAR},
+		third_name = #{thirdName,jdbcType=VARCHAR},
+		add_time = #{addTime,jdbcType=TIMESTAMP}
+		user_type = #{userType,jdbcType=INTEGER}
+		user_tracktime = #{userTracktime,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>

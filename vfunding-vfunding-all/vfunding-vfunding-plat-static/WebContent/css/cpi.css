@@ -1,0 +1,16 @@
+@charset "utf-8";
+/* CSS Document */
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+
+
+.title-sub .sharing-tools {
+    background: none repeat scroll 0 0 #FFFFFF;
+    position: absolute;
+    right: 10px;
+    top: 30px;
+}
+
+.bid-opt .btn-submit{ padding-left:106px;}
+

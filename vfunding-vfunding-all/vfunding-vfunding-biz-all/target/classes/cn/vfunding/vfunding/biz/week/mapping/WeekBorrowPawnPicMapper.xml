@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.week.dao.WeekBorrowPawnPicMapper">
+	<resultMap id="BaseResultMap"
+		type="cn.vfunding.vfunding.biz.week.model.WeekBorrowPawnPic">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="pawn_id" property="pawnId" jdbcType="INTEGER" />
+		<result column="type" property="type" jdbcType="VARCHAR" />
+		<result column="pic" property="pic" jdbcType="VARCHAR" />
+		<result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, pawn_id, type, pic, add_time
+	</sql>
+
+	<select id="selectByPawnId" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from vf_week_borrow_pawn_pic
+		where pawn_id = #{id,jdbcType=INTEGER}
+	</select>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from vf_week_borrow_pawn_pic
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		vf_week_borrow_pawn_pic
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert"
+		parameterType="cn.vfunding.vfunding.biz.week.model.WeekBorrowPawnPic">
+		insert into vf_week_borrow_pawn_pic (id, pawn_id, type,
+		pic, add_time)
+		values (#{id,jdbcType=INTEGER},
+		#{pawnId,jdbcType=INTEGER},
+		#{type,jdbcType=VARCHAR},
+		#{pic,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective"
+		useGeneratedKeys="true"
+		keyProperty="id"
+		parameterType="cn.vfunding.vfunding.biz.week.model.WeekBorrowPawnPic">
+		insert into vf_week_borrow_pawn_pic
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="pawnId != null">
+				pawn_id,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="pic != null">
+				pic,
+			</if>
+			<if test="addTime != null">
+				add_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="pawnId != null">
+				#{pawnId,jdbcType=INTEGER},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=VARCHAR},
+			</if>
+			<if test="pic != null">
+				#{pic,jdbcType=VARCHAR},
+			</if>
+			<if test="addTime != null">
+				#{addTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="cn.vfunding.vfunding.biz.week.model.WeekBorrowPawnPic">
+		update vf_week_borrow_pawn_pic
+		<set>
+			<if test="pawnId != null">
+				pawn_id = #{pawnId,jdbcType=INTEGER},
+			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=VARCHAR},
+			</if>
+			<if test="pic != null">
+				pic = #{pic,jdbcType=VARCHAR},
+			</if>
+			<if test="addTime != null">
+				add_time = #{addTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="cn.vfunding.vfunding.biz.week.model.WeekBorrowPawnPic">
+		update vf_week_borrow_pawn_pic
+		set pawn_id =
+		#{pawnId,jdbcType=INTEGER},
+		type = #{type,jdbcType=VARCHAR},
+		pic =
+		#{pic,jdbcType=VARCHAR},
+		add_time = #{addTime,jdbcType=TIMESTAMP}
+		where
+		id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<select id="selectPicByPawnId" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select a.*
+		from vf_week_borrow_pawn_pic a
+		where
+		a.pawn_id=#{pawnId,jdbcType=INTEGER}
+	</select>
+	
+	<select id="selectPicListByEntity" resultMap="BaseResultMap"
+		parameterType="cn.vfunding.vfunding.biz.week.model.WeekBorrowPawnPic">
+		select
+		<include refid="Base_Column_List" />
+		from vf_week_borrow_pawn_pic
+		where 1=1
+		<if test="id != null">and id =#{id,jdbcType=INTEGER}</if>
+		<if test="pawnId != null">and pawn_id =#{pawnId,jdbcType=INTEGER}</if>
+		<if test="type != null">and type =#{type,jdbcType=VARCHAR}</if>	
+		order by add_time
+	</select>
+</mapper>

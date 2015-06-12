@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="cn.vfunding.vfunding.biz.useraction_activity.dao.InternalRebateMapper">
+	<resultMap id="BaseResultMap"
+		type="cn.vfunding.vfunding.biz.useraction_activity.model.InternalRebate">
+		<id column="c_id" property="cid" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" />
+		<result column="interest" property="interest" />
+		<result column="repay_time" property="repayTime" />
+		<result column="tender_id" property="tenderId" />
+		<result column="account" property="account" />
+		<result column="order" property="order" />
+	</resultMap>
+	<select id="selectInternalInterest" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select a.id as
+		c_id,c.user_id,b.account,a.`order`,round(a.interest+a.service_fees+a.guarantee_fees,2)
+		as
+		interest,from_unixtime(a.repay_time) as repay_time,a.tender_id from
+		rd_borrow_collection a
+		left join rd_borrow_tender b on a.tender_id=b.id
+		left join rd_user c on b.user_id=c.user_id
+		where
+		b.borrow_id=#{borrowId} and c.type_id in(27,31)
+	</select>
+</mapper>

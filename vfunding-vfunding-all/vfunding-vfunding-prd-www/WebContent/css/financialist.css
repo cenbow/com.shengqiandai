@@ -1,0 +1,103 @@
+@charset "utf-8";
+/* CSS Document */
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+@import url(accountLeft.css);
+.myAccount{  height:940px; margin:30px 0; clear:both;}
+
+
+
+/*****账户总览右栏***/
+.rechargeTakeCash{ width:820px; }
+.rT{  background:#fff; margin-bottom:30px;}
+.rTWrap{ width:780px; margin:0 auto; overflow:hidden; position:relative;}
+.txTop{ height:58px;overflow:hidden; }
+b.midLine{ height:1px; font-size:0; width:100%; background:#eeeeee; position:absolute; top:28px; left:0;  overflow:hidden;}
+.txTop h2,.excel{ height:22px; line-height:22px; position:absolute;background-color:#fff;}
+.txTop h2{ top:17px; left:24px; font-size:20px; color:#0065b4; padding:0 6px; z-index:9; }
+
+.lcs{ height:32px; margin-top:30px; line-height:32px;}
+.lcs span{ overflow:hidden; display:block;}
+span i.rank{ width:16px; height:16px; display:inline-block;  margin:0 20px 0 4px; vertical-align:middle; overflow:hidden; }
+
+.rank_bg{background:url(../images/account/dengji-icon-small.png) no-repeat; }
+span i.rank1{ background-position:0 0;}
+span i.rank2{ background-position:0 -16px;}
+span i.rank3{ background-position:0 -32px;}
+
+span i.rank4{ background-position:0 -48px;}
+span i.rank5{ background-position:0 -64px;}
+
+a.btn136{ width:136px; height:36px; line-height:36px; text-align:center; background:#0065b4; color:#fff; display:block; font-size:16px; border-radius:3px;}
+a.btn136:hover{ background:#00a0e9;}
+.lcs-rank{ margin:30px 0 21px; font-size:16px;}
+.rank-pic{ height:64px; position:relative;}
+.rankbg{ background:url(../images/account/dengji-icon.png) no-repeat;}
+.rank-pic1,.rank-pic2,.rank-pic3,.rank-pic4,.rank-pic5{ width:64px; height:64px; display:block; position:absolute; top:0; border-radius:4px;}
+
+
+.rank-pic1{ left:24px; background-position: -64px 0;}
+.rank-pic2{ left:189px; background-position:-64px -64px;}
+.rank-pic3{ left:356px; background-position:-64px -128px;}
+.rank-pic4{ left:516px; background-position:-64px -192px;}
+.rank-pic5{ left:680px; background-position:-64px -256px;}
+
+.rpic1{ background-position:0 0;}
+.rpic2{ background-position:0 -64px;}
+.rpic3{ background-position:0 -128px;}
+.rpic4{ background-position:0 -192px;}
+.rpic5{ background-position:0 -256px;}
+
+
+
+
+
+
+
+.rpbg{ background:url(../images/account/dengji-jincheng.png) no-repeat;}
+.rank-progress,.rank-progress2,.rank-progress3,.rank-progress4,.rank-progress5,.rank-progress6{ width:686px; height:26px; margin:13px auto; }
+.rank-progress{background-position:0 0;}
+.rank-progress2{ background-position:0 -30px;}
+.rank-progress3{ background-position:0 -60px;}
+.rank-progress4{ background-position:0 -90px;}
+.rank-progress5{ background-position:0 -120px;}
+.rank-progress6{ background-position:0 -150px;}
+
+.rank-explain{ width:700px; height:16px; margin:10px auto; position:relative;}
+.rank-explain li{position:absolute; top:0; height:16px; line-height:16px;}
+.rank-explain li:hover{ color:#00a0e9;}
+.li1,.li2,.li3,.li4,.li5{ position:absolute; top:0; cursor:pointer;}
+.li1{ left:0;}
+.li2{left:159px;}
+.li3{ left:323px;}
+.li4{ left:485px;}
+.li5{ left:628px;}
+
+.lcs-cont{ width:700px; margin:30px auto 0; border:1px solid #ccc; border-radius:3px;position:relative; display:none; padding-bottom:20px;}
+
+
+em.arrow-up,em.arrow-up i{ width:0; height:0; display:block; border-width:15px; border-style:dashed dashed solid ; }
+em.arrow-up{border-color:transparent  transparent #ccc transparent;position:relative; top:-30px; left:10px;}
+
+i.i1{ position:absolute; top:-14px;border-color:transparent  transparent #fff transparent; left:-15px;}
+
+.lcs-cont p{padding-left:20px; line-height:30px; position:relative; position:relative; top:-14px;}
+.teyue{  font-size:16px; font-weight:bold; color:#0065b4; margin-bottom:10px;}
+p.pd90{ padding-left:90px;}
+
+.about-lcs{ line-height:30px; padding-left:30px; font-size:16px; color:#0065b4; margin:30px 0 10px;}
+.about-cont,.vv{ line-height:30px;padding-left:60px;}
+.module{ width:700px; height:106px; margin:30px auto}
+
+.m_bg{ background:url(../images/account/huodong-icon.png) no-repeat;}
+
+.module li{ width:78px; height:106px; float:left; margin-right:62px;  position:relative;}
+a.img1,a.img2,a.img3,a.img4,a.img5{ display:block; width:78px; height:78px; position:absolute; top:0; left:0;}
+span.span1{ position:absolute; bottom:0; left:0; text-align:center; width:78px;}
+
+a.img1{ background-position:0 0;}
+a.img2{ background-position:0 -79px;}
+a.img3{ background-position:0 -158px;}
+a.img4{ background-position:0 -237px;}
+a.img5{ background-position:0 -316px;}

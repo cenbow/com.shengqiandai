@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.system.dao.AttestationMapper">
+	<resultMap id="BaseResultMap"
+		type="cn.vfunding.vfunding.biz.system.model.Attestation">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="type_id" property="typeId" jdbcType="SMALLINT" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="TINYINT" />
+		<result column="litpic" property="litpic" jdbcType="VARCHAR" />
+		<result column="content" property="content" jdbcType="VARCHAR" />
+		<result column="jifen" property="jifen" jdbcType="INTEGER" />
+		<result column="verify_time" property="verifyTime" jdbcType="INTEGER" />
+		<result column="verify_user" property="verifyUser" jdbcType="INTEGER" />
+		<result column="verify_remark" property="verifyRemark"
+			jdbcType="VARCHAR" />
+		<result column="addtime" property="addtime" jdbcType="INTEGER" />
+		<result column="addip" property="addip" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<resultMap id="BaseJoinResultMap"
+		type="cn.vfunding.vfunding.biz.system.model.Attestation" extends="BaseResultMap">
+		<association property="type" javaType="cn.vfunding.vfunding.biz.system.model.AttestationType">
+			<id column="type_id" property="typeId" jdbcType="INTEGER" />
+			<result column="typename" property="name" jdbcType="VARCHAR" />
+		</association>
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs"
+		type="cn.vfunding.vfunding.biz.system.model.Attestation" extends="BaseResultMap">
+		<result column="pic" property="pic" jdbcType="LONGVARCHAR" />
+		<result column="pic2" property="pic2" jdbcType="VARCHAR" />
+		<result column="pic3" property="pic3" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, user_id, type_id, name, status, litpic, content, jifen,
+		verify_time,
+		verify_user, verify_remark, addtime, addip
+	</sql>
+	<sql id="Blob_Column_List">
+		pic,pic2,pic3
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from rd_attestation
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+
+	<!-- 根据用户ID查询 -->
+	<select id="selectByUserIdListPage" resultMap="BaseJoinResultMap"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select a.id, a.user_id, a.type_id, a.name, a.status,
+		a.litpic, a.content,
+		a.jifen, a.verify_time,
+		a.verify_user,
+		a.verify_remark, a.addtime, a.addip,b.name as typename from
+		rd_attestation as a join rd_attestation_type
+		as b on
+		a.type_id=b.type_id
+		where a.user_id = #{entity.userId,jdbcType=INTEGER} order by a.addtime desc
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		rd_attestation
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="cn.vfunding.vfunding.biz.system.model.Attestation">
+		insert into rd_attestation
+		(id, user_id, type_id,
+		name, status, litpic,
+		content, jifen, pic2,
+		pic3,
+		verify_time, verify_user,
+		verify_remark, addtime, addip,
+		pic)
+		values
+		(#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER},
+		#{typeId,jdbcType=SMALLINT},
+		#{name,jdbcType=VARCHAR},
+		#{status,jdbcType=TINYINT}, #{litpic,jdbcType=VARCHAR},
+		#{content,jdbcType=VARCHAR}, #{jifen,jdbcType=INTEGER},
+		#{pic2,jdbcType=VARCHAR},
+		#{pic3,jdbcType=VARCHAR},
+		#{verifyTime,jdbcType=INTEGER}, #{verifyUser,jdbcType=INTEGER},
+		#{verifyRemark,jdbcType=VARCHAR}, #{addtime,jdbcType=INTEGER},
+		#{addip,jdbcType=VARCHAR},
+		#{pic,jdbcType=LONGVARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.system.model.Attestation">
+		insert into rd_attestation
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="typeId != null">
+				type_id,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="litpic != null">
+				litpic,
+			</if>
+			<if test="content != null">
+				content,
+			</if>
+			<if test="jifen != null">
+				jifen,
+			</if>
+			<if test="pic2 != null">
+				pic2,
+			</if>
+			<if test="pic3 != null">
+				pic3,
+			</if>
+			<if test="verifyTime != null">
+				verify_time,
+			</if>
+			<if test="verifyUser != null">
+				verify_user,
+			</if>
+			<if test="verifyRemark != null">
+				verify_remark,
+			</if>
+			<if test="addtime != null">
+				addtime,
+			</if>
+			<if test="addip != null">
+				addip,
+			</if>
+			<if test="pic != null">
+				pic,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="typeId != null">
+				#{typeId,jdbcType=SMALLINT},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=TINYINT},
+			</if>
+			<if test="litpic != null">
+				#{litpic,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				#{content,jdbcType=VARCHAR},
+			</if>
+			<if test="jifen != null">
+				#{jifen,jdbcType=INTEGER},
+			</if>
+			<if test="pic2 != null">
+				#{pic2,jdbcType=VARCHAR},
+			</if>
+			<if test="pic3 != null">
+				#{pic3,jdbcType=VARCHAR},
+			</if>
+			<if test="verifyTime != null">
+				#{verifyTime,jdbcType=INTEGER},
+			</if>
+			<if test="verifyUser != null">
+				#{verifyUser,jdbcType=INTEGER},
+			</if>
+			<if test="verifyRemark != null">
+				#{verifyRemark,jdbcType=VARCHAR},
+			</if>
+			<if test="addtime != null">
+				#{addtime,jdbcType=INTEGER},
+			</if>
+			<if test="addip != null">
+				#{addip,jdbcType=VARCHAR},
+			</if>
+			<if test="pic != null">
+				#{pic,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.system.model.Attestation">
+		update rd_attestation
+		<set>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=INTEGER},
+			</if>
+			<if test="typeId != null">
+				type_id = #{typeId,jdbcType=SMALLINT},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=TINYINT},
+			</if>
+			<if test="litpic != null">
+				litpic = #{litpic,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				content = #{content,jdbcType=VARCHAR},
+			</if>
+			<if test="jifen != null">
+				jifen = #{jifen,jdbcType=INTEGER},
+			</if>
+			<if test="pic2 != null">
+				pic2 = #{pic2,jdbcType=VARCHAR},
+			</if>
+			<if test="pic3 != null">
+				pic3 = #{pic3,jdbcType=VARCHAR},
+			</if>
+			<if test="verifyTime != null">
+				verify_time = #{verifyTime,jdbcType=INTEGER},
+			</if>
+			<if test="verifyUser != null">
+				verify_user = #{verifyUser,jdbcType=INTEGER},
+			</if>
+			<if test="verifyRemark != null">
+				verify_remark = #{verifyRemark,jdbcType=VARCHAR},
+			</if>
+			<if test="addtime != null">
+				addtime = #{addtime,jdbcType=INTEGER},
+			</if>
+			<if test="addip != null">
+				addip = #{addip,jdbcType=VARCHAR},
+			</if>
+			<if test="pic != null">
+				pic = #{pic,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.vfunding.vfunding.biz.system.model.Attestation">
+		update
+		rd_attestation
+		set user_id = #{userId,jdbcType=INTEGER},
+		type_id =
+		#{typeId,jdbcType=SMALLINT},
+		name = #{name,jdbcType=VARCHAR},
+		status =
+		#{status,jdbcType=TINYINT},
+		litpic = #{litpic,jdbcType=VARCHAR},
+		content = #{content,jdbcType=VARCHAR},
+		jifen =
+		#{jifen,jdbcType=INTEGER},
+		pic2 = #{pic2,jdbcType=VARCHAR},
+		pic3 =
+		#{pic3,jdbcType=VARCHAR},
+		verify_time = #{verifyTime,jdbcType=INTEGER},
+		verify_user = #{verifyUser,jdbcType=INTEGER},
+		verify_remark =
+		#{verifyRemark,jdbcType=VARCHAR},
+		addtime =
+		#{addtime,jdbcType=INTEGER},
+		addip = #{addip,jdbcType=VARCHAR},
+		pic =
+		#{pic,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.system.model.Attestation">
+		update
+		rd_attestation
+		set user_id = #{userId,jdbcType=INTEGER},
+		type_id =
+		#{typeId,jdbcType=SMALLINT},
+		name = #{name,jdbcType=VARCHAR},
+		status =
+		#{status,jdbcType=TINYINT},
+		litpic = #{litpic,jdbcType=VARCHAR},
+		content = #{content,jdbcType=VARCHAR},
+		jifen =
+		#{jifen,jdbcType=INTEGER},
+		pic2 = #{pic2,jdbcType=VARCHAR},
+		pic3 =
+		#{pic3,jdbcType=VARCHAR},
+		verify_time = #{verifyTime,jdbcType=INTEGER},
+		verify_user = #{verifyUser,jdbcType=INTEGER},
+		verify_remark =
+		#{verifyRemark,jdbcType=VARCHAR},
+		addtime =
+		#{addtime,jdbcType=INTEGER},
+		addip = #{addip,jdbcType=VARCHAR}
+		where id
+		= #{id,jdbcType=INTEGER}
+	</update>
+</mapper>

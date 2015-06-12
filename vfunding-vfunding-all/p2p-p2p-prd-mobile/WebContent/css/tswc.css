@@ -1,0 +1,70 @@
+@CHARSET "UTF-8";
+*{
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	list-style: none;
+	font-family: "微软雅黑";
+	text-shadow: none;
+}
+.page{
+	max-width: 640px;
+	min-width: 320px;
+	width:100%;
+	margin:0 auto;
+	height: auto;
+	position: relative;
+}
+.top{
+	max-width: 640px;
+	min-width: 320px;
+	width:100%;
+	width: 100%;
+	background-color: #fff;
+	z-index: 999;
+	position: fixed;
+	top:0;
+}
+.top img {
+	float: left;
+}
+.return{
+	width: 50%;
+	display: block;
+	text-align: center;
+	position: absolute;
+	left:0;
+	top:0;
+	height: 40px;
+	cursor: pointer;
+} 
+.top span{
+	position: absolute;
+	top:20%;
+	left:2%;
+}
+.wrap{
+	width: 100%;
+	overflow: hidden;
+	margin-top: 41px;
+}
+.wrap li{
+	width: 95%;
+	padding: 0px 2.5%;
+	line-height: 40px;
+	border-bottom: 1px solid #f0f0f0;
+	background-color: #fff;
+}
+.wrap li span{
+	float: right;
+	text-align: right;
+}
+.wrap li span font{
+	color: red;
+}
+.wrap li a{
+	width: 100%;
+	display: block;
+	overflow: hidden;
+	cursor: pointer;
+}

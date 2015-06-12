@@ -1,0 +1,58 @@
+<config>   
+    <group>   
+            <property name="jms.address" />
+            <property name="jms.open" />
+            <property name="file.server" />
+            <property name="email.server" />
+            <property name="sms.server" />
+            <property name="voice.server" />
+            <property name="activity.server" />
+            <property name="cjd.server" />
+            <property name="sina.server" />
+            <property name="redis.address" />
+    </group>   
+                   
+    <script>   
+            <generate template="config.properties.worker" destfile="worker.properties" charset="utf-8" />   
+    </script>   
+    <group>   
+            <property name="jdbc.driverClassName" />
+            <property name="jdbc.url" />
+            <property name="jdbc.username" />
+            <property name="jdbc.password" />
+            <property name="jdbc.maxActive" />
+            <property name="jdbc.maxIdle" />
+            <property name="jdbc.maxWait" />
+            <property name="validationQuery" />
+    </group>   
+                   
+    <script>   
+            <generate template="config.properties.jdbc" destfile="jdbc.properties" charset="utf-8" />   
+    </script>   
+    <group>   
+            <property name="log4j.rootLogger" />
+            <property name="log4j.logger.org.eclipse.jetty" />
+            <property name="log4j.logger.org.hibernate" />
+            <property name="log4j.logger.org.springframework" />
+            <property name="log4j.logger.java.sql.Connection" />
+            <property name="log4j.appender.stdout" />
+            <property name="log4j.appender.stdout.layout" />
+            <property name="log4j.appender.stdout.layout.ConversionPattern" />
+            <property name="log4j.logger.paylog" />
+            <property name="log4j.appender.PayLog" />
+            <property name="log4j.appender.PayLog.file" />
+            <property name="log4j.appender.PayLog.DatePattern" />
+            <property name="log4j.appender.PayLog.layout" />
+            <property name="log4j.appender.PayLog.layout.ConversionPattern" />
+            <property name="log4j.logger.actionlog" />
+            <property name="log4j.appender.userActionLog" />
+            <property name="log4j.appender.userActionLog.file" />
+            <property name="log4j.appender.userActionLog.DatePattern" />
+            <property name="log4j.appender.userActionLog.layout" />
+            <property name="log4j.appender.userActionLog.layout.ConversionPattern" />
+    </group>   
+                   
+    <script>   
+            <generate template="config.properties.log4j" destfile="log4j.properties" charset="utf-8" />   
+    </script>   
+</config>  

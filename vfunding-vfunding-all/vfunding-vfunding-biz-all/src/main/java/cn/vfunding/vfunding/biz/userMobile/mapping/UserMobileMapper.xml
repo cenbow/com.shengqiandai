@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.userMobile.dao.UserMobileMapper">
+	<resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.userMobile.model.UserMobile">
+		<id column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="username" property="userName" />
+		<result column="total" property="total" />
+		<result column="use_money" property="useMoney" />
+		<result column="no_use_money" property="noUseMoney" />
+		<result column="collection" property="collection" />
+		<result column="hongbao" property="hongbao" />
+
+	</resultMap>
+
+	<resultMap id="UserTenderResultMap" type="cn.vfunding.vfunding.biz.userMobile.model.UserTenderMobile">
+		<result column="borrowName" property="borrowName" />
+		<result column="account" property="account" />
+		<result column="status" property="status" />
+		<result column="tenderTime" property="tenderTime" />
+	</resultMap>
+
+	<resultMap id="UserRechargeCashResultMap" type="cn.vfunding.vfunding.biz.userMobile.model.UserRechargeCashMobile">
+		<result column="money" property="money" />
+		<result column="actionType" property="actionType" />
+		<result column="fee" property="fee" />
+		<result column="addtime" property="addtime" />
+		<result column="status" property="status" />
+	</resultMap>
+
+	<!-- 最后还款金额和时间resultMap -->
+	<resultMap type="cn.vfunding.vfunding.biz.userMobile.model.UserMobile" id="lastRepayResultMap">
+		<result column="repayTime" property="endYieldTime" />
+		<result column="repayAccount" property="endYieldMoney" />
+	</resultMap>
+	<!-- 查询用户基础信息 -->
+	<select id="selectUserInfoById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		a.user_id,a.username,b.total,b.use_money,b.no_use_money,a.hongbao,b.collection
+		from
+		rd_user a
+		left join rd_account b on a.user_id=b.user_id
+		where
+		a.user_id
+		=#{id}
+	</select>
+
+	<!-- 最后还款金额和时间 -->
+	<select id="selectUserLastRepayTime" parameterType="java.math.BigDecimal" resultMap="lastRepayResultMap">
+
+		select
+		DATE_FORMAT(from_unixtime(a.repay_time),'%Y-%m-%d')
+		as repayTime,round(sum(repay_account),2) as repayAccount
+		from rd_borrow_collection a
+		left join
+		rd_borrow_tender b on
+		a.tender_id=b.id left join rd_borrow c
+		on
+		b.borrow_id=c.id where
+		a.status=0 and b.user_id
+		=#{id}
+		and
+		c.status=3 and b.status=1
+		group
+		by DATE_FORMAT(from_unixtime(a.repay_time),'%Y-%m-%d')
+		limit 0,1
+	</select>
+
+	<!-- 用户获得的总利息 -->
+	<select id="selectUserHavaInterestMoney" parameterType="java.lang.Integer" resultType="java.math.BigDecimal">
+		select
+		sum(a.repayment_yesinterest) as
+		'userHavaInterestMoney'
+		from
+		rd_borrow_tender a
+		where a.status=1 and
+		a.user_id=#{id}
+	</select>
+
+	<!-- 根据userID查询投标记录 -->
+	<select id="selectBorrowTenderByUserIdListPage" resultMap="UserTenderResultMap" parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select a.account,
+		DATE_FORMAT(from_unixtime(a.addtime),'%Y-%m-%d %H:%i') as
+		tendertime,b.name as borrowName,a.status from
+		rd_borrow_tender a
+		left
+		join rd_borrow b on
+		a.borrow_id=b.id
+		where
+		a.user_id=#{entity}
+		order by
+		a.addtime desc
+	</select>
+
+	<!-- 查询充值 提现页面 -->
+	<select id="selectRechargeCashByUserIdListPage" resultMap="UserRechargeCashResultMap" parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select * from (
+		select a.user_id,a.money,a.fee,'充值' as
+		actionType,DATE_FORMAT(from_unixtime(a.addtime),'%Y-%m-%d %H:%i') as
+		addtime, a.status from
+		rd_account_recharge a
+		where
+		a.user_id=#{entity.userId}
+		<if test="entity != null and entity.start != null and entity.end != null ">
+			and a.addtime BETWEEN #{entity.start,jdbcType=INTEGER} and
+			#{entity.end,jdbcType=INTEGER}
+		</if>
+		union all
+		select a.user_id,
+		a.credited,a.fee,'提现' as
+		actionType,DATE_FORMAT(from_unixtime(a.addtime),'%Y-%m-%d %H:%i') as
+		rechargetime,a.status from
+		rd_account_cash a
+		where
+		a.user_id=#{entity.userId}
+		<if test="entity != null and entity.start != null and entity.end != null ">
+			and a.addtime BETWEEN #{entity.start,jdbcType=INTEGER} and
+			#{entity.end,jdbcType=INTEGER}
+		</if>
+		)
+		a order by a.addtime desc
+	</select>
+</mapper>

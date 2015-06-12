@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.system.dao.InvestorsFeeMapper" >
+	<resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.system.model.InvestorsFee" >
+	  <id column="id" property="id" jdbcType="INTEGER" />
+	  <result column="b_id" property="bid" jdbcType="INTEGER" />
+	  <result column="b_fee" property="bfee" jdbcType="DECIMAL" />
+	  <result column="g_fee" property="gfee" jdbcType="DECIMAL" />
+	  <result column="b_fee_type" property="bfeeType" jdbcType="INTEGER" />
+	  <result column="addtime" property="addtime" jdbcType="VARCHAR" />
+	  <result column="addip" property="addip" jdbcType="VARCHAR" />
+	</resultMap>
+	
+  	<sql id="Base_Column_List" >
+	    id, b_id, b_fee, g_fee, b_fee_type, addtime, addip
+	</sql>
+  
+  	<select id="selectByBorrowId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  		select 
+	    <include refid="Base_Column_List" />
+	    from rd_investors_fee 
+	    where b_id = #{borrowId,jdbcType=INTEGER} 
+  	</select>
+  	
+	<insert id="insert" parameterType="cn.vfunding.vfunding.biz.system.model.InvestorsFee" >
+    insert into rd_investors_fee (id, b_id, b_fee, 
+      g_fee, b_fee_type, addtime, 
+      addip)
+    values (#{id,jdbcType=INTEGER}, #{bid,jdbcType=INTEGER}, #{bfee,jdbcType=DECIMAL}, 
+      #{gfee,jdbcType=DECIMAL}, #{bfeeType,jdbcType=INTEGER}, #{addtime,jdbcType=INTEGER}, 
+      #{addip,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.system.model.InvestorsFee" >
+    insert into rd_investors_fee
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="bid != null" >
+        b_id,
+      </if>
+      <if test="bfee != null" >
+        b_fee,
+      </if>
+      <if test="gfee != null" >
+        g_fee,
+      </if>
+      <if test="bfeeType != null" >
+        b_fee_type,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="addip != null" >
+        addip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="bid != null" >
+        #{bid,jdbcType=INTEGER},
+      </if>
+      <if test="bfee != null" >
+        #{bfee,jdbcType=DECIMAL},
+      </if>
+      <if test="gfee != null" >
+        #{gfee,jdbcType=DECIMAL},
+      </if>
+      <if test="bfeeType != null" >
+        #{bfeeType,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=INTEGER},
+      </if>
+      <if test="addip != null" >
+        #{addip,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.system.model.InvestorsFee" >
+    update rd_investors_fee
+    <set >
+      <if test="bid != null" >
+        b_id = #{bid,jdbcType=INTEGER},
+      </if>
+      <if test="bfee != null" >
+        b_fee = #{bfee,jdbcType=DECIMAL},
+      </if>
+      <if test="gfee != null" >
+        g_fee = #{gfee,jdbcType=DECIMAL},
+      </if>
+      <if test="bfeeType != null" >
+        b_fee_type = #{bfeeType,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=INTEGER},
+      </if>
+      <if test="addip != null" >
+        addip = #{addip,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.system.model.InvestorsFee" >
+    update rd_investors_fee
+    set b_id = #{bid,jdbcType=INTEGER},
+      b_fee = #{bfee,jdbcType=DECIMAL},
+      g_fee = #{gfee,jdbcType=DECIMAL},
+      b_fee_type = #{bfeeType,jdbcType=INTEGER},
+      addtime = #{addtime,jdbcType=INTEGER},
+      addip = #{addip,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

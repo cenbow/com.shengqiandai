@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.week.dao.WeekMapper">
+	<resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.week.model.Week">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="save_status" property="saveStatus" jdbcType="INTEGER" />
+		<result column="time_limit" property="timeLimit" jdbcType="INTEGER" />
+		<result column="apr" property="apr" jdbcType="DECIMAL" />
+		<result column="single_min" property="singleMin" jdbcType="INTEGER" />
+		<result column="single_max" property="singleMax" jdbcType="INTEGER" />
+		<result column="buy_base" property="buyBase" jdbcType="INTEGER" />
+		<result column="share_price" property="sharePrice" jdbcType="DECIMAL" />
+		<result column="share_count" property="shareCount" jdbcType="INTEGER" />
+		<result column="share_yescount" property="shareYescount"
+			jdbcType="INTEGER" />
+		<result column="plan_money" property="planMoney" jdbcType="DECIMAL" />
+		<result column="reality_money" property="realityMoney"
+			jdbcType="DECIMAL" />
+		<result column="holder_user" property="holderUser" jdbcType="INTEGER" />
+		<result column="create_user" property="createUser" jdbcType="INTEGER" />
+		<result column="verify_user" property="verifyUser" jdbcType="INTEGER" />
+		<result column="verify_remark" property="verifyRemark"
+			jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="verify_time" property="verifyTime" jdbcType="TIMESTAMP" />
+		<result column="sale_time" property="saleTime" jdbcType="TIMESTAMP" />
+		<result column="expire_time" property="expireTime" jdbcType="TIMESTAMP" />
+		<result column="publish_time" property="publishTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	
+	<resultMap type="cn.vfunding.vfunding.biz.week.vo.WeekVO" extends="BaseResultMap" id="weekVOResult">
+		<result column="platform_rate" property="platformRate" jdbcType="DECIMAL" />
+		<result column="guarantee_rate" property="guaranteeRate" jdbcType="DECIMAL" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, name, status, save_status, time_limit, apr, single_min,
+		single_max,
+		buy_base,
+		share_price, share_count, share_yescount,
+		plan_money, reality_money, holder_user,
+		create_user, verify_user,
+		verify_remark, create_time, verify_time,
+		sale_time, expire_time,
+		publish_time
+	</sql>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from vf_week
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		vf_week
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="cn.vfunding.vfunding.biz.week.model.Week">
+		insert into vf_week (id, name,
+		status,
+		save_status, time_limit, apr,
+		single_min, single_max, buy_base,
+		share_price, share_count, share_yescount,
+		plan_money, reality_money,
+		holder_user,
+		create_user, verify_user, verify_remark,
+		create_time,
+		verify_time, sale_time,
+		expire_time, publish_time)
+		values
+		(#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+		#{status,jdbcType=INTEGER},
+		#{saveStatus,jdbcType=INTEGER},
+		#{timeLimit,jdbcType=INTEGER}, #{apr,jdbcType=DECIMAL},
+		#{singleMin,jdbcType=INTEGER}, #{singleMax,jdbcType=INTEGER},
+		#{buyBase,jdbcType=INTEGER},
+		#{sharePrice,jdbcType=DECIMAL},
+		#{shareCount,jdbcType=INTEGER}, #{shareYescount,jdbcType=INTEGER},
+		#{planMoney,jdbcType=DECIMAL}, #{realityMoney,jdbcType=DECIMAL},
+		#{holderUser,jdbcType=INTEGER},
+		#{createUser,jdbcType=INTEGER},
+		#{verifyUser,jdbcType=INTEGER}, #{verifyRemark,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP}, #{verifyTime,jdbcType=TIMESTAMP},
+		#{saleTime,jdbcType=TIMESTAMP},
+		#{expireTime,jdbcType=TIMESTAMP},
+		#{publishTime,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective" useGeneratedKeys="true"
+		keyProperty="id" parameterType="cn.vfunding.vfunding.biz.week.model.Week">
+		insert into vf_week
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="saveStatus != null">
+				save_status,
+			</if>
+			<if test="timeLimit != null">
+				time_limit,
+			</if>
+			<if test="apr != null">
+				apr,
+			</if>
+			<if test="singleMin != null">
+				single_min,
+			</if>
+			<if test="singleMax != null">
+				single_max,
+			</if>
+			<if test="buyBase != null">
+				buy_base,
+			</if>
+			<if test="sharePrice != null">
+				share_price,
+			</if>
+			<if test="shareCount != null">
+				share_count,
+			</if>
+			<if test="shareYescount != null">
+				share_yescount,
+			</if>
+			<if test="planMoney != null">
+				plan_money,
+			</if>
+			<if test="realityMoney != null">
+				reality_money,
+			</if>
+			<if test="holderUser != null">
+				holder_user,
+			</if>
+			<if test="createUser != null">
+				create_user,
+			</if>
+			<if test="verifyUser != null">
+				verify_user,
+			</if>
+			<if test="verifyRemark != null">
+				verify_remark,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="verifyTime != null">
+				verify_time,
+			</if>
+			<if test="saleTime != null">
+				sale_time,
+			</if>
+			<if test="expireTime != null">
+				expire_time,
+			</if>
+			<if test="publishTime != null">
+				publish_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="saveStatus != null">
+				#{saveStatus,jdbcType=INTEGER},
+			</if>
+			<if test="timeLimit != null">
+				#{timeLimit,jdbcType=INTEGER},
+			</if>
+			<if test="apr != null">
+				#{apr,jdbcType=DECIMAL},
+			</if>
+			<if test="singleMin != null">
+				#{singleMin,jdbcType=INTEGER},
+			</if>
+			<if test="singleMax != null">
+				#{singleMax,jdbcType=INTEGER},
+			</if>
+			<if test="buyBase != null">
+				#{buyBase,jdbcType=INTEGER},
+			</if>
+			<if test="sharePrice != null">
+				#{sharePrice,jdbcType=DECIMAL},
+			</if>
+			<if test="shareCount != null">
+				#{shareCount,jdbcType=INTEGER},
+			</if>
+			<if test="shareYescount != null">
+				#{shareYescount,jdbcType=INTEGER},
+			</if>
+			<if test="planMoney != null">
+				#{planMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="realityMoney != null">
+				#{realityMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="holderUser != null">
+				#{holderUser,jdbcType=INTEGER},
+			</if>
+			<if test="createUser != null">
+				#{createUser,jdbcType=INTEGER},
+			</if>
+			<if test="verifyUser != null">
+				#{verifyUser,jdbcType=INTEGER},
+			</if>
+			<if test="verifyRemark != null">
+				#{verifyRemark,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="verifyTime != null">
+				#{verifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="saleTime != null">
+				#{saleTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="expireTime != null">
+				#{expireTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="publishTime != null">
+				#{publishTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.week.model.Week">
+		update vf_week
+		<set>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="saveStatus != null">
+				save_status = #{saveStatus,jdbcType=INTEGER},
+			</if>
+			<if test="timeLimit != null">
+				time_limit = #{timeLimit,jdbcType=INTEGER},
+			</if>
+			<if test="apr != null">
+				apr = #{apr,jdbcType=DECIMAL},
+			</if>
+			<if test="singleMin != null">
+				single_min = #{singleMin,jdbcType=INTEGER},
+			</if>
+			<if test="singleMax != null">
+				single_max = #{singleMax,jdbcType=INTEGER},
+			</if>
+			<if test="buyBase != null">
+				buy_base = #{buyBase,jdbcType=INTEGER},
+			</if>
+			<if test="sharePrice != null">
+				share_price = #{sharePrice,jdbcType=DECIMAL},
+			</if>
+			<if test="shareCount != null">
+				share_count = #{shareCount,jdbcType=INTEGER},
+			</if>
+			<if test="shareYescount != null">
+				share_yescount = #{shareYescount,jdbcType=INTEGER},
+			</if>
+			<if test="planMoney != null">
+				plan_money = #{planMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="realityMoney != null">
+				reality_money = #{realityMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="holderUser != null">
+				holder_user = #{holderUser,jdbcType=INTEGER},
+			</if>
+			<if test="createUser != null">
+				create_user = #{createUser,jdbcType=INTEGER},
+			</if>
+			<if test="verifyUser != null">
+				verify_user = #{verifyUser,jdbcType=INTEGER},
+			</if>
+			<if test="verifyRemark != null">
+				verify_remark = #{verifyRemark,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="verifyTime != null">
+				verify_time = #{verifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="saleTime != null">
+				sale_time = #{saleTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="expireTime != null">
+				expire_time = #{expireTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="publishTime != null">
+				publish_time = #{publishTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.week.model.Week">
+		update vf_week
+		set
+		name = #{name,jdbcType=VARCHAR},
+		status = #{status,jdbcType=INTEGER},
+		save_status = #{saveStatus,jdbcType=INTEGER},
+		time_limit =
+		#{timeLimit,jdbcType=INTEGER},
+		apr = #{apr,jdbcType=DECIMAL},
+		single_min = #{singleMin,jdbcType=INTEGER},
+		single_max =
+		#{singleMax,jdbcType=INTEGER},
+		buy_base = #{buyBase,jdbcType=INTEGER},
+		share_price = #{sharePrice,jdbcType=DECIMAL},
+		share_count =
+		#{shareCount,jdbcType=INTEGER},
+		share_yescount =
+		#{shareYescount,jdbcType=INTEGER},
+		plan_money =
+		#{planMoney,jdbcType=DECIMAL},
+		reality_money =
+		#{realityMoney,jdbcType=DECIMAL},
+		holder_user =
+		#{holderUser,jdbcType=INTEGER},
+		create_user =
+		#{createUser,jdbcType=INTEGER},
+		verify_user =
+		#{verifyUser,jdbcType=INTEGER},
+		verify_remark =
+		#{verifyRemark,jdbcType=VARCHAR},
+		create_time =
+		#{createTime,jdbcType=TIMESTAMP},
+		verify_time =
+		#{verifyTime,jdbcType=TIMESTAMP},
+		sale_time =
+		#{saleTime,jdbcType=TIMESTAMP},
+		expire_time =
+		#{expireTime,jdbcType=TIMESTAMP},
+		publish_time =
+		#{publishTime,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<!-- 查询认购计划列表 louchen 2014-12-10 -->
+	<select id="selectWeekForBuyListPage" resultMap="BaseResultMap"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select
+		<include refid="Base_Column_List" />
+		from
+		vf_week
+		where 1=1
+		and status in (3,4)
+		order by id
+	</select>
+
+	<!-- 查询计划列表 louchen 2014-12-3 -->
+	<select id="selectWeekListPage" resultMap="BaseResultMap"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select
+		<include refid="Base_Column_List" />
+		from
+		vf_week
+		where 1=1
+		<if test="entity != null and entity.id != null and entity.id!= '' ">
+			and id=#{entity.id,jdbcType=INTEGER}
+		</if>
+		<if test="entity != null and entity.name != null and entity.name!= '' ">
+			and name like
+			concat('%',#{entity.name,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="entity != null and entity.status != null">
+			and status=#{entity.status,jdbcType=INTEGER}
+		</if>
+		<if
+			test="entity != null and entity.saleTime != null and entity.saleTime != '' ">
+			<![CDATA[ and sale_time >= #{entity.saleTime,jdbcType=TIMESTAMP} ]]>
+		</if>
+		<if
+			test="entity != null and entity.expireTime != null and entity.expireTime != '' ">
+			<![CDATA[ and expire_time <= #{entity.expireTime,jdbcType=TIMESTAMP} ]]>
+		</if>
+		order by create_time desc
+	</select>
+	
+	
+	
+	<select id="selectWeekVOListPage" resultMap="weekVOResult"	parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select
+		a.*,b.week_rate,b.platform_rate,b.guarantee_rate
+		from
+		vf_week a
+		left join vf_week_rate b on a.id = b.week_id
+		where 1=1
+		<if test="entity != null and entity.id != null and entity.id!= '' ">
+			and id=#{entity.id,jdbcType=INTEGER}
+		</if>
+		<if test="entity != null and entity.name != null and entity.name!= '' ">
+			and name like
+			concat('%',#{entity.name,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="entity != null and entity.status != null">
+			and status=#{entity.status,jdbcType=INTEGER}
+		</if>
+		<if
+			test="entity != null and entity.saleTime != null and entity.saleTime != '' ">
+			<![CDATA[ and sale_time >= #{entity.saleTime,jdbcType=TIMESTAMP} ]]>
+		</if>
+		<if
+			test="entity != null and entity.expireTime != null and entity.expireTime != '' ">
+			<![CDATA[ and expire_time <= #{entity.expireTime,jdbcType=TIMESTAMP} ]]>
+		</if>
+		order by create_time desc
+	</select>
+	
+	
+
+	<!-- 更新计划实际发布金额 louchen 2014-12-11 -->
+	<select id="updateRealityMoneyByWeekId" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		update vf_week set reality_money =
+		(
+		select sum(account) from vf_week_borrow where week_id=#{id,jdbcType=INTEGER}
+		)
+		where id=#{id,jdbcType=INTEGER}
+	</select>
+
+	<select id="selectIndexWeek" resultMap="BaseResultMap">
+		SELECT
+		*
+		FROM
+		vf_week vw
+		WHERE
+		vw.`status` = 3
+		ORDER BY
+		vw.verify_time DESC
+		limit 0,1
+	</select>
+
+</mapper>

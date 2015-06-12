@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<!--创建连接工厂 -->
+	<bean id="jms.connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+		<property name="brokerURL">
+			<value>${jms.address}</value>
+		</property>
+	</bean>
+
+	<!-- 声明ActiveMQ消息目标,目标可以是一个队列，也可以是一个主题ActiveMQTopic -->
+	<bean id="jms.destination" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg index="0" value="vfunding.site"></constructor-arg><!-- 
+			通道 -->
+	</bean>
+
+	<bean id="jms.template" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="jms.connectionFactory"></property>
+		<property name="defaultDestination" ref="jms.destination"></property>
+		<property name="receiveTimeout" value="600"></property>
+	</bean>
+	
+
+	<bean id="jms.sender" class="cn.vfunding.common.framework.jms.activemq.JmsSender">
+		<property name="jmsTemplate" ref="jms.template"></property>
+	</bean>
+	
+	<!-- 网站联盟消息 -->
+	<!-- 声明ActiveMQ消息目标,目标可以是一个队列，也可以是一个主题ActiveMQTopic -->
+	<bean id="jms.destination.union" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg index="0" value="vfunding.union"></constructor-arg><!-- 
+			通道 -->
+	</bean>
+
+	<bean id="jms.template.union" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="jms.connectionFactory"></property>
+		<property name="defaultDestination" ref="jms.destination.union"></property>
+		<property name="receiveTimeout" value="600"></property>
+	</bean>
+	
+	<bean id="jms.sender.union" class="cn.vfunding.common.framework.jms.activemq.JmsSender">
+		<property name="jmsTemplate" ref="jms.template.union"></property>
+	</bean>
+
+</beans>

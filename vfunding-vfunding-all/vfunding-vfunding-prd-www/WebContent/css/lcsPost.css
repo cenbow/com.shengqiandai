@@ -1,0 +1,129 @@
+@charset "utf-8";
+/* CSS Document */
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+.lcs{
+
+}
+
+.lcs-firstSector{
+    height: 301px;
+    position: relative;
+    background: url(../images/huodong/lcs-xuanchuan-topbg.jpg) #5794cb center top;
+}
+.lcs-pic{
+    position: absolute;
+    height: 509px;
+    width: 1154px;
+    left: 50%;
+    top: 0;
+    margin-left: -577px;
+}
+
+.lcs-secondSector{
+   background-color: #fcc236;
+    padding-top: 216px;
+    overflow: hidden;
+}
+
+.lcs-titlebg{
+    background: url(../images/huodong/lcs-titlebg.png) no-repeat;
+}
+.title1,.title2,.title3,.title4{
+    width: 960px;
+    height: 62px;
+    margin: 20px auto;
+}
+.title1{
+    background-position: 0 0;
+    margin-top: 60px;
+}
+.title2{
+    background-position: 0 -62px;
+    margin-top: 50px;
+}
+.title3{
+    background-position: 0 -124px;
+}
+.title4{
+    background-position: 0 -186px;
+}
+.invite{
+    line-height: 30px;
+    text-indent: 20px;
+    margin-bottom: 30px;
+    color: #846315;
+}
+.invite-cnt{
+    width: 960px;
+    margin: 0 auto;
+}
+.em{
+    margin: 10px 0;
+    color: #846315;
+    font-size: 24px;
+}
+.lcs-step-left{
+    width: 480px;
+}
+.lcs-step-left p{
+    line-height: 24px;
+}
+.lcs-step-right{
+    width: 456px;
+}
+.lcs-step-left p span{
+    color:#f57447 ;
+}
+.lcs-thirdSector,.lcs-fourthSecond,.lcs-fiveSecond,.lcs-sixthSecond{
+    background-color: #fcc236;
+    overflow: hidden;
+    color: #846315;
+}
+.third-cnt,.fourth-cnt{
+    width: 960px;
+    margin: 0 auto;
+    color: #846315;
+}
+.third-cnt p{
+    text-indent: 20px;
+    margin-top: 10px;
+    font-size: 18px;
+}
+.third-img{
+    width: 829px;
+    height: 284px;
+    margin: 40px auto 20px;
+}
+.fourth-cnt p{
+    width: 522px;
+    margin:0 auto;
+    font-size: 18px;
+}
+.fourth-img{
+    width: 811px;
+    height: 451px;
+    margin:0 auto;
+}
+.five-cnt{
+    width: 960px;
+    margin:0 auto;
+}
+.fontSize18{
+    font-size: 18px;
+    color: #846315;
+}
+a.btn-check{
+    width: 551px;
+    height: 87px;
+    margin:50px auto 20px;
+    display: block;
+    background-position: 0 -249px;
+}
+.sixth-img{
+    width: 958px;
+    height: 214px;
+    margin:60px auto 30px;
+}
+

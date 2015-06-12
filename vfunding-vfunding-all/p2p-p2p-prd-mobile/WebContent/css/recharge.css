@@ -1,0 +1,99 @@
+@CHARSET "UTF-8";
+*{
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	list-style: none;
+	font-family: "微软雅黑";
+	text-shadow: none;
+}
+
+.top{
+	width: 100%;
+	position: fixed;
+	top:0;
+	background-color: #fff;
+	z-index: 999;
+}
+.top  a{
+	width: 100%;
+	display: block;
+	text-align: center;
+	border-bottom: thin ridge #b4b4b4;
+	padding-bottom: 0.5em;
+	padding-top: 0.5em;
+} 
+.top span{
+	position: absolute;
+	top:20%;
+	left:1%;
+}
+.bu{
+	width: 100%;
+	height: 15px;
+	margin-top: 40px;
+	background-color: #eeeeee;
+}
+.money{
+	width: 100%;
+	height: 60px;
+	background-color: #fff;
+	text-align: left;
+	padding:0px 10px;	
+}
+.money label{
+	width: 15%;
+	float: left;
+	line-height: 60px;
+	font-size: 19px;
+}
+.inlass{
+	width: 60%;
+	height: 45px;
+	float: right;
+}
+.bank_card{
+	width: 100%;
+	height: auto;
+	background-color: #eeeeee;
+	padding: 10px;
+}
+.bank{
+	width: 100%;
+	height: auto;
+	background-color: #fff;
+	position: relative;
+	height: 50px;
+	padding: 10px;
+}
+.bank img{
+	width: 30px;
+	position: absolute;
+	top:20px;
+	left: 10px;
+}
+.bank span{
+	position: absolute;
+	left: 50px;
+	top:13px;
+}
+.bank span h4{
+	font-size: 18px;
+}
+.bank span p{
+	margin-top: 3px;
+	color: #999;
+}
+.nextStep{
+	width: 100%;
+	margin-top: 30px;
+}
+.nextStep a{
+	width: 95%;
+	margin-left:2.5%;
+	text-align: center;
+	display: block; 
+	line-height: 40px;
+	background-color: #fdb82c;
+	border-radius:5px;
+}

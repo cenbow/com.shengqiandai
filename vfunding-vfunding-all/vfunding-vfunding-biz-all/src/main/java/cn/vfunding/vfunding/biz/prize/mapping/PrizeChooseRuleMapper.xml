@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.prize.dao.PrizeChooseRuleMapper" >
+  <resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.prize.model.PrizeChooseRule" >
+    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="choose_count" property="chooseCount" jdbcType="INTEGER" />
+    <result column="choose_reality_count" property="chooseRealityCount" jdbcType="INTEGER" />
+    <result column="modify_time" property="modifyTime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_id, choose_count, choose_reality_count, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from vf_prize_choose_rule
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from vf_prize_choose_rule
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.vfunding.biz.prize.model.PrizeChooseRule" >
+    insert into vf_prize_choose_rule (user_id, choose_count, choose_reality_count, 
+      modify_time)
+    values (#{userId,jdbcType=INTEGER}, #{chooseCount,jdbcType=INTEGER}, #{chooseRealityCount,jdbcType=INTEGER}, 
+      #{modifyTime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.prize.model.PrizeChooseRule" >
+    insert into vf_prize_choose_rule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="chooseCount != null" >
+        choose_count,
+      </if>
+      <if test="chooseRealityCount != null" >
+        choose_reality_count,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="chooseCount != null" >
+        #{chooseCount,jdbcType=INTEGER},
+      </if>
+      <if test="chooseRealityCount != null" >
+        #{chooseRealityCount,jdbcType=INTEGER},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.prize.model.PrizeChooseRule" >
+    update vf_prize_choose_rule
+    <set >
+      <if test="chooseCount != null" >
+        choose_count = #{chooseCount,jdbcType=INTEGER},
+      </if>
+      <if test="chooseRealityCount != null" >
+        choose_reality_count = #{chooseRealityCount,jdbcType=INTEGER},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=DATE},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.prize.model.PrizeChooseRule" >
+    update vf_prize_choose_rule
+    set choose_count = #{chooseCount,jdbcType=INTEGER},
+      choose_reality_count = #{chooseRealityCount,jdbcType=INTEGER},
+      modify_time = #{modifyTime,jdbcType=DATE}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+</mapper>

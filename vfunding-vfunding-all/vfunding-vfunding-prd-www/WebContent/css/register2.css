@@ -1,0 +1,101 @@
+@charset "utf-8";
+/* CSS Document */
+
+#res_header{ height:84px;}
+
+.res_logo{ width:1000px; height:84px; margin:0 auto;}
+#res_header a{ display:block; width:322px; height:84px;}
+
+/****************幻灯片**********************/
+.slider{ height:436px; position:relative; width:100%;}
+#pic_chang{ height:436px; }
+#kinMaxShow{ position:relative; display:none; }
+
+.input_box{ width:341px; height:517px;position:absolute; top:37px; left:55%; margin-left:159px; z-index:99; background:url(../images/register/zhuolu_res_bg.png) no-repeat;}
+.res_top{ height:58px; line-height:58px; text-align:center;  color:#fff;}
+.s1{ font-size:29px; font-weight:bold;}
+.s2{ font-size:18px;}
+#zhuce{width:260px; height:430px; overflow:hidden; display:block;  margin:0 auto;}
+.zc{ width:250px; height:410px; margin:0 auto; }
+.username_box{ width:250px; height:29px; margin-top:25px; position: relative;}
+.username_div{ height:25px;}
+.user_name{ width:70px; height:25px; line-height:25px; text-align:right; float:left;}
+#username,#password,#password2,#email,#mobile,#jieshao{ width:160px;}
+#jieshao{ background-color:#FBFBFB; background:url(../images/zhuolu/bgx.png) repeat-x; background-position:0 -72px;}
+
+.username_label,.password_label,.email_label,.jieshao_label{ display:block; width:180px; height:25px; position:relative; float:left; }
+.username_label span,.password_label span,.email_label span,.jieshao_label span{ position:absolute; left:10px; float:left; font-size:12px; color:#BCBCBC; line-height:25px;}
+.input_text{ width:160px; height:20px; line-height:20px; padding:4px; border:1px solid #d7d7d7;}
+
+.res_btn{ display:block; width:232px; height:45px; display:block; margin:25px auto 0; line-height:45px; text-align:center; font-size:24px; color:#fff; background:#ff8636; border:none; cursor:pointer;}
+.xuanchuan{ width:1040px; height:1106px; margin:44px auto 0; background:url(../images/zhuolu/zhuolu.png) no-repeat; position:relative;}
+#jieshao_label,#yzm_label{ width:90px;}
+#jieshao_label input{ width:80px;}
+.yzm{ width:78px; height:26px; float:right; display:block; line-height:26px; text-align:center; font-size:12px; background:#00a0e9; margin-left:6px; color:#fff; float:left;}
+.yzm:hover{ color:#fff;}
+.res_tip{ display:block; height:20px; line-height:20px; margin-top:6px; text-align:right;}
+
+#username_box{ margin-top:18px;}
+
+#auth_code{ width:160px;}
+#yzm_label .input_text{ width:80px;}
+
+.whatVF{ width:930px; height:80px; position:absolute; top:158px; left:70px;text-indent:2px; color:#888888;}
+
+.cunkuan{ width:464px; height:32px; position:absolute;top:565px; right:8px; }
+.cunkuan li{ width:60px; height:32px; line-height:32px; text-align:center; float:left; font-size:12px; color:#888888; margin-right:36px; display:inline;}
+.cunkuan li#wjj{ margin-right:0;}
+.tedian{ width:456px; height:134px; position:absolute; top:685px; left:55px;}
+.vipService{ width:470px; height:194px; position:absolute; left:546px;top:685px; }
+
+.tedian li,.vipService li{ width:456px; height:12px; line-height:12px; font-size:12px; color:#888; margin-bottom:18px;}
+
+.txt-err {
+  font-family: Verdana, arial, sans-serif;
+  text-align: center;
+  font-size: 12px;
+  color: #f00;
+}
+.noticeWrap {
+  width: 180px;
+  color: #000;
+  font-family: Verdana, arial, sans-serif;
+  text-align: left;
+  font-size: 12px;
+  float: right;
+  display: inline-block;
+  margin-left: 10px;
+  overflow: visible;
+}
+.ico-warning {
+  color: #000;
+  font-family: Verdana, arial, sans-serif;
+  text-align: left;
+  font-size: 12px;
+  display: inline-block;
+  vertical-align: middle;
+  background-image: url("../images/global2.png");
+  BACKGROUND-REPEAT: no-repeat;
+  width: 24px;
+  height: 24px;
+  background-position: -252px -66px;
+  padding-bottom: 2px;
+  padding-top: 2px;
+}
+.g-ipt-err {
+  text-align: left;
+  font-family: Verdana, arial, sans-serif;
+  line-height: normal;
+  margin: 0px;
+  vertical-align: middle;
+  border: 1px solid #C1C1C1;
+  font-size: 14px;
+
+  background-position: 0px -144px;
+  color:black;
+  padding-bottom: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-top: 4px;
+}
+

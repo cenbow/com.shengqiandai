@@ -1,0 +1,125 @@
+@charset "utf-8";
+/* CSS Document */
+
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+.cnt{
+    width: 100%;
+    margin:0 auto;
+}
+
+.bg1{
+    height: 600px;
+    background:url(/images/huodong/bg1.jpg) no-repeat center center ;
+}
+
+.cnt-main{
+
+      background:url(/images/huodong/bg2.jpg) no-repeat  #b20000 center top;
+
+}
+
+.cnt-main-mid{
+    width: 1000px;
+    margin:0 auto;
+    padding-bottom: 30px;
+
+}
+
+h1.rule-tip{
+    color:#fff1ae;
+    font-size: 48px;
+    padding-left: 20px;
+    line-height: 114px;
+
+}
+
+.rules-before,.rules-after{
+    margin-left: 28px;
+}
+
+.rules-before li,.rules-after li{
+    color:#fff1ae;
+    font-size: 16px;
+    line-height: 40px;
+    padding-left: 26px;
+    position: relative;
+}
+
+
+.rules-before li span,.rules-after li span{
+    color: #fff600;
+    font-weight: bold;
+}
+
+.rules-after li a{
+    color:#fff1ae;
+}
+
+i{
+    width: 16px;
+    height: 16px;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 12px;
+    background: url(/images/huodong/bg3.png) no-repeat;
+}
+
+i.rule1{
+    background-position:0 0 ;
+}
+i.rule2{
+    background-position:-16px 0 ;
+}
+i.rule3{
+    background-position:-32px 0 ;
+}
+
+i.rule4{
+    background-position:-48px 0 ;
+}
+
+i.rule5{
+    background-position:-64px 0 ;
+}
+
+i.rule6{
+    background-position:-80px 0 ;
+}
+
+i.rule7{
+    background-position:-96px 0 ;
+}
+
+i.rule8{
+    background-position:-112px 0;
+}
+i.rule9{
+    background-position:-128px 0;
+}
+.rewards{
+    margin-top: 30px;
+}
+.reward-bg{
+    background: url(/images/huodong/bg3.png) no-repeat;
+}
+
+.reward1{
+    background-position: 0 -20px;
+    width: 140px;
+    height: 244px;
+    margin: 0 169px 0 114px;
+}
+.reward2{
+    width: 121px;
+    height: 246px;
+    background-position: -184px -17px;
+    margin-right: 186px;
+}
+.reward3{
+    width: 177px;
+    height: 246px;
+    background-position: -342px -17px;
+}

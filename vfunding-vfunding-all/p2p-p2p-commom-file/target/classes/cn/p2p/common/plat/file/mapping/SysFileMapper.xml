@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.p2p.common.plat.file.dao.SysFileMapper" >
+	<resultMap id="BaseResultMap" type="cn.p2p.common.plat.file.model.SysFile" >
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="insert_time" property="insertTime" jdbcType="TIMESTAMP" />
+		<result column="type" property="type" jdbcType="VARCHAR" />
+		<result column="file_from" property="from" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List" >
+    id, insert_time, type,file_from
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+		<include refid="Base_Column_List" />
+    from sys_file
+    where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sys_file
+    where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="cn.p2p.common.plat.file.model.SysFile" >
+    insert into sys_file (id, insert_time, type,file_from
+      )
+    values (#{id,jdbcType=VARCHAR}, #{insertTime,jdbcType=TIMESTAMP}, #{type,jdbcType=VARCHAR}
+      , #{from,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="cn.p2p.common.plat.file.model.SysFile" >
+    insert into sys_file
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="id != null" >
+        id,
+			</if>
+			<if test="insertTime != null" >
+        insert_time,
+			</if>
+			<if test="type != null" >
+        type,
+			</if>
+			<if test="from != null" >
+        file_from,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+			</if>
+			<if test="insertTime != null" >
+        #{insertTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+			</if>
+			<if test="from != null" >
+        #{from,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.p2p.common.plat.file.model.SysFile" >
+    update sys_file
+		<set >
+			<if test="insertTime != null" >
+        insert_time = #{insertTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+			</if>
+			<if test="from != null" >
+        file_from = #{from,jdbcType=VARCHAR},
+			</if>
+		</set>
+    where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.p2p.common.plat.file.model.SysFile" >
+    update sys_file
+    set insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      type = #{type,jdbcType=VARCHAR},
+      file_from = #{from,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+	</update>
+</mapper>

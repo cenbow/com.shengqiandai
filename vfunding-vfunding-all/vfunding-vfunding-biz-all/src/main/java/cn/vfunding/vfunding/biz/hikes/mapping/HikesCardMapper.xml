@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.hikes.dao.HikesCardMapper" >
+  <resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.hikes.model.HikesCard" >
+    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="use_rate" property="useRate" jdbcType="DECIMAL" />
+    <result column="no_use_rate" property="noUseRate" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_id, use_rate, no_use_rate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from vf_hikes_card
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from vf_hikes_card
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.vfunding.biz.hikes.model.HikesCard" >
+    insert into vf_hikes_card (user_id, use_rate, no_use_rate
+      )
+    values (#{userId,jdbcType=INTEGER}, #{useRate,jdbcType=DECIMAL}, #{noUseRate,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.hikes.model.HikesCard" >
+    insert into vf_hikes_card
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="useRate != null" >
+        use_rate,
+      </if>
+      <if test="noUseRate != null" >
+        no_use_rate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="useRate != null" >
+        #{useRate,jdbcType=DECIMAL},
+      </if>
+      <if test="noUseRate != null" >
+        #{noUseRate,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.hikes.model.HikesCard" >
+    update vf_hikes_card
+    <set >
+      <if test="useRate != null" >
+        use_rate = #{useRate,jdbcType=DECIMAL},
+      </if>
+      <if test="noUseRate != null" >
+        no_use_rate = #{noUseRate,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.hikes.model.HikesCard" >
+    update vf_hikes_card
+    set use_rate = #{useRate,jdbcType=DECIMAL},
+      no_use_rate = #{noUseRate,jdbcType=DECIMAL}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectUnLookCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+  select ifnull(count(*),0) from vf_hikes_message where is_look = 0 and receive_user = #{userId}
+  </select>
+  
+</mapper>

@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.p2p.p2p.biz.current.dao.CurrentMapper">
+	<resultMap id="BaseResultMap" type="cn.p2p.p2p.biz.current.model.Current">
+		<id column="current_id" property="currentId" jdbcType="INTEGER" />
+		<result column="current_name" property="currentName" jdbcType="VARCHAR" />
+		<result column="sum_money" property="sumMoney" jdbcType="DECIMAL" />
+		<result column="buy_money" property="buyMoney" jdbcType="DECIMAL" />
+		<result column="apr" property="apr" jdbcType="DECIMAL" />
+		<result column="tender_count" property="tenderCount" jdbcType="INTEGER" />
+		<result column="appointment_count" property="appointmentCount"
+			jdbcType="INTEGER" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="verify_time" property="verifyTime" jdbcType="TIMESTAMP" />
+		<result column="sale_time" property="saleTime" jdbcType="TIMESTAMP" />
+		<result column="soldout_time" property="soldoutTime" jdbcType="TIMESTAMP" />
+		<result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<resultMap id="JoinResultMap" type="cn.p2p.p2p.biz.current.model.Current"
+		extends="BaseResultMap">
+		<association property="currentRule"
+			javaType="cn.p2p.p2p.biz.current.model.CurrentRule">
+			<id column="current_id" property="currentId" jdbcType="INTEGER" />
+			<result column="lowest_account" property="lowestAccount"
+				jdbcType="DECIMAL" />
+			<result column="most_account" property="mostAccount" jdbcType="DECIMAL" />
+		</association>
+	</resultMap>
+
+
+
+
+	<sql id="Base_Column_List">
+		current_id, current_name, sum_money, buy_money, apr,
+		tender_count, status,
+		verify_time,
+		sale_time, soldout_time,
+		add_time,appointment_count
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="JoinResultMap"
+		parameterType="java.lang.Integer">
+		select
+		a.current_id, current_name, sum_money, buy_money,
+		apr,
+		tender_count, status,
+		verify_time,
+		sale_time, soldout_time,
+		add_time,appointment_count
+		,b.lowest_account,b.most_account
+		from
+		p2p_current a
+		left join
+		p2p_current_rule b on a.current_id=b.current_id
+		where a.current_id =
+		#{currentId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		p2p_current
+		where current_id = #{currentId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="cn.p2p.p2p.biz.current.model.Current">
+		insert into p2p_current
+		(current_id, current_name, sum_money,
+		buy_money, apr, tender_count,
+		status, verify_time, sale_time,
+		soldout_time,
+		add_time,appointment_count)
+		values
+		(#{currentId,jdbcType=INTEGER},
+		#{currentName,jdbcType=VARCHAR},
+		#{sumMoney,jdbcType=DECIMAL},
+		#{buyMoney,jdbcType=DECIMAL},
+		#{apr,jdbcType=DECIMAL},
+		#{tenderCount,jdbcType=INTEGER},
+		#{status,jdbcType=INTEGER},
+		#{verifyTime,jdbcType=TIMESTAMP},
+		#{saleTime,jdbcType=TIMESTAMP},
+		#{soldoutTime,jdbcType=TIMESTAMP},
+		#{addTime,jdbcType=TIMESTAMP},
+		#{appointmentCount,jdbcType=INTEGER}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="cn.p2p.p2p.biz.current.model.Current"
+		useGeneratedKeys="true" keyProperty="currentId">
+		insert into p2p_current
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="currentId != null">
+				current_id,
+			</if>
+			<if test="currentName != null">
+				current_name,
+			</if>
+			<if test="sumMoney != null">
+				sum_money,
+			</if>
+			<if test="buyMoney != null">
+				buy_money,
+			</if>
+			<if test="apr != null">
+				apr,
+			</if>
+			<if test="tenderCount != null">
+				tender_count,
+			</if>
+			<if test="appointmentCount != null">
+				appointment_count,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="verifyTime != null">
+				verify_time,
+			</if>
+			<if test="saleTime != null">
+				sale_time,
+			</if>
+			<if test="soldoutTime != null">
+				soldout_time,
+			</if>
+			<if test="addTime != null">
+				add_time,
+			</if>
+
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="currentId != null">
+				#{currentId,jdbcType=INTEGER},
+			</if>
+			<if test="currentName != null">
+				#{currentName,jdbcType=VARCHAR},
+			</if>
+			<if test="sumMoney != null">
+				#{sumMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="buyMoney != null">
+				#{buyMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="apr != null">
+				#{apr,jdbcType=DECIMAL},
+			</if>
+			<if test="tenderCount != null">
+				#{tenderCount,jdbcType=INTEGER},
+			</if>
+			<if test="appointmentCount != null">
+				#{appointmentCount,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="verifyTime != null">
+				#{verifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="saleTime != null">
+				#{saleTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="soldoutTime != null">
+				#{soldoutTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="addTime != null">
+				#{addTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.p2p.p2p.biz.current.model.Current">
+		update p2p_current
+		<set>
+			<if test="currentName != null">
+				current_name = #{currentName,jdbcType=VARCHAR},
+			</if>
+			<if test="sumMoney != null">
+				sum_money = #{sumMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="buyMoney != null">
+				buy_money = #{buyMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="apr != null">
+				apr = #{apr,jdbcType=DECIMAL},
+			</if>
+			<if test="tenderCount != null">
+				tender_count = #{tenderCount,jdbcType=INTEGER},
+			</if>
+			<if test="appointmentCount != null">
+				appointment_count = #{appointmentCount,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="verifyTime != null">
+				verify_time = #{verifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="saleTime != null">
+				sale_time = #{saleTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="soldoutTime != null">
+				soldout_time = #{soldoutTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="addTime != null">
+				add_time = #{addTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where current_id = #{currentId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.p2p.p2p.biz.current.model.Current">
+		update p2p_current
+		set current_name = #{currentName,jdbcType=VARCHAR},
+		sum_money =
+		#{sumMoney,jdbcType=DECIMAL},
+		buy_money = #{buyMoney,jdbcType=DECIMAL},
+		apr = #{apr,jdbcType=DECIMAL},
+		tender_count =
+		#{tenderCount,jdbcType=INTEGER},
+		status = #{status,jdbcType=INTEGER},
+		verify_time = #{verifyTime,jdbcType=TIMESTAMP},
+		sale_time =
+		#{saleTime,jdbcType=TIMESTAMP},
+		soldout_time =
+		#{soldoutTime,jdbcType=TIMESTAMP},
+		add_time =
+		#{addTime,jdbcType=TIMESTAMP}
+		where current_id =
+		#{currentId,jdbcType=INTEGER}
+	</update>
+
+	<select id="selectCurrentListPage" resultMap="JoinResultMap"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select
+		a.current_id, a.current_name, a.sum_money,
+		a.buy_money, a.apr,
+		a.tender_count, a.appointment_count,a.status,
+		a.verify_time,
+		a.sale_time, a.soldout_time,
+		a.add_time,b.lowest_account,b.most_account
+		from p2p_current a left join
+		p2p_current_rule b on a.current_id=b.current_id
+<!-- 		where a.status in(0,1,3) -->
+		order by a.buy_money/a.sum_money,a.status
+		asc,a.sale_time asc ,a.verify_time desc
+	</select>
+	<!-- 后台查询 -->
+	<select id="selectCurrentListBmsPage" resultMap="JoinResultMap"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select
+		a.current_id, a.current_name, a.sum_money,
+		a.buy_money, a.apr,
+		a.tender_count, a.appointment_count,a.status,
+		a.verify_time,
+		a.sale_time, a.soldout_time,
+		a.add_time,b.lowest_account,b.most_account
+		from p2p_current a left join
+		p2p_current_rule b on a.current_id=b.current_id
+		where 1 = 1
+		<if test="entity.status != null">
+		and a.status = ${entity.status}
+		</if>
+		order by a.buy_money/a.sum_money,a.status
+		asc,a.sale_time asc ,a.verify_time desc
+	</select>
+</mapper>

@@ -1,0 +1,92 @@
+#menu { position: fixed; right: 20px; top: 50%; width: 90px; margin: -160px 0 0; padding: 0; list-style-type: none; z-index: 70;}
+#menu li { margin-top: 10px; font: 14px "Microsoft Yahei";}
+#menu a { display: block; padding: 10px 0; background-color: #fff; color: #0074EA; text-align: center; text-decoration: none;}
+#menu .active a { color: #fff; background-color:#00a0e9;}
+.sector1{
+    background: url(/images/bj.png);
+}
+.sector2,.sector4,.sector6,.sector8{
+    background: #b8163b;
+}
+.sector3,.sector5,.sector7{
+    background-color: #f1dccb;
+}
+
+
+
+
+#fp-nav ul li a span, .fp-slidesNav ul li a span{
+    background-color: #fff;
+    border:none;
+}
+
+#fp-nav ul li a.active span, .fp-slidesNav ul li a.active span{
+    background-color: #b8163b;
+}
+
+.section{
+    padding:10px 0;
+}
+
+.img1{
+    width: 1552px;
+    height: 600px;
+    margin: 0 auto;
+    background: url(/images/huodong/y1.png) no-repeat;
+}
+
+.img2{
+    width: 947px;
+    height: 570px;
+    margin: 0 auto;
+    background: url(/images/huodong/y2.png) no-repeat;
+}
+
+
+.img3{
+    width: 1103px;
+    height: 570px;
+    margin: 0 auto;
+    background: url(/images/huodong/y3.png) no-repeat;
+}
+
+.img4{
+    width: 985px;
+    height: 567px;
+    margin: 0 auto;
+    background: url(/images/huodong/y4.png) no-repeat;
+}
+
+.img5{
+    width: 965px;
+    height: 359px;
+    margin: 0 auto;
+    background: url(/images/huodong/y5.png) no-repeat;
+}
+.img6{
+    width: 1064px;
+    height: 518px;
+    margin: 0 auto;
+    background: url(/images/huodong/y6.png) no-repeat;
+}
+.img7{
+    width: 968px;
+    height: 570px;
+    margin: 0 auto;
+    background: url(/images/huodong/y7.png) no-repeat;
+}
+.img8{
+    width: 947px;
+    height: 532px;
+    margin: 0 auto;
+    background: url(/images/huodong/y8.png) no-repeat;
+}
+
+#fp-nav ul li a span, .fp-slidesNav ul li a span{
+    background-color: #fff;
+    border:none;
+}
+
+#fp-nav ul li a.active span, .fp-slidesNav ul li a.active span{
+    background-color: #00a0e9;
+}

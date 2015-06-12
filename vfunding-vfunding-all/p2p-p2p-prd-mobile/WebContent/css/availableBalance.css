@@ -1,0 +1,115 @@
+@CHARSET "UTF-8";
+*{
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	list-style: none;
+	font-family: "微软雅黑";
+	text-shadow: none;
+}
+.page{
+	max-width: 640px;
+	min-width: 320px;
+	width:100%;
+	margin:0 auto;
+	height: auto;
+	position: relative;
+	background-color: #b4b4b4;
+}
+.top{
+	max-width: 640px;
+	min-width: 320px;
+	width:100%;
+	width: 100%;
+	background-color: #fff;
+	z-index: 999;
+}
+.top img {
+	float: left;
+}
+.top  a{
+	width: 100%;
+	display: block;
+	text-align: center;
+	padding-bottom: 0.5em;
+	padding-top: 0.5em;
+} 
+.top span{
+	position: absolute;
+	top:2%;
+	left:2%;
+}
+.show{
+	width: 95.5%;
+	margin-top: 20px;
+	padding: 25px 15px;
+	background-color: #fdb82c;
+	color: #fff;
+}
+.show span{
+	font-size: 30px;
+	font-weight: bold;
+	margin-top: 10px;
+	display: block;
+}
+.show a{
+	float: right;
+	margin-top: -65px;
+	margin-right: 15px;
+	cursor: pointer;
+}
+.table{
+	width: 100%;
+	margin-top: 20px;
+}
+.record{
+	width: 100%;
+	height: auto;
+	margin-top: 15px;
+}
+.record li{
+	padding-top:10px;
+	background-color: #fff;
+	padding-bottom: 55px;
+	position: relative;
+	border-bottom: 1px solid #f0f0f0;
+}
+.record h4{
+	margin-left: 15px;
+	font-size: 18px;
+	float: left;
+	color: #000;
+}
+.record li label {
+	display:block;
+	position: absolute;
+	top:35px;
+	left: 15px;
+	color: #666;
+}
+.add{
+	display: block;
+	position: absolute;
+	top:25px;
+	right: 20px;
+	color: red;
+	font-size: 20px;
+}
+.record li img {
+	position: absolute;
+	top:20px;
+	right: 0;
+}
+.foot{
+	margin-top: 50px;
+	background-color: #fff;
+}
+.foot a{
+	width: 50%;
+	line-height: 50px;
+	text-align: center;
+	display: block;
+	float: left;
+	background-color: #fff;
+	font-size: 20px;
+}

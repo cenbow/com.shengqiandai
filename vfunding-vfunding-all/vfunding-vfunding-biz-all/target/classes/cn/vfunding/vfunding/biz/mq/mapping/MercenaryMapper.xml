@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.mq.dao.MercenaryMapper">
+	<resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.mq.model.Mercenary">
+		<id column="c_id" property="cid" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" />
+		<result column="invite_userid" property="inviteUserid" />
+		<result column="interest" property="interest" />
+		<result column="repay_time" property="repayTime" />
+		<result column="tender_id" property="tenderId" />
+		<result column="borrow_id" property="borrowId" />
+		<result column="type_id" property="typeId" />
+		<result column="account" property="account" />
+		<result column="order" property="order" />
+	</resultMap>
+	<select id="selectMercenaryInterest" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		select * from (
+		select a.id as c_id,c.user_id,b.account,a.`order` ,c.invite_userid,d.type_id, a.interest+a.service_fees+a.guarantee_fees as
+		interest,a.repay_time,a.tender_id,b.borrow_id from rd_borrow_collection a
+		left join rd_borrow_tender b on a.tender_id=b.id
+		left join rd_user c on b.user_id=c.user_id
+		left join rd_user d on d.user_id = c.invite_userid
+		where 	<![CDATA[	c.type_id<>27 and c.type_id<>31  and d.type_id<>40]]>
+		and b.borrow_id=#{borrowId}
+		) a where a.invite_userid >0
+	</select>
+
+	<update id="updateTenderInviteFees" parameterType="java.lang.Integer">
+		update rd_borrow_tender set invite_fees =(
+		select
+		round(ifnull(sum(t_fees),0)+ifnull(sum(g_fees),0)+ifnull(sum(s_fees),0),2) from rd_invite_fees where tender_id=#{id} )
+		where id=#{id}
+	</update>
+</mapper>

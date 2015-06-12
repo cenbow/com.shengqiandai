@@ -1,0 +1,18 @@
+@charset "utf-8";
+/* CSS Document */
+
+@import url(base.css);
+@import url(top.css);
+.all{ background:url(../images/huodong/bjtop.jpg) no-repeat center top #ffa523; overflow:hidden; }
+a.a-link{ display:block; width:403px; height:403px; margin:300px 0 0 304px; background:url(../images/huodong/bottom.png) no-repeat;}
+.grid{ height:199px; width:882px; margin:20px auto 0; background:url(../images/huodong/h1.png) no-repeat; position:relative;}
+.word{ position:absolute; left:310px; top:0;}
+p.p1{ color:#750102; font-size:24px; font-weight:bold; line-height:45px;}
+p.p2{ font-size:48px; color: #ff4701; font-weight:bold; line-height:60px;}
+p.p3{ color:#ec2812; font-size:36px; font-weight:bold;line-height:60px;}
+.blocks{ height:212px;  margin:83px auto 0; }
+
+.block{ width:462px; color:#fff; font-size:24px; text-indent:40px; line-height:42px; position:relative;background: url(../images/huodong/bar.png) no-repeat left top;}
+.conditions{ width:462px; margin-top:10px; font-size:14px; text-indent:0; color:#750102; line-height:30px;}
+.conditions span{ color:#d50100; font-weight:bold;}
+.copy-right{ height:42px; line-height:42px; text-align:center; color:#fff; background-color:#b60101;}

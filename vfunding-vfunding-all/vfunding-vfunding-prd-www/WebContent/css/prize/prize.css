@@ -1,0 +1,140 @@
+
+@charset "utf-8";
+body{font-family:"微软雅黑";}
+#turnplatewrapper{height:547px;width:548px;background:url('/images/prize/turnplate/plate_06.png') top left no-repeat;left:-20px;top:0px;position:absolute;-moz-user-select:none;user-select:none;}
+#turnplate{height:547px;width:548px;background:url('/images/prize/turnplate/plate_05.png') top left no-repeat;}
+#turnplate #awards{position:absolute;width:100%;height:100%;background:url('/images/prize/turnplate/plate_03.png') top left no-repeat;}
+#platebtn{position:absolute;top:200px;left:200px;background:url('/images/prize/turnplate/plate_04.png') top left no-repeat;height:147px;width:147px;cursor:pointer;}
+#platebtn.hover{background-position:0 -147px }
+#turnplate #platebtn.click{background-position:0 -294px }
+#gift{width:398px;height:89px;background:url('/images/prize/turnplate/plate_gift_01.png') top left no-repeat;position:absolute;left:90px;top:720px;}
+#msg{position:absolute;display:none;top:130px;left:195px;border-radius:5px;color:#333;border:3px solid #FED33f;box-shadow:2px 2px 2px rgba(0,0,0,0.6);background:#fffcf2;width:200px;padding:10px;text-align:center;}
+.dn{display:none;}
+#init{position:absolute;top:50%;left:50%;width:100px;height:30px;border-radius:5px;color:#333;border:3px solid #FED33f;box-shadow:2px 2px 2px rgba(0,0,0,0.6);background:#fffcf2;width:250px;padding:10px;margin-top:-30px;margin-left:-138px;text-align:center;opacity:0.9;filter:alpha(opacity=90);}
+#login{margin-left:20px;}
+#login .tips{margin-left:50px;font-size:12px;margin-bottom:-5px;}
+#login .tips a{color:#039;font-size:16px;text-decoration:underline;}
+#login .msg{color:red;}
+#login label{height:30px;line-height:30px;font-size:16px;}
+#login .ipt{background:#fff;border:1px solid #ccc;height:28px;line-height:28px;margin-bottom:10px;box-shadow:0 1px 0 #fff;border-radius:2px;width:200px;}
+#login .ipt:focus{box-shadow:0 0 3px rgba(86,180,289,0.3);border:1px solid #56b4ef;}
+#lotteryMsg{height:auto;}
+#lotteryMsg .msg{font-size:16px;color:red;font-weight:bold; text-align:center;font-size:26px;color:#ba0f54;line-height:1;margin-bottom:10px;}
+#lotteryMsg .tips{text-align:center;font-size:14px;}
+#lotteryMsg .sp{border-top:1px solid #c3c3c3;border-bottom:0 none transparent;border-right:0 none transparent;border-left:0 none transparent;overflow:hidden;height:0;margin:10px 0;}
+#lotteryMsg a{color:#138cbe;}
+#lotteryMsg a:hover{color:#039;}
+#lotteryMsg .content{border:1px solid #ccc;border-radius:5px;padding:10px;background:#fff;line-height:1.5;}
+#top-menu-wrapper{height:51px;background:red;margin-bottom:-51px;}
+#top-menu{width:960px;margin:0 auto;}
+#top-menu a, #top-menu span{line-height:50px;display:inline-block;font-size:16px;color:#fff;text-decoration:1px 1px 2px rgba(0, 0, 0, 0.3);}
+#top-menu .user{padding-left:30px;display:inline-block;height:50px;color:#fff;background:url('/images/prize/turnplate/bg_03.png') 0 16px no-repeat;}
+#myPrizeList{}
+prizeList{height:216px;}
+/*jquery ui 定制 */
+body .ui-dialog{padding:0px;background:#ebeae3;box-shadow:2px 2px 5px rgba(0,0,0,0.5); font-family:"微软雅黑";}
+body .ui-dialog .ui-dialog-titlebar{height:23px;padding:0;margin:0;background:none;border:0 none transparent;}
+body .ui-dialog .ui-dialog-titlebar .ui-dialog-title{display:none;}
+body .ui-widget-content{border:4px solid #F7D102;}
+body .ui-dialog .ui-dialog-titlebar-close{background:#f6d20d;right:0;margin-top:-12px;}
+body .ui-dialog .ui-dialog-buttonpane{border:0 none transparent;}
+body .ui-dialog .ui-button-text{padding:0.8em 1em;}
+body .ui-widget-overlay{_filter:alpha(opacity=60); opacity:0.6;}
+.mv5{margin-left:5px;margin-right:5px;}
+
+.ui-widget-overlay{
+	background:#666;
+}
+a{outline:none;}
+.prizeIcon{
+      width: 177px;
+      height: 208px;
+      background-image:url(/images/huodong/an-icon.png);
+      background-repeat:no-repeat;
+      background-position:0 -709px;
+      margin-right: 20px;
+      margin-left:50px;
+    }
+
+  .prizeWord{
+    width: 600px;
+      overflow: hidden;
+  }
+
+  .onGet{
+      font-size: 34px;
+      color: #888;
+      line-height: 40px;;
+    }
+.prizeName{
+    font-size: 72px;
+    color: #f6483b;
+    line-height: 80px;
+    margin-top: 20px;
+}
+.prizeName span{
+    font-size: 24px;
+    color: #888;
+}
+.getPrizeSteps{
+    color: #888;
+    line-height: 30px;
+    margin-top: 20px;
+}
+.getPrizeSteps a{
+    color: #4eb2e6 ;
+}
+.getPrizeSteps a:hover{
+    color: #00a0e9;
+}
+.clear:after,.clear:before {
+    display: block;
+    height: 0;
+    line-height: 0;
+    content: "";
+    visibility: hidden;
+    clear: both;
+}
+ .fl{
+     float: left;
+ }
+
+.ui-dialog .ui-dialog-content{
+     background: #fff;
+ }
+
+ body .ui-widget-content{
+   border: 4px solid #f6483b;
+}
+body .ui-dialog .ui-dialog-titlebar-close{
+    background:url(/images/prize/x.jpg) no-repeat;
+    width: 30px;
+    height: 30px;
+    margin: 10px 20px;
+    top:0;
+    padding: 0;
+
+}
+.ui-widget-header .ui-icon,.ui-widget-content .ui-icon{
+    background: none;
+
+}
+.ui-widget-header .ui-state-hover {
+    border: none;
+
+}
+.ui-icon{
+    width: 30px;
+    height: 30px;
+    background: none;
+}
+
+
+
+body .ui-dialog .ui-dialog-titlebar{
+    background: #fff;
+    height: 50px;
+}
+
+.getPrize {font-family:"微软雅黑";}
+

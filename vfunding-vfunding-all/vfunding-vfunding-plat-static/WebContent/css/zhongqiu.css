@@ -1,0 +1,30 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, input, select, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+}
+a{ text-decoration:none;}
+img{ border:none;}
+ul,li{ list-style:none;}
+
+body{ background:url(../images/huodong/top-di.jpg) no-repeat center top #ffedc1; font-family:"微软雅黑";}
+
+.all{ width:1000px; margin:0 auto; position:relative; height:1950px; z-index:999;}
+
+.good-wish{ height:400px; background:url(../images/huodong/test.png) no-repeat center 50px;}
+.wine{ height:508px; position: absolute; background:url(../images/huodong/jindutiao.png) no-repeat; top:200px; width:971px; left:15px;}
+.item1,.item2,.item3,.item4{ position:absolute; top:332px;}
+.item1{ left:40px;}
+.item2{ left:270px;}
+.item3{ left:460px;}
+.item4{ left:780px;}
+p.date{ font-size:18px; color:#ffedc1; font-weight:bold; margin:10px 0; text-align:center;}
+p.p-content{ line-height:30px;color:#ffedc1; text-align:center; }
+.rules{ width:986px; height:751px; margin:0 auto; background:url(../images/huodong/guice.png) no-repeat; position: absolute; top:680px; color:#5d4309;}
+.rules span{color:#d07509; font-weight:bold;}
+.rule-one,.rule-two,.rule-three{ width:610px; position:absolute; left:84px;  line-height:30px;}
+.rule-one{top:156px;}
+.rule-two{ top:364px;}
+.rule-three{ top:554px;}
+a.weibo{ width:206px; height:59px; display:block; background:url(../images/huodong/anniu.png) no-repeat; position:absolute; top:158px; left:726px; cursor:pointer;}
+.wish-word{ width:957px; height:582px; margin:0 auto; background:url(../images/huodong/di.png) no-repeat; position: absolute; top:1450px; left:20px;}
+.footer-pic{ height:133px; position: relative; background:url(../images/huodong/di2.png) repeat-x;}

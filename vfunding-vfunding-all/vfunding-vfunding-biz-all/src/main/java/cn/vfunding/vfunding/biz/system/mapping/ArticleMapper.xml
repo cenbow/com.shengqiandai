@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.system.dao.ArticleMapper">
+	<resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.system.model.Article">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="site_id" property="siteId" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="littitle" property="littitle" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="TINYINT" />
+		<result column="litpic" property="litpic" jdbcType="VARCHAR" />
+		<result column="flag" property="flag" jdbcType="VARCHAR" />
+		<result column="source" property="source" jdbcType="VARCHAR" />
+		<result column="publish" property="publish" jdbcType="VARCHAR" />
+		<result column="is_jump" property="isJump" jdbcType="VARCHAR" />
+		<result column="author" property="author" jdbcType="VARCHAR" />
+		<result column="jumpurl" property="jumpurl" jdbcType="VARCHAR" />
+		<result column="summary" property="summary" jdbcType="VARCHAR" />
+		<result column="province" property="province" jdbcType="SMALLINT" />
+		<result column="city" property="city" jdbcType="SMALLINT" />
+		<result column="area" property="area" jdbcType="SMALLINT" />
+		<result column="order" property="order" jdbcType="INTEGER" />
+		<result column="hits" property="hits" jdbcType="INTEGER" />
+		<result column="comment" property="comment" jdbcType="INTEGER" />
+		<result column="is_comment" property="isComment" jdbcType="VARCHAR" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="addtime" property="addtime" jdbcType="INTEGER" />
+		<result column="addip" property="addip" jdbcType="VARCHAR" />
+		<result column="seo_title" property="seoTitle" jdbcType="VARCHAR" />
+		<result column="seo_keywords" property="seoKeywords" jdbcType="VARCHAR" />
+		<result column="seo_description" property="seoDescription"
+			jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs" type="cn.vfunding.vfunding.biz.system.model.Article"
+		extends="BaseResultMap">
+		<result column="content" property="content" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, site_id, name, littitle, status, litpic, flag, source,
+		publish,
+		is_jump, author,
+		jumpurl, summary, province, city, area,
+		`order`, hits, comment, is_comment,
+		user_id,
+		addtime,
+		addip,seo_title,seo_keywords,seo_description
+	</sql>
+	<sql id="Blob_Column_List">
+		content
+	</sql>
+
+	<select id="selectArticleByStatusCount" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from rd_article
+		where `status` = #{status,jdbcType=TINYINT}
+		<if test="siteId != null">
+			and site_id = #{siteId, jdbcType=INTEGER}
+		</if>
+		order by addtime desc
+		limit
+		#{start,jdbcType=INTEGER},#{size,jdbcType=INTEGER}
+	</select>
+	<!-- 列表 -->
+	<select id="selectArticleListPage" resultMap="BaseResultMap"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select
+		<include refid="Base_Column_List" />
+		from rd_article
+		where 1=1
+		<if test="entity.status != null">
+			and `status` = #{entity.status,jdbcType=TINYINT}
+		</if>
+		<if
+			test="entity.siteId != null and entity.siteId != '' and entity.siteId != 1">
+			and site_id = #{entity.siteId, jdbcType=INTEGER}
+		</if>
+		<if
+			test="entity.siteId != null and entity.siteId != '' and entity.siteId == 1 ">
+			and site_id in (108,109)
+		</if>
+		<if test="entity.littitle != null and entity.littitle != ''">
+			and littitle like
+			concat('%',#{entity.littitle,jdbcType=VARCHAR},'%')
+		</if>
+		order by addtime desc
+	</select>
+
+	<!-- 小微资讯 -->
+	<select id="selectHotArticle" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from rd_article
+		where status=1 and
+		DATE_FORMAT(from_unixtime(addtime),
+		'%Y%m')=DATE_FORMAT(now(), '%Y%m')
+		and site_id in
+		<foreach item="siteIds" index="index" collection="siteIds"
+			open="(" separator="," close=")">
+			#{siteIds,jdbcType=INTEGER}
+		</foreach>
+		order by hits desc limit 0,#{size,jdbcType=INTEGER}
+	</select>
+
+
+	<select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from rd_article
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		rd_article
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="cn.vfunding.vfunding.biz.system.model.Article">
+		insert into rd_article (id,
+		site_id, name,
+		littitle, status, litpic,
+		flag, source, publish,
+		is_jump,
+		author, jumpurl,
+		summary, province, city,
+		area, `order`, hits,
+		comment,
+		is_comment, user_id,
+		addtime, addip,
+		content,seo_title,seo_keywords,seo_description
+		)
+		values
+		(#{id,jdbcType=INTEGER}, #{siteId,jdbcType=INTEGER},
+		#{name,jdbcType=VARCHAR},
+		#{littitle,jdbcType=VARCHAR},
+		#{status,jdbcType=TINYINT}, #{litpic,jdbcType=VARCHAR},
+		#{flag,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR},
+		#{publish,jdbcType=VARCHAR},
+		#{isJump,jdbcType=VARCHAR},
+		#{author,jdbcType=VARCHAR}, #{jumpurl,jdbcType=VARCHAR},
+		#{summary,jdbcType=VARCHAR}, #{province,jdbcType=SMALLINT},
+		#{city,jdbcType=SMALLINT},
+		#{area,jdbcType=SMALLINT},
+		#{order,jdbcType=INTEGER}, #{hits,jdbcType=INTEGER},
+		#{comment,jdbcType=INTEGER}, #{isComment,jdbcType=VARCHAR},
+		#{userId,jdbcType=INTEGER},
+		#{addtime,jdbcType=INTEGER},
+		#{addip,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR},
+		#{seoTitle,jdbcType=VARCHAR},#{seoKeywords,jdbcType=VARCHAR},#{seoDescription,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.system.model.Article">
+		insert into rd_article
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="siteId != null">
+				site_id,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="littitle != null">
+				littitle,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="litpic != null">
+				litpic,
+			</if>
+			<if test="flag != null">
+				flag,
+			</if>
+			<if test="source != null">
+				source,
+			</if>
+			<if test="publish != null">
+				publish,
+			</if>
+			<if test="isJump != null">
+				is_jump,
+			</if>
+			<if test="author != null">
+				author,
+			</if>
+			<if test="jumpurl != null">
+				jumpurl,
+			</if>
+			<if test="summary != null">
+				summary,
+			</if>
+			<if test="province != null">
+				province,
+			</if>
+			<if test="city != null">
+				city,
+			</if>
+			<if test="area != null">
+				area,
+			</if>
+			<if test="order != null">
+				`order`,
+			</if>
+			<if test="hits != null">
+				hits,
+			</if>
+			<if test="comment != null">
+				comment,
+			</if>
+			<if test="isComment != null">
+				is_comment,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="addtime != null">
+				addtime,
+			</if>
+			<if test="addip != null">
+				addip,
+			</if>
+			<if test="seoTitle != null">
+				seo_title,
+			</if>
+			<if test="seoKeywords != null">
+				seo_keywords,
+			</if>
+			<if test="seoDescription != null">
+				seo_description,
+			</if>
+			<if test="content != null">
+				content,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="siteId != null">
+				#{siteId,jdbcType=INTEGER},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="littitle != null">
+				#{littitle,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=TINYINT},
+			</if>
+			<if test="litpic != null">
+				#{litpic,jdbcType=VARCHAR},
+			</if>
+			<if test="flag != null">
+				#{flag,jdbcType=VARCHAR},
+			</if>
+			<if test="source != null">
+				#{source,jdbcType=VARCHAR},
+			</if>
+			<if test="publish != null">
+				#{publish,jdbcType=VARCHAR},
+			</if>
+			<if test="isJump != null">
+				#{isJump,jdbcType=VARCHAR},
+			</if>
+			<if test="author != null">
+				#{author,jdbcType=VARCHAR},
+			</if>
+			<if test="jumpurl != null">
+				#{jumpurl,jdbcType=VARCHAR},
+			</if>
+			<if test="summary != null">
+				#{summary,jdbcType=VARCHAR},
+			</if>
+			<if test="province != null">
+				#{province,jdbcType=SMALLINT},
+			</if>
+			<if test="city != null">
+				#{city,jdbcType=SMALLINT},
+			</if>
+			<if test="area != null">
+				#{area,jdbcType=SMALLINT},
+			</if>
+			<if test="order != null">
+				#{order,jdbcType=INTEGER},
+			</if>
+			<if test="hits != null">
+				#{hits,jdbcType=INTEGER},
+			</if>
+			<if test="comment != null">
+				#{comment,jdbcType=INTEGER},
+			</if>
+			<if test="isComment != null">
+				#{isComment,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="addtime != null">
+				#{addtime,jdbcType=INTEGER},
+			</if>
+			<if test="addip != null">
+				#{addip,jdbcType=VARCHAR},
+			</if>
+			<if test="seoTitle != null">
+				#{seoTitle,jdbcType=VARCHAR},
+			</if>
+			<if test="seoKeywords != null">
+				#{seoKeywords,jdbcType=VARCHAR},
+			</if>
+			<if test="seoDescription != null">
+				#{seoDescription,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				#{content,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.system.model.Article">
+		update rd_article
+		<set>
+			<if test="siteId != null">
+				site_id = #{siteId,jdbcType=INTEGER},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="littitle != null">
+				littitle = #{littitle,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=TINYINT},
+			</if>
+			<if test="litpic != null">
+				litpic = #{litpic,jdbcType=VARCHAR},
+			</if>
+			<if test="flag != null">
+				flag = #{flag,jdbcType=VARCHAR},
+			</if>
+			<if test="source != null">
+				source = #{source,jdbcType=VARCHAR},
+			</if>
+			<if test="publish != null">
+				publish = #{publish,jdbcType=VARCHAR},
+			</if>
+			<if test="isJump != null">
+				is_jump = #{isJump,jdbcType=VARCHAR},
+			</if>
+			<if test="author != null">
+				author = #{author,jdbcType=VARCHAR},
+			</if>
+			<if test="jumpurl != null">
+				jumpurl = #{jumpurl,jdbcType=VARCHAR},
+			</if>
+			<if test="summary != null">
+				summary = #{summary,jdbcType=VARCHAR},
+			</if>
+			<if test="province != null">
+				province = #{province,jdbcType=SMALLINT},
+			</if>
+			<if test="city != null">
+				city = #{city,jdbcType=SMALLINT},
+			</if>
+			<if test="area != null">
+				area = #{area,jdbcType=SMALLINT},
+			</if>
+			<if test="order != null">
+				`order` = #{order,jdbcType=INTEGER},
+			</if>
+			<if test="hits != null">
+				hits = #{hits,jdbcType=INTEGER},
+			</if>
+			<if test="comment != null">
+				comment = #{comment,jdbcType=INTEGER},
+			</if>
+			<if test="isComment != null">
+				is_comment = #{isComment,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=INTEGER},
+			</if>
+			<if test="addtime != null">
+				addtime = #{addtime,jdbcType=INTEGER},
+			</if>
+			<if test="addip != null">
+				addip = #{addip,jdbcType=VARCHAR},
+			</if>
+			<if test="seoTitle != null">
+				seo_title = #{seoTitle,jdbcType=VARCHAR},
+			</if>
+			<if test="seoKeywords != null">
+				seo_keywords = #{seoKeywords,jdbcType=VARCHAR},
+			</if>
+			<if test="seoDescription != null">
+				seo_description = #{seoDescription,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				content = #{content,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.vfunding.vfunding.biz.system.model.Article">
+		update
+		rd_article
+		set site_id = #{siteId,jdbcType=INTEGER},
+		name =
+		#{name,jdbcType=VARCHAR},
+		littitle = #{littitle,jdbcType=VARCHAR},
+		status = #{status,jdbcType=TINYINT},
+		litpic =
+		#{litpic,jdbcType=VARCHAR},
+		flag = #{flag,jdbcType=VARCHAR},
+		source =
+		#{source,jdbcType=VARCHAR},
+		publish = #{publish,jdbcType=VARCHAR},
+		is_jump = #{isJump,jdbcType=VARCHAR},
+		author =
+		#{author,jdbcType=VARCHAR},
+		jumpurl = #{jumpurl,jdbcType=VARCHAR},
+		summary = #{summary,jdbcType=VARCHAR},
+		province =
+		#{province,jdbcType=SMALLINT},
+		city = #{city,jdbcType=SMALLINT},
+		area =
+		#{area,jdbcType=SMALLINT},
+		`order` = #{order,jdbcType=INTEGER},
+		hits =
+		#{hits,jdbcType=INTEGER},
+		comment = #{comment,jdbcType=INTEGER},
+		is_comment = #{isComment,jdbcType=VARCHAR},
+		user_id =
+		#{userId,jdbcType=INTEGER},
+		addtime = #{addtime,jdbcType=INTEGER},
+		addip = #{addip,jdbcType=VARCHAR},
+		seo_title =
+		#{seoTitle,jdbcType=VARCHAR},
+		seo_keywords =
+		#{seoKeywords,jdbcType=VARCHAR},
+		seo_description =
+		#{seoDescription,jdbcType=VARCHAR},
+		content =
+		#{content,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.system.model.Article">
+		update rd_article
+		set site_id = #{siteId,jdbcType=INTEGER},
+		name =
+		#{name,jdbcType=VARCHAR},
+		littitle = #{littitle,jdbcType=VARCHAR},
+		status = #{status,jdbcType=TINYINT},
+		litpic =
+		#{litpic,jdbcType=VARCHAR},
+		flag = #{flag,jdbcType=VARCHAR},
+		source =
+		#{source,jdbcType=VARCHAR},
+		publish = #{publish,jdbcType=VARCHAR},
+		is_jump = #{isJump,jdbcType=VARCHAR},
+		author =
+		#{author,jdbcType=VARCHAR},
+		jumpurl = #{jumpurl,jdbcType=VARCHAR},
+		summary = #{summary,jdbcType=VARCHAR},
+		province =
+		#{province,jdbcType=SMALLINT},
+		city = #{city,jdbcType=SMALLINT},
+		area =
+		#{area,jdbcType=SMALLINT},
+		`order` = #{order,jdbcType=INTEGER},
+		hits =
+		#{hits,jdbcType=INTEGER},
+		comment = #{comment,jdbcType=INTEGER},
+		is_comment = #{isComment,jdbcType=VARCHAR},
+		user_id =
+		#{userId,jdbcType=INTEGER},
+		addtime = #{addtime,jdbcType=INTEGER},
+		seo_title = #{seoTitle,jdbcType=VARCHAR},
+		seo_keywords =
+		#{seoKeywords,jdbcType=VARCHAR},
+		seo_description =
+		#{seoDescription,jdbcType=VARCHAR},
+		addip = #{addip,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>

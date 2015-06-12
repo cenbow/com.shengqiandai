@@ -1,0 +1,163 @@
+@charset "utf-8";
+/* CSS Document */
+
+@charset "utf-8";
+/* CSS Document */
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+@import url(accountLeft.css);
+.myAccount{  margin:30px 0; clear:both;}
+
+/*****账户总览右栏***/
+.rechargeTakeCash{ width:820px; }
+.rT{  background:#fff;padding-bottom:30px; margin-bottom:30px;}
+.rTWrap{ width:780px; margin:0 auto; overflow:hidden; position:relative;}
+.txTop{ height:58px;overflow:hidden; }
+b.midLine{ height:1px; font-size:0; width:80%; background:#eeeeee; position:absolute; top:28px; right:0;  overflow:hidden;}
+.txTop h2,.excel{ height:22px; line-height:22px; position:absolute;background-color:#fff;}
+.txTop h2.zhcz{ top:17px; left:88px; font-size:20px; color:#0065b4; padding:0 6px; z-index:9; }
+
+a.goBack{ width:64px; height:30px; line-height:28px; display:block; position:absolute; left:0; top:12px; background:url(../images/account/goback.png) no-repeat 12px center; background-color:#cccccc; text-indent:28px; color:#fff;}
+a.goBack:hover{ background-color:#aaa; text-decoration:none;}
+.rechargeAmount,.rechargeWay,.threeWay{ height:50px; margin-top:22px;}
+.rechargeAmount li,.rechargeWay li,.threeWay li{ height:50px; float:left; line-height:50px; margin-right:15px; }
+.rechargeAmount li.rechargeNum,.rechargeWay li.rechargeNum,.threeWay li.rechargeNum{ width:88px; text-align:right;}
+li.moneyAmount,.rechargeOnline,.rechargeOffline,.zhifubao{ width:180px; height:48px;  border:1px solid #cccccc; position:relative;  }
+.rechargeAmount li.moneyAmount{text-indent:36px; font-size:24px;}
+.rechargeAmount li i.moneySymbol{ width:14px; height:18px; position:absolute; display:block; left:11px; top:16px; overflow:hidden; background:url(../images/account/symbol.png) no-repeat 0 -21px;}
+.rechargeOnline,.rechargeOffline,.zhifubao{ text-align:center; cursor:pointer;}
+.selectedSymbol{ width:20px; height:20px; position:absolute; display:block; top:0; right:0;background:url(../images/account/symbol.png) no-repeat 0 0;}
+#keyMoney{    
+    border:none;
+    font-size: 20px;
+    height: 40px;
+    left: 24px;
+    line-height: 40px;
+    padding: 4px 8px;
+    position: absolute;
+    width: 140px;
+ }
+.czWrap{ width:780px; clear:both; overflow:hidden; padding-bottom:30px; border-bottom:1px dotted #cccccc;}
+
+.online,.offline,.alipay{ display:none;}
+.zh-on{ width:92px; height:50px; line-height:50px; text-align:right; margin-right:11px;}
+.banksImg{ background:url(../images/account/BANK.png) no-repeat;}
+
+.banks,.banks2{ width:620px; }
+.banks ul,.pay-channel  ul{ overflow:hidden;}
+.banks li,.pay-channel   li{width:180px; height:48px; line-height:48px; text-align:center;  border:1px solid #cccccc; position:relative; float:left; margin:0 15px 10px 0; cursor:pointer; }
+.fengeLine{ height:10px; clear:both;}
+.recharge-mark{border-bottom:1px dotted  #cccccc;padding-bottom:30px; margin-top:16px;}
+.online {*padding-top:20px;}
+.wyzx{ overflow:hidden;}
+.icbc{ background-position:0 0;}
+.cmb{ background-position:0 -50px;}
+.ccb{ background-position:0 -100px;}
+.abc{ background-position:0 -150px;}
+.bc{ background-position:0 -200px;}
+.spdb{ background-position:0 -250px;}
+.cib{ background-position:0 -300px;}
+.ceb{ background-position:0 -350px;}
+.jiaotong{ background-position:0 -400px;}
+.minsheng{ background-position:0 -450px;}
+.zhongxin{ background-position:0 -500px;}
+.cgb{ background-position:0 -550px;}
+.pingan{ background-position:0 -600px;}
+.psbc{ background-position:0 -650px;}
+.hb{ background-position:0 -700px;}
+.tjyh{background-position:0 -748px;}
+.hzyh{background-position:0 -800px;}
+.cdyh{background-position:0 -850px;}
+.cqnsyh{background-position:0  -899px;}
+.bjnsyh{background-position:0 -951px;}
+.njyh{background-position:0 -1151px;}
+.bjyh{background-position:0 -1000px;}
+.shnsyh{background-position:0 -1052px;}
+.shyh{background-position:0  -1100px;}
+
+
+.banks2 p{ height:24px; line-height:24px; margin-top:12px;}
+  
+#problem{ margin-top:20px;}
+#problem p{ color:#ff5555; }
+.beizhu{ height:28px; margin:10px 0 4px;}
+.beizhu input{ width:616px;height:28px; border:1px solid #cccccc; padding:0 10px;}
+.banks2 span{  font-size:12px; color:#888;}
+#submitBtn{ width:116px; height:40px; line-height:40px; text-align:center; display:block; margin-top:20px; background-color:#0065b4; font-size:16px; color:#fff; cursor:pointer; border-radius:3px; border:0 none; outline:none;}
+
+.moneyLegalCheck{ width:672px; height:20px; line-height:20px; font-size:12px; color:#ff5555; clear:both; margin-left:108px;}
+
+.czBtn{ width:180px; height:50px; line-height:50px; text-indent:70px; color:#fff; font-size:24px; background:#ff8636; display:block; clear:both; margin:30px 0 0 102px; position:relative; border-radius:3px;}
+.czBtn i.moneySymbol{ width:12px; height:14px; position:absolute; left:50px;top:20px; display:block; background:url(../images/account/rtBtn.png) no-repeat 0 0; overflow:hidden;}
+.czBtn:hover{ text-decoration:none;background:#ffa836;}
+
+.warmTip{  margin-top:22px; padding-left:31px; }
+.warmTip h2{font-size:18px; color:#00a0e9; font-weight:normal;}
+.tips{ padding-left:24px; margin-top:18px;}
+.tips p{ line-height:22px; font-size:12px; color:#888888;}
+
+.rech-dialog-entry {
+    overflow: hidden;
+    padding: 15px;
+}
+.rech-dialog-entry a, .rech-dialog-entry a:visited {
+    color: #349CD8;
+    padding-right: 10px;
+}
+.rech-dialog-entry .p {
+    padding-bottom: 20px;
+}
+.rech-dialog-entry .rech-mode {
+    height: 30px;
+    padding-left: 25px;
+    position: relative;
+}
+.rech-dialog-entry .rech-mode .icons {
+    left: 0;
+    position: absolute;
+    top: 3px;
+}
+.rech-dialog-entry .rech-mode strong {
+    font-size: 14px;
+    font-weight: bold;
+}
+.help-recharge {
+    line-height: 1.8;
+    padding: 15px 20px;
+}
+.help-recharge a, .help-recharge a:visited {
+    color: #349CD8;
+}
+
+.rech-dialog-entry .rech-mode {
+    height: 30px;
+    padding-left: 25px;
+    position: relative;
+}
+.rech-dialog-entry .rech-mode .icons {
+    left: 0;
+    position: absolute;
+    top: 3px;
+}
+
+.rech-dialog-entry .rech-mode strong {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+.green-proper {
+    background-position: -116px -144px;
+    height: 18px;
+    width: 16px;
+}
+
+.reg-error {
+    background-position: -471px -120px;
+    height: 16px;
+    width: 16px;
+}
+
+
+

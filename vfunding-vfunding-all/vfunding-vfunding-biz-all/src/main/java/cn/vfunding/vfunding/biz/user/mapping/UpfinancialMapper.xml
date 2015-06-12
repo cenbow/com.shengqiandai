@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.user.dao.UpfinancialMapper">
+	<resultMap id="BaseResultMap"
+		type="cn.vfunding.vfunding.biz.user.model.Upfinancial">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="type_id" property="typeId" jdbcType="INTEGER" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="verify_time" property="verifyTime" jdbcType="TIMESTAMP" />
+		<result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	
+	<resultMap type="cn.vfunding.vfunding.biz.user.model.Upfinancial"
+		extends="BaseResultMap" id="BaseVOResultMap">
+		<result column="newType" property="newType" jdbcType="VARCHAR" />
+		<result column="oldType" property="oldType" jdbcType="VARCHAR" />
+		<result column="phone" property="phone" jdbcType="VARCHAR" />
+		<result column="realname" property="realname" jdbcType="VARCHAR" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, user_id, type_id, status, remark, verify_time, add_time
+	</sql>
+
+	<!-- 后台列表 -->
+	<select id="selectByListPage" resultMap="BaseVOResultMap"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select a.id, a.user_id, (select t.name from rd_user_type t where t.type_id=a.type_id) as newType
+		, a.status, a.remark, a.verify_time, a.add_time, 
+		b.username,(select t.name from rd_user_type t where t.type_id=b.type_id) as oldType
+		,b.phone,b.realname from vf_upfinancial a
+		left join rd_user b on a.user_id =b.user_id
+		where 1=1
+		<if test="entity.status != null">
+			and a.status = #{entity.status,jdbcType=VARCHAR}
+		</if>
+		<if test="entity.username != null and entity.username != ''">
+			and b.username like concat('%',#{entity.username,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="entity.keyWord != null and entity.keyWord != ''">
+			and b.realname like concat('%',#{entity.keyWord,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="entity.phone != null and entity.phone != ''">
+			and b.phone like concat('%',#{entity.phone,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="entity.startTime != null and entity.startTime != ''">
+			<![CDATA[ and a.add_time >= #{entity.startTime,jdbcType=VARCHAR} ]]>
+		</if>
+		<if test="entity.endTime != null and entity.endTime != ''">
+			<![CDATA[ and a.add_time <= #{entity.endTime,jdbcType=VARCHAR} ]]>
+		</if>
+		order by a.add_time desc
+	</select>
+	<select id="selectByUserIdAndType" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from vf_upfinancial
+		where status =0 and user_id =
+		#{userId,jdbcType=INTEGER}
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from vf_upfinancial
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		vf_upfinancial
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="cn.vfunding.vfunding.biz.user.model.Upfinancial">
+		insert into vf_upfinancial
+		(id, user_id, type_id,
+		status, remark, verify_time,
+		add_time)
+		values
+		(#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER},
+		#{typeId,jdbcType=INTEGER},
+		#{status,jdbcType=INTEGER},
+		#{remark,jdbcType=VARCHAR}, #{verifyTime,jdbcType=TIMESTAMP},
+		#{addTime,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.user.model.Upfinancial">
+		insert into vf_upfinancial
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="typeId != null">
+				type_id,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="verifyTime != null">
+				verify_time,
+			</if>
+			<if test="addTime != null">
+				add_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="typeId != null">
+				#{typeId,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="verifyTime != null">
+				#{verifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="addTime != null">
+				#{addTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.user.model.Upfinancial">
+		update vf_upfinancial
+		<set>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=INTEGER},
+			</if>
+			<if test="typeId != null">
+				type_id = #{typeId,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="verifyTime != null">
+				verify_time = #{verifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="addTime != null">
+				add_time = #{addTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.user.model.Upfinancial">
+		update
+		vf_upfinancial
+		set user_id = #{userId,jdbcType=INTEGER},
+		type_id =
+		#{typeId,jdbcType=INTEGER},
+		status = #{status,jdbcType=INTEGER},
+		remark
+		= #{remark,jdbcType=VARCHAR},
+		verify_time =
+		#{verifyTime,jdbcType=TIMESTAMP},
+		add_time =
+		#{addTime,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>

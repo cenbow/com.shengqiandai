@@ -1,0 +1,152 @@
+@charset "utf-8";
+/* CSS Document */
+
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+body{
+    background-color: #9f7f43;
+}
+.lmk{
+    width: 960px;
+    padding: 0 20px;
+    margin: 20px auto;
+    overflow: hidden;
+    background-color: #fff;
+}
+.allbg{
+   background: url(../images/huodong/lmkimg.png) no-repeat;
+}
+.lmk-info{
+  position: relative;
+    padding-top: 10px;
+}
+p.bigfont{
+    font-size: 48px;
+    color: #9f7f43;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+p.bigfont span{
+    font-size: 18px;
+    font-weight: normal;
+}
+p.midfont{
+    line-height: 30px;
+    font-size: 22px;
+    color:#9f7f43 ;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+p.smallfont{
+    line-height: 30px;
+    font-size: 18px;
+    color:#9f7f43 ;
+    margin-bottom: 10px;
+}
+a.lmk-reg{
+   display: block;
+    width: 308px;
+    height: 309px;
+    position: absolute;
+    right: 10px;
+    top:10px;
+    background-position: 0 -173px;
+}
+
+.run-card{
+    height: 172px;
+    margin-top: 30px;
+    background-position: 0 0;
+}
+.what-card{
+    padding: 18px 20px;
+    background-color: #9f7f43;
+    font-size: 24px;
+    color: #fff;
+    font-weight: bold;
+    margin: 46px 0 20px ;
+}
+
+.answer{
+    width: 920px;
+    margin:0 auto;
+    font-size: 16px;
+    line-height: 30px;
+}
+.four-sector{
+    margin-top: 30px;
+}
+.four-sector li{
+     width:131px;
+    padding: 0 30px;
+    float: left;
+    overflow: hidden;
+
+}
+
+.sector-first-img,.sector-second-img,.sector-third-img,.sector-fourth-img,.sector-fivth-img{
+    width: 102px;
+    height: 134px;
+    margin-bottom: 10px;
+}
+.sector-first-img{
+    background-position: -318px -173px;
+}
+.sector-second-img{
+    background-position: -418px -173px;
+}
+.sector-third-img{
+    background-position: -521px -173px;
+}
+.sector-fourth-img{
+    background-position: -621px -173px;
+}
+.sector-fivth-img{
+    background-position: -724px -173px;
+}
+.zsyh{
+    margin-top: 42px;
+    padding-left: 30px;
+}
+.zsyh-img{
+    width: 318px;
+    height: 201px;
+    background-position: -318px -307px;
+}
+i.star{
+    width: 25px;
+    height: 24px;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-position: -640px -309px;
+}
+.zsyh-cnt{
+    padding-left: 50px;
+    margin-left:53px;
+    position: relative;
+}
+p.most-important{
+    color: #9f7f43;
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 22px;
+    margin-bottom: 20px;
+}
+p.normal{
+    line-height: 50px;
+    font-size: 30px;
+    color: #9f7f43;
+    margin-top: 10px;
+}
+
+p.normal span{
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.mt50{
+    margin: 50px 0 30px ;
+}

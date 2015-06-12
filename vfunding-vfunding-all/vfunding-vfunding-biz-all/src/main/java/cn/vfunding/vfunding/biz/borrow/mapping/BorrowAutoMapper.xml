@@ -1,0 +1,567 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.borrow.dao.BorrowAutoMapper">
+
+	<resultMap type="cn.vfunding.vfunding.biz.borrow.model.BorrowAuto" id="Base_ResultMap">
+		<result column="tender_account" property="tenderAccount" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+	</resultMap>
+
+	<resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.borrow.model.BorrowAuto" extends="Base_ResultMap">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="status" property="status" jdbcType="BIT" />
+		<result column="tender_type" property="tenderType" jdbcType="INTEGER" />
+		<result column="tender_scale" property="tenderScale" jdbcType="INTEGER" />
+		<result column="video_status" property="videoStatus" jdbcType="INTEGER" />
+		<result column="scene_status" property="sceneStatus" jdbcType="INTEGER" />
+		<result column="my_friend" property="myFriend" jdbcType="INTEGER" />
+		<result column="not_black" property="notBlack" jdbcType="INTEGER" />
+		<result column="late_status" property="lateStatus" jdbcType="INTEGER" />
+		<result column="dianfu_status" property="dianfuStatus" jdbcType="INTEGER" />
+		<result column="black_status" property="blackStatus" jdbcType="INTEGER" />
+		<result column="late_times" property="lateTimes" jdbcType="INTEGER" />
+		<result column="dianfu_times" property="dianfuTimes" jdbcType="INTEGER" />
+		<result column="black_user" property="blackUser" jdbcType="INTEGER" />
+		<result column="black_times" property="blackTimes" jdbcType="INTEGER" />
+		<result column="not_late_black" property="notLateBlack" jdbcType="INTEGER" />
+		<result column="borrow_credit_status" property="borrowCreditStatus" jdbcType="BIT" />
+		<result column="borrow_credit_first" property="borrowCreditFirst" jdbcType="INTEGER" />
+		<result column="borrow_credit_last" property="borrowCreditLast" jdbcType="INTEGER" />
+		<result column="borrow_style_status" property="borrowStyleStatus" jdbcType="INTEGER" />
+		<result column="borrow_style" property="borrowStyle" jdbcType="INTEGER" />
+		<result column="timelimit_status" property="timelimitStatus" jdbcType="INTEGER" />
+		<result column="timelimit_month_first" property="timelimitMonthFirst" jdbcType="INTEGER" />
+		<result column="timelimit_month_last" property="timelimitMonthLast" jdbcType="INTEGER" />
+		<result column="apr_status" property="aprStatus" jdbcType="BIT" />
+		<result column="apr_first" property="aprFirst" jdbcType="TINYINT" />
+		<result column="apr_last" property="aprLast" jdbcType="TINYINT" />
+		<result column="award_status" property="awardStatus" jdbcType="BIT" />
+		<result column="award_first" property="awardFirst" jdbcType="REAL" />
+		<result column="award_last" property="awardLast" jdbcType="REAL" />
+		<result column="vouch_status" property="vouchStatus" jdbcType="BIT" />
+		<result column="tuijian_status" property="tuijianStatus" jdbcType="BIT" />
+
+		<result column="addtime" property="addtime" jdbcType="INTEGER" />
+		<result column="fast_status" property="fastStatus" jdbcType="BIT" />
+		<result column="xin_status" property="xinStatus" jdbcType="BIT" />
+		<result column="jin_status" property="jinStatus" jdbcType="BIT" />
+		<result column="timelimit_day_first" property="timelimitDayFirst" jdbcType="TINYINT" />
+		<result column="timelimit_day_last" property="timelimitDayLast" jdbcType="TINYINT" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, status, tender_type, tender_account, tender_scale, video_status, scene_status,
+		my_friend, not_black, late_status, dianfu_status,
+		black_status, late_times, dianfu_times,
+		black_user, black_times, not_late_black, borrow_credit_status, borrow_credit_first,
+		borrow_credit_last,
+		borrow_style_status, borrow_style, timelimit_status, timelimit_month_first,
+		timelimit_month_last, apr_status, apr_first, apr_last, award_status,
+		award_first,
+		award_last, vouch_status, tuijian_status, user_id, addtime, fast_status, xin_status,
+		jin_status, timelimit_day_first, timelimit_day_last
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from rd_borrow_auto
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectBorrowAutoByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from rd_borrow_auto
+		where user_id = #{userId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from rd_borrow_auto
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="cn.vfunding.vfunding.biz.borrow.model.BorrowAuto">
+		insert into rd_borrow_auto (id, status, tender_type,
+		tender_account, tender_scale, video_status,
+		scene_status, my_friend, not_black,
+		late_status, dianfu_status, black_status,
+		late_times, dianfu_times, black_user,
+		black_times, not_late_black,
+		borrow_credit_status,
+		borrow_credit_first, borrow_credit_last, borrow_style_status,
+		borrow_style, timelimit_status, timelimit_month_first,
+		timelimit_month_last, apr_status, apr_first,
+		apr_last, award_status, award_first,
+		award_last, vouch_status, tuijian_status,
+		user_id, addtime,
+		fast_status,
+		xin_status, jin_status, timelimit_day_first,
+		timelimit_day_last)
+		values (#{id,jdbcType=INTEGER}, #{status,jdbcType=BIT},
+		#{tenderType,jdbcType=INTEGER},
+		#{tenderAccount,jdbcType=INTEGER}, #{tenderScale,jdbcType=INTEGER}, #{videoStatus,jdbcType=INTEGER},
+		#{sceneStatus,jdbcType=INTEGER}, #{myFriend,jdbcType=INTEGER}, #{notBlack,jdbcType=INTEGER},
+		#{lateStatus,jdbcType=INTEGER},
+		#{dianfuStatus,jdbcType=INTEGER}, #{blackStatus,jdbcType=INTEGER},
+		#{lateTimes,jdbcType=INTEGER}, #{dianfuTimes,jdbcType=INTEGER},
+		#{blackUser,jdbcType=INTEGER},
+		#{blackTimes,jdbcType=INTEGER}, #{notLateBlack,jdbcType=INTEGER}, #{borrowCreditStatus,jdbcType=BIT},
+		#{borrowCreditFirst,jdbcType=INTEGER}, #{borrowCreditLast,jdbcType=INTEGER}, #{borrowStyleStatus,jdbcType=INTEGER},
+		#{borrowStyle,jdbcType=INTEGER},
+		#{timelimitStatus,jdbcType=INTEGER}, #{timelimitMonthFirst,jdbcType=INTEGER},
+		#{timelimitMonthLast,jdbcType=INTEGER}, #{aprStatus,jdbcType=BIT},
+		#{aprFirst,jdbcType=TINYINT},
+		#{aprLast,jdbcType=TINYINT}, #{awardStatus,jdbcType=BIT}, #{awardFirst,jdbcType=REAL},
+		#{awardLast,jdbcType=REAL},
+		#{vouchStatus,jdbcType=BIT}, #{tuijianStatus,jdbcType=BIT},
+		#{userId,jdbcType=INTEGER}, #{addtime,jdbcType=INTEGER}, #{fastStatus,jdbcType=BIT},
+		#{xinStatus,jdbcType=BIT}, #{jinStatus,jdbcType=BIT}, #{timelimitDayFirst,jdbcType=TINYINT},
+		#{timelimitDayLast,jdbcType=TINYINT})
+	</insert>
+	<insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.borrow.model.BorrowAuto">
+		insert into rd_borrow_auto
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="tenderType != null">
+				tender_type,
+			</if>
+			<if test="tenderAccount != null">
+				tender_account,
+			</if>
+			<if test="tenderScale != null">
+				tender_scale,
+			</if>
+			<if test="videoStatus != null">
+				video_status,
+			</if>
+			<if test="sceneStatus != null">
+				scene_status,
+			</if>
+			<if test="myFriend != null">
+				my_friend,
+			</if>
+			<if test="notBlack != null">
+				not_black,
+			</if>
+			<if test="lateStatus != null">
+				late_status,
+			</if>
+			<if test="dianfuStatus != null">
+				dianfu_status,
+			</if>
+			<if test="blackStatus != null">
+				black_status,
+			</if>
+			<if test="lateTimes != null">
+				late_times,
+			</if>
+			<if test="dianfuTimes != null">
+				dianfu_times,
+			</if>
+			<if test="blackUser != null">
+				black_user,
+			</if>
+			<if test="blackTimes != null">
+				black_times,
+			</if>
+			<if test="notLateBlack != null">
+				not_late_black,
+			</if>
+			<if test="borrowCreditStatus != null">
+				borrow_credit_status,
+			</if>
+			<if test="borrowCreditFirst != null">
+				borrow_credit_first,
+			</if>
+			<if test="borrowCreditLast != null">
+				borrow_credit_last,
+			</if>
+			<if test="borrowStyleStatus != null">
+				borrow_style_status,
+			</if>
+			<if test="borrowStyle != null">
+				borrow_style,
+			</if>
+			<if test="timelimitStatus != null">
+				timelimit_status,
+			</if>
+			<if test="timelimitMonthFirst != null">
+				timelimit_month_first,
+			</if>
+			<if test="timelimitMonthLast != null">
+				timelimit_month_last,
+			</if>
+			<if test="aprStatus != null">
+				apr_status,
+			</if>
+			<if test="aprFirst != null">
+				apr_first,
+			</if>
+			<if test="aprLast != null">
+				apr_last,
+			</if>
+			<if test="awardStatus != null">
+				award_status,
+			</if>
+			<if test="awardFirst != null">
+				award_first,
+			</if>
+			<if test="awardLast != null">
+				award_last,
+			</if>
+			<if test="vouchStatus != null">
+				vouch_status,
+			</if>
+			<if test="tuijianStatus != null">
+				tuijian_status,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="addtime != null">
+				addtime,
+			</if>
+			<if test="fastStatus != null">
+				fast_status,
+			</if>
+			<if test="xinStatus != null">
+				xin_status,
+			</if>
+			<if test="jinStatus != null">
+				jin_status,
+			</if>
+			<if test="timelimitDayFirst != null">
+				timelimit_day_first,
+			</if>
+			<if test="timelimitDayLast != null">
+				timelimit_day_last,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=BIT},
+			</if>
+			<if test="tenderType != null">
+				#{tenderType,jdbcType=INTEGER},
+			</if>
+			<if test="tenderAccount != null">
+				#{tenderAccount,jdbcType=INTEGER},
+			</if>
+			<if test="tenderScale != null">
+				#{tenderScale,jdbcType=INTEGER},
+			</if>
+			<if test="videoStatus != null">
+				#{videoStatus,jdbcType=INTEGER},
+			</if>
+			<if test="sceneStatus != null">
+				#{sceneStatus,jdbcType=INTEGER},
+			</if>
+			<if test="myFriend != null">
+				#{myFriend,jdbcType=INTEGER},
+			</if>
+			<if test="notBlack != null">
+				#{notBlack,jdbcType=INTEGER},
+			</if>
+			<if test="lateStatus != null">
+				#{lateStatus,jdbcType=INTEGER},
+			</if>
+			<if test="dianfuStatus != null">
+				#{dianfuStatus,jdbcType=INTEGER},
+			</if>
+			<if test="blackStatus != null">
+				#{blackStatus,jdbcType=INTEGER},
+			</if>
+			<if test="lateTimes != null">
+				#{lateTimes,jdbcType=INTEGER},
+			</if>
+			<if test="dianfuTimes != null">
+				#{dianfuTimes,jdbcType=INTEGER},
+			</if>
+			<if test="blackUser != null">
+				#{blackUser,jdbcType=INTEGER},
+			</if>
+			<if test="blackTimes != null">
+				#{blackTimes,jdbcType=INTEGER},
+			</if>
+			<if test="notLateBlack != null">
+				#{notLateBlack,jdbcType=INTEGER},
+			</if>
+			<if test="borrowCreditStatus != null">
+				#{borrowCreditStatus,jdbcType=BIT},
+			</if>
+			<if test="borrowCreditFirst != null">
+				#{borrowCreditFirst,jdbcType=INTEGER},
+			</if>
+			<if test="borrowCreditLast != null">
+				#{borrowCreditLast,jdbcType=INTEGER},
+			</if>
+			<if test="borrowStyleStatus != null">
+				#{borrowStyleStatus,jdbcType=INTEGER},
+			</if>
+			<if test="borrowStyle != null">
+				#{borrowStyle,jdbcType=INTEGER},
+			</if>
+			<if test="timelimitStatus != null">
+				#{timelimitStatus,jdbcType=INTEGER},
+			</if>
+			<if test="timelimitMonthFirst != null">
+				#{timelimitMonthFirst,jdbcType=INTEGER},
+			</if>
+			<if test="timelimitMonthLast != null">
+				#{timelimitMonthLast,jdbcType=INTEGER},
+			</if>
+			<if test="aprStatus != null">
+				#{aprStatus,jdbcType=BIT},
+			</if>
+			<if test="aprFirst != null">
+				#{aprFirst,jdbcType=TINYINT},
+			</if>
+			<if test="aprLast != null">
+				#{aprLast,jdbcType=TINYINT},
+			</if>
+			<if test="awardStatus != null">
+				#{awardStatus,jdbcType=BIT},
+			</if>
+			<if test="awardFirst != null">
+				#{awardFirst,jdbcType=REAL},
+			</if>
+			<if test="awardLast != null">
+				#{awardLast,jdbcType=REAL},
+			</if>
+			<if test="vouchStatus != null">
+				#{vouchStatus,jdbcType=BIT},
+			</if>
+			<if test="tuijianStatus != null">
+				#{tuijianStatus,jdbcType=BIT},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="addtime != null">
+				#{addtime,jdbcType=INTEGER},
+			</if>
+			<if test="fastStatus != null">
+				#{fastStatus,jdbcType=BIT},
+			</if>
+			<if test="xinStatus != null">
+				#{xinStatus,jdbcType=BIT},
+			</if>
+			<if test="jinStatus != null">
+				#{jinStatus,jdbcType=BIT},
+			</if>
+			<if test="timelimitDayFirst != null">
+				#{timelimitDayFirst,jdbcType=TINYINT},
+			</if>
+			<if test="timelimitDayLast != null">
+				#{timelimitDayLast,jdbcType=TINYINT},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.borrow.model.BorrowAuto">
+		update rd_borrow_auto
+		<set>
+			<if test="status != null">
+				status = #{status,jdbcType=BIT},
+			</if>
+			<if test="tenderType != null">
+				tender_type = #{tenderType,jdbcType=INTEGER},
+			</if>
+			<if test="tenderAccount != null">
+				tender_account = #{tenderAccount,jdbcType=INTEGER},
+			</if>
+			<if test="tenderScale != null">
+				tender_scale = #{tenderScale,jdbcType=INTEGER},
+			</if>
+			<if test="videoStatus != null">
+				video_status = #{videoStatus,jdbcType=INTEGER},
+			</if>
+			<if test="sceneStatus != null">
+				scene_status = #{sceneStatus,jdbcType=INTEGER},
+			</if>
+			<if test="myFriend != null">
+				my_friend = #{myFriend,jdbcType=INTEGER},
+			</if>
+			<if test="notBlack != null">
+				not_black = #{notBlack,jdbcType=INTEGER},
+			</if>
+			<if test="lateStatus != null">
+				late_status = #{lateStatus,jdbcType=INTEGER},
+			</if>
+			<if test="dianfuStatus != null">
+				dianfu_status = #{dianfuStatus,jdbcType=INTEGER},
+			</if>
+			<if test="blackStatus != null">
+				black_status = #{blackStatus,jdbcType=INTEGER},
+			</if>
+			<if test="lateTimes != null">
+				late_times = #{lateTimes,jdbcType=INTEGER},
+			</if>
+			<if test="dianfuTimes != null">
+				dianfu_times = #{dianfuTimes,jdbcType=INTEGER},
+			</if>
+			<if test="blackUser != null">
+				black_user = #{blackUser,jdbcType=INTEGER},
+			</if>
+			<if test="blackTimes != null">
+				black_times = #{blackTimes,jdbcType=INTEGER},
+			</if>
+			<if test="notLateBlack != null">
+				not_late_black = #{notLateBlack,jdbcType=INTEGER},
+			</if>
+			<if test="borrowCreditStatus != null">
+				borrow_credit_status = #{borrowCreditStatus,jdbcType=BIT},
+			</if>
+			<if test="borrowCreditFirst != null">
+				borrow_credit_first = #{borrowCreditFirst,jdbcType=INTEGER},
+			</if>
+			<if test="borrowCreditLast != null">
+				borrow_credit_last = #{borrowCreditLast,jdbcType=INTEGER},
+			</if>
+			<if test="borrowStyleStatus != null">
+				borrow_style_status = #{borrowStyleStatus,jdbcType=INTEGER},
+			</if>
+			<if test="borrowStyle != null">
+				borrow_style = #{borrowStyle,jdbcType=INTEGER},
+			</if>
+			<if test="timelimitStatus != null">
+				timelimit_status = #{timelimitStatus,jdbcType=INTEGER},
+			</if>
+			<if test="timelimitMonthFirst != null">
+				timelimit_month_first = #{timelimitMonthFirst,jdbcType=INTEGER},
+			</if>
+			<if test="timelimitMonthLast != null">
+				timelimit_month_last = #{timelimitMonthLast,jdbcType=INTEGER},
+			</if>
+			<if test="aprStatus != null">
+				apr_status = #{aprStatus,jdbcType=BIT},
+			</if>
+			<if test="aprFirst != null">
+				apr_first = #{aprFirst,jdbcType=TINYINT},
+			</if>
+			<if test="aprLast != null">
+				apr_last = #{aprLast,jdbcType=TINYINT},
+			</if>
+			<if test="awardStatus != null">
+				award_status = #{awardStatus,jdbcType=BIT},
+			</if>
+			<if test="awardFirst != null">
+				award_first = #{awardFirst,jdbcType=REAL},
+			</if>
+			<if test="awardLast != null">
+				award_last = #{awardLast,jdbcType=REAL},
+			</if>
+			<if test="vouchStatus != null">
+				vouch_status = #{vouchStatus,jdbcType=BIT},
+			</if>
+			<if test="tuijianStatus != null">
+				tuijian_status = #{tuijianStatus,jdbcType=BIT},
+			</if>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=INTEGER},
+			</if>
+			<if test="addtime != null">
+				addtime = #{addtime,jdbcType=INTEGER},
+			</if>
+			<if test="fastStatus != null">
+				fast_status = #{fastStatus,jdbcType=BIT},
+			</if>
+			<if test="xinStatus != null">
+				xin_status = #{xinStatus,jdbcType=BIT},
+			</if>
+			<if test="jinStatus != null">
+				jin_status = #{jinStatus,jdbcType=BIT},
+			</if>
+			<if test="timelimitDayFirst != null">
+				timelimit_day_first = #{timelimitDayFirst,jdbcType=TINYINT},
+			</if>
+			<if test="timelimitDayLast != null">
+				timelimit_day_last = #{timelimitDayLast,jdbcType=TINYINT},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.borrow.model.BorrowAuto">
+		update rd_borrow_auto
+		set status = #{status,jdbcType=BIT},
+		tender_type =
+		#{tenderType,jdbcType=INTEGER},
+		tender_account = #{tenderAccount,jdbcType=INTEGER},
+		tender_scale = #{tenderScale,jdbcType=INTEGER},
+		video_status =
+		#{videoStatus,jdbcType=INTEGER},
+		scene_status = #{sceneStatus,jdbcType=INTEGER},
+		my_friend = #{myFriend,jdbcType=INTEGER},
+		not_black =
+		#{notBlack,jdbcType=INTEGER},
+		late_status = #{lateStatus,jdbcType=INTEGER},
+		dianfu_status = #{dianfuStatus,jdbcType=INTEGER},
+		black_status =
+		#{blackStatus,jdbcType=INTEGER},
+		late_times = #{lateTimes,jdbcType=INTEGER},
+		dianfu_times = #{dianfuTimes,jdbcType=INTEGER},
+		black_user =
+		#{blackUser,jdbcType=INTEGER},
+		black_times = #{blackTimes,jdbcType=INTEGER},
+		not_late_black = #{notLateBlack,jdbcType=INTEGER},
+		borrow_credit_status =
+		#{borrowCreditStatus,jdbcType=BIT},
+		borrow_credit_first = #{borrowCreditFirst,jdbcType=INTEGER},
+		borrow_credit_last =
+		#{borrowCreditLast,jdbcType=INTEGER},
+		borrow_style_status = #{borrowStyleStatus,jdbcType=INTEGER},
+		borrow_style = #{borrowStyle,jdbcType=INTEGER},
+		timelimit_status = #{timelimitStatus,jdbcType=INTEGER},
+		timelimit_month_first = #{timelimitMonthFirst,jdbcType=INTEGER},
+		timelimit_month_last =
+		#{timelimitMonthLast,jdbcType=INTEGER},
+		apr_status = #{aprStatus,jdbcType=BIT},
+		apr_first = #{aprFirst,jdbcType=TINYINT},
+		apr_last =
+		#{aprLast,jdbcType=TINYINT},
+		award_status = #{awardStatus,jdbcType=BIT},
+		award_first = #{awardFirst,jdbcType=REAL},
+		award_last =
+		#{awardLast,jdbcType=REAL},
+		vouch_status = #{vouchStatus,jdbcType=BIT},
+		tuijian_status = #{tuijianStatus,jdbcType=BIT},
+		user_id =
+		#{userId,jdbcType=INTEGER},
+		addtime = #{addtime,jdbcType=INTEGER},
+		fast_status = #{fastStatus,jdbcType=BIT},
+		xin_status = #{xinStatus,jdbcType=BIT},
+		jin_status = #{jinStatus,jdbcType=BIT},
+		timelimit_day_first = #{timelimitDayFirst,jdbcType=TINYINT},
+		timelimit_day_last =
+		#{timelimitDayLast,jdbcType=TINYINT}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<!-- 查询满足条件的自动投标用户 -->
+	<select id="selectBorrowAutoUserId" resultMap="Base_ResultMap" parameterType="cn.vfunding.vfunding.biz.borrow.model.Borrow">
+		select a.user_id,a.tender_account
+		from rd_borrow_auto a
+		where a.status=1
+		and (borrow_style_status =0 or borrow_style =#{style})
+		and (timelimit_status =0
+		or (timelimit_month_first 	 <![CDATA[ <= ]]>
+		#{timeLimit} and timelimit_month_last >= #{timeLimit}))
+		and (apr_status =0 or (apr_first <![CDATA[ <=]]>
+		#{expectApr} and apr_last >= #{expectApr}))
+		<!-- <if test="award != 0">
+			and award_status =1
+		</if>
+		<if test="biaoType=='fast'">
+			and fast_status=1
+		</if>
+		<if test="biaoType=='xin' ">
+			and xin_status=1
+		</if>
+		<if test="biaoType=='jin' ">
+			and jin_status=1
+		</if> -->
+	</select>
+</mapper>

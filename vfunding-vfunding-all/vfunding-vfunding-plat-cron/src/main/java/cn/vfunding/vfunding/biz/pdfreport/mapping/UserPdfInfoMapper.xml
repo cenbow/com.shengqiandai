@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.pdfreport.dao.UserPdfInfoMapper">
+	<resultMap id="ResultMap"
+		type="cn.vfunding.vfunding.biz.pdfreport.model.UserPdfInfo">
+		<result column="userId" property="userId" />
+		<result column="username" property="userName" />
+		<result column="userEmail" property="userEmail" />
+		<result column="phoneStatus" property="phoneStatus" />
+		<result column="emailStatus" property="emailStatus" />
+		<result column="realStatus" property="realStatus" />
+		<result column="totalMoney" property="totalMoney" />
+		<result column="useMoney" property="useMoney" />
+		<result column="userHavaInterestMoney" property="userHavaInterestMoney" />
+		<result column="userSonMoney" property="userSonMoney" />
+		<result column="vipStatus" property="vipStatus" />
+		<result column="tenderUserId" property="tenderUserId" />
+	</resultMap>
+
+	<resultMap type="cn.vfunding.vfunding.biz.pdfreport.model.UserPdfInfo"
+		id="EmailResultMap">
+		<result column="userId" property="userId" />
+		<result column="userEmail" property="userEmail" />
+		<result column="username" property="userName" />
+	</resultMap>
+	<resultMap type="cn.vfunding.vfunding.biz.pdfreport.model.UserPdfInfo"
+		id="AllTenderResultMap">
+		<result column="allAccount" property="allAccount" />
+		<result column="allInterest" property="allInterest" />
+	</resultMap>
+	<select id="selectUserInfo" resultMap="ResultMap" parameterType="java.lang.Integer">
+	   <![CDATA[
+		select d.userId,ifnull(e.tenderUserId,0) as tenderUserId
+		,d.username,d.userEmail,ifnull(d.phoneStatus,0) as phoneStatus,ifnull(d.emailStatus,0) as emailStatus,ifnull(d.realStatus,0) as realStatus,a.totalMoney,a.useMoney,b.userHavaInterestMoney,c.userSonMoney,ifnull(d.vipStatus,0) as vipStatus
+		from(
+		select a.userId as userId,b.userId as tenderUserId from (
+		select
+		a.user_id as userId from rd_user a
+		left join rd_user_type b on
+		a.type_id=b.type_id
+		where b.type=2) a
+		left join
+		(
+		select a.user_id as
+		userId from rd_borrow_tender a where
+		DATE_FORMAT(from_unixtime(a.addtime),'%Y%m%d')>=date_format(date_sub(curdate(),interval
+		3 month),'%Y%m%d') and 	DATE_FORMAT(from_unixtime(a.addtime),'%Y%m%d')<=date_format(date_sub(curdate(),interval
+		1 month),'%Y%m%d')
+		group by a.user_id) b on a.userId =b.userId
+		) e
+		left
+		join
+		(select a.user_id as userId ,a.username as userName,a.email as
+		userEmail,a.real_status as realStatus,a.email_status as
+		emailStatus,a.phone_status as phoneStatus,b.vip_status as vipStatus
+		from rd_user a
+		left join rd_user_type c on a.type_id=c.type_id
+		left join
+		rd_user_cache b on a.user_id=b.user_id where c.type=2) d on
+		e.userId=d.userId
+		left join
+		(
+		select
+		a.user_id as userId ,a.total as
+		totalMoney,a.use_money
+		as
+		useMoney
+		from
+		rd_account a) a on
+		a.userId=d.userId
+		LEFT join (
+		select
+		a.user_id as
+		userId,sum(b.interest) as
+		'userHavaInterestMoney'
+		from
+		rd_borrow_tender a left join 
+        rd_borrow_collection b on a.id=b.tender_id
+		where a.status=1 and b.status=1
+		group by a.user_id
+		) b on
+		a.userId=b.userId
+		left join
+		(
+		select
+		a.userId,(ifnull(a.fees,0)+ifnull(b.fees,0)+ifnull(c.fees,0))
+		as
+		userSonMoney from (
+		select a.t_user_id as userId,sum(t_fees) as fees
+		from rd_invite_fees a
+		left join rd_borrow_repayment b on a.b_id =b.borrow_id 
+		where  b.status = 1
+		group by a.t_user_id) a
+		LEFT join
+		(
+		select
+		a.g_user_id as userId,sum(g_fees) as fees from rd_invite_fees a
+		left join rd_borrow_repayment b on a.b_id =b.borrow_id 
+		where  b.status = 1
+		group
+		by a.g_user_id
+		) b on a.userId=b.userId
+		left join
+		(
+		select a.s_user_id as
+		userId,sum(s_fees) as fees from rd_invite_fees a
+		left join rd_borrow_repayment b on a.b_id =b.borrow_id 
+		where  b.status = 1
+		group by a.s_user_id
+		)
+		c on a.userId = c.userId
+		) c on a.userId=c.userId
+		order by userId
+		    ]]>
+	</select>
+
+	<select id="selectAllTenderInfo" resultMap="AllTenderResultMap">
+		select * from(
+		select
+		sum(a.account) as allAccount from rd_borrow_tender a) a,
+		(
+		select
+		sum(a.interest) as allInterest from rd_borrow_tender a
+		)b
+	</select>
+
+	<select id="selectSendEmailUser" resultMap="EmailResultMap">
+		select a.user_id as
+		userId,a.email as userEmail,a.username as userName from
+		rd_user a
+		left
+		join rd_user_type b on
+		a.type_id=b.type_id
+		where b.type=2
+	</select>
+</mapper>

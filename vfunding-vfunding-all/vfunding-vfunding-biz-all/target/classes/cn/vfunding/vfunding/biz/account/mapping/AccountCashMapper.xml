@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.account.dao.AccountCashMapper">
+	<resultMap id="BaseResultMap"
+		type="cn.vfunding.vfunding.biz.account.model.AccountCash">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="status" property="status" jdbcType="TINYINT" />
+		<result column="account" property="account" jdbcType="VARCHAR" />
+		<result column="bank" property="bank" jdbcType="SMALLINT" />
+		<result column="branch" property="branch" jdbcType="VARCHAR" />
+		<result column="total" property="total" jdbcType="DECIMAL" />
+		<result column="credited" property="credited" jdbcType="DECIMAL" />
+		<result column="fee" property="fee" jdbcType="DECIMAL" />
+		<result column="verify_userid" property="verifyUserid"
+			jdbcType="INTEGER" />
+		<result column="verify_time" property="verifyTime" jdbcType="INTEGER" />
+		<result column="verify_remark" property="verifyRemark"
+			jdbcType="VARCHAR" />
+		<result column="addtime" property="addtime" jdbcType="INTEGER" />
+		<result column="addip" property="addip" jdbcType="VARCHAR" />
+		<result column="hongbao" property="hongbao" jdbcType="DECIMAL" />
+	</resultMap>
+
+	<resultMap id="UserCashResultMap" extends="BaseResultMap"
+		type="cn.vfunding.vfunding.biz.common.vo.AccountCashVO">
+		<result column="userName" property="userName" jdbcType="VARCHAR" />
+		<result column="typeId" property="typeId" jdbcType="VARCHAR" />
+		<result column="realName" property="realName" jdbcType="VARCHAR" />
+		<result column="account" property="account" jdbcType="DECIMAL" />
+		<result column="addtime" property="addtime" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="fee" property="fee" jdbcType="DECIMAL" />
+		<result column="bankName" property="bankName" jdbcType="VARCHAR" />
+		<result column="useHongbao" property="useHongbao" jdbcType="VARCHAR" />
+		<result column="bankcash_no" property="bankcashNo" jdbcType="VARCHAR" />
+		<result column="bankcashTime" property="bankcashTime" jdbcType="VARCHAR" />
+	</resultMap>
+
+
+	<resultMap id="UserRechargeCashResultMap"
+		type="cn.vfunding.vfunding.biz.userMobile.model.UserRechargeCashMobile">
+		<result column="money" property="money" />
+		<result column="actionType" property="actionType" />
+		<result column="fee" property="fee" />
+		<result column="addtime" property="addtime" />
+		<result column="status" property="status" />
+	</resultMap>
+
+
+	<sql id="Base_Column_List">
+		id, user_id, status, account, bank, branch, total,
+		credited, fee,
+		verify_userid,
+		verify_time, verify_remark, addtime,
+		addip, hongbao
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from rd_account_cash
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+
+	<!-- 用户当天提现总计 -->
+	<select id="selectByDayUserId" resultType="java.math.BigDecimal"
+		parameterType="java.lang.Integer">
+		select sum(total)
+		from rd_account_cash
+		where user_id =
+		#{userId,jdbcType=INTEGER} and `status` in (0,1) and
+		addtime between
+		UNIX_TIMESTAMP(DATE_FORMAT(now(),'%Y-%m-%d')) and
+		UNIX_TIMESTAMP(now())
+	</select>
+
+	<!-- 财务审核列表 -->
+	<select id="selectWaitApplyListPage" resultMap="UserCashResultMap"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select 
+		ac.id as cashId,
+		u.username as userName,
+		u.realname as
+		realName,
+		ac.account as bankNum,
+		u.type_id as typeId, 
+		c.dic_msg as bankName,
+		ac.branch as branch,
+		 ac.total as money,
+		 ac.credited as
+		account,
+		ac.hongbao as useHongbao,
+		ac.fee as fee,
+		ac.status as
+		`status`,
+		d.bankcash_no,
+		d.add_time as bankcashTime,
+		DATE_FORMAT(from_unixtime(ac.addtime),'%Y-%m-%d %H:%i:%s') as addtime
+		from rd_account_cash ac
+		LEFT JOIN rd_user u on ac.user_id=u.user_id
+		left join vf_sina_dic c on c.dic_code=ac.bank and c.dic_type = 'BankCode'
+		left join vf_cash_number d on
+		ac.id=d.cash_id
+		where 1=1
+		<if test="entity.type == 1">
+			and u.type_id not in (40)
+		</if>
+		<if test="entity.type == 2">
+			and u.type_id = 40
+		</if>
+		<if test="entity.cashId != null">
+			and ac.id = #{entity.cashId,jdbcType=INTEGER}
+		</if>
+		<if test="entity.keyWord != null and entity.keyWord != ''">
+			and ac.account like
+			concat('%',#{entity.keyWord,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="entity.username != null and entity.username != ''">
+			and u.username like
+			concat('%',#{entity.username,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="entity.startTime != null and entity.startTime != ''">
+		<![CDATA[ and ac.addtime >= #{entity.startTime,jdbcType=VARCHAR} ]]>
+		</if>
+		<if test="entity.endTime != null and entity.endTime != ''">
+		<![CDATA[ and ac.addtime <= #{entity.endTime,jdbcType=VARCHAR} ]]>
+		</if>
+		<if test="entity.status != null">
+			and ac.`status` = #{entity.status,jdbcType=INTEGER}
+		</if>
+		<if test="entity.status != 0">
+			ORDER BY ac.addtime desc
+		</if>
+		<if test="entity.status == 0 ">
+			ORDER BY ac.addtime asc
+		</if>
+	</select>
+
+	<!-- 根据用户ID分页查询 -->
+	<select id="selectByUserIdListPage" resultMap="UserRechargeCashResultMap"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select credited as money, '提现' as actionType, fee,addtime,status
+		from
+		rd_account_cash
+		where user_id = #{entity.userId,jdbcType=INTEGER}
+		<if test="entity != null and entity.start != null and entity.end != null ">
+			and addtime BETWEEN #{entity.start,jdbcType=INTEGER} and
+			#{entity.end,jdbcType=INTEGER}
+		</if>
+		order by addtime desc
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		rd_account_cash
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="cn.vfunding.vfunding.biz.account.model.AccountCash">
+		insert into rd_account_cash
+		(id, user_id, status,
+		account, bank, branch,
+		total, credited, fee,
+		verify_userid, verify_time, verify_remark,
+		addtime, addip, hongbao
+		)
+		values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER},
+		#{status,jdbcType=TINYINT},
+		#{account,jdbcType=VARCHAR},
+		#{bank,jdbcType=SMALLINT}, #{branch,jdbcType=VARCHAR},
+		#{total,jdbcType=DECIMAL}, #{credited,jdbcType=DECIMAL},
+		#{fee,jdbcType=DECIMAL},
+		#{verifyUserid,jdbcType=INTEGER},
+		#{verifyTime,jdbcType=INTEGER}, #{verifyRemark,jdbcType=VARCHAR},
+		#{addtime,jdbcType=INTEGER}, #{addip,jdbcType=VARCHAR},
+		#{hongbao,jdbcType=DECIMAL}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.account.model.AccountCash" useGeneratedKeys="true"
+	keyProperty="id">
+		insert into rd_account_cash
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="account != null">
+				account,
+			</if>
+			<if test="bank != null">
+				bank,
+			</if>
+			<if test="branch != null">
+				branch,
+			</if>
+			<if test="total != null">
+				total,
+			</if>
+			<if test="credited != null">
+				credited,
+			</if>
+			<if test="fee != null">
+				fee,
+			</if>
+			<if test="verifyUserid != null">
+				verify_userid,
+			</if>
+			<if test="verifyTime != null">
+				verify_time,
+			</if>
+			<if test="verifyRemark != null">
+				verify_remark,
+			</if>
+			<if test="addtime != null">
+				addtime,
+			</if>
+			<if test="addip != null">
+				addip,
+			</if>
+			<if test="hongbao != null">
+				hongbao,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=TINYINT},
+			</if>
+			<if test="account != null">
+				#{account,jdbcType=VARCHAR},
+			</if>
+			<if test="bank != null">
+				#{bank,jdbcType=SMALLINT},
+			</if>
+			<if test="branch != null">
+				#{branch,jdbcType=VARCHAR},
+			</if>
+			<if test="total != null">
+				#{total,jdbcType=DECIMAL},
+			</if>
+			<if test="credited != null">
+				#{credited,jdbcType=DECIMAL},
+			</if>
+			<if test="fee != null">
+				#{fee,jdbcType=DECIMAL},
+			</if>
+			<if test="verifyUserid != null">
+				#{verifyUserid,jdbcType=INTEGER},
+			</if>
+			<if test="verifyTime != null">
+				#{verifyTime,jdbcType=INTEGER},
+			</if>
+			<if test="verifyRemark != null">
+				#{verifyRemark,jdbcType=VARCHAR},
+			</if>
+			<if test="addtime != null">
+				#{addtime,jdbcType=INTEGER},
+			</if>
+			<if test="addip != null">
+				#{addip,jdbcType=VARCHAR},
+			</if>
+			<if test="hongbao != null">
+				#{hongbao,jdbcType=DECIMAL},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.account.model.AccountCash">
+		update rd_account_cash
+		<set>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=TINYINT},
+			</if>
+			<if test="account != null">
+				account = #{account,jdbcType=VARCHAR},
+			</if>
+			<if test="bank != null">
+				bank = #{bank,jdbcType=SMALLINT},
+			</if>
+			<if test="branch != null">
+				branch = #{branch,jdbcType=VARCHAR},
+			</if>
+			<if test="total != null">
+				total = #{total,jdbcType=DECIMAL},
+			</if>
+			<if test="credited != null">
+				credited = #{credited,jdbcType=DECIMAL},
+			</if>
+			<if test="fee != null">
+				fee = #{fee,jdbcType=DECIMAL},
+			</if>
+			<if test="verifyUserid != null">
+				verify_userid = #{verifyUserid,jdbcType=INTEGER},
+			</if>
+			<if test="verifyTime != null">
+				verify_time = #{verifyTime,jdbcType=INTEGER},
+			</if>
+			<if test="verifyRemark != null">
+				verify_remark = #{verifyRemark,jdbcType=VARCHAR},
+			</if>
+			<if test="addtime != null">
+				addtime = #{addtime,jdbcType=INTEGER},
+			</if>
+			<if test="addip != null">
+				addip = #{addip,jdbcType=VARCHAR},
+			</if>
+			<if test="hongbao != null">
+				hongbao = #{hongbao,jdbcType=DECIMAL},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.account.model.AccountCash">
+		update
+		rd_account_cash
+		set user_id = #{userId,jdbcType=INTEGER},
+		status =
+		#{status,jdbcType=TINYINT},
+		account = #{account,jdbcType=VARCHAR},
+		bank
+		= #{bank,jdbcType=SMALLINT},
+		branch = #{branch,jdbcType=VARCHAR},
+		total
+		= #{total,jdbcType=DECIMAL},
+		credited = #{credited,jdbcType=DECIMAL},
+		fee = #{fee,jdbcType=DECIMAL},
+		verify_userid =
+		#{verifyUserid,jdbcType=INTEGER},
+		verify_time =
+		#{verifyTime,jdbcType=INTEGER},
+		verify_remark =
+		#{verifyRemark,jdbcType=VARCHAR},
+		addtime =
+		#{addtime,jdbcType=INTEGER},
+		addip = #{addip,jdbcType=VARCHAR},
+		hongbao
+		= #{hongbao,jdbcType=DECIMAL}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<!-- 查询用户提现记录 lx -->
+	<select id="selectByidListPage" resultMap="BaseResultMap"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select
+		c.addtime ,
+		c.total ,
+		c.status ,
+		c.fee ,
+		c.credited
+		from rd_account_cash c
+		where
+		c.user_id=#{entity.userId,jdbcType=VARCHAR}
+	</select>
+
+	<select id="selectByParameters" resultMap="BaseResultMap"
+		parameterType="cn.vfunding.vfunding.biz.account.model.AccountCash">
+		select
+		<include refid="Base_Column_List" />
+		from rd_account_cash
+		where 1=1
+		<if test="userId != null">
+			and user_id = #{userId,jdbcType=INTEGER}
+		</if>
+		<if test="status != null">
+			and status= #{status,jdbcType=INTEGER}
+		</if>
+	</select>
+
+</mapper>

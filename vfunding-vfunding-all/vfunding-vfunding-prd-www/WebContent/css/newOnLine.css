@@ -1,0 +1,20 @@
+@charset "utf-8";
+/* CSS Document */
+
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+
+
+
+.wrap{background-color:#185c75; background-image:url(../images/huodong/picbg.png); background-position: center top; background-repeat:no-repeat;}
+
+.content{height:1800px; margin:0 auto;}
+.pic1{ width:932px;height:384px; }
+.pic2{ width:949px; height:44px; margin:0 auto 36px; background:url(../images/huodong/pic2.png) no-repeat;}
+
+.pic3{ width:947px; height:360px; margin:0 auto 106px; background:url(../images/huodong/pic3.png) no-repeat;}
+
+.pic4{ width:837px; height:287px; margin:0 auto 102px; background:url(../images/huodong/pic4.png) no-repeat;}
+
+.pic5{ width:948px; height:422px; margin:0 auto; background:url(../images/huodong/pic5.png) no-repeat;}

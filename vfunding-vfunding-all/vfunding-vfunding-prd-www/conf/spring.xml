@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>file:./conf/*.properties</value>
+			</list>
+		</property>
+		<property name="fileEncoding">
+			<value>UTF-8</value>
+		</property>
+	</bean>
+
+	<!-- memcache session配置 -->
+	<!-- <bean id="server" class="cn.vfunding.common.framework.server.JettyMemcachedSessionServer" 
+		init-method="start" destroy-method="stop"> <constructor-arg index="0"> <value>${http.workerName}</value> 
+		</constructor-arg> <constructor-arg index="1"> <value>${memcache.address}</value> 
+		</constructor-arg> <property name="connectors"> <list> <bean id="Connector" 
+		class="org.eclipse.jetty.server.nio.SelectChannelConnector"> <property name="port"> 
+		<value>${http.port}</value> </property> </bean> </list> </property> <property 
+		name="handler"> <bean id="webAppContext" class="org.eclipse.jetty.webapp.WebAppContext"> 
+		<property name="defaultsDescriptor" value="cn/vfunding/common/framework/jetty/webdefault.xml" 
+		/> <property name="contextPath"> <value>${http.contextPath}</value> </property> 
+		<property name="resourceBase" value="WebContent" /> </bean> </property> </bean> -->
+
+
+	<!-- <bean id="server" class="cn.vfunding.common.framework.server.Jetty8RedisSessionServer" 
+		init-method="start" destroy-method="stop"> <constructor-arg index="0"> <value>session/redis</value> 
+		</constructor-arg> <constructor-arg index="1"> <value>${http.workerName}</value> 
+		</constructor-arg> <constructor-arg index="2"> <bean id="threadPool" class="org.eclipse.jetty.util.thread.QueuedThreadPool"> 
+		<property name="minThreads" value="10" /> <property name="maxThreads" value="50" 
+		/> </bean> </constructor-arg> <property name="connectors"> <list> <bean id="Connector" 
+		class="org.eclipse.jetty.server.nio.SelectChannelConnector"> <property name="port"> 
+		<value>${http.port}</value> </property> </bean> </list> </property> <property 
+		name="handler"> <bean id="webAppContext" class="org.eclipse.jetty.webapp.WebAppContext"> 
+		<property name="contextPath"> <value>${http.contextPath}</value> </property> 
+		<property name="resourceBase" value="WebContent" /> </bean> </property> </bean> 
+		<bean class="org.eclipse.jetty.plus.jndi.Resource"> <constructor-arg index="0"> 
+		<value>session/redis</value> </constructor-arg> <constructor-arg index="1"> 
+		<bean class="redis.clients.jedis.JedisPool"> <constructor-arg index="0"> 
+		<ref bean="jedisPoolConfig" /> </constructor-arg> <constructor-arg index="1"> 
+		<value>${redis.address}</value> </constructor-arg> <constructor-arg index="2"> 
+		<value>6379</value> </constructor-arg> </bean> </constructor-arg> </bean> 
+		<import resource="classpath:spring-redis.xml" /> -->
+
+
+	<bean id="server" class="org.eclipse.jetty.server.Server"
+		init-method="start" destroy-method="stop">
+		<property name="connectors">
+			<list>
+				<bean id="Connector" class="org.eclipse.jetty.server.nio.SelectChannelConnector">
+					<property name="port">
+						<value>${http.port}</value>
+					</property>
+				</bean>
+			</list>
+		</property>
+		<property name="handler">
+			<bean id="webAppContext" class="org.eclipse.jetty.webapp.WebAppContext">
+				<property name="defaultsDescriptor"
+					value="cn/vfunding/common/framework/jetty/webdefault.xml" />
+				<property name="contextPath">
+					<value>${http.contextPath}</value>
+				</property>
+				<property name="resourceBase" value="WebContent" />
+			</bean>
+		</property>
+	</bean>
+</beans>

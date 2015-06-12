@@ -1,0 +1,9 @@
+@charset "utf-8";
+/* CSS Document */
+
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+.content{ background:#fff; margin:30px auto; padding-bottom:20px;}
+.update{ width:727px; height:293px; margin:50px auto; background: url(../images/updatebg.png) no-repeat; position:relative;}
+.update-time{ position:absolute; right:0; top:0; width:430px; font-size:24px; color:#bbb;}

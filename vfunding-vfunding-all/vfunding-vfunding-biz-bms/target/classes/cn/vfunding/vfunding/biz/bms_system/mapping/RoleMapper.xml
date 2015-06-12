@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.bms_system.dao.RoleMapper">
+	<resultMap id="BaseResultMap"
+		type="cn.vfunding.vfunding.biz.bms_system.model.Role">
+		<id column="role_id" property="roleId" jdbcType="INTEGER" />
+		<result column="role_name" property="roleName" jdbcType="VARCHAR" />
+		<result column="role_state" property="roleState" jdbcType="INTEGER" />
+	</resultMap>
+
+	<resultMap id="RoleAndResourcesMap"
+		type="cn.vfunding.vfunding.biz.bms_system.model.Role" extends="BaseResultMap">
+		<collection property="resources" javaType="list"
+			ofType="cn.vfunding.vfunding.biz.bms_system.model.SysResource">
+			<id column="id" property="id" jdbcType="VARCHAR" />
+			<result column="icon" property="icon" jdbcType="VARCHAR" />
+			<result column="name" property="name" jdbcType="VARCHAR" />
+			<result column="pid" property="pid" jdbcType="VARCHAR" />
+		</collection>
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		role_id, role_name, role_state
+	</sql>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from vf_role
+		where role_id = #{roleId,jdbcType=INTEGER}
+	</select>
+
+	<!-- 分页加条件查询 -->
+	<select id="selectRoleListPage" resultMap="BaseResultMap"
+		parameterType="aliasPageSearch">
+		select
+		<include refid="Base_Column_List" />
+		from vf_role
+		where 1=1
+		<if
+			test="entity != null and entity.roleName != null and entity.roleName!=''">
+			and role_name like CONCAT(CONCAT('%', #{entity.roleName}), '%')
+		</if>
+	</select>
+
+
+	<!-- 角色下拉表格分页查询 -->
+	<select id="selectRoleComboxgridListPage" resultMap="BaseResultMap"
+		parameterType="aliasPageSearch">
+		select
+		<include refid="Base_Column_List" />
+		from vf_role
+		where 1=1 and role_state=0
+		<if
+			test="entity != null and entity.roleName != null and entity.roleName!=''">
+			and role_name like CONCAT(CONCAT('%', #{entity.roleName}), '%')
+		</if>
+	</select>
+
+	<!-- 角色下拉数据查询 -->
+	<select id="selectRoleComboxgridList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from vf_role
+		where 1=1 and role_state=0
+	</select>
+
+	<!-- 判断一个角色ID是否存在 -->
+	<select id="exist" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+		select count(0) from vf_role
+		where role_id = #{roleId,jdbcType=INTEGER}
+	</select>
+	<!-- 角色分配权限时根据角色ID查询出带有资源信息 -->
+	<select id="selectRoleAndResourcesByKey" resultMap="RoleAndResourcesMap"
+		parameterType="java.lang.Integer">
+		SELECT
+		vf_role.role_id,
+		vf_role.role_name,
+		vf_role.role_state,
+		vf_resource.id,
+		vf_resource.icon,
+		vf_resource.`name`,
+		vf_resource.pid
+		FROM vf_role
+		left JOIN
+		vf_role_resource ON
+		vf_role_resource.role_id = vf_role.role_id
+		left JOIN
+		vf_resource ON
+		vf_resource.id = vf_role_resource.resource_id
+		where
+		vf_role.role_id
+		=#{roleId,jdbcType=INTEGER}
+	</select>
+	
+	<!-- 角色分配权限时根据角色ID查询出带有资源信息 -->
+	<select id="allRoleTree" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from role
+		where 1=1
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from vf_role
+		where role_id = #{roleId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" useGeneratedKeys="true" keyProperty="roleId" parameterType="cn.vfunding.vfunding.biz.bms_system.model.Role">
+		insert into vf_role (role_id, role_name, role_state
+		)
+		values (#{roleId,jdbcType=INTEGER}, #{roleName,jdbcType=VARCHAR},
+		#{roleState,jdbcType=INTEGER}
+		)
+	</insert>
+	<insert id="insertSelective" useGeneratedKeys="true" keyProperty="roleId" parameterType="cn.vfunding.vfunding.biz.bms_system.model.Role">
+		insert into vf_role
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="roleId != null">
+				role_id,
+			</if>
+			<if test="roleName != null">
+				role_name,
+			</if>
+			<if test="roleState != null">
+				role_state,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="roleId != null">
+				#{roleId,jdbcType=INTEGER},
+			</if>
+			<if test="roleName != null">
+				#{roleName,jdbcType=VARCHAR},
+			</if>
+			<if test="roleState != null">
+				#{roleState,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.bms_system.model.Role">
+		update vf_role
+		<set>
+			<if test="roleName != null">
+				role_name = #{roleName,jdbcType=VARCHAR},
+			</if>
+			<if test="roleState != null">
+				role_state = #{roleState,jdbcType=INTEGER},
+			</if>
+		</set>
+		where role_id = #{roleId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.bms_system.model.Role">
+		update vf_role
+		set role_name = #{roleName,jdbcType=VARCHAR},
+		role_state = #{roleState,jdbcType=INTEGER}
+		where role_id = #{roleId,jdbcType=INTEGER}
+	</update>
+</mapper>

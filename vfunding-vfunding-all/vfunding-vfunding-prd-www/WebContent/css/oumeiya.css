@@ -1,0 +1,16 @@
+@charset "utf-8";
+/* CSS Document */
+
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+.content{ background:#fff; margin:30px auto; padding-bottom:30px; overflow:hidden;}
+h1.oumeiya{width:480px; height:84px; margin:34px auto 23px; background:url(../images/oumeiya/omy-logo.png) no-repeat left center; line-height:84px; text-indent:130px; font-size:24px; }
+.listItems{ width:960px; margin:20px auto 0;}
+.listItems h3{ height:37px;  line-height:37px; border-bottom:1px  dashed #999; text-indent:10px;}
+.cont{  line-height:24px; margin-top:10px; overflow:hidden;}
+.cont  dl{ float:left; margin-right:17px; margin-top:10px;}
+.cont  dl dt{ cursor:pointer;}
+.cont  dl dd{ text-align:center; margin-top:10px;}
+.cont  dl dd:hover{ color:#00a0e9; cursor:pointer;}
+

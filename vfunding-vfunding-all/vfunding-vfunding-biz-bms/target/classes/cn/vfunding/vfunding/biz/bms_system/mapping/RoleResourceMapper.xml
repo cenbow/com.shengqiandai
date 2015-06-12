@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.bms_system.dao.RoleResourceMapper" >
+  <resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.bms_system.model.RoleResourceKey" >
+    <id column="role_id" property="roleId" jdbcType="INTEGER" />
+    <id column="resource_id" property="resourceId" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.bms_system.model.RoleResourceKey" >
+    delete from vf_role_resource
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and resource_id = #{resourceId,jdbcType=VARCHAR}
+  </delete>
+  
+  <delete id="deleteByRoleId" parameterType="java.lang.Integer" >
+    delete from vf_role_resource
+    where role_id = #{roleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.vfunding.biz.bms_system.model.RoleResourceKey" >
+    insert into vf_role_resource (role_id, resource_id)
+    values (#{roleId,jdbcType=INTEGER}, #{resourceId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.bms_system.model.RoleResourceKey" >
+    insert into vf_role_resource
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roleId != null" >
+        role_id,
+      </if>
+      <if test="resourceId != null" >
+        resource_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roleId != null" >
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="resourceId != null" >
+        #{resourceId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

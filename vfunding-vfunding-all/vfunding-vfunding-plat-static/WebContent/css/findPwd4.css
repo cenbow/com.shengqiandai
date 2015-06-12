@@ -1,0 +1,54 @@
+@charset "utf-8";
+/* CSS Document */
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+
+.findPwd{ width:1000px;  margin:36px auto; padding-bottom:50px; background-color:#fff;}
+.b-line{ width:960px; height:70px; margin:36px auto 0; position:relative; }
+.h-line{ width:100%; position:absolute; top:35px; left:0; height:1px;line-height:0; font-size:0; background:#E7ECEE;}
+.b-line h2{    background:#FFFFFF;
+    color: #69737B;
+    font-size: 16px;
+    height: 30px;
+    left: 20px;
+    line-height: 30px;
+    padding: 0 15px;
+    position: absolute;
+    top: 20px;
+    z-index: 3;
+	}
+	
+.find-steps{ width:880px; height:51px; margin:0 auto;}
+
+
+div.reg_conditions .reg_step{ height:51px; display:block; }
+.reg_step li{ width:216px; height:51px; float:left; background:#eeeeee;}
+.reg_step li.step1{background:url(../images/register/step_arrow.png) no-repeat right 0 #00A0E9;}
+.reg_step li.step2{background:url(../images/register/step_arrow.png) no-repeat right 0 #00A0E9;}
+.reg_step li.step3{background:url(../images/register/step_arrow.png) no-repeat right 0 #00A0E9;}
+
+.reg_step li.step4{background:#00A0E9;}
+
+.reg_step li.step1 .step_msg,.reg_step li.step2 .step_msg,.reg_step li.step3 .step_msg,.reg_step li.step4{ width:110px; height:51px; line-height:51px; padding-left:84px; float:left; display:inline; position: relative; color:#fff; font-size:18px;}
+span.step_msg .dot24{ width:24px; height:24px;  position:absolute; left:52px; top:13px; line-height:24px; text-align:center; font-size:18px;  font-family:Arial, Helvetica, sans-serif; background:url(../images/register/dot24.png) no-repeat; color:#888888;}
+
+.reg_step li.step1 .whiteColor,.reg_step li.step2 .whiteColor,.reg_step li.step3 .whiteColor,.reg_step li.step4 .whiteColor{ color:#fff;}
+
+
+.reg_step li.step2 .step_msg,.reg_step li.step3 .step_msg,.reg_step li.step3 .step_msg,.reg_step li.step4 .step_msg { color:#888888;}
+.reg_step li.step2 .step_msg .dot24,.reg_step li.step3 .step_msg .dot24,.reg_step li.step4 .step_msg .dot24{ color:#888888;}
+
+.check-username{ width:800px; margin:70px auto 0;}
+#new-pwd,#new-pwd2{ width:234px; height:28px;}
+
+.forget-username{ font-size:12px; line-height:14px; margin-top:6px; color:#888;}
+.get-freeyzm{ width:106px; height:36px; background:#00a0e9; display:block; margin-left:10px; line-height:36px; text-align:center; color:#fff; border-radius:3px; font-size:12px;}
+.ui-label,#phone-yzm,.get-freeyzm{ float:left;}
+.yzm-tip{ width:280px; height:36px; padding-left:20px; float:left; }
+.pass-through{ width:400px; height:56px; margin:100px auto 0; background:url(../images/register/right_error_bg.png) no-repeat 0 0; text-indent:66px;}
+.pass-through p{ line-height:28px;}
+.go-account{ width:300px; height:40px; margin:50px auto;}
+.btn116{ display:inline-block; margin-right:20px;}
+.safe-center:hover{ color:#00a0e9;}
+

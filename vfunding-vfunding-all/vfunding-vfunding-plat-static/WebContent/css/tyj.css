@@ -1,0 +1,37 @@
+@charset "utf-8";
+/* CSS Document */
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+body,ul,li,dl,dt,dd,h1,h2,g3,h4,h5,h6{ margin:0; padding:0;}
+body{ font-family:"微软雅黑";}
+li{ list-style:none;}
+.fl{ float:left;}
+.fr{ float:right;}
+a{ text-decoration:none;}
+a:hover{ text-decoration:underline;}
+.tyj{background:url(../images/huodong/tyj.png) no-repeat center 0; background-color:#b06100; padding-bottom:30px; overflow:hidden;}
+.exprienceMoney{ width:1000px;  margin:775px auto 0;}
+.exprienceMoney h3{ color:#fff; line-height:30px; text-indent:60px;}
+.exprienceMoney p{ line-height:30px; font-size:16px; color:#fff; text-indent:60px;}
+.card{ height:276px; padding-left:60px; position:relative;}
+.cardImg{ width:618px; height:276px; position:absolute; top:0; left:60px; background:url(../images/huodong/card.png) no-repeat;}
+.pwd{ width:300px; height:70px; position:absolute; left:700px; top:103px; padding-left:10px; background:url(../images/huodong/arrow.png) no-repeat left top; color:#e39224; line-height:30px; text-indent:40px; font-size:24px; font-weight:bold;}
+
+
+
+.steps{ width:980px; height:291px; margin-bottom:30px; }
+.steps2{ width:980px; height:307px; margin-top:14px; }
+.img1{ width:657px; height:291px; background:url(../images/huodong/1.png) no-repeat;}
+.img2{width:657px; height:291px; background:url(../images/huodong/2.png) no-repeat;}
+.img3{width:657px; height:291px; background:url(../images/huodong/3.png) no-repeat;}
+.img4{width:657px; height:291px; background:url(../images/huodong/4.png) no-repeat;}
+.stepGuid{ width:282px; height:auto !important; margin-top:100px;}
+
+.stepGuid span{ font-size:18px; color:#e39224; line-height:30px;}
+.stepGuid span a{ color:#fff181;}
+.steps2 .stepGuid{ margin-top:120px;}
+
+
+
+

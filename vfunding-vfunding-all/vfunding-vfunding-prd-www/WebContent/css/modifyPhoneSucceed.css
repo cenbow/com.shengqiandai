@@ -1,0 +1,42 @@
+@charset "utf-8";
+/* CSS Document */
+
+@charset "utf-8";
+/* CSS Document */
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+@import url(accountLeft.css);
+.myAccount{  height:940px; margin:30px 0; clear:both;}
+
+
+
+/*****账户总览右栏***/
+.rechargeTakeCash{ width:820px; height:940px; }
+.rT{ height:940px;  background:#fff;}
+.rTWrap{ width:780px; height:940px; margin:0 auto; overflow:hidden;position:relative; }
+.txTop{ height:58px;overflow:hidden;position:relative;margin-top:20px;}
+b.midLine{ height:1px; font-size:0; width:80%; background:#eeeeee; position:absolute; top:28px; right:0;  overflow:hidden;}
+.txTop h2,.excel{ height:22px; line-height:22px; position:absolute;background-color:#fff;}
+.txTop h2.zhcz{ top:17px; left:88px; font-size:20px; color:#0065b4; padding:0 6px; z-index:9; }
+
+a.goBack{ width:64px; height:30px; line-height:28px; display:block; position:absolute; left:0; top:12px; background:url(../images/account/goback.png) no-repeat 12px center; background-color:#cccccc; text-indent:28px; color:#fff;}
+a.goBack:hover{ background-color:#aaa; text-decoration:none;}
+
+
+.reg_step{ height:51px; display:block; margin-top:12px; }
+.reg_step li{ width:260px; height:51px; float:left; background:#eeeeee;}
+
+.reg_step li.step1,.reg_step li.step2{background:url(../images/register/step_arrow.png) no-repeat right 0 #00a0e9;}
+
+.reg_step li.step1 .step_msg,.reg_step li.step2 .step_msg,.reg_step li.step3 .step_msg{ width:130px; height:51px; line-height:51px; padding-left:84px; float:left; display:inline; position: relative; color:#fff; font-size:18px;}
+span.step_msg .dot24{ width:24px;*width:28px; height:24px;  position:absolute; left:52px; top:13px; line-height:24px; text-align:center; font-size:18px;  font-family:Arial, Helvetica, sans-serif; background:url(../images/register/dot24.png) no-repeat; color:#888888;}
+
+.reg_step li.step1 .whiteColor,.reg_step li.step2 .whiteColor,.reg_step li.step3 .whiteColor{ color:#fff;}
+
+.reg_step li.step2 .step_msg,.reg_step li.step3 .step_msg{ color:#888888;}
+.reg_step li.step2 .step_msg .dot24,.reg_step li.step3 .step_msg .dot24{ color:#888888;}
+.reg_step li.step3{ background:#00a0e9;}
+
+.modifySucceess{ width:220px; height:56px; margin:52px auto 0; background:url(../images/register/right_error_bg.png) no-repeat 0 0; text-indent:72px; line-height:56px;}
+

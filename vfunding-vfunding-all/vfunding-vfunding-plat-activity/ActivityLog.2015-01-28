@@ -1,0 +1,4 @@
+2015-01-28 09:12:31,920 cn.vfunding.vfunding.biz.useraction_activity.service.impl.UserActionServiceImpl.doRegisterHongBaoActivity(UserActionServiceImpl.java:248) "#" 用户注册后送红包业务处理开始
+2015-01-28 09:12:31,989 cn.vfunding.vfunding.biz.useraction_activity.service.impl.UserActionServiceImpl.doRegisterHongBaoActivity(UserActionServiceImpl.java:269) "#" 用户注册后送红包业务处理完成
+2015-01-28 09:14:08,930 cn.vfunding.vfunding.biz.useraction_activity.service.impl.UserActionServiceImpl.doRealNameVerifyBiz(UserActionServiceImpl.java:103) "#" 实名认证相关活动业务处理开始
+2015-01-28 09:14:08,996 cn.vfunding.vfunding.biz.useraction_activity.service.impl.UserActionServiceImpl.doRealNameVerifyBiz(UserActionServiceImpl.java:105) "#" 实名认证相关活动业务处理完成

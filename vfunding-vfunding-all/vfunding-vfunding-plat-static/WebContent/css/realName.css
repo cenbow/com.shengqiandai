@@ -1,0 +1,37 @@
+@charset "utf-8";
+/* CSS Document */
+
+@charset "utf-8";
+/* CSS Document */
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+@import url(accountLeft.css);
+.myAccount{  height:940px; margin:30px 0; clear:both;}
+
+
+
+/*****账户总览右栏***/
+.rechargeTakeCash{ width:820px; height:940px; }
+.rT{ height:940px;  background:#fff;}
+.rTWrap{ width:780px; height:940px; margin:0 auto; overflow:hidden; }
+.txTop{ height:58px;overflow:hidden;position:relative;margin-top:20px; }
+b.midLine{ height:1px; font-size:0; width:80%; background:#eeeeee; position:absolute; top:28px; right:0;  overflow:hidden;}
+.txTop h2,.excel{ height:22px; line-height:22px; position:absolute;background-color:#fff;}
+.txTop h2.zhcz{ top:17px; left:88px; font-size:20px; color:#0065b4; padding:0 6px; z-index:9; }
+
+a.goBack{ width:64px; height:30px; line-height:28px; display:block; position:absolute; left:0; top:12px; background:url(../images/account/goback.png) no-repeat 12px center; background-color:#cccccc; text-indent:28px; color:#fff;}
+a.goBack:hover{ background-color:#aaa; text-decoration:none;}
+.rechargeAmount,.rechargeWay,.threeWay{ height:50px; margin-top:22px;}
+.realname{ width:600px; height:220px; margin:56px auto 0;}
+.truename,.idcode{ width:204px; padding:10px 5px; }
+
+label.error,label.valid{ height:24px; line-height:24px; background:url(../images/register/wrong.png) no-repeat 10px 0; padding:0 0 4px 40px; }
+label.valid{ background:url(../images/register/right.png) no-repeat 10px 0; }
+.tjBtn{ width:116px; height:40px; line-height:40px; text-align:center; color:#fff; font-size:16px; display: block; background:#0065b4; border:none; outline:none; cursor:pointer; border-radius:3px;}
+.tjBtn:hover{ background:#00a0e9; }
+.realSucess{ width:270px; height:56px; margin:60px auto 0; background: url(../images/register/right_error_bg.png) no-repeat 0 0; display:none; }
+.sfz{ padding:0 15px 4px 170px;}
+.rz{ height:20px; padding:0 15px 4px 170px; color:red;}
+.realSucess p{ text-indent:74px; line-height:28px;}
+

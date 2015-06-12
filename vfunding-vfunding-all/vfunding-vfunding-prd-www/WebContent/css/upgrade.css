@@ -1,0 +1,13 @@
+@CHARSET "UTF-8";
+*{
+	margin: 0;
+	padding: 0;
+}
+.main {
+	margin:0 auto;
+	margin-top:150px;
+	width: 731px;
+	height: 293px;
+	background:url("/images/upgrade.png");
+	background-repeat: no-repeat;
+}

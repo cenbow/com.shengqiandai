@@ -1,0 +1,15 @@
+@charset "utf-8";
+/* CSS Document */
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+body{background: url(../images/huodong/dise.png) #065481 no-repeat center center; }
+
+.sv1{ height:713px; margin:0 auto; background:url(../images/huodong/sv1.png) #065481 no-repeat center top;}
+.wen{ width:928px; margin:0 auto 22px; height:215px; line-height:215px; text-align:center; background:url(../images/huodong/small-bg.png) no-repeat;}
+
+.wen3,.wen4,.wen5,.ditu{  text-align:center; margin-top:10px;}
+.wen3{ height:113px; margin-top:60px;}
+.wen4{ height:561px;}
+.wen5{ height:261px;}
+.ditu{ height:127px; background:url(../images/huodong/ditu.png) no-repeat center bottom; }

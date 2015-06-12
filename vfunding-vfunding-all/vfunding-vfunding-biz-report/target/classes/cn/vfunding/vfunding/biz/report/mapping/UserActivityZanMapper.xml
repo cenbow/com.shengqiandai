@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.report.dao.UserActivityZanMapper" >
+  <resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.report.model.UserActivityZan" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="activity_bonuses" property="activityBonuses" jdbcType="INTEGER" />
+    <result column="add_bonuses" property="addBonuses" jdbcType="INTEGER" />
+    <result column="user_phone" property="userPhone" jdbcType="VARCHAR" />
+    <result column="file_urls" property="fileUrls" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_name, activity_bonuses, add_bonuses, user_phone, file_urls, status, add_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_activity_zan
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByUserNameListPage" resultMap="BaseResultMap" parameterType="cn.vfunding.common.framework.utils.page.PageSearch" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_activity_zan where 1=1
+    <if test="entity != null and entity.userName != null">
+	  and user_name = #{entity.userName,jdbcType=VARCHAR}
+	</if>
+    ORDER BY add_time desc
+  </select>
+  <!-- 根据用户名查询最后一条记录-->
+   <select id="selectByUserNameAndLast" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_activity_zan
+    where user_name = #{userName,jdbcType=INTEGER} ORDER BY add_time desc LIMIT 0,1
+  </select>
+ 
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_activity_zan
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.vfunding.biz.report.model.UserActivityZan" >
+    insert into user_activity_zan (id, user_name, activity_bonuses, 
+      add_bonuses, user_phone, file_urls, 
+      status, add_time)
+    values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{activityBonuses,jdbcType=INTEGER}, 
+      #{addBonuses,jdbcType=INTEGER}, #{userPhone,jdbcType=VARCHAR}, #{fileUrls,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.report.model.UserActivityZan" >
+    insert into user_activity_zan
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="activityBonuses != null" >
+        activity_bonuses,
+      </if>
+      <if test="addBonuses != null" >
+        add_bonuses,
+      </if>
+      <if test="userPhone != null" >
+        user_phone,
+      </if>
+      <if test="fileUrls != null" >
+        file_urls,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="activityBonuses != null" >
+        #{activityBonuses,jdbcType=INTEGER},
+      </if>
+      <if test="addBonuses != null" >
+        #{addBonuses,jdbcType=INTEGER},
+      </if>
+      <if test="userPhone != null" >
+        #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="fileUrls != null" >
+        #{fileUrls,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.report.model.UserActivityZan" >
+    update user_activity_zan
+    <set >
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="activityBonuses != null" >
+        activity_bonuses = #{activityBonuses,jdbcType=INTEGER},
+      </if>
+      <if test="addBonuses != null" >
+        add_bonuses = #{addBonuses,jdbcType=INTEGER},
+      </if>
+      <if test="userPhone != null" >
+        user_phone = #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="fileUrls != null" >
+        file_urls = #{fileUrls,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.report.model.UserActivityZan" >
+    update user_activity_zan
+    set user_name = #{userName,jdbcType=VARCHAR},
+      activity_bonuses = #{activityBonuses,jdbcType=INTEGER},
+      add_bonuses = #{addBonuses,jdbcType=INTEGER},
+      user_phone = #{userPhone,jdbcType=VARCHAR},
+      file_urls = #{fileUrls,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

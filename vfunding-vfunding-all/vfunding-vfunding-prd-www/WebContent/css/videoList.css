@@ -1,0 +1,24 @@
+@charset "utf-8";
+/* CSS Document */
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+@import url(accountLeft.css);
+
+.content { overflow:hidden;}
+.video-list{ padding:30px 0; background:#fff; margin:20px auto;}
+
+
+
+.video-list a{ display:block; width:300px; height:222px; float:left; margin-left:20px; } 
+a.video1{ background: url(../images/index/fresh_enter.jpg) no-repeat; margin-left:30px;}
+a.video1:hover{ background: url(../images/index/fresh_enter2.jpg) no-repeat; margin-left:30px;}
+a.video2{ background: url(../images/index/video2.jpg) no-repeat;}
+a.video2:hover{ background: url(../images/index/video2-hover.jpg) no-repeat;}
+
+a.video3{ background: url(../images/index/plat-info.jpg) no-repeat;}
+
+
+a.video3:hover{ background: url(../images/index/plat-info2.jpg) no-repeat;}
+
+

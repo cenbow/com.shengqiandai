@@ -1,0 +1,40 @@
+@charset "utf-8";
+/* CSS Document */
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+@import url(accountLeft.css);
+.myAccount{  height:940px; margin:30px 0; clear:both;}
+
+
+/*****账户总览右栏***/
+.rechargeTakeCash{ width:820px; height:940px; }
+
+.rT{ height:940px;  background:#fff;}
+.rTWrap{ width:780px; height:940px; margin:0 auto; overflow:hidden; position:relative;}
+
+.avantarUpload{ width:450px; height:220px; margin:50px auto;}
+
+.avantarPic{ width:86px; height:114px;}
+.avantarPic dt{ width:84px; height:84px; padding:1px; border:1px solid #ececec;}
+
+.upScan{ width:320px; height:220px; margin-left:32px; display:inline; overflow:hidden;}
+.uploadBtn{ width:64px; height:30px; position:relative; overflow:hidden; background:url(../images/account/upfile.png) no-repeat; margin-left:10px; display:inline;}
+.uploadfile{ width:64px; height:30px; opacity:0; filter:alpha(opacity=0); cursor:pointer;}
+.filescan{ width:195px; height:28px; padding:0 5px; border:1px solid #ccc; line-height:30px;}
+#upfile2{ position:absolute; top:-100px;}
+.btn116{ float:left; margin-top:10px;}
+.attetion2,.attetion{ color:#888; line-height:24px;}
+.attetion{ margin-top:10px;}
+.attetion2{ text-indent:42px;}
+.txTop{ height:58px;overflow:hidden;position:relative; }
+b.midLine{ height:1px; font-size:0; width:80%; background:#eeeeee; position:absolute; top:28px; right:0;  overflow:hidden;}
+.txTop h2,.excel{ height:22px; line-height:22px; position:absolute;background-color:#fff;}
+.txTop h2.zhcz{ top:17px; left:88px; font-size:20px; color:#0065b4; padding:0 6px; z-index:9; }
+a.goBack{ width:64px; height:30px; line-height:28px; display:block; position:absolute; left:0; top:12px; background:url(../images/account/goback.png) no-repeat 12px center; background-color:#cccccc; text-indent:28px; color:#fff;}
+a.goBack:hover{ background-color:#aaa; text-decoration:none;}
+
+.realSucess{ width:360px; height:56px; margin:50px auto; background:url(../images/register/right_error_bg.png) no-repeat 0 0; text-indent:72px;}
+.realSucess p{ line-height:56px;}
+.avntarTip{ height:20px; width:300px; clear:both; overflow:hidden; margin-top:10px; color:red;}
+.btn116{ margin-top:0;}

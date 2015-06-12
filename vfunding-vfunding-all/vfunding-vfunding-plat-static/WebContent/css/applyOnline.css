@@ -1,0 +1,52 @@
+@charset "utf-8";
+/* CSS Document */
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+@import url(accountLeft.css);
+.myAccount{   margin:30px 0; clear:both;height:auto!important; }
+
+
+
+/*****账户总览右栏***/
+.rechargeTakeCash{ width:820px; *overflow:hidden;height:auto!important;  }
+
+.rT{ background:#fff;height:940px; margin-bottom:30px; }
+.rTWrap{ width:780px; margin:0 auto;  position:relative;}
+.txTop{ height:58px;overflow:hidden; }
+b.midLine{ height:1px; font-size:0; width:100%; background:#eeeeee; position:absolute; top:28px; left:0;  overflow:hidden;}
+.txTop h2,.excel{ height:22px; line-height:22px; position:absolute;background-color:#fff;}
+.txTop h2{ top:17px; left:24px; font-size:20px; color:#0065b4; padding:0 6px; z-index:9; }
+
+.applyOnline{ width:730px; margin:20px auto 0; height:auto!important;}
+.gocheck{ height:16px; text-indent:26px; line-height:16px; }
+.gocheck{background-position:0 -16px;} 
+.borrowType{ height:48px;}
+
+.borrowType li{height:48px; float:left; line-height:48px; margin-right:15px; text-align: center;}
+.diyaBiao,.creditBiao{ width:180px; height:48px;  border:1px solid #cccccc; position:relative;  }
+
+
+.diyaBiao,.creditBiao{ text-align:center; cursor:pointer;}
+.selectedSymbol{ width:20px; height:20px; position:absolute; display:block; top:0; right:0;background:url(../images/account/symbol.png) no-repeat 0 0;}
+
+.applyLimit,.borrowUse{ width:114px; height:28px; line-height:30px; text-align:left; padding:4px 5px;}
+
+.applyLimit{background:url(../images/account/rmb-icon.png) 10px center no-repeat;padding-left:30px;}
+
+#borrowCont{ width:500px; height:70px; border:1px solid #ccc; resize:none;}
+
+
+#borrowArea,#diyakinds,#yearRate,#remark{ width:154px; height:28px; line-height:28px;}
+
+
+
+
+
+
+
+.chosen-container .chosen-drop{ *width: 98.5%;}
+.chosen-container-single .chosen-search input[type="text"]{ padding:4px 0;}
+
+.chosen-container-single .chosen-single{ height:28px; line-height:28px;}
+

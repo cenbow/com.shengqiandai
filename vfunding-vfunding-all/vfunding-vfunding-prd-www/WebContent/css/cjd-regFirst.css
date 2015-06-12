@@ -1,0 +1,39 @@
+@charset "utf-8";
+/* CSS Document */
+@import url(cjdBase.css);
+.ui-form{ margin-top:0;}
+.ui-form-item{ padding:0 5px 15px 110px;}
+.ui-form-item p{ font-size:12px; color:#888; padding:2px 0;}
+.logo{ background:url(../images/cjd/logo.png) no-repeat;}
+.total{ width:1000px; height:auto !important; margin:20px auto; background-color:#fff; overflow:hidden;}
+.left-side{ width:590px; overflow:hidden;}
+.right-side{ width:410px; overflow:hidden;}
+.left-side-top{ padding:24px 48px; border-bottom:1px dashed #ccc;}
+.logo-combo{ height:57px;}
+.logo-combo li{ float:left; height:57px; margin-right:23px;}
+li.logo1{ width:165px; background-position:0 0;}
+li.logo2{ width:150px; background-position:-165px 0;}
+.data-transfer { line-height:26px;}
+.data-transfer h3{ font-weight:normal; margin-top:26px;}
+
+.left-side-bottom{ margin-top:28px; padding-left:48px; padding-bottom:35px;}
+.left-side-bottom h2{font-weight:normal; margin-bottom:10px;}
+.text-right{ text-align:right; padding:0 10px;}
+.login-left{ width:17px; height:541px; background:url(../images/cjd/ditu.png) no-repeat;}
+.reg-bg{ width:393px; height:73px; margin-top:29px; background:url(../images/cjd/reg.png) #00a0e9 no-repeat 20px center;}
+.login-bg{ width:393px; height:73px; margin-top:29px; background:url(../images/cjd/login.png) #00a0e9 no-repeat 20px center;}
+#username,#password,#password2,#mobile,#code,#authCode{padding:8px 5px; width:200px;}
+#authCode{width:100px;border:1px solid #ccc;}
+.msg-btn,.voice-btn{ padding: 10px 15px; float:left; display:block; background:#00a0e9; color:#fff; margin-right:10px; border-radius:3px;}
+#agree-check +label{ font-size:13px; vertical-align:middle;}
+.reg-btn,.login-btn{ width:280px;}
+.reg-tip,.login-tip{ color:#ff5555; height:30px;line-height:30px; text-align:center; font-size:13px;}
+#verification{ width:120px;}
+a.codeImg{ width:70px; height:33px; background:#00a0e9; display:inline-block;}
+
+.ui-form .loginName{padding:0 5px 0 70px; height:40px;}
+.ui-form .submitBtn,#submit_btn{ margin-top:4px; height:50px; padding:0; }
+.submit-btn-bg{ background:url(../images/login/loginBg.gif) no-repeat;}
+.logining{ background-position:0 -50px;}
+#submit_btn{ width:225px; height:50px; border:0 none; font-size:24px; 
+color:#fff; cursor:pointer; outline:none; margin-left:75px; border-radius:4px;}

@@ -1,0 +1,141 @@
+--创建`rd_operate_reportdays`;表 DROP TABLE IF EXISTS
+`rd_operate_reportdays`; CREATE TABLE `rd_operate_reportdays` ( `zyh`
+bigint(21) NOT NULL DEFAULT '0', `dyxzyh` bigint(21) NOT NULL DEFAULT
+'0', `drxzyh` bigint(21) NOT NULL DEFAULT '0', `dryhdls` bigint(21) NOT
+NULL DEFAULT '0', `drdlzs` bigint(21) NOT NULL DEFAULT '0', `dqczzrs`
+bigint(21) NOT NULL DEFAULT '0', `drczrs` bigint(21) NOT NULL DEFAULT
+'0', `drtbrs` bigint(21) NOT NULL DEFAULT '0', `drczze` decimal(32,2)
+DEFAULT NULL, `dqczze` decimal(32,2) DEFAULT NULL, `drtbze` double
+DEFAULT NULL, `dryhzye` decimal(33,2) DEFAULT NULL, `drfbze`
+decimal(33,2) DEFAULT NULL, `dqzbs` bigint(21) NOT NULL DEFAULT '0',
+`dqptbze` double DEFAULT NULL, `dqcgzbs` bigint(21) NOT NULL DEFAULT
+'0', `fromAddtime` date DEFAULT NULL ) ENGINE=MyISAM DEFAULT
+CHARSET=utf8; --存储过程pro_operate_reportdays; DROP procedure IF EXISTS
+pro_operate_reportdays; create procedure pro_operate_reportdays() begin
+insert into rd_operate_reportdays select * from (select count(*) as zyh
+from rd_user a left join rd_user_type b on a.type_id=b.type_id where
+b.type=2 and
+DATE_FORMAT(from_unixtime(a.addtime),'%Y%m%d')<=date_format(date_sub(curdate(),interval
+1 day),'%Y%m %d'))a, (select count(*) as dyxzyh from rd_user a left join
+rd_user_type b on a.type_id=b.type_id where b.type=2 and
+DATE_FORMAT(from_unixtime(a.addtime),'%Y%m')
+=date_format(date_sub(curdate(),interval 1 day),'%Y%m'))b, (select
+count(*) as drxzyh from rd_user a left join rd_user_type b on
+a.type_id=b.type_id where b.type=2 and
+DATE_FORMAT(from_unixtime(a.addtime),'%Y%m%d')=date_format(date_sub(curdate(),interval
+1 day),'%Y%m %d'))c, (select count(DISTINCT a.user_id) as dryhdls from
+rd_usertrack a where DATE_FORMAT(from_unixtime(a.login_time),'%Y%m%d')
+
+=date_format(date_sub(curdate(),interval 1 day),'%Y%m%d'))d, (select
+count(*) as drdlzs from rd_usertrack a where
+DATE_FORMAT(from_unixtime(a.login_time),'%Y%m%d')=date_format
+
+(date_sub(curdate(),interval 1 day),'%Y%m%d'))e, (select count(DISTINCT
+a.user_id) as dqczzrs from rd_account_recharge a where a.status=1 and
+DATE_FORMAT(from_unixtime
+
+(a.addtime),'%Y%m%d')<=date_format(date_sub(curdate(),interval 1
+day),'%Y%m%d'))p, (select count(DISTINCT a.user_id) as drczrs from
+rd_account_recharge a where a.status=1 and a.user_id<>20 and DATE_FORMAT
+
+(from_unixtime(a.addtime),'%Y%m%d')=date_format(date_sub(curdate(),interval
+1 day),'%Y%m%d'))f, (select count(DISTINCT a.user_id) as drtbrs from
+rd_borrow_tender a where DATE_FORMAT(from_unixtime(a.addtime),'%Y%m%d')
+
+=date_format(date_sub(curdate(),interval 1 day),'%Y%m%d'))g, (select
+sum(a.money) as drczze from rd_account_recharge a where a.status=1 and
+a.user_id<>20 and DATE_FORMAT(from_unixtime
+
+(a.addtime),'%Y%m%d')=date_format(date_sub(curdate(),interval 1
+day),'%Y%m%d'))h, (select sum(a.money) as dqczze from
+rd_account_recharge a where a.status=1 and a.user_id<>20 and
+DATE_FORMAT(from_unixtime
+
+(a.addtime),'%Y%m%d')<=date_format(date_sub(curdate(),interval 1
+day),'%Y%m%d'))q, (select sum(c.capital) as drtbze from rd_borrow_tender
+a left join rd_borrow b on a.borrow_id=b.id left join
+rd_borrow_collection c on a.id =c.tender_id where b.status in(1,3) and
+b.user_id=20 and
+DATE_FORMAT(from_unixtime(a.addtime),'%Y%m%d')=date_format(date_sub(curdate(),interval
+1 day),'%Y%m%d'))i, (select sum(a.use_money) as dryhzye from rd_account
+a where a.user_id<>20)k, (select sum(a.account) as drfbze from rd_borrow
+a where DATE_FORMAT(from_unixtime(a.verify_time),'%Y%m%d')=date_format
+
+(date_sub(curdate(),interval 1 day),'%Y%m%d') and a.status in(1,3) and
+user_id=20)l, (select count(*) as dqzbs from rd_borrow a where
+DATE_FORMAT(from_unixtime(a.addtime),'%Y%m%d')<=date_format(date_sub
+
+(curdate(),interval 1 day),'%Y%m%d') and a.status in(1,3) and
+user_id=20)m, (select sum(a.account) as dqptbze from rd_borrow_tender a
+left join rd_borrow b on a.borrow_id=b.id where b.status in(1,3) and
+b.user_id=20 and
+DATE_FORMAT(from_unixtime(a.addtime),'%Y%m%d')<=date_format(date_sub(curdate(),interval
+1 day),'%Y%m%d'))n, (select count(*) as dqcgzbs from rd_borrow a where
+DATE_FORMAT(from_unixtime(a.addtime),'%Y%m%d')<=date_format(date_sub
+
+(curdate(),interval 1 day),'%Y%m%d') and a.status =3 and user_id=20) r,
+(select date_sub(curdate(),interval 1 day) as fromAddtime)o; end;
+
+--创建`rd_operate_reportdays_two`;表 DROP TABLE IF EXISTS
+`rd_operate_reportdays_two`; CREATE TABLE `rd_operate_reportdays_two` (
+`ordinaryUsersDay` bigint(21) NOT NULL DEFAULT '0', `internalUsersDay`
+bigint(21) NOT NULL DEFAULT '0', `ordinaryUsersSumAccount` double
+DEFAULT NULL, `tenderOrdinaryUsersCount` bigint(21) NOT NULL DEFAULT
+'0', `internalUsersSumAccount` double DEFAULT NULL,
+`tenderInternalUsersCount` bigint(21) NOT NULL DEFAULT '0',
+`repaymentSumYesaccount` decimal(33,2) DEFAULT NULL, `tenderSumAccount`
+double DEFAULT NULL, `repaymentSumYesaccountMonth` decimal(33,2) DEFAULT
+NULL, `borrowSumCountMonth` bigint(21) NOT NULL DEFAULT '0',
+`borrowCountMonth` bigint(21) NOT NULL DEFAULT '0', `borrowCountDay`
+bigint(21) NOT NULL DEFAULT '0', `borrowSumAccountMonth` decimal(33,2)
+DEFAULT NULL, `borrowSumAccount` decimal(33,2) DEFAULT NULL,
+`fromAddtime` date DEFAULT NULL ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+--存储过程pro_operate_reportdays_two; DROP procedure IF EXISTS
+pro_operate_reportdays_two; create procedure
+pro_operate_reportdays_two() begin insert into rd_operate_reportdays_two
+select * from ( select count(*) as ordinaryUsersDay from rd_user a where
+a.type_id in(2,28,29,30) and
+DATE_FORMAT(from_unixtime(a.addtime),'%Y%m%d')=date_format(date_sub(curdate(),interval
+1 day),'%Y%m%d')) a, (select count(*) as internalUsersDay from rd_user a
+where a.type_id in(27,31) and
+DATE_FORMAT(from_unixtime(a.addtime),'%Y%m%d')=date_format(date_sub(curdate(),interval
+1 day),'%Y%m%d')) b, ( select sum(a.account) as
+ordinaryUsersSumAccount,count(DISTINCT a.user_id) as
+tenderOrdinaryUsersCount from rd_borrow_tender a left join rd_borrow b
+on a.borrow_id=b.id left join rd_user c on a.user_id=c.user_id where
+b.status in(1,3) and b.user_id=20 and c.type_id in (2,28,29,30) and
+DATE_FORMAT(from_unixtime(a.addtime),'%Y%m%d')<=date_format(date_sub(curdate(),interval
+1 day),'%Y%m%d') )c, (select sum(a.account) as
+internalUsersSumAccount,count(DISTINCT a.user_id) as
+tenderInternalUsersCount from rd_borrow_tender a left join rd_borrow b
+on a.borrow_id=b.id left join rd_user c on a.user_id=c.user_id where
+b.status in(1,3) and b.user_id=20 and c.type_id in (27,31) and
+DATE_FORMAT(from_unixtime(a.addtime),'%Y%m%d')<=date_format(date_sub(curdate(),interval
+1 day),'%Y%m%d'))d, (select sum(repayment_yesaccount) as
+repaymentSumYesaccount from rd_borrow a where a.status in(1,3) and
+DATE_FORMAT(from_unixtime(a.repayment_time),'%Y%m%d')<=date_format(date_sub(curdate(),interval
+1 day),'%Y%m%d')) e, (select sum(a.account) as tenderSumAccount from
+rd_borrow_tender a left join rd_borrow b on a.borrow_id=b.id where
+b.status in(1,3) and
+DATE_FORMAT(from_unixtime(a.addtime),'%Y%m%d')<=date_format(date_sub(curdate(),interval
+1 day),'%Y%m%d')) f, (select sum(repayment_yesaccount) as
+repaymentSumYesaccountMonth ,count(*) as borrowSumCountMonth from
+rd_borrow a where a.status in(1,3) and
+DATE_FORMAT(from_unixtime(a.repayment_time),'%Y%m')=date_format(date_sub(curdate(),interval
+1 day),'%Y%m') )g, (select count(*) as borrowCountMonth from rd_borrow a
+where
+DATE_FORMAT(from_unixtime(a.addtime),'%Y%m')=date_format(date_sub(curdate(),interval
+1 day),'%Y%m') and a.status in(1,3) and user_id=20 ) i, (select count(*)
+as borrowCountDay from rd_borrow a where
+DATE_FORMAT(from_unixtime(a.addtime),'%Y%m%d')=date_format(date_sub(curdate(),interval
+1 day),'%Y%m%d') and a.status in(1,3) and user_id=20) j, (select
+sum(a.account) as borrowSumAccountMonth from rd_borrow a where
+DATE_FORMAT(from_unixtime(a.verify_time),'%Y%m')=date_format(date_sub(curdate(),interval
+1 day),'%Y%m') and a.status in(1,3) and user_id=20 ) k, (select
+sum(a.account) as borrowSumAccount from rd_borrow a where
+DATE_FORMAT(from_unixtime(a.verify_time),'%Y%m%d')<=date_format(date_sub(curdate(),interval
+1 day),'%Y%m%d') and a.status in(1,3) and user_id=20 ) l, (select
+date_sub(curdate(),interval 1 day) as fromAddtime) h; end;
+

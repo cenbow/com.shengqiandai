@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.borrow.dao.BorrowRuleMapper">
+	<resultMap id="BaseResultMap"
+		type="cn.vfunding.vfunding.biz.borrow.model.BorrowRule">
+		<id column="borrow_id" property="borrowId" jdbcType="INTEGER" />
+		<result column="lowest_account" property="lowestAccount"
+			jdbcType="DECIMAL" />
+		<result column="most_account" property="mostAccount" jdbcType="DECIMAL" />
+		<result column="most_tender_count" property="mostTenderCount"
+			jdbcType="INTEGER" />
+		<result column="appoint_user" property="appointUser" jdbcType="INTEGER" />
+		<result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+		<result column="tender_time" property="tenderTime" jdbcType="TIMESTAMP" />
+		<result column="most_hikes" property="mostHikes" jdbcType="DECIMAL" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		borrow_id, lowest_account, most_account, most_tender_count,
+		appoint_user,
+		addtime, tender_time,
+		most_hikes
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from vf_borrow_rule
+		where borrow_id = #{borrowId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		vf_borrow_rule
+		where borrow_id = #{borrowId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="cn.vfunding.vfunding.biz.borrow.model.BorrowRule">
+		insert into vf_borrow_rule
+		(borrow_id, lowest_account, most_account,
+		most_tender_count,
+		appoint_user, addtime,
+		most_hikes)
+		values (#{borrowId,jdbcType=INTEGER},
+		#{lowestAccount,jdbcType=DECIMAL},
+		#{mostAccount,jdbcType=DECIMAL},
+		#{mostTenderCount,jdbcType=INTEGER}, #{appointUser,jdbcType=INTEGER},
+		#{addtime,jdbcType=TIMESTAMP},
+		#{mostHikes,jdbcType=DECIMAL})
+	</insert>
+	<insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.borrow.model.BorrowRule">
+		insert into vf_borrow_rule
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="borrowId != null">
+				borrow_id,
+			</if>
+			<if test="lowestAccount != null">
+				lowest_account,
+			</if>
+			<if test="mostAccount != null">
+				most_account,
+			</if>
+			<if test="mostTenderCount != null">
+				most_tender_count,
+			</if>
+			<if test="appointUser != null">
+				appoint_user,
+			</if>
+			<if test="addtime != null">
+				addtime,
+			</if>
+			<if test="mostHikes != null">
+				most_hikes,
+			</if>
+			<if test="tenderTime != null">
+				tender_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="borrowId != null">
+				#{borrowId,jdbcType=INTEGER},
+			</if>
+			<if test="lowestAccount != null">
+				#{lowestAccount,jdbcType=DECIMAL},
+			</if>
+			<if test="mostAccount != null">
+				#{mostAccount,jdbcType=DECIMAL},
+			</if>
+			<if test="mostTenderCount != null">
+				#{mostTenderCount,jdbcType=INTEGER},
+			</if>
+			<if test="appointUser != null">
+				#{appointUser,jdbcType=INTEGER},
+			</if>
+			<if test="addtime != null">
+				#{addtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="mostHikes != null">
+				#{mostHikes,jdbcType=DECIMAL},
+			</if>
+			<if test="tenderTime != null">
+				#{tenderTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.borrow.model.BorrowRule">
+		update vf_borrow_rule
+		<set>
+			<if test="lowestAccount != null">
+				lowest_account = #{lowestAccount,jdbcType=DECIMAL},
+			</if>
+			<if test="mostAccount != null">
+				most_account = #{mostAccount,jdbcType=DECIMAL},
+			</if>
+			<if test="mostTenderCount != null">
+				most_tender_count = #{mostTenderCount,jdbcType=INTEGER},
+			</if>
+			<if test="appointUser != null">
+				appoint_user = #{appointUser,jdbcType=INTEGER},
+			</if>
+			<if test="addtime != null">
+				addtime = #{addtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="mostHikes != null">
+				most_hikes = #{mostHikes,jdbcType=DECIMAL},
+			</if>
+			<if test="tenderTime != null">
+				tender_time=#{tenderTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where borrow_id = #{borrowId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.borrow.model.BorrowRule">
+		update
+		vf_borrow_rule
+		set lowest_account = #{lowestAccount,jdbcType=DECIMAL},
+		most_account = #{mostAccount,jdbcType=DECIMAL},
+		most_tender_count =
+		#{mostTenderCount,jdbcType=INTEGER},
+		appoint_user =
+		#{appointUser,jdbcType=INTEGER},
+		addtime =
+		#{addtime,jdbcType=TIMESTAMP},
+		most_hikes =
+		#{mostHikes,jdbcType=DECIMAL}
+		where borrow_id =
+		#{borrowId,jdbcType=INTEGER}
+	</update>
+</mapper>

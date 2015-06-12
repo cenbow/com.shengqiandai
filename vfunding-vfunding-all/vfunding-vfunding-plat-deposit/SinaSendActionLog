@@ -1,0 +1,8 @@
+2015-03-25 15:23:20,589 (SinaSendActionController.java:224) INFO [qtp1320529256-22] *****[sina  9071 新浪同步会员  接收]
+2015-03-25 15:23:21,117 (SinaMemberManagerServiceImpl.java:104) INFO [qtp1320529256-22] *****[sina  9071 创建激活会员 请求参数]{"identity_id":"9071","identity_type":"UID","input_charset":"utf-8","member_type":"1","partner_id":"200004135630","request_time":"20150325152320","service":"create_activate_member","sign_type":"MD5","version":"1.0"}
+2015-03-25 15:23:21,117 (SinaMemberManagerServiceImpl.java:105) INFO [qtp1320529256-22] *****[sina  9071 创建激活会员  开始]
+2015-03-25 15:23:22,976 (SinaMemberManagerServiceImpl.java:117) INFO [qtp1320529256-22] *****[sina  9071 创建激活会员  结束]
+2015-03-25 15:23:23,273 (SinaMemberManagerServiceImpl.java:241) INFO [qtp1320529256-22] *****[sina  9071 绑定认证  请求参数]{"identity_id":"9071","identity_type":"UID","input_charset":"utf-8","partner_id":"200004135630","request_time":"20150325152323","service":"binding_verify","sign_type":"MD5","verify_entity":"KTR5SXlF/NPw0uQs1sGLxRDixAk/2lf3zku5A2e+kQfnYU1LmgjY52ByPZcusi4GJNizc6OVipnndw4iA//1SGQLkIRVCLjInJoA+oyxfkz9Ag0v8g2GMJ/uzt6ik7pIEOwu5zWWqfMdTL0yhw4i7bg7ZRNYmkISkh98lM9EidA=","verify_type":"MOBILE","version":"1.0"}
+2015-03-25 15:23:23,274 (SinaMemberManagerServiceImpl.java:242) INFO [qtp1320529256-22] *****[sina  9071 绑定认证  开始]
+2015-03-25 15:23:23,596 (SinaMemberManagerServiceImpl.java:254) INFO [qtp1320529256-22] *****[sina  9071 绑定认证  结束]
+2015-03-25 15:23:23,700 (SinaSendActionController.java:235) INFO [qtp1320529256-22] *****[sina  9071 新浪同步会员  完成]

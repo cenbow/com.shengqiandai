@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.sina.dao.SinaSendLogMapper" >
+  <resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.sina.model.SinaSendLog" >
+    <id column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="retry" property="retry" jdbcType="INTEGER" />
+    <result column="interface_name" property="interfaceName" jdbcType="VARCHAR" />
+    <result column="response_code" property="responseCode" jdbcType="VARCHAR" />
+    <result column="response_msg" property="responseMsg" jdbcType="VARCHAR" />
+    <result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.vfunding.vfunding.biz.sina.model.SinaSendLogWithBLOBs" extends="BaseResultMap" >
+    <result column="args" property="args" jdbcType="LONGVARCHAR" />
+    <result column="response_content" property="responseContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    order_no, status, retry, interface_name, response_code, response_msg, addtime
+  </sql>
+  <sql id="Blob_Column_List" >
+    args, response_content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from vf_sina_send_log
+    where order_no = #{orderNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from vf_sina_send_log
+    where order_no = #{orderNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.vfunding.biz.sina.model.SinaSendLogWithBLOBs" >
+    insert into vf_sina_send_log (order_no, status, retry, 
+      interface_name, response_code, response_msg, 
+      addtime, args, response_content
+      )
+    values (#{orderNo,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{retry,jdbcType=INTEGER}, 
+      #{interfaceName,jdbcType=VARCHAR}, #{responseCode,jdbcType=VARCHAR}, #{responseMsg,jdbcType=VARCHAR}, 
+      #{addtime,jdbcType=TIMESTAMP}, #{args,jdbcType=LONGVARCHAR}, #{responseContent,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.sina.model.SinaSendLogWithBLOBs" >
+    insert into vf_sina_send_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="retry != null" >
+        retry,
+      </if>
+      <if test="interfaceName != null" >
+        interface_name,
+      </if>
+      <if test="responseCode != null" >
+        response_code,
+      </if>
+      <if test="responseMsg != null" >
+        response_msg,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="args != null" >
+        args,
+      </if>
+      <if test="responseContent != null" >
+        response_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="retry != null" >
+        #{retry,jdbcType=INTEGER},
+      </if>
+      <if test="interfaceName != null" >
+        #{interfaceName,jdbcType=VARCHAR},
+      </if>
+      <if test="responseCode != null" >
+        #{responseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="responseMsg != null" >
+        #{responseMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="args != null" >
+        #{args,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="responseContent != null" >
+        #{responseContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.sina.model.SinaSendLogWithBLOBs" >
+    update vf_sina_send_log
+    <set >
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="retry != null" >
+        retry = #{retry,jdbcType=INTEGER},
+      </if>
+      <if test="interfaceName != null" >
+        interface_name = #{interfaceName,jdbcType=VARCHAR},
+      </if>
+      <if test="responseCode != null" >
+        response_code = #{responseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="responseMsg != null" >
+        response_msg = #{responseMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="args != null" >
+        args = #{args,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="responseContent != null" >
+        response_content = #{responseContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where order_no = #{orderNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.vfunding.vfunding.biz.sina.model.SinaSendLogWithBLOBs" >
+    update vf_sina_send_log
+    set status = #{status,jdbcType=INTEGER},
+      retry = #{retry,jdbcType=INTEGER},
+      interface_name = #{interfaceName,jdbcType=VARCHAR},
+      response_code = #{responseCode,jdbcType=VARCHAR},
+      response_msg = #{responseMsg,jdbcType=VARCHAR},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      args = #{args,jdbcType=LONGVARCHAR},
+      response_content = #{responseContent,jdbcType=LONGVARCHAR}
+    where order_no = #{orderNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.sina.model.SinaSendLog" >
+    update vf_sina_send_log
+    set status = #{status,jdbcType=INTEGER},
+      retry = #{retry,jdbcType=INTEGER},
+      interface_name = #{interfaceName,jdbcType=VARCHAR},
+      response_code = #{responseCode,jdbcType=VARCHAR},
+      response_msg = #{responseMsg,jdbcType=VARCHAR},
+      addtime = #{addtime,jdbcType=TIMESTAMP}
+    where order_no = #{orderNo,jdbcType=VARCHAR}
+  </update>
+  <select id="selectSuccessLogByOrderNo" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from vf_sina_send_log
+    where order_no = #{orderNo,jdbcType=VARCHAR} 
+    and status in (1,2)
+  </select>
+  <select id="selectFailedLogByOrderNo" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from vf_sina_send_log
+    where order_no = #{orderNo,jdbcType=VARCHAR} 
+    and status = 0
+  </select>
+</mapper>

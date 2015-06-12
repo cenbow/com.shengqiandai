@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.account.dao.AccountSinabonusMapper" >
+  <resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.account.model.AccountSinabonus" >
+    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="sina_bonus_total" property="sinaBonusTotal" jdbcType="DECIMAL" />
+    <result column="sina_bonus_previous" property="sinaBonusPrevious" jdbcType="DECIMAL" />
+    <result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_id, sina_bonus_total, sina_bonus_previous, updatetime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from vf_account_sinabonus
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from vf_account_sinabonus
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.vfunding.biz.account.model.AccountSinabonus" >
+    insert into vf_account_sinabonus (user_id, sina_bonus_total, sina_bonus_previous, 
+      updatetime)
+    values (#{userId,jdbcType=INTEGER}, #{sinaBonusTotal,jdbcType=DECIMAL}, #{sinaBonusPrevious,jdbcType=DECIMAL}, 
+      #{updatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.account.model.AccountSinabonus" >
+    insert into vf_account_sinabonus
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="sinaBonusTotal != null" >
+        sina_bonus_total,
+      </if>
+      <if test="sinaBonusPrevious != null" >
+        sina_bonus_previous,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="sinaBonusTotal != null" >
+        #{sinaBonusTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="sinaBonusPrevious != null" >
+        #{sinaBonusPrevious,jdbcType=DECIMAL},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.account.model.AccountSinabonus" >
+    update vf_account_sinabonus
+    <set >
+      <if test="sinaBonusTotal != null" >
+        sina_bonus_total = #{sinaBonusTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="sinaBonusPrevious != null" >
+        sina_bonus_previous = #{sinaBonusPrevious,jdbcType=DECIMAL},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.account.model.AccountSinabonus" >
+    update vf_account_sinabonus
+    set sina_bonus_total = #{sinaBonusTotal,jdbcType=DECIMAL},
+      sina_bonus_previous = #{sinaBonusPrevious,jdbcType=DECIMAL},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+</mapper>

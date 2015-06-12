@@ -1,0 +1,5 @@
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+.use-alipay{ background:#fff; margin:30px auto; padding:20px 0; text-align:center;}
+.use-alipay h2{ height:60px; line-height:50px;}

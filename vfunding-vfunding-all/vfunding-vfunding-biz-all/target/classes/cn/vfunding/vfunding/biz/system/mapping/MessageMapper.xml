@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.system.dao.MessageMapper" >
+  <resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.system.model.Message" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="sent_user" property="sentUser" jdbcType="INTEGER" />
+    <result column="receive_user" property="receiveUser" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="sented" property="sented" jdbcType="VARCHAR" />
+    <result column="deltype" property="deltype" jdbcType="INTEGER" />
+    <result column="addtime" property="addtime" jdbcType="VARCHAR" />
+    <result column="addip" property="addip" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.vfunding.vfunding.biz.system.model.Message" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  
+  
+   <resultMap id="convertMap" type="cn.vfunding.vfunding.biz.system.model.Message" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  
+  
+  <select id="selectByConvet" resultMap="convertMap">
+  
+  select id,content from rd_message where content like  <![CDATA['%<a href=%']]>
+  
+  </select>
+  
+  
+  
+  <sql id="Base_Column_List" >
+    id, sent_user, receive_user, `name`, `status`, type, sented, deltype, addtime, addip
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <!-- 查询用户的未读的站内信数量 -->
+  <select id="selectNoReadCount" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+     select count(id) from rd_message where receive_user=#{receiveUser,jdbcType=INTEGER}
+            and `status`=0
+  </select>
+  
+  <!-- 查询用户所有站内信数量 -->
+  <select id="selectAllCount" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+     select count(id) from rd_message where receive_user=#{receiveUser,jdbcType=INTEGER}
+  </select>
+  
+  <!-- 查询用户站内信分页查询-->
+  <select id="selectMessageByUserListPage"  resultMap="ResultMapWithBLOBs" parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+     select 
+     <include refid="Base_Column_List" />
+     ,
+     <include refid="Blob_Column_List" />
+     from rd_message where receive_user=#{entity.receiveUser,jdbcType=INTEGER}
+     <!--  and `status`=#{entity.status,jdbcType=INTEGER}-->
+     order by addtime desc
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    
+    from rd_message
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from rd_message
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.vfunding.biz.system.model.Message" >
+    insert into rd_message (id, sent_user, receive_user, 
+      `name`, `status`, type, 
+      sented, deltype, addtime, 
+      addip, content)
+    values (#{id,jdbcType=INTEGER}, #{sentUser,jdbcType=INTEGER}, #{receiveUser,jdbcType=INTEGER}, 
+      #{name,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, 
+      #{sented,jdbcType=VARCHAR}, #{deltype,jdbcType=INTEGER}, #{addtime,jdbcType=VARCHAR}, 
+      #{addip,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.system.model.Message" >
+    insert into rd_message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sentUser != null" >
+        sent_user,
+      </if>
+      <if test="receiveUser != null" >
+        receive_user,
+      </if>
+      <if test="name != null" >
+        `name`,
+      </if>
+      <if test="status != null" >
+        `status`,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="sented != null" >
+        sented,
+      </if>
+      <if test="deltype != null" >
+        deltype,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="addip != null" >
+        addip,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sentUser != null" >
+        #{sentUser,jdbcType=INTEGER},
+      </if>
+      <if test="receiveUser != null" >
+        #{receiveUser,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="sented != null" >
+        #{sented,jdbcType=VARCHAR},
+      </if>
+      <if test="deltype != null" >
+        #{deltype,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=VARCHAR},
+      </if>
+      <if test="addip != null" >
+        #{addip,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.system.model.Message" >
+    update rd_message
+    <set >
+      <if test="sentUser != null" >
+        sent_user = #{sentUser,jdbcType=INTEGER},
+      </if>
+      <if test="receiveUser != null" >
+        receive_user = #{receiveUser,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="sented != null" >
+        sented = #{sented,jdbcType=VARCHAR},
+      </if>
+      <if test="deltype != null" >
+        deltype = #{deltype,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=VARCHAR},
+      </if>
+      <if test="addip != null" >
+        addip = #{addip,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.vfunding.vfunding.biz.system.model.Message" >
+    update rd_message
+    set sent_user = #{sentUser,jdbcType=INTEGER},
+      receive_user = #{receiveUser,jdbcType=INTEGER},
+      `name` = #{name,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR},
+      sented = #{sented,jdbcType=VARCHAR},
+      deltype = #{deltype,jdbcType=INTEGER},
+      addtime = #{addtime,jdbcType=VARCHAR},
+      addip = #{addip,jdbcType=VARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.system.model.Message" >
+    update rd_message
+    set sent_user = #{sentUser,jdbcType=INTEGER},
+      receive_user = #{receiveUser,jdbcType=INTEGER},
+      `name` = #{name,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR},
+      sented = #{sented,jdbcType=VARCHAR},
+      deltype = #{deltype,jdbcType=INTEGER},
+      addtime = #{addtime,jdbcType=VARCHAR},
+      addip = #{addip,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <!-- 更新消息状态为已读 -->
+  <update id="updateReadPrimaryKey" parameterType="cn.vfunding.vfunding.biz.system.model.Message" >
+    update rd_message
+    set 
+      `status` = #{status,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

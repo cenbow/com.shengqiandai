@@ -1,0 +1,111 @@
+
+@charset "utf-8";
+/* CSS Document */
+
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+
+.jj-main{
+    background-position: center top;
+    background-color: #ffc026;
+    overflow: hidden;
+}
+
+.jj-top{
+    height: 734px;
+    background: url(/images/huodong/jj-top.jpg) #0e69b0  no-repeat center top;
+}
+
+
+.jj-content{
+    width: 1000px;
+    margin: -200px auto 0 ;
+}
+
+.jj-btn-bg{
+    background: url(/images/huodong/jj-btn.png) no-repeat;
+}
+
+a.jj-btn{
+    width: 327px;
+    height: 326px;
+    margin:0 auto;
+    background-position:  0 0;
+    display: block;
+}
+
+a.jj-btn:hover{
+    background-position:  0 -326px;
+}
+
+.jj-rules{
+    margin-top: 20px;
+    padding:0 16px;
+    position: relative;
+}
+
+.jj-rule{
+    margin-bottom: 26px;
+
+}
+
+.jj-arrow{
+    height: 46px;
+    position: relative;
+    color: #ffeb8c;
+    margin: 10px 0;
+    width: 176px;
+
+}
+
+i.arrow-right{
+    width: 0;
+    height: 0;
+      border-width:23px ;
+      display: block;
+      border-color: transparent transparent transparent #976514;
+    border-style: dashed dashed dashed solid;
+      position: absolute;
+      right: -22px;
+      top:0;
+    overflow: hidden;
+
+}
+
+.jj-arrow-title{
+    position: absolute;
+    left: 0;
+    top:0;
+    background-color: #976514;
+    padding:0 16px;
+    line-height: 46px;
+    font-size: 30px;
+    font-weight: bold;
+
+}
+
+.jj-rule-cnt{
+    font-size: 16px;
+    color: #976514;
+    line-height: 28px;
+    padding: 0 32px 0 40px;
+
+}
+
+span.want{
+    font-size: 18px;
+    font-weight: bold;
+    color: #f26d01;
+}
+
+a.cosplay{
+    width: 380px;
+    height:349px ;
+    position: absolute;
+    right: 22px;
+    top: 132px;
+    background: url(/images/huodong/cosplay.png) no-repeat;
+    z-index: 10;
+    display:block;
+}

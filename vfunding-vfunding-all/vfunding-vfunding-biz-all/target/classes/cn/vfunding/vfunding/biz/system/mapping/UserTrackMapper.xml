@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.system.dao.UserTrackMapper">
+	<resultMap id="BaseResultMap"
+		type="cn.vfunding.vfunding.biz.system.model.UserTrack">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="VARCHAR" />
+		<result column="login_time" property="loginTime" jdbcType="VARCHAR" />
+		<result column="last_req_time" property="lastReqTime" jdbcType="VARCHAR" />
+		<result column="out_time" property="outTime" jdbcType="VARCHAR" />
+		<result column="login_ip" property="loginIp" jdbcType="VARCHAR" />
+		<result column="login_type" property="loginType" jdbcType="VARCHAR" />
+		<result column="session_id" property="sessionId" jdbcType="VARCHAR" />
+
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, user_id, login_time, last_req_time,out_time, login_ip,
+		login_type,session_id
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from rd_usertrack
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<!-- 查询用户最后一次登录信息 -->
+	<select id="selectByLastLogin" resultMap="BaseResultMap"
+		parameterType="cn.vfunding.vfunding.biz.system.model.UserTrack">
+		select
+		<include refid="Base_Column_List" />
+		from rd_usertrack
+		where login_type=#{loginType,jdbcType=VARCHAR} and
+		user_id=#{userId,jdbcType=VARCHAR} order by login_time desc limit 0,1
+	</select>
+
+	<!-- 根据SessionID查询 -->
+	<select id="selectBySessionId" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from rd_usertrack
+		where session_id=#{sessionId,jdbcType=VARCHAR}
+	</select>
+	<!-- 查询出需要退出的数据 -->
+	<select id="selectNeedOut" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from rd_usertrack
+		where login_time is not null and out_time is null and
+		last_req_time is not null
+		and (login_type='site' or login_type='app' or login_type='ios' or
+		login_type='android')
+		and UNIX_TIMESTAMP(now())-last_req_time >= 1800
+	</select>
+
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		rd_usertrack
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="cn.vfunding.vfunding.biz.system.model.UserTrack">
+		insert into rd_usertrack (id,
+		user_id, login_time,last_req_time,
+		out_time, login_ip,
+		login_type,session_id
+		)
+		values (#{id,jdbcType=INTEGER},
+		#{userId,jdbcType=VARCHAR},
+		#{loginTime,jdbcType=VARCHAR},#{lastReqTime,jdbcType=VARCHAR},
+		#{outTime,jdbcType=VARCHAR}, #{loginIp,jdbcType=VARCHAR},
+		#{loginType,jdbcType=VARCHAR},
+		#{sessionId,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.system.model.UserTrack">
+		insert into rd_usertrack
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="loginTime != null">
+				login_time,
+			</if>
+			<if test="lastReqTime != null">
+				last_req_time,
+			</if>
+			<if test="outTime != null">
+				out_time,
+			</if>
+			<if test="loginIp != null">
+				login_ip,
+			</if>
+			<if test="loginType != null">
+				login_type,
+			</if>
+			<if test="sessionId != null">
+				session_id,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="loginTime != null">
+				#{loginTime,jdbcType=VARCHAR},
+			</if>
+			<if test="lastReqTime != null">
+				#{lastReqTime,jdbcType=VARCHAR},
+			</if>
+			<if test="outTime != null">
+				#{outTime,jdbcType=VARCHAR},
+			</if>
+			<if test="loginIp != null">
+				#{loginIp,jdbcType=VARCHAR},
+			</if>
+			<if test="loginType != null">
+				#{loginType,jdbcType=VARCHAR},
+			</if>
+			<if test="sessionId != null">
+				#{sessionId,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.system.model.UserTrack">
+		update rd_usertrack
+		<set>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="loginTime != null">
+				login_time = #{loginTime,jdbcType=VARCHAR},
+			</if>
+			<if test="lastReqTime != null">
+				last_req_time = #{lastReqTime,jdbcType=VARCHAR},
+			</if>
+			<if test="outTime != null">
+				out_time = #{outTime,jdbcType=VARCHAR},
+			</if>
+			<if test="loginIp != null">
+				login_ip = #{loginIp,jdbcType=VARCHAR},
+			</if>
+			<if test="loginType != null">
+				login_type = #{loginType,jdbcType=VARCHAR},
+			</if>
+			<if test="sessionId != null">
+				session_id = #{sessionId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.system.model.UserTrack">
+		update
+		rd_usertrack
+		set user_id = #{userId,jdbcType=VARCHAR},
+		login_time =
+		#{loginTime,jdbcType=VARCHAR},
+		last_req_time =
+		#{lastReqTime,jdbcType=VARCHAR},
+		out_time =
+		#{outTime,jdbcType=VARCHAR},
+		login_ip = #{loginIp,jdbcType=VARCHAR},
+		login_type = #{loginType,jdbcType=VARCHAR},
+		session_id=#{sessionId,jdbcType=VARCHAR}
+		where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+
+	<!-- 项目启动时推出所有登录用户 -->
+	<update id="outAllUser">
+		update rd_usertrack set
+		out_time=UNIX_TIMESTAMP(now()) where
+		login_type='site' and login_time
+		is not null and out_time is null
+	</update>
+	<!-- 更新用户最后一次请求时间 -->
+	<update id="updateLastReqTime" parameterType="cn.vfunding.vfunding.biz.system.model.UserTrack">
+		update rd_usertrack
+		set last_req_time=UNIX_TIMESTAMP(now()) where
+		login_type='site' and
+		login_time is not null and out_time is null
+		and user_id =
+		#{userId,jdbcType=VARCHAR} and
+		session_id=#{sessionId,jdbcType=VARCHAR}
+	</update>
+	
+	<!-- 用户自动退出 -->
+	<update id="userAutoOut" parameterType="java.lang.Integer">
+		update rd_usertrack
+		set out_time=UNIX_TIMESTAMP(now())
+		where login_time is not null and (out_time is null or out_time ='') and
+		last_req_time is not null
+		and (login_type='site' or login_type='app' or login_type='ios' or
+		login_type='android')
+		and UNIX_TIMESTAMP(now())-last_req_time >= #{second,jdbcType=INTEGER}
+	</update>
+
+</mapper>

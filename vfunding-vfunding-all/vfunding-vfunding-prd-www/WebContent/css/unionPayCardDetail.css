@@ -1,0 +1,216 @@
+@charset "utf-8";
+/* CSS Document */
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+@import url(accountLeft.css);
+.myAccount{  height:940px; margin:30px 0; clear:both;}
+/*****账户总览右栏***/
+.rechargeTakeCash{ width:820px; height:940px; }
+.rT{ height:940px;  background:#fff;}
+.rTWrap{ width:780px; height:940px; margin:0 auto;  position:relative;}
+.txTop{ height:58px;overflow:hidden; }
+b.midLine{ height:1px; font-size:0; width:100%; background:#eeeeee; position:absolute; top:28px; left:0;  overflow:hidden;}
+.txTop h2,.excel{ height:22px; line-height:22px; position:absolute;background-color:#fff;}
+.txTop h2{ top:17px; left:24px; font-size:20px; color:#0065b4; padding:0 6px; z-index:9; }
+.cardAdd{ width:780px; height:auto!important;}
+
+
+.bankAddNew{
+	width:600px;
+	margin:0 auto;
+	overflow:hidden;
+}
+.idcard-info{
+	color:#888;
+	background:#f5f7f8;
+	padding:20px 0 20px 40px;
+}
+
+.idcard-info p{
+	line-height:30px;
+	
+}
+
+#banks-list{
+	overflow:hidden;
+}
+#banks-list li{
+	height:48px;
+	line-height:48px;
+	position:relative;
+	margin-top:20px;
+}
+
+#banks-list li p.input_tip{
+	position: absolute;
+    left: 130px;
+    top: 8px;
+    color:#888;
+    line-height:22px;
+    width:180px;
+}
+ 
+ span.spanPhone{
+   display:block;
+ }
+ 
+ input#mobilePhone,input#emailCode,input#BankUserName,input#idCardNo{
+   padding:10px 5px;
+   width:270px;
+   display:block;
+   float:left;
+ }
+input#idCardFront-input,input#idCardBackface-input{
+    padding:10px 5px;
+   width:200px;
+   display:block;
+   float:left;
+}
+em#kj-tip,span.agree-deal{
+	height:30px;
+	line-height:30px;
+	font-size:12px;
+	font-style:normal;
+	display:block;
+	color:#888;
+}
+
+	label.labelBox{
+	  width:100px;
+	  height:38px;
+	  line-height:38px;
+	  display:block;
+	  float:left;
+	  padding-right:20px;
+	  text-align:right;
+	  
+	}
+
+li#li-kj,li#kuaijiebox{
+	padding-left:116px;
+}
+li#li-kj{
+	cursor:pointer;
+	width:180px;
+}
+li#kuaijiebox{
+	height:auto;
+}
+#spanPhone,#noNeed{
+	display:block;
+}
+em#kj-tip{
+	padding-left:4px;
+}
+
+input#ktkjfs,input#userDeal{
+	vertical-align:middle;
+	margin-top:0;
+}
+
+a#agreePro:hover{
+	color:#00a0e9;
+}
+
+#province,#city{
+	width: 140px; 
+	height: 38px; 
+	line-height: 38px;
+}
+
+.hide{
+	display:none;
+}
+
+#spanCode{
+	margin-top:10px;
+	position:relative;
+}
+a.code{
+	padding:10px 6px;
+	color:#fff;
+	background:#00a0e9;
+	cursor:pointer;
+	border-radius:3px;
+}
+input#checkCode{
+	width:160px;
+	height:36px;
+	line-height:36px;
+	padding:0 6px;
+	
+}
+
+
+span#BankSelect{
+	padding-left:10px;
+	cursor:pointer;
+	position:relative;
+	top:-4px;
+}
+i.arrow-blue-down{
+	position:absolute;
+	top:6px;
+	right:-12px;
+}
+
+.Error{
+	padding:10px 0 0 120px;
+	color:#ff5555;
+}
+
+a.submitUp{
+	width:150px;
+	padding:10px 20px;
+	text-align:center;
+	margin:20px 0 0 120px;
+	border-radius:3px;
+	color:#fff;
+	background:#ff8636;
+	font-size:18px;
+	display:block;
+}
+
+.msg-tip{
+	height:20px;
+	line-height:20px;
+	margin-top:20px;
+}
+.fund-trustee{padding:8px 12px;background-color:#fff3ca; color:#ff8636;margin:10px;}
+
+.fund-trustee a{color:#ff8636;float:right;}
+
+.fund-trustee span,.fund-trustee a{display:inline-block;}
+
+.fund-trustee span{float:left;}
+
+#address-detail{
+	border:1px solid #ccc;
+	width:278px;
+	resize:none;
+	padding:5px;
+}
+#idCardFront,#idCardBackface{
+	opacity:0;
+	filter:alpha(opacity=0);
+	height:37px;
+	position:absolute;
+	z-index:99;
+}
+.fileType{
+	width:100px;
+	height:37px;
+	line-height:37px;
+	text-align:center;
+	color:#fff;
+	background-color:#ff8636;
+	position:absolute;
+	right:160px;
+	top:0;
+	z-index:2;
+	
+}
+
+
+

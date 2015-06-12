@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.bms_employee.dao.UserEmpMapper">
+	<resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.bms_employee.model.UserEmp">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="emp_id" property="empId" jdbcType="INTEGER" />
+		<result column="type" property="type" jdbcType="INTEGER" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="track" property="track" jdbcType="VARCHAR" />
+		<result column="update_date" property="updateDate" jdbcType="DATE" />
+		<result column="update_remark" property="updateRemark"
+			jdbcType="VARCHAR" />
+	</resultMap>
+
+
+	<!-- 查询分配信息 lx -->
+	<resultMap type="cn.vfunding.vfunding.biz.bms_system.vo.UserEmpVO"
+		id="userEmpVO">
+		<result column="userId" property="userId" />
+		<result column="userName" property="userName" />
+		<result column="realName" property="realName" />
+		<result column="phone" property="phone" />
+		<result column="email" property="email" />
+		<result column="addTime" property="addTime" />
+		<result column="userMoney" property="userMoney" />
+		<result column="total" property="total" />
+		<result column="remark" property="remark" />
+		<result column="track" property="track" />
+		<result column="updateDate" property="updateDate" />
+		<result column="updateRemark" property="updateRemark" />
+		<result column="empName" property="empName" />
+		<result column="tenderSum" property="tenderSum" />
+		<result column="source" property="source" />
+		<result column="sourceName" property="sourceName" />
+	</resultMap>
+
+
+
+	<sql id="Base_Column_List">
+		id, user_id, emp_id, type, remark, track, update_date, update_remark
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from vf_user_emp
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectByUserId" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from vf_user_emp
+		where user_id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from vf_user_emp
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="cn.vfunding.vfunding.biz.bms_employee.model.UserEmp">
+		insert into vf_user_emp (id, user_id, emp_id,
+		type, remark, track,
+		update_date, update_remark)
+		values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER},
+		#{empId,jdbcType=INTEGER},
+		#{type,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{track,jdbcType=VARCHAR},
+		#{updateDate,jdbcType=DATE}, #{updateRemark,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.bms_employee.model.UserEmp">
+		insert into vf_user_emp
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="empId != null">
+				emp_id,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="track != null">
+				track,
+			</if>
+			<if test="updateDate != null">
+				update_date,
+			</if>
+			<if test="updateRemark != null">
+				update_remark,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="empId != null">
+				#{empId,jdbcType=INTEGER},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=INTEGER},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="track != null">
+				#{track,jdbcType=VARCHAR},
+			</if>
+			<if test="updateDate != null">
+				#{updateDate,jdbcType=DATE},
+			</if>
+			<if test="updateRemark != null">
+				#{updateRemark,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.bms_employee.model.UserEmp">
+		update vf_user_emp
+		<set>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=INTEGER},
+			</if>
+			<if test="empId != null">
+				emp_id = #{empId,jdbcType=INTEGER},
+			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=INTEGER},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="track != null">
+				track = #{track,jdbcType=VARCHAR},
+			</if>
+			<if test="updateDate != null">
+				update_date = #{updateDate,jdbcType=DATE},
+			</if>
+			<if test="updateRemark != null">
+				update_remark = #{updateRemark,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.bms_employee.model.UserEmp">
+		update vf_user_emp
+		set user_id = #{userId,jdbcType=INTEGER},
+		emp_id = #{empId,jdbcType=INTEGER},
+		type = #{type,jdbcType=INTEGER},
+		remark = #{remark,jdbcType=VARCHAR},
+		track = #{track,jdbcType=VARCHAR},
+		update_date = #{updateDate,jdbcType=DATE},
+		update_remark = #{updateRemark,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<!-- 查询分配信息sql lx -->
+	<select id="selectFriendByUserEmpListPage" resultMap="userEmpVO" parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select u.user_id  userId, u.username userName,
+		u.realname realName, u.phone phone,
+		u.email email, u.addtime addTime, a.use_money userMoney,
+		a.total total, v.remark remark, v.track track,v.update_date updateDate
+		,v.update_remark updateRemark, e.emp_name empName,
+		ifnull(type.name,'自然客户') source, uu.username as sourceName,
+		(select ifnull(ROUND(sum(bt.account),2),0) from rd_borrow_tender bt where bt.`status` in (1,5) and bt.user_id=u.user_id) as tenderSum
+		from vf_user_emp v
+		LEFT JOIN rd_user u on v.user_id=u.user_id
+		LEFT JOIN rd_account a ON v.user_id=a.user_id
+		left join vf_employee e on v.emp_id=e.emp_id
+		LEFT JOIN rd_user uu on u.invite_userid = uu.user_id
+		left join rd_user_type type on uu.type_id=type.type_id
+		where 1=1 
+		<if test="entity.id != null and entity.id != ''">
+			and v.emp_id=#{entity.id}
+		</if>
+		<if test="entity.username != null and entity.username != ''">
+		    and u.username like 
+		    concat('%',#{entity.username,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="entity.sourceName != null and entity.sourceName != ''">
+		    and uu.username like 
+		    concat('%',#{entity.sourceName,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="entity.email != null and entity.email != ''">
+		    and u.email like 
+		   concat('%',#{entity.email,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="entity.keyWord != null and entity.keyWord != ''">
+		    and u.keyWord like 
+		   concat('%',#{entity.keyWord,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="entity.startTime != null and entity.startTime != ''">
+			<![CDATA[ and u.addtime >= #{entity.startTime,jdbcType=INTEGER} ]]>
+		</if>
+		<if test="entity.endTime != null and entity.endTime != ''">
+			<![CDATA[ and u.addtime <= #{entity.endTime,jdbcType=INTEGER} ]]>
+		</if>
+		order by u.addtime desc
+	</select>
+
+
+
+</mapper>

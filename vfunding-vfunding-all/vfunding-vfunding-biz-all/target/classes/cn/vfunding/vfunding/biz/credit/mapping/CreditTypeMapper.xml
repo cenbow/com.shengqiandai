@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.credit.dao.CreditTypeMapper" >
+  <resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.credit.model.CreditType" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="nid" property="nid" jdbcType="VARCHAR" />
+    <result column="value" property="value" jdbcType="INTEGER" />
+    <result column="cycle" property="cycle" jdbcType="BIT" />
+    <result column="award_times" property="awardTimes" jdbcType="TINYINT" />
+    <result column="interval" property="interval" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="op_user" property="opUser" jdbcType="INTEGER" />
+    <result column="addtime" property="addtime" jdbcType="INTEGER" />
+    <result column="addip" property="addip" jdbcType="VARCHAR" />
+    <result column="updatetime" property="updatetime" jdbcType="INTEGER" />
+    <result column="updateip" property="updateip" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, nid, value, cycle, award_times, interval, remark, op_user, addtime, addip, 
+    updatetime, updateip
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from rd_credit_type
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from rd_credit_type
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.vfunding.biz.credit.model.CreditType" >
+    insert into rd_credit_type (id, name, nid, 
+      value, cycle, award_times, 
+      interval, remark, op_user, 
+      addtime, addip, updatetime, 
+      updateip)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{nid,jdbcType=VARCHAR}, 
+      #{value,jdbcType=INTEGER}, #{cycle,jdbcType=BIT}, #{awardTimes,jdbcType=TINYINT}, 
+      #{interval,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{opUser,jdbcType=INTEGER}, 
+      #{addtime,jdbcType=INTEGER}, #{addip,jdbcType=VARCHAR}, #{updatetime,jdbcType=INTEGER}, 
+      #{updateip,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.credit.model.CreditType" >
+    insert into rd_credit_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="nid != null" >
+        nid,
+      </if>
+      <if test="value != null" >
+        value,
+      </if>
+      <if test="cycle != null" >
+        cycle,
+      </if>
+      <if test="awardTimes != null" >
+        award_times,
+      </if>
+      <if test="interval != null" >
+        interval,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="opUser != null" >
+        op_user,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="addip != null" >
+        addip,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+      <if test="updateip != null" >
+        updateip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="nid != null" >
+        #{nid,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null" >
+        #{value,jdbcType=INTEGER},
+      </if>
+      <if test="cycle != null" >
+        #{cycle,jdbcType=BIT},
+      </if>
+      <if test="awardTimes != null" >
+        #{awardTimes,jdbcType=TINYINT},
+      </if>
+      <if test="interval != null" >
+        #{interval,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="opUser != null" >
+        #{opUser,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=INTEGER},
+      </if>
+      <if test="addip != null" >
+        #{addip,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=INTEGER},
+      </if>
+      <if test="updateip != null" >
+        #{updateip,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.credit.model.CreditType" >
+    update rd_credit_type
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="nid != null" >
+        nid = #{nid,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null" >
+        value = #{value,jdbcType=INTEGER},
+      </if>
+      <if test="cycle != null" >
+        cycle = #{cycle,jdbcType=BIT},
+      </if>
+      <if test="awardTimes != null" >
+        award_times = #{awardTimes,jdbcType=TINYINT},
+      </if>
+      <if test="interval != null" >
+        interval = #{interval,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="opUser != null" >
+        op_user = #{opUser,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=INTEGER},
+      </if>
+      <if test="addip != null" >
+        addip = #{addip,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = #{updatetime,jdbcType=INTEGER},
+      </if>
+      <if test="updateip != null" >
+        updateip = #{updateip,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.credit.model.CreditType" >
+    update rd_credit_type
+    set name = #{name,jdbcType=VARCHAR},
+      nid = #{nid,jdbcType=VARCHAR},
+      value = #{value,jdbcType=INTEGER},
+      cycle = #{cycle,jdbcType=BIT},
+      award_times = #{awardTimes,jdbcType=TINYINT},
+      interval = #{interval,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      op_user = #{opUser,jdbcType=INTEGER},
+      addtime = #{addtime,jdbcType=INTEGER},
+      addip = #{addip,jdbcType=VARCHAR},
+      updatetime = #{updatetime,jdbcType=INTEGER},
+      updateip = #{updateip,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

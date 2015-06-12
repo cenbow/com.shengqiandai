@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.user.dao.UserFromUnionMapper" >
+  <resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.user.model.UserFromUnion" >
+    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="union_user_id" property="unionUserId" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="product_id" property="productId" jdbcType="VARCHAR" />
+    <result column="periods" property="periods" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="insert_time" property="insertTime" jdbcType="TIMESTAMP" />
+    <result column="update_periods_time" property="updatePeriodsTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_id, user_name,union_user_id, product_id, periods, status, insert_time, update_periods_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from rd_user_from_union
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  
+  <!-- 根据网站联盟用户ID查询他所带来的离当前时间最后一个注册的用户信息 -->
+  <select id="selectByUnionUserIdAndLastRegist" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from rd_user_from_union
+    where union_user_id= #{unionUserId,jdbcType=VARCHAR} ORDER BY insert_time DESC LIMIT 1
+  </select>
+  
+  
+  <!-- 查询所有需要更新期数的用户信息-->
+  <select id="selectByNeedChangePeriods" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from rd_user_from_union
+    where where `status` ='Y' and periods > 0 and periods <![CDATA[ < ]]> 3
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from rd_user_from_union
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.vfunding.biz.user.model.UserFromUnion" >
+    insert into rd_user_from_union (user_id, user_name,union_user_id, product_id, 
+      periods, status, insert_time, 
+      update_periods_time)
+    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR},#{unionUserId,jdbcType=VARCHAR}, #{productId,jdbcType=VARCHAR}, 
+      #{periods,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{insertTime,jdbcType=TIMESTAMP}, 
+      #{updatePeriodsTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.user.model.UserFromUnion" >
+    insert into rd_user_from_union
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+       <if test="unionUserId != null" >
+        union_user_id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+     
+      <if test="periods != null" >
+        periods,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="insertTime != null" >
+        insert_time,
+      </if>
+      <if test="updatePeriodsTime != null" >
+        update_periods_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+       <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="unionUserId != null" >
+        #{unionUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="periods != null" >
+        #{periods,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTime != null" >
+        #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePeriodsTime != null" >
+        #{updatePeriodsTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.user.model.UserFromUnion" >
+    update rd_user_from_union
+    <set >
+      <if test="userName != null" >
+       user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="unionUserId != null" >
+        union_user_id = #{unionUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="periods != null" >
+        periods = #{periods,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTime != null" >
+        insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePeriodsTime != null" >
+        update_periods_time = #{updatePeriodsTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.user.model.UserFromUnion" >
+    update rd_user_from_union
+    set user_name = #{userName,jdbcType=VARCHAR},
+      union_user_id = #{unionUserId,jdbcType=VARCHAR},
+      product_id = #{productId,jdbcType=VARCHAR},
+      periods = #{periods,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      update_periods_time = #{updatePeriodsTime,jdbcType=TIMESTAMP}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 网站联盟用户清零 -->
+  <update id="cleanOldUserByUnionUser" parameterType="cn.vfunding.vfunding.biz.user.model.CleanOldUserVO" >
+    update rd_user_from_union
+    set 
+      status = 'N'
+    where union_user_id = #{unionUserId,jdbcType=VARCHAR} and insert_time <![CDATA[ < ]]> #{lastReviveTime,jdbcType=TIMESTAMP}
+  </update>
+</mapper>

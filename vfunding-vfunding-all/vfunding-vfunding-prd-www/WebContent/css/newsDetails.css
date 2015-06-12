@@ -1,0 +1,18 @@
+@charset "utf-8";
+/* CSS Document */
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+.content{ margin:30px auto;}
+.about-us-left{ width:160px;  background:#fff;}
+.about-us-left h1{ height:50px; line-height:50px; text-align:center; background-color:#0065b4; font-size:18px; color:#fff; font-weight:normal; margin-bottom:20px;}
+.au-nav{ height: auto !important;}
+.au-nav li{ height:35px; line-height:35px; margin-bottom:6px; text-align:center; cursor:pointer;}
+.au-selected{ background:#f5f7f8; color:#00a0e9;}
+.about-us-right{ width:820px; height:auto !important; background:#fff; padding-bottom:20px;min-height:470px;}
+.au-box{ width:780px;min-height:410px; height: auto !important; margin:0 auto;}
+.newsTilte,.newsTime{ height:20px; display:block; text-align:center; line-height:20px; }
+.newsTilte{ margin-top:27px;font-size:20px;}
+.newsTime{ margin-top:10px;}
+.img-mid{ width:780px; height:250px; margin:20px auto; }
+.about-us-right,.about-us-right span{word-break:break-all;overflow:hidden;}

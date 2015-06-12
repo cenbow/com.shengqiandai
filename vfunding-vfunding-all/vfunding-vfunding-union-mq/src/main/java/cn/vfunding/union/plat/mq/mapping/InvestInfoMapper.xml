@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.union.plat.mq.dao.InvestInfoMapper" >
+  <resultMap id="BaseResultMap" type="cn.vfunding.union.plat.mq.model.InvestInfo" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="union_user_id" property="unionUserId" jdbcType="VARCHAR" />
+    <result column="product_id" property="productId" jdbcType="VARCHAR" />
+    <result column="invest_id" property="investId" jdbcType="INTEGER" />
+    <result column="invest_name" property="investName" jdbcType="VARCHAR" />
+    <result column="invest_time" property="investTime" jdbcType="TIMESTAMP" />
+    <result column="invest_money" property="investMoney" jdbcType="REAL" />
+    <result column="periods" property="periods" jdbcType="INTEGER" />
+    <result column="interests" property="interests" jdbcType="REAL" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, union_user_id, product_id, invest_id, invest_name, invest_time, invest_money, 
+    periods, interests, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from invest_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from invest_info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.union.plat.mq.model.InvestInfo" >
+    insert into invest_info (id, union_user_id, product_id, 
+      invest_id, invest_name, invest_time, 
+      invest_money, periods, interests, 
+      remark)
+    values (#{id,jdbcType=VARCHAR}, #{unionUserId,jdbcType=VARCHAR}, #{productId,jdbcType=VARCHAR}, 
+      #{investId,jdbcType=INTEGER}, #{investName,jdbcType=VARCHAR}, #{investTime,jdbcType=TIMESTAMP}, 
+      #{investMoney,jdbcType=REAL}, #{periods,jdbcType=INTEGER}, #{interests,jdbcType=REAL}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.vfunding.union.plat.mq.model.InvestInfo" >
+    insert into invest_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="unionUserId != null" >
+        union_user_id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="investId != null" >
+        invest_id,
+      </if>
+      <if test="investName != null" >
+        invest_name,
+      </if>
+      <if test="investTime != null" >
+        invest_time,
+      </if>
+      <if test="investMoney != null" >
+        invest_money,
+      </if>
+      <if test="periods != null" >
+        periods,
+      </if>
+      <if test="interests != null" >
+        interests,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="unionUserId != null" >
+        #{unionUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="investId != null" >
+        #{investId,jdbcType=INTEGER},
+      </if>
+      <if test="investName != null" >
+        #{investName,jdbcType=VARCHAR},
+      </if>
+      <if test="investTime != null" >
+        #{investTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="investMoney != null" >
+        #{investMoney,jdbcType=REAL},
+      </if>
+      <if test="periods != null" >
+        #{periods,jdbcType=INTEGER},
+      </if>
+      <if test="interests != null" >
+        #{interests,jdbcType=REAL},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.union.plat.mq.model.InvestInfo" >
+    update invest_info
+    <set >
+      <if test="unionUserId != null" >
+        union_user_id = #{unionUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="investId != null" >
+        invest_id = #{investId,jdbcType=INTEGER},
+      </if>
+      <if test="investName != null" >
+        invest_name = #{investName,jdbcType=VARCHAR},
+      </if>
+      <if test="investTime != null" >
+        invest_time = #{investTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="investMoney != null" >
+        invest_money = #{investMoney,jdbcType=REAL},
+      </if>
+      <if test="periods != null" >
+        periods = #{periods,jdbcType=INTEGER},
+      </if>
+      <if test="interests != null" >
+        interests = #{interests,jdbcType=REAL},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.vfunding.union.plat.mq.model.InvestInfo" >
+    update invest_info
+    set union_user_id = #{unionUserId,jdbcType=VARCHAR},
+      product_id = #{productId,jdbcType=VARCHAR},
+      invest_id = #{investId,jdbcType=INTEGER},
+      invest_name = #{investName,jdbcType=VARCHAR},
+      invest_time = #{investTime,jdbcType=TIMESTAMP},
+      invest_money = #{investMoney,jdbcType=REAL},
+      periods = #{periods,jdbcType=INTEGER},
+      interests = #{interests,jdbcType=REAL},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

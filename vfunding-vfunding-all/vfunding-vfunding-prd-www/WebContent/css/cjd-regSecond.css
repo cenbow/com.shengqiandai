@@ -1,0 +1,34 @@
+@charset "utf-8";
+/* CSS Document */
+@import url(cjdBase.css);
+.top{ height:62px; margin:26px 0 22px;}
+.top-left{ width:370px; height:62px; margin-left:25px;}
+.top-right{ width:580px; height:62px;}
+.top-left li{ float:left; height:57px; margin-right:23px;}
+li.logo1{ width:165px; background-position:0 0;}
+li.logo2{ width:150px; background-position:-165px 0;}
+.top-right h3{ font-weight:normal; font-size:18px; margin-top:16px;}
+.top-right p{ line-height:24px;}
+
+
+.content{ margin-top:20px;}
+.content-top{ height:73px; background:#00a0e9;}
+.reg-tip{ width:320px; height:30px; line-height:30px; margin:0 auto;color:#ff5555;}
+.reg-div{ width:660px; margin:10px auto 0; overflow:hidden;}
+.ui-form{ margin-top:0;}
+.ui-form input[type="text"],.ui-form input[type="password"]{
+	border:1px solid #ccc;
+	padding:3px 8px;
+	vertical-align:middle;
+	width:224px;
+	height:30px;
+	line-height:30px;
+	}
+a.reg-btn{ width:250px; outline:none; margin:0;}
+a.reg-btn:hover{ background:#ffa836;}
+.ui-form-item span{ padding-left:10px; color:#888; font-size:12px;}
+#username{ width:224px; height:30px;}
+.msg-btn,.voice-btn{ padding: 10px 15px; float:left; display:block; background:#00a0e9; color:#fff; margin-right:10px; border-radius:3px;}
+.msg-btn:hover,.voice-btn:hover{ background:#00afff; cursor:pointer;}
+.content-top img{ margin:11px 20px 11px 34px;}
+

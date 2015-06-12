@@ -1,0 +1,7 @@
+Last Configured at: Tue Apr 14 14:16:02 CST 2015
+
+Base URL: file:/tmp/svnco_conf_production/web1/vfunding/conf/
+Descriptor: conf/auto-config.xml
+
+Generating config.properties.worker [utf-8] => worker.properties.new [utf-8]
+Generating config.properties.log4j [utf-8] => log4j.properties.new [utf-8]

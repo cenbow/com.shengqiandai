@@ -1,0 +1,121 @@
+@CHARSET "UTF-8";
+*{
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	list-style: none;
+	font-family: "微软雅黑";
+	text-shadow: none;
+}
+.page{
+	max-width: 640px;
+	min-width: 320px;
+	width:100%;
+	margin:0 auto;
+	height: auto;
+	position: relative;
+}
+.top{
+	max-width: 640px;
+	min-width: 320px;
+	width:100%;
+	width: 100%;
+	background-color: #fff;
+	z-index: 999;
+	position: fixed;
+	top:0;
+	overflow: hidden;
+}
+.top img {
+	float: left;
+}
+.return{
+	width: 50%;
+	display: block;
+	text-align: center;
+	position: absolute;
+	left:0;
+	top:0;
+	height: 40px;
+	cursor: pointer;
+} 
+.zhichi{
+	position: absolute;
+	top:0;
+	right:2.5%;
+	width: 47.5%;
+	height: 40px;
+	text-align: right;
+	line-height: 40px;
+	cursor: pointer;
+	color: #008ef2;
+}
+.top span{
+	position: absolute;
+	top:20%;
+	left:2%;
+}
+.center{
+	width: 100%;
+	overflow: hidden;
+	line-height: 150px;
+	text-align: center;
+	margin-top: 40px;
+	color: #666;
+}
+.addBank{
+	width: 90%;
+	display: block;
+	line-height: 40px;
+	background-color: #fdb82c;
+	color: #fff;
+	text-align: center;
+	margin: 0 auto;
+	border-radius:5px;
+	font-size: 18px;
+}
+.bankCards{
+	width: 100%;
+	overflow: hidden;
+	margin-top: 41px;
+}
+.bankCards li{
+	width: 95%;
+	background-color: #fff;
+	padding: 10px 2.5%;
+	position: relative;
+	overflow: hidden;
+	border-bottom: 1px solid #f0f0f0;
+}
+.bankCards li img{
+	float: left;
+	margin-top: 7px;
+}
+
+.bankCards li span{
+	float: left;
+	overflow: hidden;
+	margin-left: 10px;
+}
+.bankCards li span p {
+	color: #666;
+	font-size: 15px;
+	margin-top: 5px;
+}
+.bankCards li span h4{
+	color: #000;
+}
+.bankCards li p font{
+	color: #008ef2;
+}
+.right{
+	position: absolute;
+	right:0px;
+	top:10px;
+}
+.bankCards li a{
+	display: block;
+	width: 100%;
+	overflow: hidden;
+	cursor:pointer; 
+}

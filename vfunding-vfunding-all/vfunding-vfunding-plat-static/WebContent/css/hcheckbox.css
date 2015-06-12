@@ -1,0 +1,13 @@
+label.checkbox {padding-left: 24px; cursor:pointer;background: url(http://static.vfunding.cn/images/checkbox.png) no-repeat left 100%; line-height:22px; height:22px; display:inline-block; } 
+label.checked {background-position:left -21px;  } 
+label.disabled{background-position:left 0;}
+
+.hRadio 
+{
+    padding-left: 22px; display: inline-block;
+	background: transparent url(http://static.vfunding.cn/images/radio.png) no-repeat left top;
+	height: 19px; line-height:20px;
+	cursor:pointer;vertical-align:middle;
+}
+
+.hRadio_Checked { background-position: left bottom;}

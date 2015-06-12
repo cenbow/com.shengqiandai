@@ -1,0 +1,1418 @@
+@charset "utf-8";
+/* CSS Document */
+
+.icons {
+    background: url(../images/sprites.png) no-repeat;
+    display: inline-block;
+    font-size: 0;
+    height: 16px;
+    line-height: 0;
+    overflow: hidden;
+    text-indent: -9999px;
+	 text-indent:0 !important;
+    width: 16px;
+}
+.cm-white {
+    background-position: -105px -114px;
+    height: 8px;
+    width: 10px;
+}
+.cm-green {
+    background-position: -117px -113px;
+    height: 9px;
+    width: 12px;
+}
+.cm-gray {
+    background-position: -118px -125px;
+    height: 12px;
+    width: 14px;
+}
+.add-gray {
+    background-position: -72px -113px;
+    height: 14px;
+    width: 14px;
+}
+.add-blue {
+    background-position: -88px -113px;
+    height: 14px;
+    width: 14px;
+}
+.logo-bank {
+    background: url(../images/logo-banks.png) no-repeat  -999px -999px ;
+    display: inline-block;
+    font-size: 0;
+    height: 22px;
+    left: 50%;
+    line-height: 0;
+    margin: -11px 0 0 -65px;
+    overflow: hidden;
+    position: absolute;
+    text-indent: -9999px;
+    top: 50%;
+    width: 130px;
+}
+.bank-gsyh {
+    background-position: 0 0;
+    height: 22px;
+    margin: -11px 0 0 -48px;
+    width: 96px;
+}
+.bank-jsyh {
+    background-position: 0 -66px;
+    height: 20px;
+    margin: -10px 0 0 -50px;
+    width: 100px;
+}
+.bank-nyyh {
+    background-position: 0 -100px;
+    height: 20px;
+    margin: -10px 0 0 -50px;
+    width: 100px;
+}
+.bank-zgyzcxyh {
+    background-position: 0 -496px;
+    height: 17px;
+    margin: -9px 0 0 -59px;
+    width: 117px;
+}
+.bank-zgyh {
+    background-position: 0 -132px;
+    height: 22px;
+    margin: -11px 0 0 -36px;
+    width: 72px;
+}
+.bank-jtyh {
+    background-position: 0 -331px;
+    height: 20px;
+    margin: -10px 0 0 -50px;
+    width: 100px;
+}
+.bank-zsyh {
+    background-position: 0 -33px;
+    height: 20px;
+    margin: -10px 0 0 -40px;
+    width: 80px;
+}
+.bank-gdyh {
+    background-position: 0 -297px;
+    height: 20px;
+    margin: -10px 0 0 -50px;
+    width: 100px;
+}
+.bank-999 {
+    background-position: 0 -264px;
+    height: 19px;
+    margin: -10px 0 0 -41px;
+    width: 82px;
+}
+.bank-shpdfzyh {
+    background-position: 0 -165px;
+    height: 22px;
+    margin: -11px 0 0 -38px;
+    width: 75px;
+}
+.bank-hxyh {
+    background-position: 0 -626px;
+    height: 22px;
+    margin: -11px 0 0 -45px;
+    width: 90px;
+}
+.bank-gfyh {
+    background-position: 0 -430px;
+    height: 20px;
+    margin: -10px 0 0 -51px;
+    width: 102px;
+}
+.bank-zxyh {
+    background-position: 0 -396px;
+    height: 22px;
+    margin: -11px 0 0 -40px;
+    width: 80px;
+}
+.bank-xyyh{
+    background-position: 0 -231px;
+    height: 20px;
+    margin: -10px 0 0 -45px;
+    width: 90px;
+}
+.bank-307 {
+    background-position: 0 -199px;
+    height: 20px;
+    margin: -10px 0 0 -50px;
+    width: 100px;
+}
+.bank-msyh {
+    background-position: 0 -365px;
+    height: 17px;
+    margin: -9px 0 0 -50px;
+    width: 100px;
+}
+.bank-gjkfyh {
+    background-position: 0 -1406px;
+    height: 22px;
+    margin: -11px 0 0 -41px;
+    width: 81px;
+}
+.bank-sdyhjxtgs {
+    background-position: 0 -1466px;
+    height: 20px;
+    margin: -10px 0 0 -48px;
+    width: 94px;
+}
+.bank-zgjckyh {
+    background-position: 0 -1534px;
+    height: 20px;
+    margin: -9px 0 0 -59px;
+    width: 116px;
+}
+.bank-zdyh {
+    background-position: 0 -1375px;
+    height: 20px;
+    margin: -10px 0 0 -45px;
+    width: 89px;
+}
+.bank-zgnyfzyh {
+    background-position: 0 -1346px;
+    height: 20px;
+    margin: -9px 0 0 -59px;
+    width: 113px;
+}
+.bank-dyzyh {
+    background-position: 0 -1500px;
+    height: 21px;
+    margin: -11px 0 0 -38px;
+    width: 75px;
+}
+.bank-904 {
+    background-position: 0 -1634px;
+    height: 14px;
+    margin: -6px 0 0 -42px;
+    width: 84px;
+}
+.bank-cssyyh {
+    background-position: 0 -1437px;
+    height: 20px;
+    margin: -11px 0 0 -25px;
+    width: 46px;
+}
+.bank-axyh {
+    background-position: 0 -1318px;
+    height: 17px;
+    margin: -8px 0 0 -48px;
+    width: 93px;
+}
+.bank-771 {
+    background-position: 0 -1662px;
+    height: 14px;
+    margin: -6px 0 0 -42px;
+    width: 84px;
+}
+.bank-xgshhfyh {
+    background-position: 0 -991px;
+    height: 19px;
+    margin: -9px 0 0 -55px;
+    width: 109px;
+}
+.bank-zhntyh {
+    background-position: 0 -758px;
+    height: 21px;
+    margin: -11px 0 0 -40px;
+    width: 73px;
+}
+.bank-dyyh {
+    background-position: 0 -1262px;
+    height: 21px;
+    margin: -9px 0 0 -58px;
+    width: 113px;
+}
+
+.bank-nbgjyh {
+    background-position: 0 -758px;
+    height: 21px;
+    margin: -11px 0 0 -40px;
+    width: 73px;
+}
+
+.bank-xlsyyh {
+    background-position: 0 -1689px;
+    height: 14px;
+    margin: -6px 0 0 -42px;
+    width: 84px;
+}
+
+
+.bank-nysyyh {
+    background-position: 0 -1262px;
+    height: 21px;
+    margin: -9px 0 0 -58px;
+    width: 113px;
+}
+
+
+.bank-hyyh {
+    background-position: 0 -1291px;
+    height: 21px;
+    margin: -10px 0 0 -45px;
+    width: 86px;
+}
+.bank-xhyh {
+    background-position: 0 -1717px;
+    height: 14px;
+    margin: -6px 0 0 -32px;
+    width: 56px;
+}
+.bank-jyyh {
+    background-position: 0 -1232px;
+    height: 21px;
+    margin: -9px 0 0 -55px;
+    width: 111px;
+}
+.bank-xmgjyh {
+    background-position: 0 -1202px;
+    height: 20px;
+    margin: -9px 0 0 -56px;
+    width: 111px;
+}
+.bank-lcxyh {
+    background-position: 0 -1172px;
+    height: 19px;
+    margin: -9px 0 0 -41px;
+    width: 81px;
+}
+.bank-fjyzyh {
+    background-position: 0 -1745px;
+    height: 14px;
+    margin: -6px 0 0 -42px;
+    width: 84px;
+}
+.bank-ylyh {
+    background-position: 0 -1140px;
+    height: 20px;
+    margin: -9px 0 0 -61px;
+    width: 122px;
+}
+.bank-zjsyyh {
+    background-position: 0 -1083px;
+    height: 18px;
+    margin: -9px 0 0 -38px;
+    width: 63px;
+}
+.bank-xhyn {
+    background-position: 0 -1110px;
+    height: 21px;
+    margin: -10px 0 0 -40px;
+    width: 80px;
+}
+.bank-785 {
+    background-position: 0 -1774px;
+    height: 14px;
+    margin: -6px 0 0 -32px;
+    width: 56px;
+}
+.bank-hyyh {
+    background-position: 0 -1051px;
+    height: 21px;
+    margin: -10px 0 0 -48px;
+    width: 94px;
+}
+.bank-qdgjyh{
+    background-position: 0 -1801px;
+    height: 14px;
+    margin: -6px 0 0 -42px;
+    width: 84px;
+}
+.bank-mlxyyh {
+    background-position: 0 -1022px;
+    height: 21px;
+    margin: -10px 0 0 -55px;
+    width: 110px;
+}
+.bank-hyyh2{
+    background-position: 0 -953px;
+    height: 27px;
+    margin: -13px 0 0 -54px;
+    width: 102px;
+}
+.bank-payh {
+    background-position: 0 -463px;
+    height: 17px;
+    margin: -8px 0 0 -48px;
+    width: 92px;
+}
+.bank-cft {
+    background-position: 0 -1565px;
+    height: 25px;
+    margin: -11px 0 0 -40px;
+    width: 71px;
+}
+.bank-gfb {
+    background-position: 0 -1598px;
+    height: 24px;
+    margin: -11px 0 0 -40px;
+    width: 73px;
+}
+.bank-small {
+    background: url("../images/banks-small.png") no-repeat scroll -999px -999px rgba(0, 0, 0, 0);
+    display: inline-block;
+    font-size: 0;
+    height: 30px;
+    line-height: 0;
+    overflow: hidden;
+    position: absolute;
+    text-indent: -9999px;
+    width: 30px;
+	
+}
+.banksmall-gsyh{
+    background-position: 0 -2px;
+}
+.banksmall-jsyh {
+    background-position: 0 -66px;
+}
+.banksmall-nyyh {
+    background-position: 0 -98px;
+}
+.banksmall-zgyzcxyh {
+    background-position: 0 -464px;
+}
+.banksmall-zgyh {
+    background-position: 0 -130px;
+}
+.banksmall-jtyh {
+    background-position: 0 -315px;
+}
+.banksmall-zsyh {
+    background-position: 0 -33px;
+}
+.banksmall-gdyh {
+    background-position: 0 -285px;
+}
+.banksmall-shpdfzyh {
+    background-position: 0 -162px;
+}
+.banksmall-hxyh {
+    background-position: 0 -587px;
+}
+.banksmall-gfyh {
+    background-position: 0 -405px;
+}
+.banksmall-zxyh {
+    background-position: 0 -374px;
+}
+.banksmall-xyyh {
+    background-position: 0 -225px;
+}
+.banksmall-szfzyh {
+    background-position: 0 -192px;
+}
+.banksmall-msyh {
+    background-position: 0 -342px;
+}
+.banksmall-gjkfyh {
+    background-position: 0 -1330px;
+}
+.banksmall-sdyhjxtgs {
+    background-position: 0 -1388px;
+}
+.banksmall-zgjckyh {
+    background-position: 0 -1438px;
+}
+.banksmall-zdyh {
+    background-position: 0 -1300px;
+}
+.banksmall-zgnyfzyh {
+    background-position: 0 -1268px;
+}
+.banksmall-dyzyh {
+    background-position: 0 -1415px;
+}
+.banksmall-cssyyh {
+    background-position: 0 -1358px;
+}
+.banksmall-axyh {
+    background-position: 0 -1240px;
+}
+.banksmall-xgshhfyh {
+    background-position: 0 -618px;
+}
+.banksmall-zhntyh {
+    background-position: 0 -712px;
+}
+.banksmall-dyyh {
+    background-position: 0 -1182px;
+}
+
+.banksmall-nbgjyh{
+	
+	background-position: 0 -712px;
+	
+	}
+
+
+
+.banksmall-nbgjyh {
+    background-position: 0 -712px;
+}
+
+.banksmall-nysyyh {
+    background-position: 0 -1182px;
+}
+.banksmall-hsyh {
+    background-position: 0 -1212px;
+}
+.banksmall-jyyh {
+    background-position: 0 -1150px;
+}
+.banksmall-xmgjyh {
+    background-position: 0 -1118px;
+}
+.banksmall-lcxyh {
+    background-position: 0 -1086px;
+}
+.banksmall-ylyh {
+    background-position: 0 -1053px;
+}
+.banksmall-zjsyyh {
+    background-position: 0 -987px;
+}
+.banksmall-xhyh {
+    background-position: 0 -1020px;
+}
+.banksmall-hyyh {
+    background-position: 0 -953px;
+}
+.banksmall-mlxyyh {
+    background-position: 0 -922px;
+}
+.banksmall-hyyh2 {
+    background-position: 0 -890px;
+}
+.banksmall-payh {
+    background-position: 0 -434px;
+}
+
+.bankcards {
+    margin-left: -30px;
+    overflow: hidden;
+}
+.bank-card {
+    display: inline;
+    float: left;
+    height: 230px;
+    margin-left:30px;
+    position: relative;
+    width: 370px;
+	border:1px solid #D3D8DC; 
+}
+.bank-card .head, .bank-card .foot {
+    background: none repeat scroll 0 0 #E7ECEE;
+    height: 50px;
+    position: relative;
+}
+.bank-card .content1 {
+    background: none repeat scroll 0 0 #FFFFFF;
+    height: 130px;
+}
+.bank-card .content1 ul {
+    overflow: hidden;
+    padding: 22px 0 0 20px;
+}
+.bank-card .content1 li {
+    height: 30px;
+    line-height: 30px;
+    overflow: hidden;
+}
+.bank-card .content1 b {
+    display: inline;
+    float: left;
+    margin-right: 15px;
+    text-align: right;
+    width: 60px;
+}
+.bank-card .content1 em {
+    font-family: Tahoma;
+    font-size: 24px;
+}
+.bank-card .bank-logo {
+    font-size: 14px;
+    height: 30px;
+    left: 15px;
+    line-height: 30px;
+    padding-left: 30px;
+    position: absolute;
+    top: 10px;
+}
+.bank-card .bank-small {
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+.bank-card .title {
+    padding-top: 15px;
+    position: relative;
+    text-align: center;
+}
+.bank-card .title .icons {
+    left: 32%;
+    position: absolute;
+    top: 18px;
+}
+.bank-status {
+    color: #18B160;
+    position: absolute;
+    right: 30px;
+    top: 15px;
+}
+.bank-status .icons {
+    margin-right: 5px;
+}
+.bank-card .foot .bank-action {
+    float: left;
+    left: 50%;
+    padding-top: 13px;
+    position: relative;
+}
+.bank-card .foot a {
+    display: inline;
+    float: left;
+    height: 26px;
+    left: -50%;
+    line-height: 26px;
+    margin-right: 10px;
+    overflow: hidden;
+    padding: 0 15px 0 25px;
+    position: relative;
+    white-space: nowrap;
+}
+.bank-card .foot .icons {
+    left: 13px;
+    position: absolute;
+    top: 10px;
+}
+.bank-card .bank-delete {
+    background: none repeat scroll 0 0 #FFFFFF;
+    color: #8A949C;
+}
+.bank-card .bank-delete:visited {
+    color: #8A949C;
+}
+.bank-card .bank-bind {
+    background: none repeat scroll 0 0 #0065b4;
+    color: #FFFFFF;
+}
+.bank-card .bank-bind:visited {
+    color: #FFFFFF;
+}
+.bank-add-button {
+    border-bottom: 1px solid #D3D8DC;
+    border-top: 1px solid #D3D8DC;
+    height: 130px;
+    margin: 49px 0;
+    text-align: center;
+}
+.bank-add-button a {
+    color: #349CD8;
+    display: inline-block;
+    font-size: 14px;
+    margin-top: 55px;
+    position: relative;
+}
+.bank-add-button a:visited {
+    color: #349CD8;
+}
+.bank-add-button .add-blue {
+    left: 0;
+    margin-left: -20px;
+    position: absolute;
+    top: 4px;
+}
+.bank-card-add {
+    background: none repeat scroll 0 0 #FFFFFF;
+    height: auto;
+    overflow: visible;
+}
+.bank-card-opt {
+    display: none;
+}
+.bank-card-opt .head {
+    border-bottom: 1px solid #D3D8DC;
+}
+.bank-card-opt .foot {
+    border-top: 1px solid #D3D8DC;
+}
+.bank-card-opt .bank-items {
+    padding: 18px 0 10px;
+}
+.bank-card-opt .bank-items li {
+    height: 48px;
+    overflow: hidden;
+    position: relative;
+}
+.bank-card-opt .bank-items label {
+    display: inline;
+    float: left;
+    line-height: 33px;
+    margin-right: 5px;
+    text-align: right;
+    width: 80px;
+}
+.bank-card-opt .bank-items input {
+    color: #999999;
+    height: 19px;
+    line-height: 19px;
+    padding: 6px 5px;
+    width: 220px;
+}
+.bank-card-opt input.my-name {
+    background: none repeat scroll 0 0 #F0F5F7;
+}
+.bank-card-opt .bank-select {
+    color: #349CD8;
+    cursor: pointer;
+    float: right;
+    height: 20px;
+    line-height: 20px;
+    padding-right: 10px;
+    position: absolute;
+    right: 53px;
+    top: 5px;
+}
+.bank-card-opt .bank-select .icons {
+    position: absolute;
+    right: 0;
+    top: 8px;
+}
+.bank-card-opt .Error {
+    color: #D35353;
+    padding-left: 85px;
+}
+
+
+
+
+.bank-card-opt .bank-items input {
+    color: #999999;
+    height: 19px;
+    line-height: 19px;
+    padding: 6px 5px;
+    width: 220px;
+}
+
+
+.arrow-blue-down {
+    background-position: -50px -134px;
+    height: 5px;
+    width: 9px;
+}
+.yclose {
+    background-position: -68px -77px;
+    height: 8px;
+    width: 8px;
+}
+
+input.input {
+    border: 1px solid #B4B9BD;
+    height: 18px;
+    line-height: 18px;
+    padding: 11px 5px;
+    width: 240px;
+}
+input{ border-radius:3px;}
+
+
+
+
+
+.model-box {
+   
+    margin-bottom: 20px;
+    overflow: hidden;
+    position: relative;
+	border-radius:3px;
+}
+
+
+.dialog-main {
+    background: none repeat scroll 0 0 #FFFFFF;
+    display: none;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 400px;
+    z-index: -1;
+}
+.dialog-head {
+    border-bottom: 1px solid #E7ECEE;
+    cursor: move;
+    font-size: 14px;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 10px;
+    position: relative;
+}
+.dialog-head .closeModal {
+    background: none repeat scroll 0 0 #E7ECEE;
+    float: right;
+    height: 24px;
+    overflow: hidden;
+    position: absolute;
+    right: 10px;
+    top: 8px;
+    width: 24px;
+}
+.dialog-head .closeModal .icons {
+    background-position: -68px -77px;
+    height: 8px;
+    left: 50%;
+    margin: -4px 0 0 -4px;
+    position: absolute;
+    top: 50%;
+    width: 8px;
+}
+.dialog-head .closeModal .icons:hover {
+    background-position: -68px -77px;
+}
+.dialog-foot {
+    background: none repeat scroll 0 0 #E7ECEE;
+    border-radius: 0 0 3px 3px;
+    height: 50px;
+    position: relative;
+}
+.dialog-foot .bank-action {
+    float: left;
+    left: 50%;
+    padding-top: 10px;
+    position: relative;
+}
+.dialog-foot .bank-action a {
+    display: inline;
+    float: left;
+    height: 30px;
+    left: -50%;
+    line-height: 30px;
+    margin-right: 10px;
+    overflow: hidden;
+    padding: 0 15px 0 25px;
+    position: relative;
+    white-space: nowrap;
+}
+.dialog-foot .bank-action .icons {
+    left: 13px;
+    position: absolute;
+    top: 10px;
+}
+.dialog-foot .bank-delete {
+    background: none repeat scroll 0 0 #FFFFFF;
+    color: #475058;
+}
+.dialog-foot .bank-bind {
+    background: none repeat scroll 0 0 #0065b4;
+    color: #FFFFFF;
+}
+.bank-bind:hover{background:#00a0e9;}
+.dialog-foot .bank-bind:visited {
+    color: #FFFFFF;
+}
+
+.dialog-foot .mError {
+    color: #CC3300;
+    display: none;
+    left: 80px;
+    position: absolute;
+    top: 15px;
+}
+
+
+.bank-select-entry{ overflow:hidden; zoom:1}
+.bank-select-entry ul{ overflow:hidden; zoom:1; padding-left:15px}
+.bank-select-entry li{ float:left; display:inline; width:155px; height:30px; line-height:30px; overflow:hidden; padding-left:20px; position:relative}
+.bank-select-entry input,.bank-select-entry label{ float:left; display:inline; position:relative; cursor:pointer}
+.bank-select-entry input{ position:absolute; left:0; top:9px}
+.bank-select-entry .bank-top{ padding-top:15px}
+.bank-select-entry .bank-top li{ height:50px; line-height:50px}
+.bank-select-entry .bank-top label{ width:125px; height:35px; overflow:hidden; border:1px solid #e7ecee}
+.bank-select-entry .bank-text{ padding-bottom:15px; display:none}
+.bank-select-entry .bank-text input{ top:6px}
+.bank-select-entry .bank-text label:hover{ color:#349cd8; text-decoration:underline}
+.bank-select-entry .bank-more{ height:25px; clear:both; padding:0 15px}
+.bank-select-entry .bank-more a{ position:relative; color:#349cd8; padding-right:12px}
+.bank-select-entry .bank-more a:visited{ color:#349cd8}
+.bank-select-entry .bank-more .icons{ position:absolute; right:0; top:7px}
+.arrow-up {
+    background-position: -40px -129px;
+    height: 5px;
+    width: 9px;
+}
+.arrow-down {
+    background-position: -40px -134px;
+    height: 5px;
+    width: 9px;
+	}
+	
+.gbtn, .gbtn-disabled, .gbtn-org {
+    background: none repeat scroll 0 0 #0065b4;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Microsoft YaHei;
+    font-size: 13px;
+    overflow: hidden;
+    padding: 3px 5px;
+    position: relative;
+    white-space: nowrap;
+}
+.gbtn:visited {
+    color: #FFFFFF;
+}
+.gbtn:hover {
+    background: none repeat scroll 0 0 #00a0e9;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+	
+	
+.suggest_lib {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #D3D8DC;
+    display: none;
+    overflow: hidden;
+    position: absolute;
+    width: 220px;
+    z-index: 999;
+}
+.suggest_lib .suggest_head {
+    background: none repeat scroll 0 0 #F0F5F7;
+    font-family: Simyou;
+    height: 20px;
+    line-height: 20px;
+    overflow: hidden;
+    padding: 2px 0 2px 9px;
+    word-wrap: break-word;
+}
+.suggest_lib .suggest_cont {
+}
+.suggest_lib .suggest_cont a {
+    color: #8A949C;
+    cursor: pointer;
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    overflow: hidden;
+    padding: 0 9px;
+    text-align: left;
+    text-decoration: none;
+}
+.suggest_lib .suggest_cont a:visited {
+    color: #8A949C;
+}
+.suggest_lib .suggest_cont b {
+    display: inline;
+    float: left;
+    font-weight: normal;
+}
+.suggest_lib .suggest_cont span {
+    float: right;
+}
+.suggest_lib .suggest_cont a.selected {
+    background: none repeat scroll 0 0 #A1ACB4;
+    color: #FFFFFF;
+}
+.suggest_lib .pager-city {
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+}
+.suggest_lib .pager-city a {
+    color: #0055AA;
+    font-family: Tahoma;
+    font-size: 14px;
+    padding: 0 4px;
+    text-decoration: underline;
+}
+.suggest_lib .pager-city .current {
+    color: #000000;
+    text-decoration: none;
+}
+.pop_lib {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #50575F;
+    display: none;
+    font-size: 12px;
+    position: absolute;
+    width: 360px;
+    z-index: 999;
+}
+.pop_lib .pop_head {
+    background: none repeat scroll 0 0 #73919E;
+    border-color: #2C7ECF;
+    border-style: solid;
+    border-width: 1px 1px 0;
+    color: #FFFFFF;
+    height: 24px;
+    line-height: 24px;
+    padding-left: 10px;
+}
+.pop_lib .pop_label {
+    border-bottom: 1px solid #5DA9E2;
+    list-style: none outside none;
+    margin: 15px 0 10px;
+    padding: 0 0 24px 4px;
+}
+.pop_lib .pop_label li {
+    display: inline;
+    float: left;
+    height: 24px;
+    line-height: 24px;
+    margin-left: 8px;
+}
+.pop_lib .pop_label li a {
+    background: none repeat scroll 0 0 #FFFFFF;
+    color: #0055AA;
+    cursor: pointer;
+    padding: 0 4px;
+    text-decoration: none;
+}
+.pop_lib .pop_label li a:hover {
+    color: #005D00;
+}
+.pop_lib .pop_label li a.current {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: #5DA9E2 #5DA9E2 #FFFFFF;
+    border-image: none;
+    border-style: solid;
+    border-width: 1px;
+    color: #666666;
+    display: block;
+    font-weight: bold;
+    padding: 0 4px;
+}
+.pop_lib .pop_cont {
+    margin-bottom: 20px;
+    padding: 4px;
+}
+.pop_lib .pop_cont ul {
+}
+.pop_lib .pop_cont ul li {
+    float: left;
+    margin-right: 3px;
+    width: 18%;
+}
+.pop_lib .pop_cont ul li a {
+    border: 1px solid #FFFFFF;
+    color: #000000;
+    display: block;
+    height: 22px;
+    line-height: 22px;
+    overflow: hidden;
+    padding: 2px 0;
+    text-decoration: none;
+}
+.pop_lib .pop_cont ul li a:hover {
+    background: none repeat scroll 0 0 #E8F4FF;
+    border: 1px solid #ACCCEF;
+}
+.select_items {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #B8BCBF;
+    display: none;
+    position: absolute;
+    width: 200px;
+    z-index: 999;
+}
+.select_items li a {
+    display: block;
+    height: 22px;
+    line-height: 22px;
+    padding: 0 4px;
+}
+.select_items li a:hover {
+    text-decoration: none;
+}
+.select_items li a.current {
+    background: none repeat scroll 0 0 #73919E;
+    color: #FFFFFF;
+}
+.select_items li a.current:visited {
+    color: #FFFFFF;
+}
+.iframe_cover {
+    display: block;
+    height: 400px;
+    left: -4px;
+    position: absolute;
+    top: -4px;
+    width: 100%;
+    z-index: -1;
+}	
+	
+
+.withdraw-post {
+}
+.withdraw-post .items {
+  
+    overflow: hidden;
+   
+    position: relative;
+}
+.withdraw-post .gray {
+    background: none repeat scroll 0 0 #FAFBFC;
+}
+.withdraw-post .items .input {
+    display: inline;
+    float: left;
+    margin-right: 5px;
+}
+.sum-input {
+    display: inline;
+    float: left;
+    height: 44px;
+    overflow: hidden;
+    position: relative;
+    width: 155px;
+}
+
+.sum-input label {
+    color: #999999;
+    display: block;
+    font-size: 18px;
+    height: 44px;
+    left: 5px;
+    overflow: hidden;
+    position: absolute;
+    top: 10px;
+    width: 25px;
+    z-index: 999;
+}
+
+
+
+
+
+
+
+
+
+
+.sum-input input {
+    display: inline;
+    float: left;
+    font-size: 18px;
+    padding-left: 25px;
+    position: relative;
+    width: 119px;
+    z-index: 3;
+}
+.withdraw-post .items .sum-input input {
+    display: list-item;
+    float: none;
+    margin: 0;
+}
+.withdraw-post li {
+   
+    margin-bottom: -600px;
+    overflow: hidden;
+    padding: 20px 0 600px 20px;
+    position: relative;
+}
+.withdraw-post .txt {
+    border: 0 none;
+    display: inline;
+    float: left;
+    text-align: left;
+    width: 130px;
+}
+.withdraw-post .txt b {
+    display: block;
+    font-weight: normal;
+    padding-top: 8px;
+}
+.withdraw-post li .fl {
+    padding: 5px 5px 0 0;
+}
+.withdraw-post .tip {
+    display: inline-block;
+    padding: 10px 0 0 10px;
+    position: relative;
+}
+.withdraw-post .err {
+    color: #D35353;
+    margin-left: 10px;
+    padding: 10px 0 0 20px;
+}
+.withdraw-post .err .icons {
+    left: 0;
+    position: absolute;
+    top: 12px;
+}
+.withdraw-post .tiptxt {
+    bottom: 10px;
+    color: #999999;
+    font-size: 12px;
+    left: 95px;
+    position: absolute;
+}
+.adds-bankcard {
+    overflow: hidden;
+}
+.adds-bankcard li {
+    border: 1px solid #D3D8DC;
+    border-radius: 3px;
+    cursor: pointer;
+    display: inline;
+    float: left;
+    height: 40px;
+    line-height: 40px;
+    margin: 0 10px 10px 0;
+    padding: 0;
+    position: relative;
+    text-align: center;
+    width: 210px;
+}
+.adds-bankcard li em {
+    float: right;
+    position: absolute;
+    right: 20px;
+    top: 0;
+}
+.adds-bankcard .logo-bank {
+    left: 5px;
+    margin-left: 0;
+}
+.adds-bankcard li.bank-dir .icons {
+    display: none;
+}
+.adds-bankcard li.selected {
+    border: 1px solid #349CD8;
+    color: #349CD8;
+}
+.adds-bankcard li.selected .icons {
+    background-position: -449px -120px;
+    display: block;
+    float: right;
+    height: 20px;
+    position: absolute;
+    right: -1px;
+    top: -1px;
+    width: 20px;
+}
+.adds-bankcard li.selected em {
+    color: #8A949C;
+}
+.adds-bankcard li.adds-card {
+    border: 1px dashed #D3D8DC;
+    cursor: default;
+    text-align: center;
+}
+.adds-bankcard li.adds-card span {
+    cursor: pointer;
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    margin-top: 12px;
+    overflow: hidden;
+    padding-left: 20px;
+    position: relative;
+}
+.adds-bankcard li.adds-card .icons {
+    left: 0;
+    position: absolute;
+    top: 3px;
+}
+.adds-bankcard li.adds-current {
+    border: 1px dashed #349CD8;
+}
+.adds-bankcard li.adds-current span {
+    color: #349CD8;
+}
+.adds-bankcard li.adds-current .icons {
+    background-position: -88px -113px;
+}
+.adds-bankopts {
+    display: none;
+    height: 310px;
+    opacity: 1;
+    overflow: hidden;
+    padding: 10px 0;
+    z-index: 1;
+}
+.adds-bankopts .foot {
+    border-top: 1px solid #D3D8DC;
+}
+.adds-bankopts li {
+    border: 0 none;
+    cursor: default;
+    display: list-item;
+    float: none;
+    height: 50px;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    text-align: left;
+    width: auto;
+}
+.adds-bankopts label {
+    display: inline;
+    float: left;
+    line-height: 40px;
+    margin-right: 15px;
+    text-align: right;
+    width: 80px;
+}
+.adds-bankopts input {
+    color: #999999;
+    display: inline;
+    float: left;
+    height: 16px;
+    width: 220px;
+}
+.adds-bankopts .onbank {
+    border: 0 none;
+    height: 40px;
+    line-height: 40px;
+    width: 160px;
+	padding-left:5px;
+}
+.adds-bankopts .yCheckbox {
+    display: inline;
+    float: left;
+    margin-top: 11px;
+    position: relative;
+}
+.adds-bankopts .select-bank {
+    color: #349CD8;
+    cursor: pointer;
+    float: left;
+    height: 20px;
+    left: 270px;
+    line-height: 20px;
+    padding-right: 10px;
+    position: absolute;
+    top: 10px;
+}
+.adds-bankopts .select-bank .icons {
+    position: absolute;
+    right: 0;
+    top: 8px;
+}
+.adds-bankopts .bank-action {
+    height: 40px;
+    padding-left: 95px;
+}
+.adds-bankopts .bank-action a {
+    color: #475059;
+    display: inline;
+    float: left;
+    height: 36px;
+    line-height: 36px;
+    margin-right: 15px;
+    overflow: hidden;
+    padding: 0 15px 0 25px;
+    position: relative;
+    white-space: nowrap;
+}
+.adds-bankopts .bank-action .icons {
+    left: 13px;
+    position: absolute;
+    top: 15px;
+}
+.adds-bankopts .bank-action .bank-delete {
+    background: none repeat scroll 0 0 #F0F4F7;
+}
+.adds-bankopts .bank-action .bank-bind {
+    background: none repeat scroll 0 0 #0065b4;
+    color: #FFFFFF;
+	
+}
+.bank-bind,.bank-delete{ border-radius:3px;}
+
+
+
+#addBankCard:hover{background:#00a0e9;}
+.adds-bankopts .bank-action .bank-bind:visited {
+    color: #FFFFFF;
+}
+.nextsubmit {
+    background: none repeat scroll 0 0 #FFFFFF;
+    overflow: hidden;
+    padding: 15px 0 15px 170px;
+    position: relative;
+    z-index: 5;
+}
+.nextsubmit .subbtn {
+    height: 56px;
+    padding: 15px 0;
+}
+.nextsubmit .gbtn {
+    border: 0 none;
+    font-size: 16px;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 0 0 20px;
+    position: relative;
+    text-align: center;
+    width: 100px;
+}
+.nextsubmit .gbtn .icons {
+    left: 18px;
+    position: absolute;
+    top: 18px;
+}
+.nextsubmit .text {
+    color: #F97E09;
+}
+
+.reg-error {
+    background-position: -471px -120px;
+    height: 16px;
+    width: 16px;
+}
+
+.none{ display:none;}
+
+.yhelp {
+    background-position: -120px -98px;
+    height: 12px;
+    width: 12px;
+}
+.light-org {
+    color: #FC9B5E;
+}
+
+.title-sub {
+    border-bottom: 1px solid #E7ECEE;
+    clear: both;
+    height: 40px;
+    margin: 0 30px;
+    position: relative;
+}
+
+.title-sub h2, .title-sub .r {
+    background: none repeat scroll 0 0 #FFFFFF;
+    color: #69737B;
+    font-size: 16px;
+    height: 30px;
+    left: 20px;
+    line-height: 30px;
+    padding: 0 15px;
+    position: absolute;
+    top: 24px;
+    z-index: 3;
+}
+
+#wrapper, #wrap{
+    margin: 0 auto;
+    width: 1000px;
+}
+#wrapper {
+    background: #fff;
+    border: 1px solid #e8ecef;
+}
+#wrapper, #wrap {
+    margin:36px auto;
+    overflow: hidden;
+}

@@ -1,0 +1,167 @@
+
+@charset "utf-8";
+/* CSS Document */
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+.register2{ width:970px; margin:30px auto; background-color:#fff; padding:20px;font-size:12px;}
+.reg_content{ }
+.reg_logo{ height:50px; position:relative;}
+
+.reg_logo_pic{ width:162px; height:50px; background:url(../images/register/res_bg.png) no-repeat; position:absolute; top:0; left:0;}
+.go_login{ width:166px; line-height:22px; position:absolute; right:0; bottom:0; color:#00a0e9; text-align:right; }
+.reg_conditions{  margin-top:10px; border-top:1px solid #e7e7e7; padding-top:20px;}
+div.reg_conditions .reg_step{ height:51px; display:block; }
+.reg_step li{ width:323px; height:51px; float:left; background:#eeeeee;}
+
+.reg_step li.step1{background:url(../images/register/step_arrow.png) no-repeat right 0 #00a0e9;}
+
+.reg_step li.step1 .step_msg,.reg_step li.step2 .step_msg,.reg_step li.step3 .step_msg{ width:110px; height:51px; line-height:51px; padding-left:84px; float:left; display:inline; position: relative;  font-size:18px;}
+span.step_msg .dot24{ width:24px; height:24px;  position:absolute; left:52px; top:13px; line-height:24px; text-align:center; font-size:18px;  font-family:Arial, Helvetica, sans-serif; color:#888888;}
+
+.reg_step li.step2{ background:url(../images/register/step_arrow.png) no-repeat right 0 #00a0e9;}
+.reg_step li.step2 .step_msg,.reg_step li.step3 .step_msg{ color:#888888;}
+.reg_step li.step1 .step_msg .dot24,.reg_step li.step2 .step_msg .dot24,.reg_step li.step3 .step_msg .dot24{ color:#888888; background:url(../images/register/dot24.png) no-repeat;}
+
+.reg_step li.step3{ background:#00a0e9;}
+.reg_step li.step1 .whiteColor,.reg_step li.step2 .whiteColor,.reg_step li.step1 .whiteColor,.reg_step li.step3 .whiteColor{ color:#fff;}
+
+.ui-form-item .submit_btn{ font-family:"微软雅黑";}
+
+.validator_success{ width:520px; margin:0 auto; }
+.ui-form-item{ height:70px; padding-bottom:5px; position:relative;}
+.ui-form-item .ui-input{ padding:10px 9px; font-size:14px;}
+
+
+.ui-form .pl50{ padding-left:50px;}
+.ui-form .input_tip{
+	position: absolute;
+	color: #ABABAB;
+	left: 233px;
+	top: 10px;
+	display: block;
+}
+.ui-form .submit_btn{ width:225px; height:50px; background:#ff8636; font-size:24px; color:#fff; border:0 none; cursor:pointer; outline:none; display:block;}
+.ui-form .h40{ height:40px;}
+
+label.error,label.valid{ height:24px; line-height:24px; background:url(../images/register/wrong.png) no-repeat 10px 0; padding:0 0 4px 40px; }
+label.valid{ background:url(../images/register/right.png) no-repeat 10px 0; }
+.psw-streng{ width:200px; height:20px; margin:10px 0 0 140px; }
+.psw-streng div{   
+     background-image: url(../images/range.png);
+    background-repeat: no-repeat;
+   display:none;
+    height: 20px;
+    width: 127px;
+}
+
+ .psw-streng .low {
+    background-position: 0 0;
+}
+.psw-streng .mid {
+    background-position: 0 -27px;
+}
+ .psw-streng .high {
+    background-position: 0 -55px;
+}
+#username{ background:url(../images/register/us_bg.png) no-repeat left center;}
+.right_error_bg{ background:url(../images/register/right_error_bg.png) no-repeat;}
+
+.success_tip{ height:62px; margin-top:30px; background-position:0 6px;}
+.tip1,.tip2{ height:31px; display:block; padding-left:68px; line-height:31px; font-size:18px; color:#444444;}
+.goCharge{ height:116px;margin-top:38px; position:relative;}
+.charge_btn{ width:116px; height:40px; position:absolute; left:68px; top:0; background:#ff8636; font-size:16px; color:#fff; text-align:center; line-height:40px; display:block; border-radius:4px;}
+.charge_btn:hover{ color:#fff;}
+
+.goCenter{ position:absolute; left:220px; top:10px; display:block; color:#00a0e9; font-size:14px;}
+.goCenter:hover{ text-decoration:underline;}
+
+a:focus, a:active,
+button::-moz-focus-inner,
+input[type="reset"]::-moz-focus-inner,
+input[type="button"]::-moz-focus-inner,
+input[type="submit"]::-moz-focus-inner,
+select::-moz-focus-inner,
+input[type="file"] > input[type="button"]::-moz-focus-inner {
+border: 0;
+outline : 0;
+}
+
+.appLoad{
+	margin-top:50px;
+}
+
+.app-icons{
+	background:url(/images/register/appload.png) no-repeat;
+}
+
+.wx,.app-load{
+	width:464px;
+	height:160px;
+	border:4px solid #eee;
+	position:relative;
+}
+
+.wx div,.app-load div{
+	position:absolute;
+}
+
+.wx-pic{
+	width:90px;
+	height:90px;
+	background-position:0 0;
+	left:16px;
+	top:34px;
+}
+.wx-cnt{
+    width:258px;
+    left:120px;	
+	top:34px;
+}
+.wx-cnt p,.load-cnt p{
+	line-height:30px;
+	font-size:16px;
+}
+.wx-cnt p span,.load-cnt p span{
+	font-size:18px;
+	color:#ff8636;
+	font-weight:bold;
+}
+.wx-scan{
+	width:116px;
+	height:116px;
+	background-position:-90px 0;
+	right:10px;
+	top:24px;
+}
+
+
+p.wx-attention{
+	color:#0065b4;
+	font-size:18px;
+}
+
+.load-pic{
+	width:91px;
+	height:126px;
+	background-position:-211px -14px;
+	left:16px;
+	top:14px;
+}
+
+.load-cnt{
+	width:258px;
+    left:120px;	
+	top:34px;
+	
+}
+
+.load-scan{
+    width:116px;
+	height:116px;
+	background-position:-326px 0;
+	right:10px;
+	top:24px;
+}
+
+.tip2 span{color:#ff8636;}

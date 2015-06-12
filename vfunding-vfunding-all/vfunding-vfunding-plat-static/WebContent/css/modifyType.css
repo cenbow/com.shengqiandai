@@ -1,0 +1,32 @@
+@charset "utf-8";
+/* CSS Document */
+
+@charset "utf-8";
+/* CSS Document */
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+@import url(accountLeft.css);
+.myAccount{  height:940px; margin:30px 0; clear:both;}
+
+
+
+/*****账户总览右栏***/
+.rechargeTakeCash{ width:820px; height:940px; }
+.rT{ height:940px;  background:#fff;}
+.rTWrap{ width:780px; height:940px; margin:0 auto; overflow:hidden; position:relative; }
+.txTop{ height:58px;overflow:hidden;position:relative;margin-top:20px;  }
+b.midLine{ height:1px; font-size:0; width:80%; background:#eeeeee; position:absolute; top:28px; right:0;  overflow:hidden;}
+.txTop h2,.excel{ height:22px; line-height:22px; position:absolute;background-color:#fff;}
+.txTop h2.zhcz{ top:17px; left:88px; font-size:20px; color:#0065b4; padding:0 6px; z-index:9; }
+
+a.goBack{ width:64px; height:30px; line-height:28px; display:block; position:absolute; left:0; top:12px; background:url(../images/account/goback.png) no-repeat 12px center; background-color:#cccccc; text-indent:28px; color:#fff;}
+a.goBack:hover{ background-color:#aaa; text-decoration:none;}
+
+.modifyType{ height:110px; margin-top:30px;}
+.type{ width:244px; height:104px; float:left; border:3px solid #e9eff2; border-radius:3px; margin-right:15px; display:inline;}
+.typeNo{ width:126px; height:68px; margin:20px auto;}
+.typeNo p{ text-align:center;}
+.modifyNow{ display:block; width:116px; height:40px; line-height:40px; text-align:center; color:#fff; background:#0065b4; margin:8px auto 0; border-radius:3px; font-size:16px;}
+.modifyNow:hover{ background:#00a0e9;}
+

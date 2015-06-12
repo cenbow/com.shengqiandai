@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.icbcCard.dao.IcbcCardMapper" >
+  <resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.icbcCard.model.IcbcCard" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="user_idcard" property="userIdcard" jdbcType="VARCHAR" />
+    <result column="user_phone" property="userPhone" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="post_code" property="postCode" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="icbc_card" property="icbcCard" jdbcType="VARCHAR" />
+    <result column="idcard_pic_face" property="idcardPicFace" jdbcType="VARCHAR" />
+    <result column="idcard_pic_back" property="idcardPicBack" jdbcType="VARCHAR" />
+    <result column="no_fee_count" property="noFeeCount" jdbcType="INTEGER" />
+    <result column="addtime" property="addtime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, user_name, user_idcard, user_phone, province, city, post_code, address, 
+    icbc_card, idcard_pic_face, idcard_pic_back, no_fee_count, addtime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from vf_icbc_card
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from vf_icbc_card
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.vfunding.biz.icbcCard.model.IcbcCard" >
+    insert into vf_icbc_card (id, user_id, user_name, 
+      user_idcard, user_phone, province, 
+      city, post_code, address, 
+      icbc_card, idcard_pic_face, idcard_pic_back, 
+      no_fee_count, addtime)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, 
+      #{userIdcard,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, 
+      #{city,jdbcType=VARCHAR}, #{postCode,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{icbcCard,jdbcType=VARCHAR}, #{idcardPicFace,jdbcType=VARCHAR}, #{idcardPicBack,jdbcType=VARCHAR}, 
+      #{noFeeCount,jdbcType=INTEGER}, #{addtime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.icbcCard.model.IcbcCard" useGeneratedKeys="true" keyProperty="id">
+    insert into vf_icbc_card
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="userIdcard != null" >
+        user_idcard,
+      </if>
+      <if test="userPhone != null" >
+        user_phone,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="postCode != null" >
+        post_code,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="icbcCard != null" >
+        icbc_card,
+      </if>
+      <if test="idcardPicFace != null" >
+        idcard_pic_face,
+      </if>
+      <if test="idcardPicBack != null" >
+        idcard_pic_back,
+      </if>
+      <if test="noFeeCount != null" >
+        no_fee_count,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userIdcard != null" >
+        #{userIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null" >
+        #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="postCode != null" >
+        #{postCode,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="icbcCard != null" >
+        #{icbcCard,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardPicFace != null" >
+        #{idcardPicFace,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardPicBack != null" >
+        #{idcardPicBack,jdbcType=VARCHAR},
+      </if>
+      <if test="noFeeCount != null" >
+        #{noFeeCount,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.icbcCard.model.IcbcCard" >
+    update vf_icbc_card
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userIdcard != null" >
+        user_idcard = #{userIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null" >
+        user_phone = #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="postCode != null" >
+        post_code = #{postCode,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="icbcCard != null" >
+        icbc_card = #{icbcCard,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardPicFace != null" >
+        idcard_pic_face = #{idcardPicFace,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardPicBack != null" >
+        idcard_pic_back = #{idcardPicBack,jdbcType=VARCHAR},
+      </if>
+      <if test="noFeeCount != null" >
+        no_fee_count = #{noFeeCount,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.icbcCard.model.IcbcCard" >
+    update vf_icbc_card
+    set user_id = #{userId,jdbcType=INTEGER},
+      user_name = #{userName,jdbcType=VARCHAR},
+      user_idcard = #{userIdcard,jdbcType=VARCHAR},
+      user_phone = #{userPhone,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      post_code = #{postCode,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      icbc_card = #{icbcCard,jdbcType=VARCHAR},
+      idcard_pic_face = #{idcardPicFace,jdbcType=VARCHAR},
+      idcard_pic_back = #{idcardPicBack,jdbcType=VARCHAR},
+      no_fee_count = #{noFeeCount,jdbcType=INTEGER},
+      addtime = #{addtime,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 根据用户ID查询联名卡信息 -->
+  <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  select 
+    <include refid="Base_Column_List" />
+    from vf_icbc_card
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <!-- 增加一次用户免手续费已使用次数 -->
+  <update id="addNoFeeCountOne" parameterType="java.lang.Integer" >
+    update vf_icbc_card
+    set no_fee_count = no_fee_count + 1
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+</mapper>

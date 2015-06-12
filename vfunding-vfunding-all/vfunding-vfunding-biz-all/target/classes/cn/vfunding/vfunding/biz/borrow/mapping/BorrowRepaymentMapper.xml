@@ -1,0 +1,618 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.borrow.dao.BorrowRepaymentMapper">
+	<resultMap id="BaseResultMap"
+		type="cn.vfunding.vfunding.biz.borrow.model.BorrowRepayment">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="site_id" property="siteId" jdbcType="INTEGER" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="webstatus" property="webstatus" jdbcType="INTEGER" />
+		<result column="order" property="order" jdbcType="INTEGER" />
+		<result column="borrow_id" property="borrowId" jdbcType="INTEGER" />
+		<result column="repayment_time" property="repaymentTime"
+			jdbcType="INTEGER" />
+		<result column="repayment_yestime" property="repaymentYestime"
+			jdbcType="INTEGER" />
+		<result column="repayment_account" property="repaymentAccount"
+			jdbcType="VARCHAR" />
+		<result column="repayment_yesaccount" property="repaymentYesaccount"
+			jdbcType="VARCHAR" />
+		<result column="late_days" property="lateDays" jdbcType="INTEGER" />
+		<result column="late_interest" property="lateInterest"
+			jdbcType="VARCHAR" />
+		<result column="interest" property="interest" jdbcType="VARCHAR" />
+		<result column="capital" property="capital" jdbcType="VARCHAR" />
+		<result column="forfeit" property="forfeit" jdbcType="VARCHAR" />
+		<result column="reminder_fee" property="reminderFee" jdbcType="VARCHAR" />
+		<result column="addtime" property="addtime" jdbcType="VARCHAR" />
+		<result column="addip" property="addip" jdbcType="VARCHAR" />
+		<result column="advance_time" property="advanceTime" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs"
+		type="cn.vfunding.vfunding.biz.borrow.model.BorrowRepayment" extends="BaseResultMap">
+		<result column="borrowName" property="borrowName" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<resultMap id="UserWaitRepaymentResultMap"
+		type="cn.vfunding.vfunding.biz.borrow.model.BorrowRepayment" extends="ResultMapWithBLOBs">
+		<result column="time_limit" property="timeLimit" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<resultMap id="ResultMapRepay"
+		type="cn.vfunding.vfunding.biz.borrow.model.BorrowRepayment" extends="UserWaitRepaymentResultMap">
+		<result column="userName" property="userName" jdbcType="VARCHAR" />
+		<result column="ownerName" property="ownerName" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="ResultMapWillRepay"
+		type="cn.vfunding.vfunding.biz.borrow.model.BorrowRepayment" extends="ResultMapRepay">
+		<result column="email" property="email" jdbcType="VARCHAR" />
+		<result column="phone" property="phone" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<resultMap id="ResultMapCjdao"
+		type="cn.vfunding.vfunding.biz.cjdao.vo.CjdaoBorrowRepaymentVO">
+		<result column="userId" property="userId" jdbcType="INTEGER" />
+		<result column="tenderId" property="tenderId" jdbcType="INTEGER" />
+		<result column="borrowId" property="borrowId" jdbcType="INTEGER" />
+		<result column="intereststarttime" property="intereststarttime"
+			jdbcType="VARCHAR" />
+		<result column="interestfinishtime" property="interestfinishtime"
+			jdbcType="VARCHAR" />
+	</resultMap>
+
+	<resultMap type="cn.vfunding.vfunding.biz.common.vo.RepaymentSituationVO"
+		id="repaymentSituation">
+		<result column="status" property="status" />
+		<result column="successBorrow" property="successBorrow" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, site_id, status, webstatus, `order`, borrow_id,
+		repayment_time,
+		repayment_yestime,
+		repayment_account,
+		repayment_yesaccount, late_days,
+		late_interest, interest, capital,
+		forfeit, reminder_fee, addtime, addip, advance_time
+	</sql>
+	<select id="selectByBorrowIdStatus" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from rd_borrow_repayment
+		where borrow_id = #{borrowId,jdbcType=INTEGER}
+		and status =
+		#{status,jdbcType=INTEGER} order by `order` asc
+	</select>
+
+	<!-- 后台还款管理 -->
+	<select id="selectByRepaymentSystemListPage" resultMap="ResultMapRepay"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select b.id as borrowId,br.id,c.owner_name as ownerName ,b.name as
+		borrowName,br.`order`,br.repayment_time,br.repayment_account,u.username
+		as userName,b.time_limit as timeLimit,
+		br.interest,br.forfeit,br.late_interest,br.late_days,br.status,br.capital
+		from rd_borrow_repayment br LEFT JOIN rd_borrow b on br.borrow_id=b.id
+		left JOIN rd_user u on b.user_id=u.user_id
+		left JOIN rd_mortgage_car c
+		on b.mortgage_id=c.id
+		where b.status = 3
+		<if test="entity.keyWord != null and entity.keyWord != ''">
+			and b.name like CONCAT('%',#{entity.keyWord },'%')
+		</if>
+		<if test="entity.username != null and entity.username != ''">
+			and u.username like CONCAT('%',#{entity.username },'%')
+		</if>
+		<if test="entity.status != null">
+			<if test="entity.status == -1">
+				<![CDATA[ and br.repayment_time-unix_timestamp(now())<=604800 and br.`status` =0 ]]>
+			</if>
+			<if test="entity.status == 2">
+				<![CDATA[ and br.late_days >0 ]]>
+			</if>
+			<if test="entity.status != 2 and entity.status != -1">
+				and br.`status` = #{entity.status, jdbcType=INTEGER}
+			</if>
+		</if>
+		<if test="entity.startTime != null and entity.startTime != ''">
+			<![CDATA[ and br.repayment_time >= #{entity.startTime,jdbcType=VARCHAR} ]]>
+		</if>
+		<if test="entity.endTime != null and entity.endTime != ''">
+			<![CDATA[ and br.repayment_time <= #{entity.endTime,jdbcType=VARCHAR} ]]>
+		</if>
+
+		<if test="entity.status == -1 or entity.status == 0">
+			order by br.repayment_time asc
+		</if>
+		<if test="entity.status != -1 and entity.status != 0">
+			order by br.repayment_time desc
+		</if>
+	</select>
+
+	<!-- 体验标借款人待还本息 for php -->
+	<select id="selectRepayAccountByUserId" resultType="java.math.BigDecimal"
+		parameterType="java.lang.Integer">
+		select sum(br.repayment_account) from
+		rd_borrow_repayment br LEFT JOIN rd_borrow b on br.borrow_id=b.id
+		where
+		b.user_id=#{userId,jdbcType=INTEGER} and br.status=30
+	</select>
+	<!-- 体验标列表 for php -->
+	<select id="selectFeelByUserIdStatusListPage" resultMap="ResultMapWithBLOBs"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select br.id,b.name as
+		borrowName,br.`order`,br.repayment_time,br.repayment_account,br.interest,br.forfeit,br.late_interest,b.time_limit_day
+		as
+		lateDays,br.status,br.capital
+		from
+		rd_borrow_repayment br LEFT JOIN
+		rd_borrow b on br.borrow_id=b.id
+		left JOIN rd_user u on
+		b.user_id=u.user_id
+		where b.`status` = 30
+		<if test="entity.userId != null">
+			and b.user_id = #{entity.userId, jdbcType=INTEGER}
+		</if>
+		<if test="entity.username != null and entity.username != ''">
+			and b.name like CONCAT('%',#{entity.username },'%')
+		</if>
+		<if test="entity.status != null">
+			and br.`status` = #{entity.status, jdbcType=INTEGER}
+		</if>
+		<if test="entity.startTime != null">
+ 	<![CDATA[ and br.repayment_time >= #{entity.startTime,jdbcType=INTEGER} ]]>
+		</if>
+		<if test="entity.endTime != null">
+ 	<![CDATA[ and br.repayment_time <= #{entity.endTime,jdbcType=INTEGER} ]]>
+		</if>
+		order by br.repayment_time desc
+	</select>
+	<!-- 招标种体验标 -->
+	<select id="selectFeelBorrowingListPage" resultMap="ResultMapWithBLOBs"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select b.id,b.name as borrowName,b.account as capital,b.time_limit_day
+		as lateDays,b.account_yes as repayment_yesaccount,b.status as status,
+		b.addtime as repaymentTime
+		from rd_borrow b where b.`status` in
+		(10,30,40)
+		<if test="entity.username != null and entity.username != ''">
+			and b.name like CONCAT('%',#{entity.username },'%')
+		</if>
+		order by b.addtime desc
+	</select>
+	<!--根据用户ID查询还款信息-`我要还款` -->
+	<select id="selectByUserIdStatusListPage" resultMap="ResultMapWithBLOBs"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select b.id as borrowId,br.id,b.name as
+		borrowName,br.`order`,br.repayment_time,br.repayment_account,br.interest,br.forfeit,br.late_interest,br.late_days,br.status,br.capital
+		from
+		rd_borrow_repayment br LEFT JOIN rd_borrow b on br.borrow_id=b.id
+		left JOIN rd_user u on b.user_id=u.user_id
+		where b.status =3 and
+		b.user_id=#{entity.userId,jdbcType=INTEGER}
+		<if test="entity.status != null">
+			and br.`status` = #{entity.status, jdbcType=INTEGER}
+		</if>
+		<if test="entity.name != null and entity.name != ''">
+			and b.name like CONCAT('%',#{entity.name },'%')
+		</if>
+		<if test="entity.status == null or entity.status == 0">
+			order by br.status, br.repayment_time
+		</if>
+		<if test="entity.status != null and entity.status == 1">
+			order by br.repayment_time desc
+		</if>
+	</select>
+	<select id="countByUserIdStatus" resultType="Integer"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select count(*)
+		from rd_borrow_repayment br LEFT JOIN rd_borrow b on
+		br.borrow_id=b.id
+		left JOIN rd_user u on b.user_id=u.user_id
+		where
+		b.user_id=#{entity.userId,jdbcType=INTEGER}
+		<if test="entity.status != null">
+			and br.status = #{entity.status, jdbcType=INTEGER}
+		</if>
+		<if test="entity.startTime != null">
+ 	<![CDATA[ and br.repayment_time >= #{entity.startTime,jdbcType=INTEGER} ]]>
+		</if>
+		<if test="entity.endTime != null">
+ 	<![CDATA[ and br.repayment_time <= #{entity.endTime,jdbcType=INTEGER} ]]>
+		</if>
+		order by br.repayment_time asc
+	</select>
+
+
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from rd_borrow_repayment
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		rd_borrow_repayment
+		where id =
+		#{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert"
+		parameterType="cn.vfunding.vfunding.biz.borrow.model.BorrowRepayment">
+		insert into rd_borrow_repayment (id, site_id, status,
+		webstatus, `order`, borrow_id,
+		repayment_time,
+		repayment_yestime,
+		repayment_account,
+		repayment_yesaccount, late_days, late_interest,
+		interest, capital, forfeit,
+		reminder_fee, addtime, addip,
+		advance_time)
+		values (#{id,jdbcType=INTEGER}, #{siteId,jdbcType=INTEGER},
+		#{status,jdbcType=INTEGER},
+		#{webstatus,jdbcType=INTEGER},
+		#{order,jdbcType=INTEGER}, #{borrowId,jdbcType=INTEGER},
+		#{repaymentTime,jdbcType=INTEGER},
+		#{repaymentYestime,jdbcType=INTEGER},
+		#{repaymentAccount,jdbcType=VARCHAR},
+		#{repaymentYesaccount,jdbcType=VARCHAR}, #{lateDays,jdbcType=INTEGER},
+		#{lateInterest,jdbcType=VARCHAR},
+		#{interest,jdbcType=VARCHAR},
+		#{capital,jdbcType=VARCHAR}, #{forfeit,jdbcType=VARCHAR},
+		#{reminderFee,jdbcType=VARCHAR}, #{addtime,jdbcType=VARCHAR},
+		#{addip,jdbcType=VARCHAR},
+		#{advanceTime,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective"
+		parameterType="cn.vfunding.vfunding.biz.borrow.model.BorrowRepayment">
+		insert into rd_borrow_repayment
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="siteId != null">
+				site_id,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="webstatus != null">
+				webstatus,
+			</if>
+			<if test="order != null">
+				`order`,
+			</if>
+			<if test="borrowId != null">
+				borrow_id,
+			</if>
+			<if test="repaymentTime != null">
+				repayment_time,
+			</if>
+			<if test="repaymentYestime != null">
+				repayment_yestime,
+			</if>
+			<if test="repaymentAccount != null">
+				repayment_account,
+			</if>
+			<if test="repaymentYesaccount != null">
+				repayment_yesaccount,
+			</if>
+			<if test="lateDays != null">
+				late_days,
+			</if>
+			<if test="lateInterest != null">
+				late_interest,
+			</if>
+			<if test="interest != null">
+				interest,
+			</if>
+			<if test="capital != null">
+				capital,
+			</if>
+			<if test="forfeit != null">
+				forfeit,
+			</if>
+			<if test="reminderFee != null">
+				reminder_fee,
+			</if>
+			<if test="addtime != null">
+				addtime,
+			</if>
+			<if test="addip != null">
+				addip,
+			</if>
+			<if test="advanceTime != null">
+				advance_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="siteId != null">
+				#{siteId,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="webstatus != null">
+				#{webstatus,jdbcType=INTEGER},
+			</if>
+			<if test="order != null">
+				#{order,jdbcType=INTEGER},
+			</if>
+			<if test="borrowId != null">
+				#{borrowId,jdbcType=INTEGER},
+			</if>
+			<if test="repaymentTime != null">
+				#{repaymentTime,jdbcType=INTEGER},
+			</if>
+			<if test="repaymentYestime != null">
+				#{repaymentYestime,jdbcType=INTEGER},
+			</if>
+			<if test="repaymentAccount != null">
+				#{repaymentAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="repaymentYesaccount != null">
+				#{repaymentYesaccount,jdbcType=VARCHAR},
+			</if>
+			<if test="lateDays != null">
+				#{lateDays,jdbcType=INTEGER},
+			</if>
+			<if test="lateInterest != null">
+				#{lateInterest,jdbcType=VARCHAR},
+			</if>
+			<if test="interest != null">
+				#{interest,jdbcType=VARCHAR},
+			</if>
+			<if test="capital != null">
+				#{capital,jdbcType=VARCHAR},
+			</if>
+			<if test="forfeit != null">
+				#{forfeit,jdbcType=VARCHAR},
+			</if>
+			<if test="reminderFee != null">
+				#{reminderFee,jdbcType=VARCHAR},
+			</if>
+			<if test="addtime != null">
+				#{addtime,jdbcType=VARCHAR},
+			</if>
+			<if test="addip != null">
+				#{addip,jdbcType=VARCHAR},
+			</if>
+			<if test="advanceTime != null">
+				#{advanceTime,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="cn.vfunding.vfunding.biz.borrow.model.BorrowRepayment">
+		update rd_borrow_repayment
+		<set>
+			<if test="siteId != null">
+				site_id = #{siteId,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="webstatus != null">
+				webstatus = #{webstatus,jdbcType=INTEGER},
+			</if>
+			<if test="order != null">
+				`order` = #{order,jdbcType=INTEGER},
+			</if>
+			<if test="borrowId != null">
+				borrow_id = #{borrowId,jdbcType=INTEGER},
+			</if>
+			<if test="repaymentTime != null">
+				repayment_time = #{repaymentTime,jdbcType=INTEGER},
+			</if>
+			<if test="repaymentYestime != null">
+				repayment_yestime = #{repaymentYestime,jdbcType=INTEGER},
+			</if>
+			<if test="repaymentAccount != null">
+				repayment_account = #{repaymentAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="repaymentYesaccount != null">
+				repayment_yesaccount =
+				#{repaymentYesaccount,jdbcType=VARCHAR},
+			</if>
+			<if test="lateDays != null">
+				late_days = #{lateDays,jdbcType=INTEGER},
+			</if>
+			<if test="lateInterest != null">
+				late_interest = #{lateInterest,jdbcType=VARCHAR},
+			</if>
+			<if test="interest != null">
+				interest = #{interest,jdbcType=VARCHAR},
+			</if>
+			<if test="capital != null">
+				capital = #{capital,jdbcType=VARCHAR},
+			</if>
+			<if test="forfeit != null">
+				forfeit = #{forfeit,jdbcType=VARCHAR},
+			</if>
+			<if test="reminderFee != null">
+				reminder_fee = #{reminderFee,jdbcType=VARCHAR},
+			</if>
+			<if test="addtime != null">
+				addtime = #{addtime,jdbcType=VARCHAR},
+			</if>
+			<if test="addip != null">
+				addip = #{addip,jdbcType=VARCHAR},
+			</if>
+			<if test="advanceTime != null">
+				advance_time = #{advanceTime,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="cn.vfunding.vfunding.biz.borrow.model.BorrowRepayment">
+		update rd_borrow_repayment
+		set site_id =
+		#{siteId,jdbcType=INTEGER},
+		status =
+		#{status,jdbcType=INTEGER},
+		webstatus = #{webstatus,jdbcType=INTEGER},
+		`order` =
+		#{order,jdbcType=INTEGER},
+		borrow_id = #{borrowId,jdbcType=INTEGER},
+		repayment_time = #{repaymentTime,jdbcType=INTEGER},
+		repayment_yestime =
+		#{repaymentYestime,jdbcType=INTEGER},
+		repayment_account =
+		#{repaymentAccount,jdbcType=VARCHAR},
+		repayment_yesaccount =
+		#{repaymentYesaccount,jdbcType=VARCHAR},
+		late_days =
+		#{lateDays,jdbcType=INTEGER},
+		late_interest =
+		#{lateInterest,jdbcType=VARCHAR},
+		interest =
+		#{interest,jdbcType=VARCHAR},
+		capital = #{capital,jdbcType=VARCHAR},
+		forfeit =
+		#{forfeit,jdbcType=VARCHAR},
+		reminder_fee =
+		#{reminderFee,jdbcType=VARCHAR},
+		addtime = #{addtime,jdbcType=VARCHAR},
+		addip = #{addip,jdbcType=VARCHAR},
+		advance_time =
+		#{advanceTime,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<!-- //成功借款 流标 待还 -->
+	<select id="selectSumRepayment" resultMap="repaymentSituation"
+		parameterType="java.lang.Integer">
+		select ifnull(b.status,2) as status,count(*) as
+		successBorrow
+		from rd_borrow a left join
+		rd_borrow_repayment b
+		on
+		a.id=b.borrow_id
+		where a.user_id=#{userId} and a.status in(3,5)
+		group by
+		b.status
+	</select>
+	<!-- //提前还款 -->
+	<select id="selectaDvanceRayment" resultType="java.lang.Integer"
+		parameterType="java.lang.Integer">
+		select count(*)
+		from rd_borrow a
+		left join
+		rd_borrow_repayment b
+		on a.id=b.borrow_id
+		where a.user_id=#{userId} and
+		a.status=3 and
+		b.status=1 and
+		datediff(from_unixtime(b.repayment_time,'%Y%m%d'),from_unixtime(b.repayment_yestime,'%Y%m%d'))
+		>0
+	</select>
+	<!-- //逾期小于30内还款 -->
+	<select id="selectaOverdueRaymentLittle" resultType="java.lang.Integer"
+		parameterType="java.lang.Integer">
+		select count(*)
+		from rd_borrow a
+		left join
+		rd_borrow_repayment b on
+		a.id=b.borrow_id
+		where a.user_id=#{userId} and a.status =3 and
+		b.status=1 and
+		datediff(from_unixtime(b.repayment_time,'%Y%m%d'),from_unixtime(b.repayment_yestime,'%Y%m%d'))
+		>-30
+		and
+			<![CDATA[datediff(from_unixtime(b.repayment_time,'%Y%m%d'),from_unixtime(b.repayment_yestime,'%Y%m%d')) <0]]></select>
+	<!-- //逾期大于30还款 -->
+	<select id="selectaOverdueRaymentmore" resultType="java.lang.Integer"
+		parameterType="java.lang.Integer">
+		select
+		count(*)
+		from rd_borrow a
+		left join
+		rd_borrow_repayment b on
+		a.id=b.borrow_id
+		where a.user_id=#{userId} and a.status =3 and
+		b.status=1 and
+			<![CDATA[datediff(from_unixtime(b.repayment_time,'%Y%m%d'),from_unixtime(b.repayment_yestime,'%Y%m%d')) <-30]]></select>
+
+	<!-- //逾期未还款 -->
+	<select id="selectOverdueRaymentNo" resultType="java.lang.Integer"
+		parameterType="java.lang.Integer">
+		select count(*)
+		from rd_borrow a
+		left join rd_borrow_repayment b on
+		a.id=b.borrow_id
+		where a.user_id=#{userId} and a.status =3 and
+		b.status=0 and
+		from_unixtime(b.repayment_time,'%Y%m%d')
+		<![CDATA[<DATE_FORMAT(CURRENT_DATE,('%Y%m%d'))]]>
+	</select>
+
+	<!-- 用户待还款信息 -->
+	<select id="selectWaitRepaymentListPage" resultMap="UserWaitRepaymentResultMap"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select
+		b.name as
+		borrowName,b.time_limit,b.`order`,a.repayment_account,a.repayment_time
+		from
+		rd_borrow_repayment a left
+		join
+		rd_borrow b on a.borrow_id = b.id
+		where
+		a.status=0 and b.user_id =#{entity}
+		order by a.repayment_time
+	</select>
+
+
+	<!-- 未来n天还款的标 -->
+	<select id="selectWillRepayBorrow" resultMap="ResultMapWillRepay"
+		parameterType="java.lang.Integer">
+		select b.id as borrowId,br.id,b.name as
+		borrowName,br.`order`,br.repayment_time,
+		br.repayment_account,u.username as userName,u.email as email,u.phone
+		as phone,b.time_limit as timeLimit,
+		br.interest,br.status from
+		rd_borrow_repayment br LEFT JOIN rd_borrow b on br.borrow_id=b.id
+		left
+		JOIN rd_user u on b.user_id=u.user_id
+		where b.status = 3 and
+		br.`status` =0 
+		<![CDATA[and DATE_ADD(DATE(now()), Interval #{days} day) >= DATE_FORMAT(from_unixtime(br.repayment_time),'%Y-%m-%d')]]>
+		<![CDATA[and DATE(now()) <= DATE_FORMAT(from_unixtime(br.repayment_time),'%Y-%m-%d')]]>
+		order by br.repayment_time asc
+	</select>
+
+	<!-- 查询财经道的用户还款信息 -->
+	<select id="selectCjdaoUserRepayment" resultMap="ResultMapCjdao"
+		parameterType="java.lang.Integer">
+		select d.user_id as userId,c.id as tenderId,b.id as
+		borrowId,DATE_FORMAT(from_unixtime(b.repayment_time),'%Y-%m-%d') as
+		intereststarttime,DATE_FORMAT(from_unixtime(b.end_time),'%Y-%m-%d') as
+		interestfinishtime
+		from rd_borrow_repayment a
+		left join rd_borrow b on
+		a.borrow_id =b.id
+		left join rd_borrow_tender c on b.id=c.borrow_id
+		left
+		join rd_user d on c.user_id=d.user_id
+		left join vf_third_relationship e
+		on d.user_id=e.v_id
+		where a.id=#{repaymentId} and e.id is not null and
+		e.from_type=1
+	</select>
+
+	<!-- 根据借款人用户ID查询当天带还款标的 -->
+	<select id="selectTodayRepayByUserId"  resultMap="ResultMapWithBLOBs" parameterType="Map">
+		select b.id as borrowId,br.id,b.name as
+		borrowName,br.`order`,br.repayment_time,br.repayment_account,br.interest,br.forfeit,br.late_interest,br.late_days,br.status,br.capital
+		from
+		rd_borrow_repayment br LEFT JOIN rd_borrow b on br.borrow_id=b.id
+		left JOIN rd_user u on b.user_id=u.user_id
+		where b.status =3 and
+		b.user_id=#{userId}
+		and br.`status` = 0
+		<![CDATA[and FROM_UNIXTIME(br.repayment_time) >= DATE_FORMAT(date_add(NOW(), interval #{days} day),'%Y-%m-%d 00:00:00')]]> 
+		<![CDATA[and  FROM_UNIXTIME(br.repayment_time) <= DATE_FORMAT(date_add(NOW(), interval #{days} day),'%Y-%m-%d 23:59:59')]]>
+	</select>
+</mapper>

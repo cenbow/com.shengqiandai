@@ -1,0 +1,69 @@
+<config>   
+    <group>   
+            <property name="http.port" />
+            <property name="http.contextPath" />
+            <property name="http.workerName" />
+            <property name="file.server" />
+            <property name="jms.address" />
+            <property name="jms.open" />
+            <property name="email.server" />
+            <property name="sms.server" />
+            <property name="voice.server" />
+            <property name="realname.server" />
+            <property name="redis.address" />
+            <property name="CjDao.environment" />
+    </group>   
+                   
+    <script>   
+            <generate template="config.properties.worker" destfile="worker.properties" charset="utf-8" />   
+    </script>   
+    <group>   
+            <property name="jdbc.driverClassName" />
+            <property name="jdbc.url" />
+            <property name="jdbc.username" />
+            <property name="jdbc.password" />
+            <property name="jdbc.maxActive" />
+            <property name="jdbc.maxIdle" />
+            <property name="jdbc.maxWait" />
+            <property name="validationQuery" />
+    </group>   
+                   
+    <script>
+            <generate template="config.properties.jdbc" destfile="jdbc.properties" charset="utf-8" />            
+    </script>   
+    <group>   
+            <property name="log4j.rootLogger" />
+            <property name="log4j.logger.org.eclipse.jetty" />
+            <property name="log4j.logger.org.hibernate" />
+            <property name="log4j.logger.org.springframework" />
+            <property name="log4j.logger.java.sql.Connection" />
+            <property name="log4j.appender.stdout" />
+            <property name="log4j.appender.stdout.layout" />
+            <property name="log4j.appender.stdout.layout.ConversionPattern" />
+            <property name="log4j.logger.sinaSendActionLog" />
+            <property name="log4j.appender.SinaSendActionLog" />
+            <property name="log4j.appender.SinaSendActionLog.file" />
+            <property name="log4j.appender.SinaSendActionLog.DatePattern" />
+            <property name="log4j.appender.SinaSendActionLog.layout" />
+            <property name="log4j.appender.SinaSendActionLog.layout.ConversionPattern" />
+    </group>   
+    <script>
+            <generate template="config.properties.log4j" destfile="log4j.properties" charset="utf-8" />            
+    </script>   
+    <group>   
+            <property name="sina.signType" />
+            <property name="sina.inputCharset" />
+            <property name="sina.members_url" />
+            <property name="sina.trades_url" />
+            <property name="sina.partnerId" />
+            <property name="sina.vfundingCompanyAccount" />
+            <property name="sina.MD5" />
+            <property name="sina.RSA" />
+            <property name="sina.RSAparm" />
+            <property name="sina.returnUrlHost" />
+            <property name="sina.notifyUrlHost" />
+    </group>   
+    <script>
+            <generate template="config.properties.sina" destfile="sina.properties" charset="utf-8" />            
+    </script>   
+</config>  

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.report.dao.OperateReportdaysTwoMapper">
+	<resultMap id="BaseResultMap"
+		type="cn.vfunding.vfunding.biz.report.model.OperateReportdaysTwo">
+		<result column="zyh" property="zyh" />
+		<result column="dyxzyh" property="dyxzyh" />
+		<result column="dqzbs" property="dqzbs" />
+		<result column="drfbze" property="drfbze" />
+		<result column="ordinaryUsersDay" property="ordinaryusersday" />
+		<result column="internalUsersDay" property="internalusersday" />
+		<result column="ordinaryUsersSumAccount" property="ordinaryuserssumaccount" />
+		<result column="tenderOrdinaryUsersCount" property="tenderordinaryuserscount" />
+		<result column="internalUsersSumAccount" property="internaluserssumaccount" />
+		<result column="tenderInternalUsersCount" property="tenderinternaluserscount" />
+		<result column="repaymentSumYesaccount" property="repaymentsumyesaccount" />
+		<result column="tenderSumAccount" property="tendersumaccount" />
+		<result column="repaymentSumYesaccountMonth" property="repaymentsumyesaccountmonth" />
+		<result column="borrowSumCountMonth" property="borrowsumcountmonth" />
+		<result column="borrowCountMonth" property="borrowcountmonth" />
+		<result column="borrowCountDay" property="borrowcountday" />
+		<result column="borrowSumAccountMonth" property="borrowsumaccountmonth" />
+		<result column="borrowSumAccount" property="borrowsumaccount" />
+		<result column="fromAddtime" property="fromaddtime" />
+	</resultMap>
+	<select id="selectListPage" resultMap="BaseResultMap"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select a.zyh ,a.dyxzyh ,a.dqzbs,a.drfbze ,b.* from
+		rd_operate_reportdays a
+		left join rd_operate_reportdays_two b on
+		a.fromAddtime=b.fromAddtime
+		where 1=1
+		<if test="entity != null and entity.startTime!=null">
+			and
+			DATE_FORMAT(a.fromaddtime,'%Y%m%d')>=date_format(#{entity.startTime},'%Y%m%d')
+		</if>
+		<if test="entity != null and entity.endTime!=null">
+			and
+			<![CDATA[	DATE_FORMAT(a.fromaddtime,'%Y%m%d')<=date_format(#{entity.endTime},'%Y%m%d')  ]]>
+		</if>
+		order by
+		a.fromAddtime desc
+
+	</select>
+
+
+
+	<select id="selectOperateReportdays" resultMap="BaseResultMap"
+		parameterType="cn.vfunding.vfunding.biz.report.model.OperateReportdays">
+		select a.zyh ,a.dyxzyh ,a.dqzbs,a.drfbze ,b.* from
+		rd_operate_reportdays a
+		left join rd_operate_reportdays_two b on
+		a.fromAddtime=b.fromAddtime
+		where 1=1
+		<if test="startTime!=null">
+			and
+			DATE_FORMAT(a.fromaddtime,'%Y%m%d')>=date_format(#{startTime},'%Y%m%d')
+		</if>
+		<if test="endTime!=null">
+			and
+			<![CDATA[	DATE_FORMAT(a.fromaddtime,'%Y%m%d')<=date_format(#{endTime},'%Y%m%d')  ]]>
+		</if>
+		order by
+		a.fromAddtime desc
+	</select>
+
+
+	<select id="callProcedureTwo" statementType="CALLABLE">
+        <![CDATA[
+                { CALL pro_operate_reportdays_two() }
+        ]]>
+	</select>
+</mapper>

@@ -1,0 +1,137 @@
+@CHARSET "UTF-8";
+*{
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	list-style: none;
+}
+.all{
+	width: 100%;
+	height:1340px;
+	background-color: #fcbb33;
+	font-family: "微软雅黑";
+
+}
+.wrap{
+	width: 1400px;
+	height:100%;
+	margin: 0 auto;
+	position: relative;
+	background-image: url("/images/canvabg.jpg");
+	background-repeat: no-repeat;
+}
+.topper{
+	width:965px;
+	height: 260px;
+ 	 z-index: 1;
+ 	 position: absolute;
+ 	 top: 230px;
+ 	 left:14.2% ;
+}
+.weixin{
+	width: 215px;
+	height: 215px;
+	margin-top: 20px;
+	margin-left: 20px;
+	float: left;
+}
+.weixin p{
+	font-size: 20px;
+	color: #fceb96;
+	font-weight: lighter;
+	margin-left: 15px;
+	text-align: center;
+}
+.toptext{
+	width: 680px;
+	height: 220px;
+	margin-top: 20px;
+	margin-left: 30px;
+	float: left;
+}
+.toptext h2{
+	font-size: 40px;
+	color: #fceb96;
+	font-weight: lighter;
+	margin-left: 15px;
+}
+.textPo h1{
+	font-size: 52px;
+	color: #fceb96;
+	font-weight: bolder;
+	float: left;
+	margin-left: 15px;
+}
+
+.textPo{
+	display: block;
+	height: 65px;
+	width: 100%;
+	margin-top: 10px;
+}
+.textPo span{
+	width: 62px;
+	height: 64px;
+	float: left;
+	margin-left: 15px;
+}
+.toptext h3{
+	float: left;
+	margin-left: 20px;
+	color: #fceb96;
+	margin-top: 15px;
+	font-size: 25px;
+}
+.toptext p{
+	float: left;
+	margin-top: 15px;
+	margin-left: 20px;
+	color: #fceb96;
+}
+.textdown{
+	width: 950px;
+	height: 600px;
+	position: absolute;
+	 top: 600px;
+	 left: 16%;
+}
+.textdown li{
+	margin-left: 15px;
+	margin-top: 20px;
+	position: relative;
+}
+.textdown i{
+	display: block;
+	width: 143px;
+	height: 37px;
+	background-color: #a02705;
+	color: #e7b32d;
+	text-align: center;
+	line-height: 37px;
+	  border-radius: 15px;
+	  font-size: 20px;
+	  font-family:" "Trebuchet MS", Arial, Helvetica, sans-serif;
+	  float: left;
+	  position: absolute;
+	  top:0;
+	  left: 0;
+}
+.textdown p{
+	margin-left: 170px;
+	color: #fcbb33;
+	line-height: 35px;
+	font-size: 17px;
+
+}
+.laster {
+	position:absolute;
+	bottom:1%;
+	width:100%;
+	margin-top: 25px;
+	font-size: 10px;
+}
+.laster p{
+		text-align: center;
+	color: #c9921d;
+	margin-left: 100px;
+}

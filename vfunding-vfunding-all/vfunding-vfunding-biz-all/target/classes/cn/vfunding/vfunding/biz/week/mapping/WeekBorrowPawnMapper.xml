@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.week.dao.WeekBorrowPawnMapper" >
+  <resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.week.model.WeekBorrowPawn" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="borrow_id" property="borrowId" jdbcType="INTEGER" />
+    <result column="owner_name" property="ownerName" jdbcType="VARCHAR" />
+    <result column="owner_cardId" property="ownerCardid" jdbcType="VARCHAR" />
+    <result column="owner_mobile" property="ownerMobile" jdbcType="VARCHAR" />
+    <result column="owner_address" property="ownerAddress" jdbcType="VARCHAR" />
+    <result column="car_number" property="carNumber" jdbcType="VARCHAR" />
+    <result column="certification_date" property="certificationDate" jdbcType="DATE" />
+    <result column="register_date" property="registerDate" jdbcType="DATE" />
+    <result column="check_valid_date" property="checkValidDate" jdbcType="DATE" />
+    <result column="car_license" property="carLicense" jdbcType="VARCHAR" />
+    <result column="car_strut_num" property="carStrutNum" jdbcType="VARCHAR" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="brand" property="brand" jdbcType="VARCHAR" />
+    <result column="buy_money" property="buyMoney" jdbcType="DECIMAL" />
+    <result column="assess_money" property="assessMoney" jdbcType="DECIMAL" />
+  	</resultMap>
+
+  
+  <sql id="Base_Column_List" >
+    id, borrow_id, owner_name, owner_cardId, owner_mobile, owner_address, car_number, 
+    certification_date, register_date, check_valid_date, car_license, car_strut_num, 
+    add_time, brand, buy_money, assess_money
+  </sql>
+  
+  <select id="selectByBorrowId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from vf_week_borrow_pawn
+    where borrow_id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from vf_week_borrow_pawn
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from vf_week_borrow_pawn
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.vfunding.biz.week.model.WeekBorrowPawn" >
+    insert into vf_week_borrow_pawn (id, borrow_id, owner_name, 
+      owner_cardId, owner_mobile, owner_address, 
+      car_number, certification_date, register_date, 
+      check_valid_date, car_license, car_strut_num, 
+      add_time, brand, buy_money, 
+      assess_money)
+    values (#{id,jdbcType=INTEGER}, #{borrowId,jdbcType=INTEGER}, #{ownerName,jdbcType=VARCHAR}, 
+      #{ownerCardid,jdbcType=VARCHAR}, #{ownerMobile,jdbcType=VARCHAR}, #{ownerAddress,jdbcType=VARCHAR}, 
+      #{carNumber,jdbcType=VARCHAR}, #{certificationDate,jdbcType=DATE}, #{registerDate,jdbcType=DATE}, 
+      #{checkValidDate,jdbcType=DATE}, #{carLicense,jdbcType=VARCHAR}, #{carStrutNum,jdbcType=VARCHAR}, 
+      #{addTime,jdbcType=TIMESTAMP}, #{brand,jdbcType=VARCHAR}, #{buyMoney,jdbcType=DECIMAL}, 
+      #{assessMoney,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" 
+  	useGeneratedKeys="true"
+	keyProperty="id"
+  	parameterType="cn.vfunding.vfunding.biz.week.model.WeekBorrowPawn" >
+    insert into vf_week_borrow_pawn
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="borrowId != null" >
+        borrow_id,
+      </if>
+      <if test="ownerName != null" >
+        owner_name,
+      </if>
+      <if test="ownerCardid != null" >
+        owner_cardId,
+      </if>
+      <if test="ownerMobile != null" >
+        owner_mobile,
+      </if>
+      <if test="ownerAddress != null" >
+        owner_address,
+      </if>
+      <if test="carNumber != null" >
+        car_number,
+      </if>
+      <if test="certificationDate != null" >
+        certification_date,
+      </if>
+      <if test="registerDate != null" >
+        register_date,
+      </if>
+      <if test="checkValidDate != null" >
+        check_valid_date,
+      </if>
+      <if test="carLicense != null" >
+        car_license,
+      </if>
+      <if test="carStrutNum != null" >
+        car_strut_num,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="brand != null" >
+        brand,
+      </if>
+      <if test="buyMoney != null" >
+        buy_money,
+      </if>
+      <if test="assessMoney != null" >
+        assess_money,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="borrowId != null" >
+        #{borrowId,jdbcType=INTEGER},
+      </if>
+      <if test="ownerName != null" >
+        #{ownerName,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerCardid != null" >
+        #{ownerCardid,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerMobile != null" >
+        #{ownerMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerAddress != null" >
+        #{ownerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="carNumber != null" >
+        #{carNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="certificationDate != null" >
+        #{certificationDate,jdbcType=DATE},
+      </if>
+      <if test="registerDate != null" >
+        #{registerDate,jdbcType=DATE},
+      </if>
+      <if test="checkValidDate != null" >
+        #{checkValidDate,jdbcType=DATE},
+      </if>
+      <if test="carLicense != null" >
+        #{carLicense,jdbcType=VARCHAR},
+      </if>
+      <if test="carStrutNum != null" >
+        #{carStrutNum,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="brand != null" >
+        #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="buyMoney != null" >
+        #{buyMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="assessMoney != null" >
+        #{assessMoney,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.week.model.WeekBorrowPawn" >
+    update vf_week_borrow_pawn
+    <set >
+      <if test="borrowId != null" >
+        borrow_id = #{borrowId,jdbcType=INTEGER},
+      </if>
+      <if test="ownerName != null" >
+        owner_name = #{ownerName,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerCardid != null" >
+        owner_cardId = #{ownerCardid,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerMobile != null" >
+        owner_mobile = #{ownerMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerAddress != null" >
+        owner_address = #{ownerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="carNumber != null" >
+        car_number = #{carNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="certificationDate != null" >
+        certification_date = #{certificationDate,jdbcType=DATE},
+      </if>
+      <if test="registerDate != null" >
+        register_date = #{registerDate,jdbcType=DATE},
+      </if>
+      <if test="checkValidDate != null" >
+        check_valid_date = #{checkValidDate,jdbcType=DATE},
+      </if>
+      <if test="carLicense != null" >
+        car_license = #{carLicense,jdbcType=VARCHAR},
+      </if>
+      <if test="carStrutNum != null" >
+        car_strut_num = #{carStrutNum,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="brand != null" >
+        brand = #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="buyMoney != null" >
+        buy_money = #{buyMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="assessMoney != null" >
+        assess_money = #{assessMoney,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.week.model.WeekBorrowPawn" >
+    update vf_week_borrow_pawn
+    set borrow_id = #{borrowId,jdbcType=INTEGER},
+      owner_name = #{ownerName,jdbcType=VARCHAR},
+      owner_cardId = #{ownerCardid,jdbcType=VARCHAR},
+      owner_mobile = #{ownerMobile,jdbcType=VARCHAR},
+      owner_address = #{ownerAddress,jdbcType=VARCHAR},
+      car_number = #{carNumber,jdbcType=VARCHAR},
+      certification_date = #{certificationDate,jdbcType=DATE},
+      register_date = #{registerDate,jdbcType=DATE},
+      check_valid_date = #{checkValidDate,jdbcType=DATE},
+      car_license = #{carLicense,jdbcType=VARCHAR},
+      car_strut_num = #{carStrutNum,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      brand = #{brand,jdbcType=VARCHAR},
+      buy_money = #{buyMoney,jdbcType=DECIMAL},
+      assess_money = #{assessMoney,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

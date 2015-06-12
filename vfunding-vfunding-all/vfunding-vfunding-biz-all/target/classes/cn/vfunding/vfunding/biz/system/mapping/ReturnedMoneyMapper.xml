@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.system.dao.ReturnedMoneyMapper" >
+	<resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.system.model.ReturnedMoney" >
+	  <id column="id" property="id" jdbcType="INTEGER" />
+	  <result column="user_id" property="userId" jdbcType="INTEGER" />
+	  <result column="total" property="total" jdbcType="DECIMAL" />
+	  <result column="use_money" property="useMoney" jdbcType="DECIMAL" />
+	  <result column="already_use_money" property="alreadyUseMoney" jdbcType="DECIMAL" />
+	  <result column="not_use_money" property="notUseMoney" jdbcType="DECIMAL" />
+	  <result column="addtime" property="addtime" jdbcType="INTEGER" />
+	  <result column="addip" property="addip" jdbcType="VARCHAR" />
+	</resultMap>
+	
+  	<sql id="Base_Column_List" >
+	    id, user_id,total,use_money,already_use_money,not_use_money,addtime,addip
+	</sql>
+	<insert id="insert" parameterType="cn.vfunding.vfunding.biz.system.model.ReturnedMoney" >
+	   insert into rd_returned_money (id, user_id, total, use_money, already_use_money, not_use_money,addtime,addip) values 
+	   (#{id,jdbcType=INTEGER},#{userId,jdbcType=INTEGER},#{total,jdbcType=DECIMAL}, #{useMoney,jdbcType=DECIMAL}, 
+	   #{alreadyUseMoney,jdbcType=DECIMAL}, #{notUseMoney,jdbcType=DECIMAL}, #{addtime,jdbcType=INTEGER}, #{addip,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="selectByPrimaryKey" parameterType="java.lang.Integer" >
+    	select
+    	<include refid="Base_Column_List" />
+    	from rd_returned_money
+    	where user_id = #{userId,jdbcType=INTEGER}
+    </delete>
+  
+	<insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.system.model.ReturnedMoney" >
+    insert into rd_returned_money
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="total != null" >
+        total,
+      </if>
+      <if test="useMoney != null" >
+        use_money,
+      </if>
+      <if test="alreadyUseMoney != null" >
+        already_use_money,
+      </if>
+      <if test="notUseMoney != null" >
+        not_use_money,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="addip != null" >
+        addip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="total != null" >
+        #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="useMoney != null" >
+        #{useMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="alreadyUseMoney != null" >
+        #{alreadyUseMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="notUseMoney != null" >
+        #{notUseMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=Integer},
+      </if>
+      <if test="addip != null" >
+        #{addip,jdbcType=VARCHAE},
+      </if>
+    </trim>
+  </insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.system.model.ReturnedMoney" >
+    update rd_returned_money
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="total != null" >
+        total = #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="useMoney != null" >
+        use_money = #{useMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="alreadyUseMoeny != null" >
+        already_use_money = #{alreadyUseMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="notUseMoney != null" >
+        not_use_money = #{notUseMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=INTEGER},
+      </if>
+      <if test="addip != null" >
+        addip = #{addip,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.system.model.ReturnedMoney" >
+    update rd_returned_money
+    set user_id = #{userId,jdbcType=INTEGER},
+      total = #{total,jdbcType=DECIMAL},
+      use_money = #{useMoney,jdbcType=DECIMAL},
+      already_use_money = #{alreadyUseMoney,jdbcType=DECIMAL},
+      not_use_money = #{notUseMoney,jdbcType=DECIMAL},
+      addtime = #{addtime,jdbcType=INTEGER},
+      addip = #{addip,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

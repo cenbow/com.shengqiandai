@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.cron.dao.AccountRecordMapper">
+	<resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.cron.model.AccountRecord">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="days" property="days" jdbcType="INTEGER" />
+		<result column="money" property="money" jdbcType="INTEGER" />
+		<result column="insert_time" property="insertTime" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<resultMap id="accountResultMap" type="cn.vfunding.vfunding.biz.cron.model.AccountRecord" extends="BaseResultMap">
+		<result column="type_id" property="typeId" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, user_id, days, money, insert_time, update_time
+	</sql>
+
+	<select id="selectUserAccount" resultMap="accountResultMap">
+		select a.user_id,a.type_id,b.total as money from rd_user a
+		left join rd_account b on
+		a.user_id=b.user_id
+		where type_id in(28,29,30)
+	</select>
+
+	<select id="selectAllRecord" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from rd_account_record
+		where money =#{money}
+	</select>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from rd_account_record
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from rd_account_record
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="cn.vfunding.vfunding.biz.cron.model.AccountRecord">
+		insert into rd_account_record (id, user_id, days,
+		money, insert_time, update_time
+		)
+		values
+		(#{id,jdbcType=BIGINT}, #{userId,jdbcType=INTEGER}, #{days,jdbcType=INTEGER},
+		#{money,jdbcType=INTEGER}, now(),
+		now()
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.cron.model.AccountRecord">
+		insert into rd_account_record
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="days != null">
+				days,
+			</if>
+			<if test="money != null">
+				money,
+			</if>
+			<if test="insertTime != null">
+				insert_time,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="days != null">
+				#{days,jdbcType=INTEGER},
+			</if>
+			<if test="money != null">
+				#{money,jdbcType=INTEGER},
+			</if>
+			<if test="insertTime != null">
+				#{insertTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.cron.model.AccountRecord">
+		update rd_account_record
+		<set>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=INTEGER},
+			</if>
+			<if test="days != null">
+				days = #{days,jdbcType=INTEGER},
+			</if>
+			<if test="money != null">
+				money = #{money,jdbcType=INTEGER},
+			</if>
+			<if test="insertTime != null">
+				insert_time = #{insertTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.cron.model.AccountRecord">
+		update rd_account_record
+		set user_id = #{userId,jdbcType=INTEGER},
+		days =
+		#{days,jdbcType=INTEGER},
+		money = #{money,jdbcType=INTEGER},
+		insert_time = #{insertTime,jdbcType=TIMESTAMP},
+		update_time =
+		#{updateTime,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+
+	<update id="updateByUserIdAndMoney" parameterType="cn.vfunding.vfunding.biz.cron.model.AccountRecord">
+		update rd_account_record
+		<set>
+			<if test="days != null">
+				days = #{days,jdbcType=INTEGER},
+			</if>
+			update_time = now()
+		</set>
+		where user_id = #{userId,jdbcType=INTEGER} and money = #{money,jdbcType=INTEGER}
+	</update>
+</mapper>

@@ -1,0 +1,202 @@
+@charset "utf-8";
+/* CSS Document */
+
+@import url(base.css);
+body{
+    background-color: #1b6498;
+}
+.clear{zoom:1;
+	width: 1200px;
+	margin-left: 250px;}
+.clear:after,.clear:before{
+    height: 0;
+    line-height: 0;
+    content: '';
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+.fl{
+    float: left;
+}
+.fr{
+    float: right;
+}
+input[type="text"],input[type="password"]{
+    height: 22px;
+}
+label{
+    color: #fff;
+}
+.w1000{
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.zl-logo{
+    width: 322px;
+    height:84px ;
+}
+.zl-index{
+	position: absolute;
+	right: 1em;
+	top: 2em;
+    font-size: 15px;
+}
+.zl-header{
+    background: #fff;
+}
+.zl-banner{
+    height: 456px;
+    background: url(../images/login/zl-banner.png) no-repeat center top;
+}
+.pos-r{
+    position: relative;
+}
+.pos-a{
+    position: absolute;
+}
+.zl-reg-box{
+    width: 300px;
+    top: 12px;
+    right: 0;
+    z-index: 10;
+
+}
+
+.ui-form-item{
+    padding: 0 5px 15px 100px;
+}
+
+.yzm-msg,.yzm-voice{
+    padding: 5px 10px;
+    color: #fff;
+    display: inline-block;
+    margin-right: 10px;
+    background-color: #00a0e9;
+}
+
+
+.layer {
+    background-color: #000;
+    height: 430px;
+    opacity: 0.5;
+    right: 0;
+    top: 12px;
+    width: 300px;
+    z-index: 0;
+}
+
+.zl-tip{
+    height: 20px;
+    line-height: 20px;
+    color: #ff5555;
+    padding-left: 100px;
+}
+
+.btn-reg{
+    width: 240px;
+    height: 52px;
+    margin: 10px auto;
+    background: #ff8636;
+    line-height: 52px;
+    text-align: center;
+    color: #fff;
+    font-size: 24px;
+ }
+.warm-tip{
+    margin-top: 10px;
+    text-align: right;
+    color: #fff;
+ }
+
+.warm-tip a{
+    color: #fff;
+    padding-right: 30px;
+}
+.zl-module{
+    margin-top: 20px;
+    font-size: 15px;
+}
+.module-box{
+    width: 250px;
+    float: left;
+    overflow: hidden;
+
+}
+.module{
+    width: 121px;
+    height: 154px;
+    margin: 10px auto;
+    background: url(../images/login/zl-module.png) no-repeat;
+}
+.module1{
+    background-position:0 0;
+}
+.module2{
+    background-position:-122px 0;
+}
+
+.module3{
+    background-position:-244px 0;
+}
+
+.module4{
+    background-position:-366px 0;
+}
+
+.zl-module-cnt{
+    color: #fff;
+    text-align: center;
+    line-height: 20px;
+}
+.zl-fund{
+    margin-top: 100px;
+}
+.zl-intro-img{
+    height: 231px;
+}
+
+.zl-intro{
+    width: 960px;
+    margin: 0 auto;
+    margin-top: 20px;
+    color: #fff;
+    font-size: 18px;
+    line-height: 30px;
+}
+.zl-tender{
+    height: 231px;
+    margin-top: 50px;
+}
+.zl-income{
+    height: 211px;
+    margin-top: 50px;
+    background: url(../images/login/zl4.png) no-repeat center top;
+    position: relative;
+}
+.income-p{
+    bottom: -6px;
+    left: 220px;
+    height: 50px;
+    font-size: 30px;
+    color: #fff;
+}
+.income-tip{
+    margin-top: 20px;
+    line-height: 30px;
+    color: #fff;
+    font-size: 18px;
+}
+.investment{
+	margin-top:40px;
+}
+.details{
+	margin-top: 50px;
+}
+
+.zl-reg{
+	position:absolute;
+	right:-100px;
+	top:104px;
+}

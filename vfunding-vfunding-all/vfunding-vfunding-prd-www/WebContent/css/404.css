@@ -1,0 +1,15 @@
+@charset "utf-8";
+/* CSS Document */
+
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+.page404{ height:470px; margin:0 auto; background:url(../images/account/404bg.jpg) no-repeat;}
+.w1000{ width:1000px; height:470px; margin:0 auto; overflow:hidden;background: url(../images/account/404.png) no-repeat 93px 66px; }
+
+.err-nav{ width:820px; height:18px; margin:363px 0 0 98px;}
+.nav-exp{ display:block; float:left; height:18px; line-height:18px;}
+.nav-item{ float:right; width:564px; height:18px;}
+.nav-item li{ padding:0 20px; line-height:18px; background:url(../images/account/err-tiao.png) no-repeat right center; float:left; }
+.nav-item li a{color:#0065b4;}
+.nav-item li a:hover{ color:#00a0e9;}

@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.account.dao.AccountRechargeMapper" >
+  <resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.account.model.AccountRecharge" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="trade_no" property="tradeNo" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="money" property="money" jdbcType="DECIMAL" />
+    <result column="payment" property="payment" jdbcType="SMALLINT" />
+    <result column="return" property="bankReturn" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="fee" property="fee" jdbcType="DECIMAL" />
+    <result column="verify_userid" property="verifyUserid" jdbcType="INTEGER" />
+    <result column="verify_time" property="verifyTime" jdbcType="INTEGER" />
+    <result column="verify_remark" property="verifyRemark" jdbcType="VARCHAR" />
+    <result column="addtime" property="addtime" jdbcType="INTEGER" />
+    <result column="addip" property="addip" jdbcType="VARCHAR" />
+    <result column="hongbao" property="hongbao" jdbcType="DECIMAL" />
+    <result column="reward" property="reward" jdbcType="DECIMAL" />
+  </resultMap>
+  
+    <resultMap id="UserRecahrgeResultMap" type="cn.vfunding.vfunding.biz.common.vo.AccountRechargeVO">
+		<result column="rechargeId" property="rechargeId" jdbcType="VARCHAR"/>
+		<result column="tradeNo" property="tradeNo" jdbcType="VARCHAR"/>
+		<result column="userName" property="userName" jdbcType="VARCHAR"/>
+		<result column="realName" property="realName" jdbcType="VARCHAR"/>
+		<result column="type" property="type" jdbcType="VARCHAR"/>
+		<result column="bank" property="bank" jdbcType="VARCHAR"/>
+		<result column="fee" property="fee"  jdbcType="DECIMAL"/>
+		<result column="money" property="money" jdbcType="DECIMAL"/>
+		<result column="account" property="account"  jdbcType="DECIMAL"/>
+		<result column="status" property="status" jdbcType="INTEGER"/>
+		<result column="remark" property="remark" jdbcType="VARCHAR"/>
+		<result column="addtime" property="addtime" jdbcType="VARCHAR"/>
+		<result column="hongbao" property="hongbao" jdbcType="VARCHAR"/>
+		<result column="ip" property="ip" jdbcType="VARCHAR"/>
+		<result column="verifyTime" property="verifyTime" jdbcType="VARCHAR"/>
+		<result column="reward" property="reward" jdbcType="VARCHAR"/>
+	</resultMap>
+  
+  <resultMap id="UserRechargeCashResultMap"
+		type="cn.vfunding.vfunding.biz.userMobile.model.UserRechargeCashMobile">
+		<result column="total" property="total"/>
+		<result column="money" property="money" />
+		<result column="actionType" property="actionType" />
+		<result column="fee" property="fee" />
+		<result column="addtime" property="addtime" />
+		<result column="status" property="status" />
+		<result column="hongbao" property="hongbao" />
+	</resultMap>
+  <sql id="Base_Column_List" >
+    id, trade_no, user_id, status, money, payment, `return`, type, remark, fee, verify_userid, 
+    verify_time, verify_remark, addtime, addip, hongbao, reward
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from rd_account_recharge
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <!-- 线下充值列表-->
+  <select id="selectWaitApplyListPage" resultMap="UserRecahrgeResultMap" parameterType="cn.vfunding.common.framework.utils.page.PageSearch" >
+  	SELECT ar.id as rechargeId, ar.trade_no as tradeNo,u.username as username,u.realname as realname,
+	ar.type as type,(select name from rd_payment where id=ar.payment) as bank,ar.money as money,
+	DATE_FORMAT(from_unixtime(ar.addtime),'%Y-%m-%d %H:%i:%s') as addtime,
+	ar.fee as fee,ar.status as status,ar.hongbao as hongbao,ar.verify_time as verifyTime,
+	ar.reward as reward
+	FROM `rd_account_recharge` ar LEFT JOIN rd_user u on ar.user_id=u.user_id
+	where 1=1
+		<if test="entity.rechargeId != null">
+			and ar.id = #{entity.rechargeId,jdbcType=INTEGER}
+		</if>
+		<if test="entity.status != null">
+			<if test="entity.status == 2">
+				and ar.`status` in (2,3)
+			</if>
+			<if test="entity.status != 2">
+				and ar.`status` = #{entity.status,jdbcType=INTEGER}
+			</if>
+		</if>
+		<if test="entity.startTime != null and entity.startTime != ''">
+			<![CDATA[ and ar.addtime >= #{entity.startTime,jdbcType=VARCHAR} ]]>
+		</if>
+		<if test="entity.endTime != null and entity.endTime != ''">
+			<![CDATA[ and ar.addtime <= #{entity.endTime,jdbcType=VARCHAR} ]]>
+		</if>
+		<if test="entity.tradeNo != null and entity.tradeNo != ''">
+			and ar.trade_no like concat('%',#{entity.tradeNo,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="entity.type != null">
+			and ar.type = #{entity.type,jdbcType=VARCHAR}
+		</if>
+		<if test="entity.username != null and entity.username != ''">
+			and u.username like concat('%',#{entity.username,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="entity.bank != null and entity.bank != ''">
+			and ar.payment = #{entity.bank,jdbcType=VARCHAR}
+		</if>
+		ORDER BY ar.addtime desc
+  </select>
+  <!-- 根据用户ID分页查询 -->
+  <select id="selectByUserIdRechargeListPage" resultMap="UserRechargeCashResultMap" parameterType="cn.vfunding.common.framework.utils.page.PageSearch" >
+    select  money,'充值' as actionType,fee,DATE_FORMAT(from_unixtime(addtime),'%Y-%m-%d %H:%i') as addtime,status
+    from rd_account_recharge
+    where user_id = #{entity.userId,jdbcType=INTEGER}
+     <if test="entity != null and entity.start != null and entity.end != null ">
+			and addtime BETWEEN #{entity.start,jdbcType=INTEGER} and #{entity.end,jdbcType=INTEGER}
+	</if>
+	and status = 1
+    order by addtime desc
+  </select>
+  <select id="selectByUserIdCashListPage" resultMap="UserRechargeCashResultMap" parameterType="cn.vfunding.common.framework.utils.page.PageSearch" >
+	  	select a.total,
+		a.credited as money,a.fee,'提现' as
+		actionType,DATE_FORMAT(from_unixtime(a.addtime),'%Y-%m-%d %H:%i') as
+		addtime,a.status,a.hongbao from rd_account_cash a
+		where a.user_id=#{entity.userId}
+		<if test="entity != null and entity.start != null and entity.end != null ">
+			and a.addtime BETWEEN #{entity.start,jdbcType=INTEGER} and #{entity.end,jdbcType=INTEGER}
+	     </if>
+		order by a.addtime desc
+  </select>
+ 
+ 
+ 
+  <!-- 查询用户充值记录  lx-->
+  <select id="selectByIdListPage" resultMap="BaseResultMap"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+        select r.id,
+        r.trade_no,
+        r.user_id,
+        r.status,
+        r.money,
+        r.payment,
+        r.return,
+        r.type,
+        r.remark,
+        r.verify_time,
+        r.addtime
+        from rd_account_recharge r 
+        where r.user_id=#{entity.userId,jdbcType=VARCHAR}    
+  </select>
+ 
+ 
+  
+  <select id="selectByTradeNo" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select 
+    <include refid="Base_Column_List" />
+    from rd_account_recharge
+    where trade_no = #{tradeNo,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- 用户是否充值过 -->
+  <select id="selectUserIsRecharge" resultType="Integer" parameterType="java.lang.Integer">
+    select count(*) from rd_account_recharge where user_id = #{userId,jdbcType=INTEGER}
+     and `status` = 1
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from rd_account_recharge
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.vfunding.biz.account.model.AccountRecharge" >
+    insert into rd_account_recharge (id, trade_no, user_id, 
+      status, money, payment, 
+      `return`, type, remark, 
+      fee, verify_userid, verify_time, 
+      verify_remark, addtime, addip, 
+      hongbao, reward)
+    values (#{id,jdbcType=INTEGER}, #{tradeNo,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, 
+      #{status,jdbcType=TINYINT}, #{money,jdbcType=DECIMAL}, #{payment,jdbcType=SMALLINT}, 
+      #{bankReturn,jdbcType=VARCHAR}, #{type,jdbcType=TINYINT}, #{remark,jdbcType=VARCHAR}, 
+      #{fee,jdbcType=DECIMAL}, #{verifyUserid,jdbcType=INTEGER}, #{verifyTime,jdbcType=INTEGER}, 
+      #{verifyRemark,jdbcType=VARCHAR}, #{addtime,jdbcType=INTEGER}, #{addip,jdbcType=VARCHAR}, 
+      #{hongbao,jdbcType=DECIMAL}, #{reward,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true"
+		keyProperty="id" parameterType="cn.vfunding.vfunding.biz.account.model.AccountRecharge" >
+    insert into rd_account_recharge
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="tradeNo != null" >
+        trade_no,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="payment != null" >
+        payment,
+      </if>
+      <if test="bankReturn    != null" >
+        `return`,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="fee != null" >
+        fee,
+      </if>
+      <if test="verifyUserid != null" >
+        verify_userid,
+      </if>
+      <if test="verifyTime != null" >
+        verify_time,
+      </if>
+      <if test="verifyRemark != null" >
+        verify_remark,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="addip != null" >
+        addip,
+      </if>
+      <if test="hongbao != null" >
+        hongbao,
+      </if>
+      <if test="reward != null" >
+        reward,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="tradeNo != null" >
+        #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="payment != null" >
+        #{payment,jdbcType=SMALLINT},
+      </if>
+      <if test="bankReturn != null" >
+        #{bankReturn,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="fee != null" >
+        #{fee,jdbcType=DECIMAL},
+      </if>
+      <if test="verifyUserid != null" >
+        #{verifyUserid,jdbcType=INTEGER},
+      </if>
+      <if test="verifyTime != null" >
+        #{verifyTime,jdbcType=INTEGER},
+      </if>
+      <if test="verifyRemark != null" >
+        #{verifyRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=INTEGER},
+      </if>
+      <if test="addip != null" >
+        #{addip,jdbcType=VARCHAR},
+      </if>
+      <if test="hongbao != null" >
+        #{hongbao,jdbcType=DECIMAL},
+      </if>
+      <if test="reward != null" >
+        #{reward,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <!-- 用户15天内充值总额 -->
+  <select id="selectCount15daysByUserId" resultType="java.lang.String" parameterType="java.lang.Integer">
+		select ifnull(sum(money),0) from rd_account_recharge where user_id = #{userId,jdbcType=INTEGER} and `status`=1 
+		<![CDATA[ and addtime+1296000>UNIX_TIMESTAMP(now()) ]]>
+  </select>
+  <!-- 用户历史充值总额 -->
+  <select id="selectCountHistoryByUserId" resultType="java.lang.String" parameterType="java.lang.Integer">
+		select ifnull(sum(money),0) from rd_account_recharge where user_id = #{userId,jdbcType=INTEGER} and `status`=1 
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.account.model.AccountRecharge" >
+    update rd_account_recharge
+    <set >
+      <if test="tradeNo != null" >
+        trade_no = #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="payment != null" >
+        payment = #{payment,jdbcType=SMALLINT},
+      </if>
+      <if test="bankReturn != null" >
+        `return` = #{bankReturn,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="fee != null" >
+        fee = #{fee,jdbcType=DECIMAL},
+      </if>
+      <if test="verifyUserid != null" >
+        verify_userid = #{verifyUserid,jdbcType=INTEGER},
+      </if>
+      <if test="verifyTime != null" >
+        verify_time = #{verifyTime,jdbcType=INTEGER},
+      </if>
+      <if test="verifyRemark != null" >
+        verify_remark = #{verifyRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=INTEGER},
+      </if>
+      <if test="addip != null" >
+        addip = #{addip,jdbcType=VARCHAR},
+      </if>
+      <if test="hongbao != null" >
+        hongbao = #{hongbao,jdbcType=DECIMAL},
+      </if>
+      <if test="reward != null" >
+        reward = #{reward,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.account.model.AccountRecharge" >
+    update rd_account_recharge
+    set trade_no = #{tradeNo,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      status = #{status,jdbcType=TINYINT},
+      money = #{money,jdbcType=DECIMAL},
+      payment = #{payment,jdbcType=SMALLINT},
+      `return` = #{bankReturn,jdbcType=VARCHAR},
+      type = #{type,jdbcType=TINYINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      fee = #{fee,jdbcType=DECIMAL},
+      verify_userid = #{verifyUserid,jdbcType=INTEGER},
+      verify_time = #{verifyTime,jdbcType=INTEGER},
+      verify_remark = #{verifyRemark,jdbcType=VARCHAR},
+      addtime = #{addtime,jdbcType=INTEGER},
+      addip = #{addip,jdbcType=VARCHAR},
+      hongbao = #{hongbao,jdbcType=DECIMAL},
+      reward = #{reward,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

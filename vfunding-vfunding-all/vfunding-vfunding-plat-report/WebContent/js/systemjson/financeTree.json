@@ -1,0 +1,36 @@
+[{    
+    "id": 1,    
+    "text": "服务费",    
+    "state": "open", 
+    "lines":  true, 
+    "children": [
+    {    
+        "id": 11,    
+        "text": "平台-担保",
+        "attributes":{    
+            "url":"/finance/reportData/toTenderListPage"   
+        }
+   	 },
+     {
+        "id": 12,    
+        "text": "提现",
+        "attributes":{    
+            "url":"/finance/reportData/toCashListPage"   
+        }   
+     },
+      {
+        "id": 13,    
+        "text": "会员",
+        "attributes":{    
+            "url":"/finance/reportData/toUserVipListPage"   
+        } 
+     } ,
+         {
+        "id": 14,    
+        "text": "用户红包",
+        "attributes":{    
+            "url":"/finance/reportData/toUserHongbaoListPage"   
+        }  
+      }
+     ]    
+}]

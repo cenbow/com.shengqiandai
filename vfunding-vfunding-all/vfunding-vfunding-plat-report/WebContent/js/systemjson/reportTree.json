@@ -1,0 +1,22 @@
+[{    
+    "id": 1,    
+    "text": "运营报表",    
+    "state": "open", 
+    "lines":  true, 
+    "children": [
+    {    
+        "id": 11,    
+        "text": "每日数据",
+        "attributes":{    
+            "url":"/operate/reportdays/toListPage"   
+        }
+   	 },
+     {
+        "id": 12,    
+        "text": "每周汇报数据",
+        "attributes":{    
+            "url":"/operate/reportdays/toTwoListPage"   
+        }   
+     }
+     ]    
+}]

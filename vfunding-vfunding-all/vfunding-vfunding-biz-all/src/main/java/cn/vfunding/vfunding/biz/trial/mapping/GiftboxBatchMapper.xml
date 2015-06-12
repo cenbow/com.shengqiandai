@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.trial.dao.GiftboxBatchMapper" >
+  <resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.trial.model.GiftboxBatch" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="create_user" property="createUser" jdbcType="INTEGER" />
+    <result column="template_id" property="templateId" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="money_count" property="moneyCount" jdbcType="DECIMAL" />
+    <result column="user_count" property="userCount" jdbcType="INTEGER" />
+    <result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+    <result column="trial_user" property="trialUser" jdbcType="INTEGER" />
+    <result column="verify_remark" property="verifyRemark" jdbcType="INTEGER" />
+    
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, create_user, template_id, status, title, money_count, user_count, addtime, trial_user,verify_remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from vf_giftbox_batch
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from vf_giftbox_batch
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.vfunding.biz.trial.model.GiftboxBatch" >
+    insert into vf_giftbox_batch (id, create_user, template_id, 
+      status, title, money_count, 
+      user_count, addtime, trial_user,verify_remark
+      )
+    values (#{id,jdbcType=INTEGER}, #{createUser,jdbcType=INTEGER}, #{templateId,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{moneyCount,jdbcType=DECIMAL}, 
+      #{userCount,jdbcType=INTEGER}, #{addtime,jdbcType=TIMESTAMP}, #{trialUser,jdbcType=INTEGER},#{verifyRemark,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.trial.model.GiftboxBatch" 
+  useGeneratedKeys="true" keyProperty="id">
+    insert into vf_giftbox_batch
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="templateId != null" >
+        template_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="moneyCount != null" >
+        money_count,
+      </if>
+      <if test="userCount != null" >
+        user_count,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="trialUser != null" >
+        trial_user,
+      </if>
+      <if test="verifyRemark != null" >
+        verify_remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=INTEGER},
+      </if>
+      <if test="templateId != null" >
+        #{templateId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="moneyCount != null" >
+        #{moneyCount,jdbcType=DECIMAL},
+      </if>
+      <if test="userCount != null" >
+        #{userCount,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="trialUser != null" >
+        #{trialUser,jdbcType=INTEGER},
+      </if>
+      <if test="verifyRemark != null" >
+        #{verifyRemark,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.trial.model.GiftboxBatch" >
+    update vf_giftbox_batch
+    <set >
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=INTEGER},
+      </if>
+      <if test="templateId != null" >
+        template_id = #{templateId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="moneyCount != null" >
+        money_count = #{moneyCount,jdbcType=DECIMAL},
+      </if>
+      <if test="userCount != null" >
+        user_count = #{userCount,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="trialUser != null" >
+        trial_user = #{trialUser,jdbcType=INTEGER},
+      </if>
+      <if test="verifyRemark != null" >
+        verify_remark = #{verifyRemark,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.trial.model.GiftboxBatch" >
+    update vf_giftbox_batch
+    set create_user = #{createUser,jdbcType=INTEGER},
+      template_id = #{templateId,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      money_count = #{moneyCount,jdbcType=DECIMAL},
+      user_count = #{userCount,jdbcType=INTEGER},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      trial_user = #{trialUser,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectTiralGiftboxListPage" resultMap="BaseResultMap"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select
+		<include refid="Base_Column_List" />
+		from
+		vf_giftbox_batch
+		where 1=1
+		<if
+			test="entity != null and entity.title != null and entity.title!= '' ">
+			and title like CONCAT('%',#{entity.title,jdbcType=VARCHAR},'%') 
+		</if>
+		<if
+			test="entity != null and entity.status != null ">
+			and status=#{entity.status,jdbcType=INTEGER}
+		</if>
+		<if test="entity != null and entity.addTime != null and entity.addTime != '' ">
+			<![CDATA[ and addTime >= #{entity.startTime,jdbcType=TIMESTAMP} ]]>
+		</if>
+		<if test="entity != null and entity.addTime != null and entity.addTime != '' ">
+			<![CDATA[ and addTime <= #{entity.endTime,jdbcType=TIMESTAMP} ]]>
+		</if>
+		order by addTime desc
+	</select>
+  
+</mapper>

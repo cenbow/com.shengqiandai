@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.sina.dao.SinaSettlementMapper" >
+  <resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.sina.model.SinaSettlement" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="sina_balance" property="sinaBalance" jdbcType="DECIMAL" />
+    <result column="sina_available_balance" property="sinaAvailableBalance" jdbcType="DECIMAL" />
+    <result column="sina_bonus_yesterday" property="sinaBonusYesterday" jdbcType="DECIMAL" />
+    <result column="sina_bonus_total" property="sinaBonusTotal" jdbcType="DECIMAL" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+    <result column="sync_bonus_rule" property="syncBonusRule" jdbcType="INTEGER" />
+    <result column="sync_bonus_status" property="syncBonusStatus" jdbcType="INTEGER" />
+    <result column="sync_bonus_date" property="syncBonusDate" jdbcType="TIMESTAMP" />
+    <result column="sync_bonus_before_vfunding_usemoney" property="syncBonusBeforeVfundingUsemoney" jdbcType="DECIMAL" />
+    <result column="sync_bonus_after_vfunding_usemoney" property="syncBonusAfterVfundingUsemoney" jdbcType="DECIMAL" />
+    <result column="sync_bonus_realmoney" property="syncBonusRealmoney" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, sina_balance, sina_available_balance, sina_bonus_yesterday, sina_bonus_total, 
+    status, addtime, sync_bonus_rule, sync_bonus_status, sync_bonus_date, sync_bonus_before_vfunding_usemoney, 
+    sync_bonus_after_vfunding_usemoney,sync_bonus_realmoney
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from vf_sina_settlement
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from vf_sina_settlement
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.vfunding.biz.sina.model.SinaSettlement" >
+    insert into vf_sina_settlement (id, user_id, sina_balance, 
+      sina_available_balance, sina_bonus_yesterday, 
+      sina_bonus_total, status, addtime, 
+      sync_bonus_rule, sync_bonus_status, sync_bonus_date, 
+      sync_bonus_before_vfunding_usemoney, sync_bonus_after_vfunding_usemoney, sync_bonus_realmoney
+      )
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{sinaBalance,jdbcType=DECIMAL}, 
+      #{sinaAvailableBalance,jdbcType=DECIMAL}, #{sinaBonusYesterday,jdbcType=DECIMAL}, 
+      #{sinaBonusTotal,jdbcType=DECIMAL}, #{status,jdbcType=INTEGER}, #{addtime,jdbcType=TIMESTAMP}, 
+      #{syncBonusRule,jdbcType=INTEGER}, #{syncBonusStatus,jdbcType=INTEGER}, #{syncBonusDate,jdbcType=TIMESTAMP}, 
+      #{syncBonusBeforeVfundingUsemoney,jdbcType=DECIMAL}, #{syncBonusAfterVfundingUsemoney,jdbcType=DECIMAL}, #{syncBonusRealmoney,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.sina.model.SinaSettlement" useGeneratedKeys="true" keyProperty="id" >
+    insert into vf_sina_settlement
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="sinaBalance != null" >
+        sina_balance,
+      </if>
+      <if test="sinaAvailableBalance != null" >
+        sina_available_balance,
+      </if>
+      <if test="sinaBonusYesterday != null" >
+        sina_bonus_yesterday,
+      </if>
+      <if test="sinaBonusTotal != null" >
+        sina_bonus_total,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="syncBonusRule != null" >
+        sync_bonus_rule,
+      </if>
+      <if test="syncBonusStatus != null" >
+        sync_bonus_status,
+      </if>
+      <if test="syncBonusDate != null" >
+        sync_bonus_date,
+      </if>
+      <if test="syncBonusBeforeVfundingUsemoney != null" >
+        sync_bonus_before_vfunding_usemoney,
+      </if>
+      <if test="syncBonusAfterVfundingUsemoney != null" >
+        sync_bonus_after_vfunding_usemoney,
+      </if>
+      
+      <if test="syncBonusRealmoney != null" >
+        sync_bonus_realmoney,
+      </if>
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="sinaBalance != null" >
+        #{sinaBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="sinaAvailableBalance != null" >
+        #{sinaAvailableBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="sinaBonusYesterday != null" >
+        #{sinaBonusYesterday,jdbcType=DECIMAL},
+      </if>
+      <if test="sinaBonusTotal != null" >
+        #{sinaBonusTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="syncBonusRule != null" >
+        #{syncBonusRule,jdbcType=INTEGER},
+      </if>
+      <if test="syncBonusStatus != null" >
+        #{syncBonusStatus,jdbcType=INTEGER},
+      </if>
+      <if test="syncBonusDate != null" >
+        #{syncBonusDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="syncBonusBeforeVfundingUsemoney != null" >
+        #{syncBonusBeforeVfundingUsemoney,jdbcType=DECIMAL},
+      </if>
+      <if test="syncBonusAfterVfundingUsemoney != null" >
+        #{syncBonusAfterVfundingUsemoney,jdbcType=DECIMAL},
+      </if>
+      
+      <if test="syncBonusRealmoney != null" >
+        #{syncBonusRealmoney,jdbcType=DECIMAL},
+      </if>
+      
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.sina.model.SinaSettlement" >
+    update vf_sina_settlement
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="sinaBalance != null" >
+        sina_balance = #{sinaBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="sinaAvailableBalance != null" >
+        sina_available_balance = #{sinaAvailableBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="sinaBonusYesterday != null" >
+        sina_bonus_yesterday = #{sinaBonusYesterday,jdbcType=DECIMAL},
+      </if>
+      <if test="sinaBonusTotal != null" >
+        sina_bonus_total = #{sinaBonusTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="syncBonusRule != null" >
+        sync_bonus_rule = #{syncBonusRule,jdbcType=INTEGER},
+      </if>
+      <if test="syncBonusStatus != null" >
+        sync_bonus_status = #{syncBonusStatus,jdbcType=INTEGER},
+      </if>
+      <if test="syncBonusDate != null" >
+        sync_bonus_date = #{syncBonusDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="syncBonusBeforeVfundingUsemoney != null" >
+        sync_bonus_before_vfunding_usemoney = #{syncBonusBeforeVfundingUsemoney,jdbcType=DECIMAL},
+      </if>
+      <if test="syncBonusAfterVfundingUsemoney != null" >
+        sync_bonus_after_vfunding_usemoney = #{syncBonusAfterVfundingUsemoney,jdbcType=DECIMAL},
+      </if>
+      
+      <if test="syncBonusRealmoney != null" >
+        sync_bonus_realmoney = #{syncBonusRealmoney,jdbcType=DECIMAL},
+      </if>
+      
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.sina.model.SinaSettlement" >
+    update vf_sina_settlement
+    set user_id = #{userId,jdbcType=INTEGER},
+      sina_balance = #{sinaBalance,jdbcType=DECIMAL},
+      sina_available_balance = #{sinaAvailableBalance,jdbcType=DECIMAL},
+      sina_bonus_yesterday = #{sinaBonusYesterday,jdbcType=DECIMAL},
+      sina_bonus_total = #{sinaBonusTotal,jdbcType=DECIMAL},
+      status = #{status,jdbcType=INTEGER},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      sync_bonus_rule = #{syncBonusRule,jdbcType=INTEGER},
+      sync_bonus_status = #{syncBonusStatus,jdbcType=INTEGER},
+      sync_bonus_date = #{syncBonusDate,jdbcType=TIMESTAMP},
+      sync_bonus_before_vfunding_usemoney = #{syncBonusBeforeVfundingUsemoney,jdbcType=DECIMAL},
+      sync_bonus_after_vfunding_usemoney = #{syncBonusAfterVfundingUsemoney,jdbcType=DECIMAL},
+      sync_bonus_realmoney = #{syncBonusRealmoney,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="needSyncBonusUserIds" resultType="java.lang.Integer" >
+	select distinct(a.user_id) as user_id from rd_account_log a
+	left join rd_user b on a.user_id = b.user_id
+	where a.total>0 and b.type_id!=40
+  </select>
+  <select id="selectNeedSyncDataBySyncStatus" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from vf_sina_settlement
+    where 1=1
+    and status = 0
+    and sync_bonus_status = 0
+    order by id
+  </select>
+</mapper>

@@ -1,0 +1,19 @@
+@charset "utf-8";
+/* CSS Document */
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+.content{ background:#fff; margin:30px auto;}
+.cont-wrap{ width:960px; margin:0 auto;}
+.biao-title{  height:60px; line-height:60px; position:relative; border-bottom:1px solid #eee; font-size:20px; font-weight:bold; color:#0065b4; margin-bottom:20px;}
+.biao-title span{ position:absolute; left:100px;  font-size:14px; color:#888; font-weight:normal;}
+.cont{ margin-bottom:20px; overflow:hidden;}
+.cont-left{ width:86px; height:30px; padding-left:14px;line-height:24px;}
+.cont-right{ width:860px; line-height:24px;}
+
+.center{ height:50px; text-align:center; margin-bottom:30px;s}
+.btn226{ margin:0 auto;}
+.btn226:hover{ background:#ffa836;}
+.bg-f578{ height:25px; background:#f5f7f8;}
+.borrow-steps{ width:960px; height:190px; margin:0 auto; padding-bottom:20px;}
+.step-bg{ width:856px; height:81px; margin:30px auto 0; background:url(../images/account/borrow-steps.png) no-repeat;}

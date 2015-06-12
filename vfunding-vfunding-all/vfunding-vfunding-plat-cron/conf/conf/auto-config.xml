@@ -1,0 +1,78 @@
+<config>   
+    <group>   
+            <property name="http.port" />
+            <property name="http.contextPath" />
+            <property name="cron.record.server" />
+            <property name="jms.address" />
+            <property name="jms.open" />
+            <property name="outuser.time" />
+            <property name="outuser.second" />
+            <property name="send.willRepay.borrow.cron.time" />
+            <property name="current.interest.create.time" />
+            <property name="flow.borrow.cron.time" />
+            <property name="financialPlanner.masterFpStatus" />
+            <property name="financial.upordown.judge.time" />
+            <property name="operate.report.execute.time" />
+            <property name="user.report.sendeamail.execute.time" />
+            <property name="user.report.sendeamail.sendemailstatus" />
+            <property name="user.report.createPdfstatus" />
+            <property name="week.cron.time" />
+            <property name="checkToStopUnionUser.time" />
+            <property name="checkReviveUnionUser.time" />
+            <property name="checkClearOldUserAndRevive.time" />
+            <property name="updateUserPeriods.time" />
+            <property name="user.unlock.time" />
+            <property name="file.server" />
+            <property name="email.server" />
+            <property name="sms.server" />
+            <property name="invite.server" />
+            <property name="report.image.path" />
+            <property name="report.image.path" />
+            <property name="report.pdf.path" />
+            <property name="report.pdf.path" />
+            <property name="report.default.image.path" />
+            <property name="report.default.image.path" />
+            <property name="report.default.pdf.path" />
+            <property name="report.default.pdf.path" />
+            <property name="report.fonts.path" />
+            <property name="report.fonts.path" />
+            <property name="report.default.footer.path" />
+            <property name="report.default.footer.path" />
+            <property name="report.default.footerInvest.path" />
+            <property name="report.default.footerUninvest.path" />
+            <property name="thirdSynRecord.time" />
+            <property name="giftboxHongbao.cron.time" />
+    </group>   
+                   
+    <script>   
+            <generate template="config.properties.worker" destfile="worker.properties" charset="utf-8" />   
+    </script>   
+    <group>   
+            <property name="jdbc.driverClassName" />
+            <property name="jdbc.url" />
+            <property name="jdbc.username" />
+            <property name="jdbc.password" />
+            <property name="jdbc.maxActive" />
+            <property name="jdbc.maxIdle" />
+            <property name="jdbc.maxWait" />
+            <property name="validationQuery" />
+    </group>   
+                   
+    <script>   
+            <generate template="config.properties.jdbc" destfile="jdbc.properties" charset="utf-8" />   
+    </script>   
+    <group>   
+            <property name="log4j.rootLogger" />
+            <property name="log4j.logger.org.eclipse.jetty" />
+            <property name="log4j.logger.org.hibernate" />
+            <property name="log4j.logger.org.springframework" />
+            <property name="log4j.logger.java.sql.Connection" />
+            <property name="log4j.appender.stdout" />
+            <property name="log4j.appender.stdout.layout" />
+            <property name="log4j.appender.stdout.layout.ConversionPattern" />
+    </group>   
+                   
+    <script>   
+            <generate template="config.properties.log4j" destfile="log4j.properties" charset="utf-8" />   
+    </script>   
+</config>

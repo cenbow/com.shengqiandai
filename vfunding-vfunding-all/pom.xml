@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>vfunding</groupId>
+	<artifactId>vfunding-vfunding-all</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>vfunding-vfunding-all</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<repositories>
+		<repository>
+			<id>vfunding</id>
+			<url>http://120.27.33.26:8082/nexus/content/groups/public</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+
+
+	</dependencies>
+	<modules>
+		<module>vfunding-vfunding-biz-all</module>
+		<module>vfunding-vfunding-plat-cron</module>
+		<module>vfunding-vfunding-prd-www</module>
+		<module>vfunding-vfunding-prd-bms</module>
+		<!-- <module>../vfunding-common-all</module> -->
+	<!-- 	<module>vfunding-vfunding-prd-wechat</module>
+		<module>vfunding-vfunding-prd-mobile</module> -->
+		<module>vfunding-vfunding-plat-mq</module>
+		<module>vfunding-vfunding-biz-bms</module>
+		<module>vfunding-vfunding-plat-pay</module>
+		<module>vfunding-vfunding-biz-report</module>
+<!-- 		<module>vfunding-vfunding-prd-weixin</module> -->
+		<module>vfunding-vfunding-common</module>
+		<module>vfunding-vfunding-biz-mobile</module>
+		<module>vfunding-vfunding-biz-weixin</module> 
+		<module>vfunding-vfunding-biz-mq</module>
+		<module>vfunding-vfunding-plat-useractionmq</module>
+		<module>vfunding-vfunding-biz-deposit</module>
+<!-- 	<module>vfunding-vfunding-plat-cjd</module> -->
+		<module>vfunding-vfunding-plat-activity</module>
+		<module>vfunding-vfunding-plat-deposit</module>
+		<module>vfunding-vfunding-biz-redislog</module>
+		<module>vfunding-vfunding-plat-jmssender</module>
+		<module>p2p-p2p-prd-mobile</module>
+		<module>p2p-p2p-biz-mobile</module>
+		<module>vfunding-common-framework</module>
+   	    <module>p2p-p2p-commom-file</module>
+    	<module>vfunding-common-sender</module>
+  <!--   <module>p2p-p2p-prd-wechat</module> -->
+  </modules>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.12.4</version>
+				<configuration>
+					<skipTests>true</skipTests>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.properties</include>
+					<include>**/*.xml</include>
+				</includes>
+
+				<filtering>false</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*.xml</include>
+					<include>**/*.properties</include>
+				</includes>
+			</resource>
+		</resources>
+	</build>
+</project>

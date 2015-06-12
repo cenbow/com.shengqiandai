@@ -1,0 +1,107 @@
+@CHARSET "UTF-8";
+*{
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	list-style: none;
+	font-family: "微软雅黑";
+	text-shadow: none;
+}
+.page{
+	max-width: 640px;
+	min-width: 320px;
+	width:100%;
+	margin:0 auto;
+	height: auto;
+	position: relative;
+	background-color: #b4b4b4;
+}
+.top{
+	max-width: 640px;
+	min-width: 320px;
+	width:100%;
+	width: 100%;
+	background-color: #fff;
+	z-index: 999;
+}
+.top img {
+	float: left;
+}
+.top  a{
+	width: 100%;
+	display: block;
+	text-align: center;
+	padding-bottom: 0.5em;
+	padding-top: 0.5em;
+} 
+.bank{
+	width: 100%;
+	height:auto;
+	text-align: center;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+.bank span{
+	display: block;
+	text-align: center;
+}
+.bank p font{
+	color: #008ef2;
+	font-size: 20px;
+	font-weight: bold;
+}
+.bank p b{
+	font-size: 20px;
+}
+.process{
+	width: 95.5%;
+	height: auto;
+	background-color: #fff;
+	padding: 10px 15px;
+	position: relative;
+	padding-bottom: 115px;
+}
+.first{
+	position: absolute;
+	top:15px;
+	left:15px;
+}
+.shu{
+	position: absolute;
+	top:45px;
+	left: 28.5px;
+}
+.zhang{
+	position: absolute;
+	top:78px;
+	left: 15px;
+}
+.text1{
+	position: absolute;
+	top:11px;
+	left: 52px;
+	color: green;
+}
+.text1 p{
+	color: #666;
+}
+.text2{
+	color: #000;
+	position: absolute;
+	top:75px;
+	left: 52px;
+}
+.text2 p{
+	color: #666;
+}
+.ture{
+	width:90%;
+	background-color:#fdb82c;
+	text-align: center;
+	display: block;
+	margin-left: 5%;
+	margin-top: 30px;
+	line-height: 40px;
+	font-size: 20px;
+	border-radius:5px;
+}

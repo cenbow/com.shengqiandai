@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.thirdplat.dao.ThirdTendercheckMapper" >
+  <resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.thirdplat.model.ThirdTendercheck" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="tender_id" property="tenderId" jdbcType="INTEGER" />
+    <result column="track_time" property="trackTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, tender_id, track_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from vf_third_tendercheck
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from vf_third_tendercheck
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.vfunding.biz.thirdplat.model.ThirdTendercheck" >
+    insert into vf_third_tendercheck (id, user_id, tender_id, 
+      track_time)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{tenderId,jdbcType=INTEGER}, 
+      #{trackTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.thirdplat.model.ThirdTendercheck" >
+    insert into vf_third_tendercheck
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="tenderId != null" >
+        tender_id,
+      </if>
+      <if test="trackTime != null" >
+        track_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="tenderId != null" >
+        #{tenderId,jdbcType=INTEGER},
+      </if>
+      <if test="trackTime != null" >
+        #{trackTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.thirdplat.model.ThirdTendercheck" >
+    update vf_third_tendercheck
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="tenderId != null" >
+        tender_id = #{tenderId,jdbcType=INTEGER},
+      </if>
+      <if test="trackTime != null" >
+        track_time = #{trackTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.thirdplat.model.ThirdTendercheck" >
+    update vf_third_tendercheck
+    set user_id = #{userId,jdbcType=INTEGER},
+      tender_id = #{tenderId,jdbcType=INTEGER},
+      track_time = #{trackTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

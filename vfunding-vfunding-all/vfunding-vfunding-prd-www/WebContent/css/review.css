@@ -1,0 +1,29 @@
+@charset "utf-8";
+/* CSS Document */
+
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+body{background: url(../images/huodong/di-se.png) #910001 no-repeat center center; }
+
+.sv1{ height:620px; margin:0 auto; background:url(../images/huodong/sv2.png) #910001 no-repeat center top;}
+.wen{ width:928px; margin:0 auto 22px;  line-height:215px; text-align:center; background:url(../images/huodong/sm-bg.png) no-repeat;}
+
+.wen3,.wen4,.wen5,.ditu{  text-align:center; margin-top:10px;}
+.ditu{ height:127px; background:url(../images/huodong/ditu.png) no-repeat center bottom; }
+.live{ width:920px; margin:0 auto; overflow:hidden;}
+.live-now{ width:263px; height:67px; margin:56px auto 20px;}
+.live img{display:block;}
+.items{  overflow:hidden;}
+.desc{ width:100%; position:absolute;left:0; overflow:hidden; background:#000; padding:10px; line-height:20px; filter:alpha(opacity=80); opacity:0.8; color:#fff; word-break:break-all;  z-index:9999; }
+
+.div1{ position: relative;overflow:hidden;}
+.div2{ position:absolute;}
+
+
+.nb,.nb2,.item1,.item2,.item3,.item4,.tp1,.tp2,.tp3,.tp4,.tp5,.tp6,.sh1,.sh2,.sh3,.sh4,.ld1,.ld2,.cf1,.cf2{ position:relative; margin-bottom:10px; overflow:hidden;}
+.nb1{ margin-bottom:10px;}
+.item1,.item2,.item3,.item4,.sh1,.sh2,.sh3,.sh4{ margin-right:10px;}
+.host,.shahua{ margin-right:-20px;}
+.takePic{ height:376px;}
+.takePic2,.takePic3{ height:551px;}

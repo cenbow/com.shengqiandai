@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.newyears.dao.ActivityNewyearLogMapper" >
+  <resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.newyears.model.ActivityNewyearLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="from_phone" property="fromPhone" jdbcType="VARCHAR" />
+    <result column="hongbao" property="hongbao" jdbcType="DECIMAL" />
+    <result column="hikes" property="hikes" jdbcType="DECIMAL" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, phone, from_phone, hongbao, hikes, status, addtime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from vf_activity_newyear_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from vf_activity_newyear_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.vfunding.biz.newyears.model.ActivityNewyearLog" >
+    insert into vf_activity_newyear_log (id, phone, from_phone, 
+      hongbao, hikes, status, 
+      addtime)
+    values (#{id,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{fromPhone,jdbcType=VARCHAR}, 
+      #{hongbao,jdbcType=DECIMAL}, #{hikes,jdbcType=DECIMAL}, #{status,jdbcType=INTEGER}, 
+      #{addtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.newyears.model.ActivityNewyearLog" useGeneratedKeys="true" keyProperty="id" >
+    insert into vf_activity_newyear_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="fromPhone != null" >
+        from_phone,
+      </if>
+      <if test="hongbao != null" >
+        hongbao,
+      </if>
+      <if test="hikes != null" >
+        hikes,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="fromPhone != null" >
+        #{fromPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="hongbao != null" >
+        #{hongbao,jdbcType=DECIMAL},
+      </if>
+      <if test="hikes != null" >
+        #{hikes,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.newyears.model.ActivityNewyearLog" >
+    update vf_activity_newyear_log
+    <set >
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="fromPhone != null" >
+        from_phone = #{fromPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="hongbao != null" >
+        hongbao = #{hongbao,jdbcType=DECIMAL},
+      </if>
+      <if test="hikes != null" >
+        hikes = #{hikes,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.newyears.model.ActivityNewyearLog" >
+    update vf_activity_newyear_log
+    set phone = #{phone,jdbcType=VARCHAR},
+      from_phone = #{fromPhone,jdbcType=VARCHAR},
+      hongbao = #{hongbao,jdbcType=DECIMAL},
+      hikes = #{hikes,jdbcType=DECIMAL},
+      status = #{status,jdbcType=INTEGER},
+      addtime = #{addtime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.week.dao.WeekBorrowMapper" >
+  <resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.week.model.WeekBorrow" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="week_id" property="weekId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="apr" property="apr" jdbcType="DECIMAL" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="save_status" property="saveStatus" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="account" property="account" jdbcType="DECIMAL" />
+    <result column="time_limit" property="timeLimit" jdbcType="INTEGER" />
+    <result column="create_user" property="createUser" jdbcType="INTEGER" />
+    <result column="verify_user" property="verifyUser" jdbcType="INTEGER" />
+    <result column="verify_time" property="verifyTime" jdbcType="DATE" />
+    <result column="verify_remark" property="verifyRemark" jdbcType="VARCHAR" />
+    <result column="contract_number" property="contractNumber" jdbcType="VARCHAR" />
+    <result column="contract_start" property="contractStart" jdbcType="DATE" />
+    <result column="contract_end" property="contractEnd" jdbcType="DATE" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, week_id, name, apr, status, save_status, type, account, time_limit, create_user, 
+    verify_user, verify_time, verify_remark, contract_number, contract_start, contract_end
+  </sql>
+  
+  <select id="selectWeekBorrowByWeekId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  	select 
+  	<include refid="Base_Column_List" /> 
+  	from vf_week_borrow
+  	where week_id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from vf_week_borrow
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from vf_week_borrow
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.vfunding.biz.week.model.WeekBorrow" >
+    insert into vf_week_borrow (id, week_id, name, 
+      apr, status, save_status, 
+      type, account, time_limit, 
+      create_user, verify_user, verify_time, 
+      verify_remark, contract_number, contract_start, 
+      contract_end)
+    values (#{id,jdbcType=INTEGER}, #{weekId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{apr,jdbcType=DECIMAL}, #{status,jdbcType=INTEGER}, #{saveStatus,jdbcType=INTEGER}, 
+      #{type,jdbcType=INTEGER}, #{account,jdbcType=DECIMAL}, #{timeLimit,jdbcType=INTEGER}, 
+      #{createUser,jdbcType=INTEGER}, #{verifyUser,jdbcType=INTEGER}, #{verifyTime,jdbcType=DATE}, 
+      #{verifyRemark,jdbcType=VARCHAR}, #{contractNumber,jdbcType=VARCHAR}, #{contractStart,jdbcType=DATE}, 
+      #{contractEnd,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" 
+  	useGeneratedKeys="true"
+	keyProperty="id"
+ 	parameterType="cn.vfunding.vfunding.biz.week.model.WeekBorrow" >
+    insert into vf_week_borrow
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="weekId != null" >
+        week_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="apr != null" >
+        apr,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="saveStatus != null" >
+        save_status,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="account != null" >
+        account,
+      </if>
+      <if test="timeLimit != null" >
+        time_limit,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="verifyUser != null" >
+        verify_user,
+      </if>
+      <if test="verifyTime != null" >
+        verify_time,
+      </if>
+      <if test="verifyRemark != null" >
+        verify_remark,
+      </if>
+      <if test="contractNumber != null" >
+        contract_number,
+      </if>
+      <if test="contractStart != null" >
+        contract_start,
+      </if>
+      <if test="contractEnd != null" >
+        contract_end,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="weekId != null" >
+        #{weekId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="apr != null" >
+        #{apr,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="saveStatus != null" >
+        #{saveStatus,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=DECIMAL},
+      </if>
+      <if test="timeLimit != null" >
+        #{timeLimit,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=INTEGER},
+      </if>
+      <if test="verifyUser != null" >
+        #{verifyUser,jdbcType=INTEGER},
+      </if>
+      <if test="verifyTime != null" >
+        #{verifyTime,jdbcType=INTEGER},
+      </if>
+      <if test="verifyRemark != null" >
+        #{verifyRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="contractNumber != null" >
+        #{contractNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="contractStart != null" >
+        #{contractStart,jdbcType=DATE},
+      </if>
+      <if test="contractEnd != null" >
+        #{contractEnd,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.week.model.WeekBorrow" >
+    update vf_week_borrow
+    <set >
+      <if test="weekId != null" >
+        week_id = #{weekId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="apr != null" >
+        apr = #{apr,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="saveStatus != null" >
+        save_status = #{saveStatus,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="account != null" >
+        account = #{account,jdbcType=DECIMAL},
+      </if>
+      <if test="timeLimit != null" >
+        time_limit = #{timeLimit,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=INTEGER},
+      </if>
+      <if test="verifyUser != null" >
+        verify_user = #{verifyUser,jdbcType=INTEGER},
+      </if>
+      <if test="verifyTime != null" >
+        verify_time = #{verifyTime,jdbcType=DATE},
+      </if>
+      <if test="verifyRemark != null" >
+        verify_remark = #{verifyRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="contractNumber != null" >
+        contract_number = #{contractNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="contractStart != null" >
+        contract_start = #{contractStart,jdbcType=DATE},
+      </if>
+      <if test="contractEnd != null" >
+        contract_end = #{contractEnd,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateByWeekIdSelective" parameterType="cn.vfunding.vfunding.biz.week.model.WeekBorrow" >
+    update vf_week_borrow
+    <set >
+      <if test="weekId != null" >
+        week_id = #{weekId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="apr != null" >
+        apr = #{apr,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="saveStatus != null" >
+        save_status = #{saveStatus,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="account != null" >
+        account = #{account,jdbcType=DECIMAL},
+      </if>
+      <if test="timeLimit != null" >
+        time_limit = #{timeLimit,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=INTEGER},
+      </if>
+      <if test="verifyUser != null" >
+        verify_user = #{verifyUser,jdbcType=INTEGER},
+      </if>
+      <if test="verifyTime != null" >
+        verify_time = #{verifyTime,jdbcType=DATE},
+      </if>
+      <if test="verifyRemark != null" >
+        verify_remark = #{verifyRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="contractNumber != null" >
+        contract_number = #{contractNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="contractStart != null" >
+        contract_start = #{contractStart,jdbcType=DATE},
+      </if>
+      <if test="contractEnd != null" >
+        contract_end = #{contractEnd,jdbcType=DATE},
+      </if>
+    </set>
+    where week_id = #{weekId,jdbcType=INTEGER}
+    AND status = 0
+  </update>
+  
+  
+  <update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.week.model.WeekBorrow" >
+    update vf_week_borrow
+    set week_id = #{weekId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      apr = #{apr,jdbcType=DECIMAL},
+      status = #{status,jdbcType=INTEGER},
+      save_status = #{saveStatus,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      account = #{account,jdbcType=DECIMAL},
+      time_limit = #{timeLimit,jdbcType=INTEGER},
+      create_user = #{createUser,jdbcType=INTEGER},
+      verify_user = #{verifyUser,jdbcType=INTEGER},
+      verify_time = #{verifyTime,jdbcType=DATE},
+      verify_remark = #{verifyRemark,jdbcType=VARCHAR},
+      contract_number = #{contractNumber,jdbcType=VARCHAR},
+      contract_start = #{contractStart,jdbcType=DATE},
+      contract_end = #{contractEnd,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 查询计划标的列表 louchen 2014-12-4 -->
+	<select id="selectWeekBorrowByWeekIdListPage" resultMap="BaseResultMap"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select 
+		<include refid="Base_Column_List" />
+		from
+		vf_week_borrow
+		where 1=1		
+		<if
+			test="entity != null and entity.weekId != null and entity.weekId!= '' ">
+			and week_id=#{entity.weekId,jdbcType=INTEGER}
+		</if>		
+		<if
+			test="entity != null and entity.id != null and entity.id!= '' ">
+			and id=#{entity.id,jdbcType=INTEGER}
+		</if>
+		<if
+			test="entity != null and entity.status != null and entity.status !='' ">
+			and status=#{entity.status,jdbcType=INTEGER}
+		</if>
+		order by id desc
+	</select>
+	
+</mapper>

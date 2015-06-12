@@ -1,0 +1,47 @@
+@charset "utf-8";
+/* CSS Document */
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+@import url(accountLeft.css);
+.myAccount{   margin:30px 0; clear:both;}
+
+
+
+
+/*****账户总览右栏***/
+.rechargeTakeCash{ width:820px;margin-bottom:30px; }
+
+.rT{  background:#fff; min-height:940px;}
+.rTWrap{ width:780px;margin:0 auto; overflow:hidden; position:relative;}
+.txTop{ height:58px;overflow:hidden; }
+b.midLine{ height:1px; font-size:0; width:100%; background:#eeeeee; position:absolute; top:28px; left:0;  overflow:hidden;}
+.txTop h2,.excel{ height:22px; line-height:22px; position:absolute;background-color:#fff;}
+.txTop h2{ top:17px; left:24px; font-size:20px; color:#0065b4; padding:0 6px; z-index:9; }
+.giftManage{  height:40px; margin-bottom:20px; }
+.giftManage li{ width:158px; height:40px; line-height:40px; text-align:center; margin-right:2px; float:left; background-color:#f5f7f8; cursor:pointer;}
+
+
+.giftControl table{ border:1px solid #ccc;}
+
+.prize{ background:#f5f7f8;}
+#myPrize td{ text-align: center; border-top:1px solid #ccc; }
+
+.Coupon{ width:600px; margin:20px auto 0;}
+input.inputPwd{ width:60px; padding:0 5px; height:28px; line-height:28px; border:1px solid #ccc; vertical-align:middle; margin:0;  }
+#noborder,#noborder td{ border:none; }
+#jihuo,#upBtn{ width:78px; height:30px; line-height:30px; text-align:center; color:#fff; background-color:#0065b4; display:block; border-radius:3px;}
+.giftControl{ display:none;}
+.giftColor{ backgroundr:#0065b4; color:#fff;}
+.exprMoney{ height:106px; margin:20px auto 10px;background-color:#f5f7f8; overflow:hidden;}
+.sub-exprMoney{ height:80px; margin:13px auto; overflow:hidden;}
+.sib-div{ width:258px; height:80px; float:left;border-right:1px dotted #ccc;}
+#noBoder_right{border-right:none;}
+p.tyj-canuse,p.tyj-num{ height:40px; line-height:40px; text-align:center; font-size:18px; overflow:hidden;}
+p.tyj-num{ color:#ff8636;}
+p.tyj-tip{ text-align:right; font-size:12px; color:#ff5555; margin:0;}
+.tyj-tables{ margin:20px auto;}
+.tyj-tables h2{ font-size:18px; color:#0065b4; font-weight:normal;}
+.tyj-tables table{ border-collapse:collapse; margin-top:20px; border:1px solid #eee; }
+.tyj-tables td{border-bottom:1px solid #eee; text-align:center; font-size:12px;}
+.tr-grayColor{ background:#f5f7f8;}

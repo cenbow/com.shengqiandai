@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.bms_employee.dao.EmployeeMapper">
+	<resultMap id="BaseBase" type="aliasEmployee">
+		<id column="emp_id" property="empId" jdbcType="INTEGER" />
+		<result column="emp_name" property="empName" jdbcType="VARCHAR" />
+		<result column="emp_en_name" property="empEnName" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="BaseMap" type="aliasEmployee" extends="BaseBase">
+		<id column="emp_id" property="empId" jdbcType="INTEGER" />
+		<result column="emp_name" property="empName" jdbcType="VARCHAR" />
+		<result column="emp_en_name" property="empEnName" jdbcType="VARCHAR" />
+		<result column="emp_sex" property="empSex" jdbcType="INTEGER" />
+		<result column="emp_state" property="empState" jdbcType="INTEGER" />
+		<result column="emp_tel" property="empTel" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<resultMap id="BaseResultMap" type="aliasEmployee" extends="BaseMap">
+		<result column="emp_login_name" property="empLoginName"
+			jdbcType="VARCHAR" />
+		<result column="emp_password" property="empPassword" jdbcType="VARCHAR" />
+		<result column="emp_email" property="empEmail" jdbcType="VARCHAR" />
+		<result column="emp_Birthday" property="empBirthday" jdbcType="TIMESTAMP" />
+		<result column="emp_FamilyTel" property="empFamilytel"
+			jdbcType="VARCHAR" />
+		<result column="emp_familyAddr" property="empFamilyaddr"
+			jdbcType="VARCHAR" />
+		<result column="emp_districtId" property="empDistrictid"
+			jdbcType="INTEGER" />
+		<result column="emp_anewEmp" property="empAnewemp" jdbcType="INTEGER" />
+		<result column="emp_time" property="empTime" jdbcType="TIMESTAMP" />
+		<result column="emp_outTime" property="empOuttime" jdbcType="TIMESTAMP" />
+		<result column="emp_date" property="empDate" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<resultMap id="listMap" extends="BaseResultMap" type="aliasEmployee">
+		<id column="emp_id" property="empId" jdbcType="INTEGER" />
+		<result column="emp_name" property="empName" jdbcType="VARCHAR" />
+		<result column="emp_en_name" property="empEnName" jdbcType="VARCHAR" />
+		<result column="emp_login_name" property="empLoginName"
+			jdbcType="VARCHAR" />
+		<result column="emp_password" property="empPassword" jdbcType="VARCHAR" />
+		<collection property="roles" javaType="list"
+			ofType="cn.vfunding.vfunding.biz.bms_system.model.Role">
+			<id column="role_id" property="roleId" jdbcType="INTEGER" />
+			<result column="role_name" property="roleName" jdbcType="VARCHAR" />
+		</collection>
+
+	</resultMap>
+
+	<resultMap id="loginMap" type="aliasEmployee">
+		<id column="emp_id" property="empId" jdbcType="INTEGER" />
+		<result column="emp_name" property="empName" jdbcType="VARCHAR" />
+		<result column="emp_en_name" property="empEnName" jdbcType="VARCHAR" />
+		<result column="emp_login_name" property="empLoginName"
+			jdbcType="VARCHAR" />
+		<result column="emp_password" property="empPassword" jdbcType="VARCHAR" />
+		<collection property="roles" javaType="list"
+			ofType="cn.vfunding.vfunding.biz.bms_system.model.Role">
+			<id column="role_id" property="roleId" jdbcType="INTEGER" />
+			<result column="role_name" property="roleName" jdbcType="VARCHAR" />
+		</collection>
+
+		<collection property="resources" javaType="list"
+			ofType="cn.vfunding.vfunding.biz.bms_system.model.SysResource">
+			<id column="id" property="id" jdbcType="VARCHAR" />
+			<result column="icon" property="icon" jdbcType="VARCHAR" />
+			<result column="name" property="name" jdbcType="VARCHAR" />
+			<result column="remark" property="remark" jdbcType="VARCHAR" />
+			<result column="seq" property="seq" jdbcType="INTEGER" />
+			<result column="url" property="url" jdbcType="VARCHAR" />
+			<result column="pid" property="pid" jdbcType="VARCHAR" />
+			<result column="group_id" property="groupId" jdbcType="INTEGER" />
+			<result column="resourcetype_id" property="resourcetypeId"
+				jdbcType="INTEGER" />
+		</collection>
+
+		<collection property="resourceGroups" javaType="list"
+			ofType="cn.vfunding.vfunding.biz.bms_system.model.SysResourceGroup">
+			<id column="group_id" property="id" jdbcType="INTEGER" />
+			<result column="group_name" property="name" jdbcType="VARCHAR" />
+		</collection>
+
+	</resultMap>
+
+
+	<sql id="Base_Column_List">
+		emp_id, emp_name, emp_en_name, emp_login_name,
+		emp_password, 
+		emp_sex, emp_state, emp_tel,
+		emp_email,
+		emp_Birthday, emp_FamilyTel,
+		emp_familyAddr,
+		emp_districtId,
+		emp_anewEmp, emp_time, emp_outTime,
+		emp_date
+	</sql>
+
+
+	<select id="selectByPrimaryKey" resultMap="listMap"
+		parameterType="java.lang.Integer">
+
+		SELECT
+		vf_employee.emp_id,
+		vf_employee.emp_name,
+		vf_employee.emp_en_name,
+		vf_employee.emp_login_name,
+		vf_employee.emp_password,
+		vf_employee.emp_sex,
+		vf_employee.emp_state,
+		vf_employee.emp_tel,
+		vf_employee.emp_email,
+		vf_employee.emp_Birthday,
+		vf_employee.emp_FamilyTel,
+		vf_employee.emp_familyAddr,
+		vf_employee.emp_districtId,
+		vf_employee.emp_anewEmp,
+		vf_employee.emp_time,
+		vf_employee.emp_outTime,
+		vf_employee.emp_date,
+		vf_role.role_name,
+		vf_role.role_id
+		FROM vf_employee
+		JOIN vf_emp_role ON vf_employee.emp_id = vf_emp_role.emp_id
+		JOIN vf_role ON vf_emp_role.role_id = vf_role.role_id
+		where vf_employee.emp_id = #{empId,jdbcType=INTEGER}
+	</select>
+
+	<select id="selectEmpAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from vf_employee
+	</select>
+
+	<!--根据ID查询，只查询最基本的员工信息(ID，用户名、英文名称) -->
+	<select id="selectEmployeeBaseInfoByID" resultMap="BaseBase"
+		parameterType="java.lang.Integer">
+		select
+		emp_id, emp_name, emp_en_name
+		from vf_employee
+		where
+		emp_id = #{empId,jdbcType=INTEGER}
+	</select>
+	
+	<!--根据登录名查询，只查询最基本的员工信息(ID，用户名、英文名称) -->
+	<select id="selectEmployeeBaseInfoByLoginName" resultMap="BaseBase"
+		parameterType="java.lang.String">
+		select
+		emp_id, emp_name, emp_en_name
+		from vf_employee
+		where
+		emp_login_name = #{empLoginName,jdbcType=INTEGER}
+	</select>
+
+	<!-- 登陆 -->
+	<select id="selectByLogin" resultMap="loginMap" parameterType="aliasEmployee">
+		SELECT
+		vf_employee.emp_id,
+		vf_employee.emp_name,
+		vf_employee.emp_en_name,
+		vf_employee.emp_login_name,
+		vf_employee.emp_password,
+		vf_role.role_id,
+		vf_role.role_name,
+		vf_resource.id,
+		vf_resource.`name`,
+		vf_resource_group.`name` AS
+		group_name,
+		vf_resource.icon,
+		vf_resource.remark,
+		vf_resource.url,
+		vf_resource.seq,
+		vf_resource.pid,
+		vf_resource.resourcetype_id,
+		vf_resource.group_id
+		FROM
+		vf_employee
+		JOIN vf_emp_role ON
+		vf_employee.emp_id = vf_emp_role.emp_id
+		JOIN vf_role ON
+		vf_emp_role.role_id = vf_role.role_id
+		JOIN vf_role_resource ON
+		vf_role.role_id = vf_role_resource.role_id
+		JOIN vf_resource ON
+		vf_role_resource.resource_id = vf_resource.id
+		JOIN vf_resource_group ON
+		vf_resource.group_id = vf_resource_group.id
+		where vf_role.role_state=0
+		and
+		vf_employee.emp_login_name = #{empLoginName,jdbcType=VARCHAR} and
+		vf_employee.emp_password = #{empPassword,jdbcType=VARCHAR}
+
+
+	</select>
+
+
+	<select id="selectEmpListPage" resultMap="listMap"
+		parameterType="aliasPageSearch">
+		SELECT
+		vf_employee.emp_id,
+		vf_employee.emp_name,
+		vf_employee.emp_en_name,
+		vf_employee.emp_login_name,
+		vf_employee.emp_password,
+		vf_employee.emp_sex,
+		vf_employee.emp_state,
+		vf_employee.emp_tel,
+		vf_employee.emp_email,
+		vf_employee.emp_Birthday,
+		vf_employee.emp_FamilyTel,
+		vf_employee.emp_familyAddr,
+		vf_employee.emp_districtId,
+		vf_employee.emp_anewEmp,
+		vf_employee.emp_time,
+		vf_employee.emp_outTime,
+		vf_employee.emp_date,
+		vf_role.role_name,
+		vf_role.role_id
+		FROM vf_employee
+		JOIN vf_emp_role ON vf_employee.emp_id = vf_emp_role.emp_id
+		JOIN vf_role ON vf_emp_role.role_id = vf_role.role_id
+		where 1=1
+		<if test="entity != null and entity.empName != null">
+			and vf_employee.and emp_name = #{entity.empName,jdbcType=VARCHAR}
+		</if>
+	</select>
+
+	<select id="checkEmpLogin" resultType="int" parameterType="aliasEmployee">
+		select
+		count(emp_id) from vf_employee
+		where vf_employee.emp_login_name =
+		#{empLoginName,jdbcType=VARCHAR}
+		and
+		vf_employee.emp_password =
+		#{empPassword,jdbcType=VARCHAR}
+	</select>
+
+
+	<select id="checkEmpState" resultType="String" parameterType="aliasEmployee">
+		select
+		emp_state from vf_employee
+		where vf_employee.emp_login_name =
+		#{empLoginName,jdbcType=VARCHAR}
+		and
+		vf_employee.emp_password =
+		#{empPassword,jdbcType=VARCHAR}
+	</select>
+
+
+	<!-- 判断一个角色ID是否存在 -->
+	<select id="exist" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+		select count(0) from vf_employee
+		where emp_id =
+		#{empId,jdbcType=INTEGER}
+	</select>
+
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		vf_employee
+		where emp_id = #{empId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" useGeneratedKeys="true" keyProperty="empId"
+		parameterType="cn.vfunding.vfunding.biz.bms_employee.model.Employee">
+		insert into vf_employee (emp_id, emp_name, emp_en_name,
+		emp_login_name, emp_password, 
+		emp_sex, emp_state, emp_tel,
+		emp_email, emp_Birthday, emp_FamilyTel, emp_familyAddr,
+		emp_districtId, emp_anewEmp, emp_time,
+		emp_outTime, emp_date)
+		values
+		(#{empId,jdbcType=INTEGER}, #{empName,jdbcType=VARCHAR},
+		#{empEnName,jdbcType=VARCHAR},
+		#{empLoginName,jdbcType=VARCHAR},
+		#{empPassword,jdbcType=VARCHAR},
+		#{empSex,jdbcType=INTEGER}, #{empState,jdbcType=INTEGER},
+		#{empTel,jdbcType=VARCHAR},
+		#{empEmail,jdbcType=VARCHAR},
+		#{empBirthday,jdbcType=TIMESTAMP}
+		, #{empFamilytel,jdbcType=VARCHAR},
+		#{empFamilyaddr,jdbcType=VARCHAR},
+		#{empDistrictid,jdbcType=INTEGER},
+		#{empAnewemp,jdbcType=INTEGER},
+		#{empTime,jdbcType=TIMESTAMP},
+		#{empOuttime,jdbcType=TIMESTAMP}, #{empDate,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective" useGeneratedKeys="true" keyProperty="empId"
+		parameterType="cn.vfunding.vfunding.biz.bms_employee.model.Employee">
+		insert into vf_employee
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="empId != null">
+				emp_id,
+			</if>
+			<if test="empName != null">
+				emp_name,
+			</if>
+			<if test="empEnName != null">
+				emp_en_name,
+			</if>
+			<if test="empLoginName != null">
+				emp_login_name,
+			</if>
+			<if test="empPassword != null">
+				emp_password,
+			</if>
+			
+			<if test="empSex != null">
+				emp_sex,
+			</if>
+			<if test="empState != null">
+				emp_state,
+			</if>
+			<if test="empTel != null">
+				emp_tel,
+			</if>
+			<if test="empEmail != null">
+				emp_email,
+			</if>
+			<if test="empBirthday != null">
+				emp_Birthday,
+			</if>
+
+			<if test="empFamilytel != null">
+				emp_FamilyTel,
+			</if>
+			<if test="empFamilyaddr != null">
+				emp_familyAddr,
+			</if>
+			<if test="empDistrictid != null">
+				emp_districtId,
+			</if>
+			<if test="empAnewemp != null">
+				emp_anewEmp,
+			</if>
+			<if test="empTime != null">
+				emp_time,
+			</if>
+			<if test="empOuttime != null">
+				emp_outTime,
+			</if>
+			<if test="empDate != null">
+				emp_date,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="empId != null">
+				#{empId,jdbcType=INTEGER},
+			</if>
+			<if test="empName != null">
+				#{empName,jdbcType=VARCHAR},
+			</if>
+			<if test="empEnName != null">
+				#{empEnName,jdbcType=VARCHAR},
+			</if>
+			<if test="empLoginName != null">
+				#{empLoginName,jdbcType=VARCHAR},
+			</if>
+			<if test="empPassword != null">
+				#{empPassword,jdbcType=VARCHAR},
+			</if>
+			
+			<if test="empSex != null">
+				#{empSex,jdbcType=INTEGER},
+			</if>
+			<if test="empState != null">
+				#{empState,jdbcType=INTEGER},
+			</if>
+			<if test="empTel != null">
+				#{empTel,jdbcType=VARCHAR},
+			</if>
+			<if test="empEmail != null">
+				#{empEmail,jdbcType=VARCHAR},
+			</if>
+			<if test="empBirthday != null">
+				#{empBirthday,jdbcType=TIMESTAMP},
+			</if>
+
+			<if test="empFamilytel != null">
+				#{empFamilytel,jdbcType=VARCHAR},
+			</if>
+			<if test="empFamilyaddr != null">
+				#{empFamilyaddr,jdbcType=VARCHAR},
+			</if>
+			<if test="empDistrictid != null">
+				#{empDistrictid,jdbcType=INTEGER},
+			</if>
+			<if test="empAnewemp != null">
+				#{empAnewemp,jdbcType=INTEGER},
+			</if>
+			<if test="empTime != null">
+				#{empTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="empOuttime != null">
+				#{empOuttime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="empDate != null">
+				#{empDate,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="cn.vfunding.vfunding.biz.bms_employee.model.Employee">
+		update vf_employee
+		<set>
+			<if test="empName != null">
+				emp_name = #{empName,jdbcType=VARCHAR},
+			</if>
+			<if test="empEnName != null">
+				emp_en_name = #{empEnName,jdbcType=VARCHAR},
+			</if>
+			<if test="empLoginName != null">
+				emp_login_name = #{empLoginName,jdbcType=VARCHAR},
+			</if>
+			<if test="empPassword != null">
+				emp_password = #{empPassword,jdbcType=VARCHAR},
+			</if>
+			
+			<if test="empSex != null">
+				emp_sex = #{empSex,jdbcType=INTEGER},
+			</if>
+			<if test="empState != null">
+				emp_state = #{empState,jdbcType=INTEGER},
+			</if>
+			<if test="empTel != null">
+				emp_tel = #{empTel,jdbcType=VARCHAR},
+			</if>
+			<if test="empEmail != null">
+				emp_email = #{empEmail,jdbcType=VARCHAR},
+			</if>
+			<if test="empBirthday != null">
+				emp_Birthday = #{empBirthday,jdbcType=TIMESTAMP},
+			</if>
+
+			<if test="empFamilytel != null">
+				emp_FamilyTel = #{empFamilytel,jdbcType=VARCHAR},
+			</if>
+			<if test="empFamilyaddr != null">
+				emp_familyAddr = #{empFamilyaddr,jdbcType=VARCHAR},
+			</if>
+			<if test="empDistrictid != null">
+				emp_districtId = #{empDistrictid,jdbcType=INTEGER},
+			</if>
+			<if test="empAnewemp != null">
+				emp_anewEmp = #{empAnewemp,jdbcType=INTEGER},
+			</if>
+			<if test="empTime != null">
+				emp_time = #{empTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="empOuttime != null">
+				emp_outTime = #{empOuttime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="empDate != null">
+				emp_date = #{empDate,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where emp_id = #{empId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="cn.vfunding.vfunding.biz.bms_employee.model.Employee">
+		update vf_employee
+		set emp_name =
+		#{empName,jdbcType=VARCHAR},
+		emp_en_name =
+		#{empEnName,jdbcType=VARCHAR},
+		emp_login_name =
+		#{empLoginName,jdbcType=VARCHAR},
+		emp_password =
+		#{empPassword,jdbcType=VARCHAR},
+		
+		emp_sex = #{empSex,jdbcType=INTEGER},
+		emp_state = #{empState,jdbcType=INTEGER},
+		emp_tel =
+		#{empTel,jdbcType=VARCHAR},
+		emp_email = #{empEmail,jdbcType=VARCHAR},
+		emp_Birthday = #{empBirthday,jdbcType=TIMESTAMP},
+		emp_FamilyTel =
+		#{empFamilytel,jdbcType=VARCHAR},
+		emp_familyAddr =
+		#{empFamilyaddr,jdbcType=VARCHAR},
+		emp_districtId =
+		#{empDistrictid,jdbcType=INTEGER},
+		emp_anewEmp =
+		#{empAnewemp,jdbcType=INTEGER},
+		emp_time =
+		#{empTime,jdbcType=TIMESTAMP},
+		emp_outTime =
+		#{empOuttime,jdbcType=TIMESTAMP},
+		emp_date =
+		#{empDate,jdbcType=TIMESTAMP}
+		where emp_id = #{empId,jdbcType=INTEGER}
+	</update>
+</mapper>

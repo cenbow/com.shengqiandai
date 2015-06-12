@@ -1,0 +1,246 @@
+@charset "utf-8";
+/* CSS Document */
+
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+
+.achievement{
+    width: 502px;
+    height: 109px;
+    margin: 50px auto 0;
+    background: url(/images/huodong/achievement.png) no-repeat;
+    position: relative;
+    z-index: 9;
+}
+.modal{
+    width: 940px;
+    margin: -18px auto 20px;
+    background: #f9ce3b;
+    border:20px solid #754800 ;
+    overflow: hidden;
+    padding: 150px 0;
+    position: relative;
+    z-index: 1;
+    border-radius: 20px;
+}
+.rect{
+    width: 770px;
+    height: 300px;
+    margin: 20px auto;
+    border: 10px solid #754800;
+    position: relative;
+    border-radius: 6px;
+    z-index: 1;
+    border-left: none;
+}
+
+
+
+.tiao,.tiao3{
+    width: 176px;
+    position: absolute;
+
+}
+.tiao{
+    top:-130px;
+}
+
+
+.tiao3{
+    bottom: 40px;
+    right: 10px;
+    z-index: 999;
+}
+.tiao2{
+    width: 60px;
+    height: 8px;
+    position: absolute;
+    top: 0;
+    right: 10px;
+}
+
+.arrow-guide{
+    width: 26px;
+    height: 37px;
+    background: url(/images/huodong/arrow-guide.png) no-repeat;
+    margin:  10px auto 0;
+}
+
+.money-ratio{
+    width: 176px;
+    height: 39px;
+    line-height: 39px;
+    border-radius: 18px;
+    background: #0c6a8a;
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+}
+.money-guide,.money-guide3{
+    position: absolute;
+    top:10px;
+    color: #754800;
+}
+
+.sub-rect-top{
+    position: absolute;
+    left: 2px;
+    top:-10px;
+    height: 10px;
+    background: #0c6a8a;
+    width: 25%;
+    z-index: 9;
+}
+.sub-rect-right{
+    position: absolute;
+    right:-10px;
+    top:0;
+    width: 10px;
+    background: #0c6a8a;
+
+    z-index: 9;
+}
+.sub-rect-bottom{
+    position: absolute;
+    right: -2px;
+    bottom:-10px;
+    height: 10px;
+    width: 0%;
+    background: #0c6a8a;
+    z-index: 9;
+}
+
+.hide{
+    display: none;
+}
+
+.tiao,.tiao2,.tiao3{
+    display: none;
+}
+
+.rect-top-right,.rect-bottom-right{
+    width: 7px;
+    height: 12px;
+    position: absolute;
+    right: -9px;
+    background:#0c6a8a ;
+    display: none;
+
+}
+.rect-top-right{
+    top: -10px;
+    border-radius: 0 8px 0 0;
+}
+.rect-bottom-right{
+    bottom:-10px;
+    border-radius: 0 0 8px 0;
+}
+
+.circle-guide1,.circle-guide2,.circle-guide3,
+.circle-guide4{
+    width: 100px;
+    position: absolute;
+    top:-40px;
+
+    z-index: 999;
+    overflow: hidden;
+}
+.circle-guide1,.circle-guide8{
+    left: -4px;
+}
+.circle-guide2,.circle-guide7{
+    left: 216px;
+}
+
+.circle-guide3,.circle-guide6{
+    left: 432px;
+}
+
+.circle-guide4,.circle-guide5{
+    left: 648px;
+}
+
+.circle-guide5,.circle-guide6,
+.circle-guide7,.circle-guide8,.circle-guide9{
+    width: 100px;
+    position: absolute;
+    z-index: 999;
+    overflow: hidden;
+    bottom: -130px;
+}
+
+
+
+.avantar{
+    width: 70px;
+    height: 70px;
+    text-align: center;
+    background: url(/images/huodong/dot-circle.png) no-repeat;
+    overflow: hidden;
+}
+.inner-cnt{
+    height: 60px;
+    color: #fff;
+
+}
+p.rate,p.jiaxi{
+    height: 22px;
+    line-height: 22px;
+}
+p.rate{
+    font-size: 18px;
+    margin-top: 14px;
+}
+p.jiaxi{
+    font-size: 16px;
+}
+.cg1{
+
+    background-position: 0 -70px;
+}
+
+.cg2{
+
+    background-position: 0 0px;
+}
+p.invest-all,p.money{
+
+    text-align: center;
+}
+p.invest-all{
+    padding: 10px 0 0;
+}
+p.money{
+    padding: 0 0 6px;
+}
+
+p.invest-all{
+    color: #754800;
+    font-size: 16px;
+}
+p.money{
+    color: #c13600;
+    font-size: 18px;
+}
+a.btn-link,a.getReward,a.fight{
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 20px;
+    display: block;
+    color: #fff;
+    font-size: 16px;
+}
+a.btn-link{
+    background: #888;
+}
+a.getReward{
+    background: #c13600;
+}
+
+a.fight{
+    background: #754800;
+}
+

@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.user.dao.UserFromMapper">
+	<resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.user.model.UserFrom">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="type" property="type" jdbcType="INTEGER" />
+		<result column="from_url" property="fromUrl" jdbcType="VARCHAR" />
+		<result column="from_name" property="fromName" jdbcType="VARCHAR" />
+		<result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+
+	<resultMap id="FromUserInfoResultMap" type="cn.vfunding.vfunding.biz.user.model.UserFrom">
+		<result column="from_name" property="fromName" jdbcType="VARCHAR" />
+		<result column="regUser" property="regUser" jdbcType="INTEGER" />
+		<result column="tenderUser" property="tenderUser" jdbcType="INTEGER" />
+		<result column="feelTenderUser" property="feelTenderUser"
+			jdbcType="INTEGER" />
+		<result column="sumTender" property="sumTender" jdbcType="DECIMAL" />
+		<result column="sumCollection" property="sumCollection"
+			jdbcType="DECIMAL" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, user_id,type, from_url, from_name, addtime
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from vf_user_from
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+
+
+	<select id="selectByUserId" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from vf_user_from
+		where user_id = #{userId,jdbcType=INTEGER}
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		vf_user_from
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="cn.vfunding.vfunding.biz.user.model.UserFrom">
+		insert into vf_user_from (id,
+		user_id, from_url,
+		from_name, addtime)
+		values (#{id,jdbcType=INTEGER},
+		#{userId,jdbcType=INTEGER},
+		#{fromUrl,jdbcType=VARCHAR},
+		#{fromName,jdbcType=VARCHAR}, #{addtime,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.user.model.UserFrom">
+		insert into vf_user_from
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="fromUrl != null">
+				from_url,
+			</if>
+			<if test="fromName != null">
+				from_name,
+			</if>
+			<if test="addtime != null">
+				addtime,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=INTEGER},
+			</if>
+			<if test="fromUrl != null">
+				#{fromUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="fromName != null">
+				#{fromName,jdbcType=VARCHAR},
+			</if>
+			<if test="addtime != null">
+				#{addtime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.user.model.UserFrom">
+		update vf_user_from
+		<set>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=INTEGER},
+			</if>
+			<if test="fromUrl != null">
+				from_url = #{fromUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="fromName != null">
+				from_name = #{fromName,jdbcType=VARCHAR},
+			</if>
+			<if test="addtime != null">
+				addtime = #{addtime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.user.model.UserFrom">
+		update
+		vf_user_from
+		set user_id = #{userId,jdbcType=INTEGER},
+		from_url =
+		#{fromUrl,jdbcType=VARCHAR},
+		from_name = #{fromName,jdbcType=VARCHAR},
+		addtime = #{addtime,jdbcType=TIMESTAMP}
+		where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+
+	<select id="selectFromUserInfoListPage" resultMap="FromUserInfoResultMap"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select a.from_name as fromName,
+		a.regUser,ifnull(b.feelTenderUser,0) as
+		feelTenderUser,ifnull(c.sumTender,0) as
+		sumTender,ifnull(d.sumCollection,0) as
+		sumCollection,ifnull(e.tenderUser,0) as tenderUser
+		from
+		(
+		select
+		a.from_name,count(*) as regUser from vf_user_from a
+		left
+		join rd_user b
+		on a.user_id=b.user_id
+		where 1=1
+		<if test=" entity.startTime !=null and entity.endTime !=null">
+			and
+			unix_timestamp(a.addtime) between
+			unix_timestamp(#{entity.startTime}) and
+			unix_timestamp(#{entity.endTime})
+		</if>
+		group by
+		a.from_name
+		) a 
+		left join
+		(
+			select a.from_name,count(*) as
+			feelTenderUser
+			from vf_user_from a
+			left join
+			(select DISTINCT(user_id) as
+			user_id from
+			rd_borrow_tender where status in(10,50) ) c on
+			a.user_id=c.user_id
+			where c.user_id
+			is not null
+			<if test=" entity.startTime !=null and entity.endTime !=null">
+				and
+				unix_timestamp(a.addtime) between
+				unix_timestamp(#{entity.startTime}) and
+				unix_timestamp(#{entity.endTime})
+			</if>
+			group by a.from_name
+		) b on a.from_name=b.from_name
+		left join
+		(
+			select
+			a.from_name,count(*) as
+			tenderUser
+			from vf_user_from a
+			left join
+				(select
+				DISTINCT(user_id) as
+				user_id from
+				rd_borrow_tender where
+				status in(1,5) 
+				) c on a.user_id=c.user_id
+				where c.user_id	is not null
+				<if test=" entity.startTime !=null and entity.endTime !=null">
+					and
+					unix_timestamp(a.addtime) between
+					unix_timestamp(#{entity.startTime}) and
+					unix_timestamp(#{entity.endTime})
+				</if>
+				group by a.from_name
+		) e on	a.from_name	=e.from_name
+		left join
+		(
+		select
+		a.from_name,round(sum(b.account),2) as
+		sumTender
+		from
+		vf_user_from a
+		left
+		join
+		rd_borrow_tender b on
+		a.user_id=b.user_id
+		where
+		b.status in( 1,5)
+		<if test=" entity.startTime !=null and entity.endTime !=null">
+			and
+			unix_timestamp(a.addtime)
+			between
+			unix_timestamp(#{entity.startTime})
+			and
+			unix_timestamp(#{entity.endTime})
+		</if>
+		group by
+		a.from_name
+		)c on a.from_name =c.from_name
+		left join
+		(
+		select
+		a.from_name,round(sum(c.repay_account),2) as sumCollection from
+		vf_user_from a
+		left join rd_borrow_tender b on a.user_id=b.user_id
+		left
+		join
+		rd_borrow_collection c on b.id =c.tender_id
+		where b.status in(1,5)
+		and
+		c.status =0
+		<if test=" entity.startTime !=null and entity.endTime !=null">
+			and unix_timestamp(a.addtime) between
+			unix_timestamp(#{entity.startTime}) and
+			unix_timestamp(#{entity.endTime})
+		</if>
+		group by a.from_name
+		) d on a.from_name =d.from_name
+	</select>
+</mapper>

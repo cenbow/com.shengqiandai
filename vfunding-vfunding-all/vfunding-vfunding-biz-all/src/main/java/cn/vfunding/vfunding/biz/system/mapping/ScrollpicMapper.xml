@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.system.dao.ScrollpicMapper">
+	<resultMap id="BaseResultMap"
+		type="cn.vfunding.vfunding.biz.system.model.Scrollpic">
+		<id column="id" property="id" jdbcType="SMALLINT" />
+		<result column="site_id" property="siteId" jdbcType="SMALLINT" />
+		<result column="status" property="status" jdbcType="SMALLINT" />
+		<result column="order" property="order" jdbcType="SMALLINT" />
+		<result column="flag" property="flag" jdbcType="SMALLINT" />
+		<result column="type_id" property="typeId" jdbcType="SMALLINT" />
+		<result column="url" property="url" jdbcType="CHAR" />
+		<result column="name" property="name" jdbcType="CHAR" />
+		<result column="pic" property="pic" jdbcType="CHAR" />
+		<result column="summary" property="summary" jdbcType="CHAR" />
+		<result column="hits" property="hits" jdbcType="INTEGER" />
+		<result column="addtime" property="addtime" jdbcType="INTEGER" />
+		<result column="addip" property="addip" jdbcType="CHAR" />
+	</resultMap>
+	<resultMap type="cn.vfunding.vfunding.biz.system.model.ScrollpicMobile"
+		id="toListResultMap">
+		<result column="pic" property="pic" jdbcType="CHAR" />
+		<result column="url" property="url" jdbcType="CHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, site_id, `status`, `order`, flag, type_id, url, name,
+		pic, summary,
+		hits, addtime,
+		addip
+	</sql>
+	<!-- 加载所有数据 -->
+	<select id="selectAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from rd_scrollpic
+	</select>
+
+	<select id="selectScrollpicListPage" resultMap="BaseResultMap" parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select
+		<include refid="Base_Column_List" />
+		from rd_scrollpic
+		where 1=1
+		<if test="entity.typeId != null">
+			and type_id = #{entity.typeId,jdbcType=INTEGER}
+		</if>
+		<if test="entity.status != null">
+			and status = #{entity.status,jdbcType=INTEGER}		
+		</if>
+		order by `status` desc,addtime desc
+	</select>
+	
+	<select id="selectMaxOrderByStatus" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+		select ifnull(`order`,0) from rd_scrollpic
+		where 1=1
+		<if test="typeId != null">
+			and type_id = #{typeId,jdbcType=INTEGER}
+		</if>
+		<if test="status != null">
+			and status = #{status,jdbcType=INTEGER}
+		</if>
+		order by `order` desc limit 0,1
+	</select>
+	
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Short">
+		select
+		<include refid="Base_Column_List" />
+		from rd_scrollpic
+		where id = #{id,jdbcType=SMALLINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Short">
+		delete from
+		rd_scrollpic
+		where id = #{id,jdbcType=SMALLINT}
+	</delete>
+	<insert id="insert" parameterType="cn.vfunding.vfunding.biz.system.model.Scrollpic">
+		insert into rd_scrollpic (id,
+		site_id, `status`,
+		`order`, flag, type_id,
+		url, name, pic, summary,
+		hits, addtime, addip)
+		values (#{id,jdbcType=SMALLINT},
+		#{siteId,jdbcType=SMALLINT},
+		#{status,jdbcType=SMALLINT},
+		#{order,jdbcType=SMALLINT}, #{flag,jdbcType=SMALLINT},
+		#{typeId,jdbcType=SMALLINT},
+		#{url,jdbcType=CHAR},
+		#{name,jdbcType=CHAR}, #{pic,jdbcType=CHAR},
+		#{summary,jdbcType=CHAR},
+		#{hits,jdbcType=INTEGER}, #{addtime,jdbcType=INTEGER},
+		#{addip,jdbcType=CHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.system.model.Scrollpic">
+		insert into rd_scrollpic
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="siteId != null">
+				site_id,
+			</if>
+			<if test="status != null">
+				`status`,
+			</if>
+			<if test="order != null">
+				`order`,
+			</if>
+			<if test="flag != null">
+				flag,
+			</if>
+			<if test="typeId != null">
+				type_id,
+			</if>
+			<if test="url != null">
+				url,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="pic != null">
+				pic,
+			</if>
+			<if test="summary != null">
+				summary,
+			</if>
+			<if test="hits != null">
+				hits,
+			</if>
+			<if test="addtime != null">
+				addtime,
+			</if>
+			<if test="addip != null">
+				addip,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=SMALLINT},
+			</if>
+			<if test="siteId != null">
+				#{siteId,jdbcType=SMALLINT},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=SMALLINT},
+			</if>
+			<if test="order != null">
+				#{order,jdbcType=SMALLINT},
+			</if>
+			<if test="flag != null">
+				#{flag,jdbcType=SMALLINT},
+			</if>
+			<if test="typeId != null">
+				#{typeId,jdbcType=SMALLINT},
+			</if>
+			<if test="url != null">
+				#{url,jdbcType=CHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=CHAR},
+			</if>
+			<if test="pic != null">
+				#{pic,jdbcType=CHAR},
+			</if>
+			<if test="summary != null">
+				#{summary,jdbcType=CHAR},
+			</if>
+			<if test="hits != null">
+				#{hits,jdbcType=INTEGER},
+			</if>
+			<if test="addtime != null">
+				#{addtime,jdbcType=INTEGER},
+			</if>
+			<if test="addip != null">
+				#{addip,jdbcType=CHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.system.model.Scrollpic">
+		update rd_scrollpic
+		<set>
+			<if test="siteId != null">
+				site_id = #{siteId,jdbcType=SMALLINT},
+			</if>
+			<if test="status != null">
+				`status` = #{status,jdbcType=SMALLINT},
+			</if>
+			<if test="order != null">
+				`order` = #{order,jdbcType=SMALLINT},
+			</if>
+			<if test="flag != null">
+				flag = #{flag,jdbcType=SMALLINT},
+			</if>
+			<if test="typeId != null">
+				type_id = #{typeId,jdbcType=SMALLINT},
+			</if>
+			<if test="url != null">
+				url = #{url,jdbcType=CHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=CHAR},
+			</if>
+			<if test="pic != null">
+				pic = #{pic,jdbcType=CHAR},
+			</if>
+			<if test="summary != null">
+				summary = #{summary,jdbcType=CHAR},
+			</if>
+			<if test="hits != null">
+				hits = #{hits,jdbcType=INTEGER},
+			</if>
+			<if test="addtime != null">
+				addtime = #{addtime,jdbcType=INTEGER},
+			</if>
+			<if test="addip != null">
+				addip = #{addip,jdbcType=CHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=SMALLINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.system.model.Scrollpic">
+		update
+		rd_scrollpic
+		set site_id = #{siteId,jdbcType=SMALLINT},
+		`status` =
+		#{status,jdbcType=SMALLINT},
+		`order` = #{order,jdbcType=SMALLINT},
+		flag
+		= #{flag,jdbcType=SMALLINT},
+		type_id = #{typeId,jdbcType=SMALLINT},
+		url
+		= #{url,jdbcType=CHAR},
+		name = #{name,jdbcType=CHAR},
+		pic =
+		#{pic,jdbcType=CHAR},
+		summary = #{summary,jdbcType=CHAR},
+		hits =
+		#{hits,jdbcType=INTEGER},
+		addtime = #{addtime,jdbcType=INTEGER},
+		addip =
+		#{addip,jdbcType=CHAR}
+		where id = #{id,jdbcType=SMALLINT}
+	</update>
+
+	<select id="selectScrollPicByStatus" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from rd_scrollpic
+		where `status` = #{status,jdbcType=TINYINT} and type_id=#{typeId,jdbcType=INTEGER}
+		order by
+		`order` desc limit 0,#{size,jdbcType=INTEGER}
+	</select>
+
+	<select id="selectScrollPicByTypeMobile" resultMap="toListResultMap"
+		parameterType="java.lang.Integer">
+		select
+		pic,url
+		from rd_scrollpic
+		where type_id = #{typeId}
+		and `status` =1
+		order by `order` desc
+	</select>
+</mapper>

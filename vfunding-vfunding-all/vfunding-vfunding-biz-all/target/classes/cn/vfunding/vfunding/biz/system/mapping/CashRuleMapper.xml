@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.system.dao.CashRuleMapper" >
+  <resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.system.model.CashRule" >
+    <id column="id" property="id" jdbcType="TINYINT" />
+    <result column="max_cash" property="maxCash" jdbcType="INTEGER" />
+    <result column="min_cash" property="minCash" jdbcType="INTEGER" />
+    <result column="max_day_cash" property="maxDayCash" jdbcType="INTEGER" />
+    <result column="scheme" property="scheme" jdbcType="CHAR" />
+    <result column="cash_lt" property="cashLt" jdbcType="INTEGER" />
+    <result column="every_lt_fee" property="everyLtFee" jdbcType="SMALLINT" />
+    <result column="cash_gt" property="cashGt" jdbcType="INTEGER" />
+    <result column="every_gt_fee" property="everyGtFee" jdbcType="SMALLINT" />
+    <result column="every_day_lt" property="everyDayLt" jdbcType="TINYINT" />
+    <result column="every_extra_fee" property="everyExtraFee" jdbcType="SMALLINT" />
+    <result column="scale_fee" property="scaleFee" jdbcType="REAL" />
+    <result column="scale_day_lt" property="scaleDayLt" jdbcType="TINYINT" />
+    <result column="scale_extra_fee" property="scaleExtraFee" jdbcType="REAL" />
+    <result column="status" property="status" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, max_cash, min_cash, max_day_cash, scheme, cash_lt, every_lt_fee, cash_gt, every_gt_fee, 
+    every_day_lt, every_extra_fee, scale_fee, scale_day_lt, scale_extra_fee, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Byte" >
+    select 
+    <include refid="Base_Column_List" />
+    from rd_cash_rule
+    where id = #{id,jdbcType=TINYINT}
+  </select>
+  <select id="selectOne" resultMap="BaseResultMap" parameterType="java.lang.Byte" >
+    select 
+    <include refid="Base_Column_List" />
+    from rd_cash_rule
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Byte" >
+    delete from rd_cash_rule
+    where id = #{id,jdbcType=TINYINT}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.vfunding.biz.system.model.CashRule" >
+    insert into rd_cash_rule (id, max_cash, min_cash, 
+      max_day_cash, scheme, cash_lt, 
+      every_lt_fee, cash_gt, every_gt_fee, 
+      every_day_lt, every_extra_fee, scale_fee, 
+      scale_day_lt, scale_extra_fee, status
+      )
+    values (#{id,jdbcType=TINYINT}, #{maxCash,jdbcType=INTEGER}, #{minCash,jdbcType=INTEGER}, 
+      #{maxDayCash,jdbcType=INTEGER}, #{scheme,jdbcType=CHAR}, #{cashLt,jdbcType=INTEGER}, 
+      #{everyLtFee,jdbcType=SMALLINT}, #{cashGt,jdbcType=INTEGER}, #{everyGtFee,jdbcType=SMALLINT}, 
+      #{everyDayLt,jdbcType=TINYINT}, #{everyExtraFee,jdbcType=SMALLINT}, #{scaleFee,jdbcType=REAL}, 
+      #{scaleDayLt,jdbcType=TINYINT}, #{scaleExtraFee,jdbcType=REAL}, #{status,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.system.model.CashRule" >
+    insert into rd_cash_rule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="maxCash != null" >
+        max_cash,
+      </if>
+      <if test="minCash != null" >
+        min_cash,
+      </if>
+      <if test="maxDayCash != null" >
+        max_day_cash,
+      </if>
+      <if test="scheme != null" >
+        scheme,
+      </if>
+      <if test="cashLt != null" >
+        cash_lt,
+      </if>
+      <if test="everyLtFee != null" >
+        every_lt_fee,
+      </if>
+      <if test="cashGt != null" >
+        cash_gt,
+      </if>
+      <if test="everyGtFee != null" >
+        every_gt_fee,
+      </if>
+      <if test="everyDayLt != null" >
+        every_day_lt,
+      </if>
+      <if test="everyExtraFee != null" >
+        every_extra_fee,
+      </if>
+      <if test="scaleFee != null" >
+        scale_fee,
+      </if>
+      <if test="scaleDayLt != null" >
+        scale_day_lt,
+      </if>
+      <if test="scaleExtraFee != null" >
+        scale_extra_fee,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=TINYINT},
+      </if>
+      <if test="maxCash != null" >
+        #{maxCash,jdbcType=INTEGER},
+      </if>
+      <if test="minCash != null" >
+        #{minCash,jdbcType=INTEGER},
+      </if>
+      <if test="maxDayCash != null" >
+        #{maxDayCash,jdbcType=INTEGER},
+      </if>
+      <if test="scheme != null" >
+        #{scheme,jdbcType=CHAR},
+      </if>
+      <if test="cashLt != null" >
+        #{cashLt,jdbcType=INTEGER},
+      </if>
+      <if test="everyLtFee != null" >
+        #{everyLtFee,jdbcType=SMALLINT},
+      </if>
+      <if test="cashGt != null" >
+        #{cashGt,jdbcType=INTEGER},
+      </if>
+      <if test="everyGtFee != null" >
+        #{everyGtFee,jdbcType=SMALLINT},
+      </if>
+      <if test="everyDayLt != null" >
+        #{everyDayLt,jdbcType=TINYINT},
+      </if>
+      <if test="everyExtraFee != null" >
+        #{everyExtraFee,jdbcType=SMALLINT},
+      </if>
+      <if test="scaleFee != null" >
+        #{scaleFee,jdbcType=REAL},
+      </if>
+      <if test="scaleDayLt != null" >
+        #{scaleDayLt,jdbcType=TINYINT},
+      </if>
+      <if test="scaleExtraFee != null" >
+        #{scaleExtraFee,jdbcType=REAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.system.model.CashRule" >
+    update rd_cash_rule
+    <set >
+      <if test="maxCash != null" >
+        max_cash = #{maxCash,jdbcType=INTEGER},
+      </if>
+      <if test="minCash != null" >
+        min_cash = #{minCash,jdbcType=INTEGER},
+      </if>
+      <if test="maxDayCash != null" >
+        max_day_cash = #{maxDayCash,jdbcType=INTEGER},
+      </if>
+      <if test="scheme != null" >
+        scheme = #{scheme,jdbcType=CHAR},
+      </if>
+      <if test="cashLt != null" >
+        cash_lt = #{cashLt,jdbcType=INTEGER},
+      </if>
+      <if test="everyLtFee != null" >
+        every_lt_fee = #{everyLtFee,jdbcType=SMALLINT},
+      </if>
+      <if test="cashGt != null" >
+        cash_gt = #{cashGt,jdbcType=INTEGER},
+      </if>
+      <if test="everyGtFee != null" >
+        every_gt_fee = #{everyGtFee,jdbcType=SMALLINT},
+      </if>
+      <if test="everyDayLt != null" >
+        every_day_lt = #{everyDayLt,jdbcType=TINYINT},
+      </if>
+      <if test="everyExtraFee != null" >
+        every_extra_fee = #{everyExtraFee,jdbcType=SMALLINT},
+      </if>
+      <if test="scaleFee != null" >
+        scale_fee = #{scaleFee,jdbcType=REAL},
+      </if>
+      <if test="scaleDayLt != null" >
+        scale_day_lt = #{scaleDayLt,jdbcType=TINYINT},
+      </if>
+      <if test="scaleExtraFee != null" >
+        scale_extra_fee = #{scaleExtraFee,jdbcType=REAL},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=TINYINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.system.model.CashRule" >
+    update rd_cash_rule
+    set max_cash = #{maxCash,jdbcType=INTEGER},
+      min_cash = #{minCash,jdbcType=INTEGER},
+      max_day_cash = #{maxDayCash,jdbcType=INTEGER},
+      scheme = #{scheme,jdbcType=CHAR},
+      cash_lt = #{cashLt,jdbcType=INTEGER},
+      every_lt_fee = #{everyLtFee,jdbcType=SMALLINT},
+      cash_gt = #{cashGt,jdbcType=INTEGER},
+      every_gt_fee = #{everyGtFee,jdbcType=SMALLINT},
+      every_day_lt = #{everyDayLt,jdbcType=TINYINT},
+      every_extra_fee = #{everyExtraFee,jdbcType=SMALLINT},
+      scale_fee = #{scaleFee,jdbcType=REAL},
+      scale_day_lt = #{scaleDayLt,jdbcType=TINYINT},
+      scale_extra_fee = #{scaleExtraFee,jdbcType=REAL},
+      status = #{status,jdbcType=CHAR}
+    where id = #{id,jdbcType=TINYINT}
+  </update>
+</mapper>

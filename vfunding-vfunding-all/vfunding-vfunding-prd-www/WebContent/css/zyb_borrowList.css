@@ -1,0 +1,116 @@
+@charset "utf-8";
+/* CSS Document */
+
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+.bread{ width:1000px;  height:16px; line-height:16px; margin:20px auto;}
+.bread a:hover,.borrowTitle h3 a:hover,.tenderAll,.goRecharge{ color:#00a0e9;}
+.borrowList{ width:1000px; margin:0 auto;}
+
+.zyb-banner{
+     height: 150px;
+     background:#fff;
+}
+
+.zyb-detail{
+     height: auto !important;
+     background:#fff;
+     margin: 20px 0;
+     padding: 6px 20px 20px;
+    line-height: 24px;
+}
+
+.zyb-detail h2{ line-height: 40px; color:#0065b4; }
+.zyb-detail span.more,span.shouqi{
+    color: #00a0e9;
+    cursor: pointer;
+}
+
+.zyb-detail span.more-cnt,span.shouqi{
+    display: none;
+}
+
+
+
+
+.borrowItems{  margin:18px 0 50px;background:#fff; padding:0 0 20px; }
+.itemsWrap{ width:960px; margin:0 auto;}
+
+.itemsTitle{ height:55px; line-height:55px; border-bottom:1px solid #eee;}
+.itemsTitle h2{ color:#0065b4; font-size:20px;}
+.itemTitle{ height:54px; line-height:54px;}
+#borrowItem td{ text-align:center; }
+.avantar{
+    width:21px;
+    height:24px;
+    position:relative;
+    float:left;
+    display:block;
+    margin-top:42px;
+
+}
+
+.avantar-position{ background-position: 0 0;}
+
+
+
+
+.biaoti{ height:112px; line-height:112px; font-size:16px; float:left; text-indent:12px; color:#00a0e9;}
+
+.tiyan{width:20px; height:20px; background:red; position:absolute; top:0; right:0;}
+.rate{ color:#00a0e9; font-size:20px; text-align: center;}
+
+.btn116,.btn116-gray{ display:block; margin:0 5px;}
+.btn116{ background:#00a0e9;}
+.btn116:hover{ background:#00afff;}
+.boder_bottom{ border-bottom:1px solid #f6f6f6;}
+.progress_circle{ width:56px; height:70px; margin:21px 27px 0;  position:relative; }
+.progressBar{ background:url(/images/index/progressBar.png) no-repeat;}
+.progress_circle p{ width:56px; height:24px; line-height:24px; text-align:center; font-size:14px; color:#444444;position:absolute; bottom:6px; left:0;}
+.progressBar0{ background-position:0 0;}
+
+
+.progressBar0{ background-position:0 0;}
+.progressBar5{ background-position:-56px 0;}
+.progressBar10{ background-position:-112px 0;}
+.progressBar15{ background-position:-168px 0;}
+.progressBar15{ background-position:-224px 0;}
+.progressBar20{ background-position:-280px 0;}
+.progressBar25{ background-position:-336px 0;}
+.progressBar30{ background-position:-392px 0;}
+.progressBar35{ background-position:-448px 0;}
+.progressBar40{ background-position:-504px 0;}
+.progressBar45{ background-position:-560px 0;}
+.progressBar50{ background-position:-616px 0;}
+.progressBar55{ background-position:-672px 0;}
+.progressBar60{ background-position:-728px 0;}
+.progressBar65{ background-position:-784px 0;}
+.progressBar70{ background-position:-840px 0;}
+.progressBar80{ background-position:-896px 0;}
+.progressBar85{ background-position:-952px 0;}
+.progressBar90{ background-position:-1008px 0;}
+.progressBar95{ background-position:-1064px 0;}
+.progressBar100{ background-position:-1120px 0;}
+
+
+#show-more{ width:16px; height:16px; margin:6px 0; float:left; background:url(/images/account/showmore.png) no-repeat; margin-top:26px; cursor:pointer;}
+.cd2{ height:auto; overflow:hidden;}
+#condition2{width:524px;float:left; height:auto; margin-top:20px;}
+#condition2 #mb20{ margin:10px auto;  }
+#condition1,#condition3,#condition4{ height:28px; margin-top:20px;}
+#month9{  margin:10px 0 10px 120px; }
+.yellow{
+    background: #ff8636;
+}
+.btn116:hover{
+   background:  #ffa836;
+}
+
+
+.ice{
+    background: #acc8d5;
+}
+.ice:hover{
+   background:  #acc8d5;
+}

@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.returns.dao.InviteFeesMapper">
+	<resultMap id="BaseResultMap"
+		type="cn.vfunding.vfunding.biz.returns.model.InviteFees">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="b_id" property="bId" jdbcType="INTEGER" />
+		<result column="tender_id" property="tenderId" jdbcType="INTEGER" />
+		<result column="collection_id" property="collectionId"
+			jdbcType="INTEGER" />
+		<result column="t_user_id" property="tuserId" jdbcType="INTEGER" />
+		<result column="g_user_id" property="guserId" jdbcType="INTEGER" />
+		<result column="s_user_id" property="suserId" jdbcType="INTEGER" />
+		<result column="t_fees" property="tfees" jdbcType="VARCHAR" />
+		<result column="g_fees" property="gfees" jdbcType="VARCHAR" />
+		<result column="s_fees" property="sfees" jdbcType="VARCHAR" />
+		<result column="addtime" property="addtime" jdbcType="VARCHAR" />
+		<result column="addip" property="addip" jdbcType="VARCHAR" />
+		<result column="repayment_time" property="repaymentTime"
+			jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap type="cn.vfunding.vfunding.biz.financialPlanner.vo.FinancialPlannerVO" id="financialPlannerVO">
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="feesSum" property="feesSum" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, b_id, tender_id, t_user_id, g_user_id, s_user_id,
+		t_fees, g_fees,
+		s_fees, addtime,
+		addip, repayment_time
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from rd_invite_fees
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		rd_invite_fees
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="cn.vfunding.vfunding.biz.returns.model.InviteFees">
+		insert into rd_invite_fees
+		(id, b_id, tender_id,collection_id,
+		t_user_id, g_user_id, s_user_id,
+		t_fees, g_fees, s_fees,
+		addtime, addip, repayment_time
+		)
+		values
+		(#{id,jdbcType=INTEGER}, #{bId,jdbcType=INTEGER},
+		#{tenderId,jdbcType=INTEGER}, #{collectionId,jdbcType=INTEGER},
+		#{tuserId,jdbcType=INTEGER}, #{guserId,jdbcType=INTEGER},
+		#{suserId,jdbcType=INTEGER},
+		#{tfees,jdbcType=VARCHAR},
+		#{gfees,jdbcType=VARCHAR},
+		#{sfees,jdbcType=VARCHAR},
+		#{addtime,jdbcType=VARCHAR}, #{addip,jdbcType=VARCHAR},
+		#{repaymentTime,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.returns.model.InviteFees">
+		insert into rd_invite_fees
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="bId != null">
+				b_id,
+			</if>
+			<if test="tenderId != null">
+				tender_id,
+			</if>
+			<if test="collectionId != null">
+				collection_id,
+			</if>
+			<if test="tuserId != null">
+				t_user_id,
+			</if>
+			<if test="guserId != null">
+				g_user_id,
+			</if>
+			<if test="suserId != null">
+				s_user_id,
+			</if>
+			<if test="tfees != null">
+				t_fees,
+			</if>
+			<if test="gfees != null">
+				g_fees,
+			</if>
+			<if test="sfees != null">
+				s_fees,
+			</if>
+			<if test="addtime != null">
+				addtime,
+			</if>
+			<if test="addip != null">
+				addip,
+			</if>
+			<if test="repaymentTime != null">
+				repayment_time
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="bId != null">
+				#{bId,jdbcType=INTEGER},
+			</if>
+			<if test="tenderId != null">
+				#{tenderId,jdbcType=INTEGER},
+			</if>
+			<if test="collectionId != null">
+				#{collectionId,jdbcType=INTEGER},
+			</if>
+			<if test="tuserId != null">
+				#{tuserId,jdbcType=INTEGER},
+			</if>
+			<if test="guserId != null">
+				#{guserId,jdbcType=INTEGER},
+			</if>
+			<if test="suserId != null">
+				#{suserId,jdbcType=INTEGER},
+			</if>
+			<if test="tfees != null">
+				#{tfees,jdbcType=VARCHAR},
+			</if>
+			<if test="gfees != null">
+				#{gfees,jdbcType=VARCHAR},
+			</if>
+			<if test="sfees != null">
+				#{sfees,jdbcType=VARCHAR},
+			</if>
+			<if test="addtime != null">
+				#{addtime,jdbcType=VARCHAR},
+			</if>
+			<if test="addip != null">
+				#{addip,jdbcType=VARCHAR},
+			</if>
+			<if test="repaymentTime != null">
+				#{repaymentTime,jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.returns.model.InviteFees">
+		update rd_invite_fees
+		<set>
+			<if test="bId != null">
+				b_id = #{bId,jdbcType=INTEGER},
+			</if>
+			<if test="tenderId != null">
+				tender_id = #{tenderId,jdbcType=INTEGER},
+			</if>
+			<if test="tuserId != null">
+				t_user_id = #{tuserId,jdbcType=INTEGER},
+			</if>
+			<if test="guserId != null">
+				g_user_id = #{guserId,jdbcType=INTEGER},
+			</if>
+			<if test="suserId != null">
+				s_user_id = #{suserId,jdbcType=INTEGER},
+			</if>
+			<if test="tfees != null">
+				t_fees = #{tfees,jdbcType=VARCHAR},
+			</if>
+			<if test="gfees != null">
+				g_fees = #{gfees,jdbcType=VARCHAR},
+			</if>
+			<if test="sfees != null">
+				s_fees = #{sfees,jdbcType=VARCHAR},
+			</if>
+			<if test="addtime != null">
+				addtime = #{addtime,jdbcType=VARCHAR},
+			</if>
+			<if test="addip != null">
+				addip = #{addip,jdbcType=VARCHAR},
+			</if>
+			<if test="repaymentTime != null">
+				repayment_time = #{repaymentTime,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.returns.model.InviteFees">
+		update
+		rd_invite_fees
+		set b_id = #{bId,jdbcType=INTEGER},
+		tender_id =
+		#{tenderId,jdbcType=INTEGER},
+		t_user_id = #{tuserId,jdbcType=INTEGER},
+		g_user_id = #{guserId,jdbcType=INTEGER},
+		s_user_id =
+		#{suserId,jdbcType=INTEGER},
+		t_fees = #{tfees,jdbcType=VARCHAR},
+		g_fees
+		= #{gfees,jdbcType=VARCHAR},
+		s_fees = #{sfees,jdbcType=VARCHAR},
+		addtime = #{addtime,jdbcType=VARCHAR},
+		addip =
+		#{addip,jdbcType=VARCHAR},
+		repayment_time =
+		#{repaymentTime,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<!-- 还款 -->
+	<select id="selectByCollectionId" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select a.id, a.b_id, a.tender_id,a.collection_Id,
+		a.t_user_id, a.g_user_id,
+		a.s_user_id,
+		a.t_fees, a.g_fees,
+		a.s_fees,
+		a.addtime,
+		a.addip,
+		a.repayment_time from rd_invite_fees
+		a
+		left join
+		rd_borrow_collection b on a.tender_id=b.tender_id and
+		DATE_FORMAT(from_unixtime(a.repayment_time),'%Y%m%d')=DATE_FORMAT(from_unixtime(b.repay_time),'%Y%m%d')
+		where b.id=#{collectionId}
+	</select>
+	
+	<!-- 根据用户ID查询返利总额 -->
+	<select id="selectSumFeesByUserId" parameterType="java.lang.Integer" resultType="BigDecimal">
+		select sum(sumFees) from
+			(SELECT
+						IFNULL(sum(t_fees),0) as sumFees
+					FROM
+						rd_invite_fees
+					WHERE
+						t_user_id = #{userId}
+			
+			UNION
+			
+			SELECT
+						IFNULL(SUM(g_fees),0) as sumFees
+					FROM
+						rd_invite_fees
+					WHERE
+						g_user_id = #{userId}
+			
+			UNION
+			
+			SELECT
+						IFNULL(SUM(s_fees),0) as sumFees
+					FROM
+						rd_invite_fees
+					WHERE
+						s_user_id = #{userId}
+			) as sum 
+
+	</select>
+	<!-- 根据用户ID查询上个月返利总和 -->
+	<select id="selectSumFeesLastMonthByUserId" parameterType="java.lang.Integer" resultType="BigDecimal">
+	select sum(sumFees) from
+		(SELECT
+					IFNULL(sum(t_fees),0) as sumFees
+				FROM
+					rd_invite_fees
+				WHERE
+					t_user_id = #{userId}
+				AND
+				FROM_UNIXTIME(addtime,'%y-%m') = DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH),'%y-%m')
+		
+		UNION
+		
+		SELECT
+					IFNULL(SUM(g_fees),0) as sumFees
+				FROM
+					rd_invite_fees
+				WHERE
+					g_user_id = #{userId}
+				AND
+				FROM_UNIXTIME(addtime,'%y-%m') = DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH),'%y-%m')
+		UNION
+		
+		SELECT
+					IFNULL(SUM(s_fees),0) as sumFees
+				FROM
+					rd_invite_fees
+				WHERE
+					s_user_id = #{userId}
+				AND
+				FROM_UNIXTIME(addtime,'%y-%m') = DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH),'%y-%m')
+		) as sum 
+
+	</select>
+	
+	<select id="selectSumOneFees" parameterType="java.lang.Integer" resultType="BigDecimal">
+	select IFNULL(sum(t_fees),0) from rd_invite_fees where t_user_id = #{userId}
+	</select>
+	
+	<select id="selectSumTwoFees" parameterType="java.lang.Integer" resultType="BigDecimal">
+	select IFNULL(SUM(g_fees),0) from rd_invite_fees where g_user_id = #{userId}
+	</select>
+	
+	<select id="selectSumThreeFees" parameterType="java.lang.Integer" resultType="BigDecimal">
+	select IFNULL(SUM(s_fees),0) from rd_invite_fees where s_user_id = #{userId}
+	</select>
+	
+	<select id="selectSumReturnProfitGroupByUserId" resultMap="financialPlannerVO">
+	
+	select t.user_id,r_user.username,sum(feesSum) feesSum from rd_user r_user,
+	(
+	select round(sum(t_fees),2) feesSum,t_user_id user_id from rd_invite_fees 
+	where 
+		t_user_id is not null 
+		and 
+		t_user_id &gt; 0 
+	GROUP BY t_user_id
+	
+	union all
+	
+	select sum(g_fees) feesSum,g_user_id user_id from rd_invite_fees 
+	where 
+		g_user_id is not null 
+		and 
+		g_user_id &gt; 0 
+	GROUP BY g_user_id
+	
+	union all
+	
+	select sum(s_fees) feesSum,s_user_id user_id from rd_invite_fees 
+	where 
+		s_user_id is not null 
+		and 
+		s_user_id &gt; 0 
+	GROUP BY s_user_id
+	) t 
+	where r_user.user_id = t.user_id
+	group by t.user_id
+	order by t.feesSum desc
+	
+	</select>
+	
+	<select id="selectByTUserIdAndTenderId" resultMap="BaseResultMap">
+		select * from rd_invite_fees where tender_id = #{tenderId} and t_user_id = #{tuserId};
+	</select>
+</mapper>

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.account.dao.AccountFeelLogMapper" >
+  <resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.account.model.AccountFeelLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="total" property="total" jdbcType="DECIMAL" />
+    <result column="money" property="money" jdbcType="DECIMAL" />
+    <result column="use_money" property="useMoney" jdbcType="DECIMAL" />
+    <result column="no_use_money" property="noUseMoney" jdbcType="DECIMAL" />
+    <result column="collection" property="collection" jdbcType="DECIMAL" />
+    <result column="to_user" property="toUser" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="borrow_id" property="borrowId" jdbcType="INTEGER" />
+    <result column="addtime" property="addtime" jdbcType="INTEGER" />
+    <result column="addip" property="addip" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, type, total, money, use_money, no_use_money, collection, to_user, remark, 
+    borrow_id, addtime, addip
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from rd_account_feel_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByUserIdType" resultMap="BaseResultMap" parameterType="cn.vfunding.vfunding.biz.account.model.AccountFeelLog" >
+    select 
+    <include refid="Base_Column_List"/>
+    from rd_account_feel_log
+    where user_id = #{userId,jdbcType=INTEGER}
+    <if test="type != null">
+    	 and type = #{type,jdbcType=VARCHAR}
+    </if>
+    order by addtime desc
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from rd_account_feel_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.vfunding.biz.account.model.AccountFeelLog" >
+    insert into rd_account_feel_log (id, user_id, type, 
+      total, money, use_money, 
+      no_use_money, collection, to_user, 
+      remark, borrow_id, addtime, 
+      addip)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, 
+      #{total,jdbcType=DECIMAL}, #{money,jdbcType=DECIMAL}, #{useMoney,jdbcType=DECIMAL}, 
+      #{noUseMoney,jdbcType=DECIMAL}, #{collection,jdbcType=DECIMAL}, #{toUser,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR}, #{borrowId,jdbcType=INTEGER}, #{addtime,jdbcType=INTEGER}, 
+      #{addip,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.account.model.AccountFeelLog" >
+    insert into rd_account_feel_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="total != null" >
+        total,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="useMoney != null" >
+        use_money,
+      </if>
+      <if test="noUseMoney != null" >
+        no_use_money,
+      </if>
+      <if test="collection != null" >
+        collection,
+      </if>
+      <if test="toUser != null" >
+        to_user,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="borrowId != null" >
+        borrow_id,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="addip != null" >
+        addip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null" >
+        #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="useMoney != null" >
+        #{useMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="noUseMoney != null" >
+        #{noUseMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="collection != null" >
+        #{collection,jdbcType=DECIMAL},
+      </if>
+      <if test="toUser != null" >
+        #{toUser,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowId != null" >
+        #{borrowId,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=INTEGER},
+      </if>
+      <if test="addip != null" >
+        #{addip,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.account.model.AccountFeelLog" >
+    update rd_account_feel_log
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null" >
+        total = #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="useMoney != null" >
+        use_money = #{useMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="noUseMoney != null" >
+        no_use_money = #{noUseMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="collection != null" >
+        collection = #{collection,jdbcType=DECIMAL},
+      </if>
+      <if test="toUser != null" >
+        to_user = #{toUser,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowId != null" >
+        borrow_id = #{borrowId,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=INTEGER},
+      </if>
+      <if test="addip != null" >
+        addip = #{addip,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.account.model.AccountFeelLog" >
+    update rd_account_feel_log
+    set user_id = #{userId,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR},
+      total = #{total,jdbcType=DECIMAL},
+      money = #{money,jdbcType=DECIMAL},
+      use_money = #{useMoney,jdbcType=DECIMAL},
+      no_use_money = #{noUseMoney,jdbcType=DECIMAL},
+      collection = #{collection,jdbcType=DECIMAL},
+      to_user = #{toUser,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      borrow_id = #{borrowId,jdbcType=INTEGER},
+      addtime = #{addtime,jdbcType=INTEGER},
+      addip = #{addip,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

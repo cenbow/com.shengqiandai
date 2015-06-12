@@ -1,0 +1,8 @@
+log4j.rootLogger=${log4j.rootLogger}
+log4j.logger.org.eclipse.jetty=${log4j_logger_org_eclipse_jetty}
+log4j.logger.org.hibernate=${log4j_logger_org_hibernate}
+log4j.logger.org.springframework=${log4j_logger_org_springframework}
+log4j.logger.java.sql.Connection=${log4j_logger_java_sql_Connection}
+log4j.appender.stdout=${log4j_appender_stdout}
+log4j.appender.stdout.layout=${log4j_appender_stdout_layout}
+log4j.appender.stdout.layout.ConversionPattern=${log4j_appender_stdout_layout_ConversionPattern}

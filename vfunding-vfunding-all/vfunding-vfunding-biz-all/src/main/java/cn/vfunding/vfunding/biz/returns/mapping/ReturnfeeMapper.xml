@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.returns.dao.ReturnfeeMapper">
+	<resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.returns.model.Returnfee">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="user_type" property="userType" jdbcType="INTEGER" />
+		<result column="return_fee" property="returnFee" jdbcType="DECIMAL" />
+		<result column="commission_fee" property="commissionFee" jdbcType="DECIMAL" />
+		<result column="addtime" property="addtime" jdbcType="VARCHAR" />
+		<result column="addip" property="addip" jdbcType="VARCHAR" />
+		<result column="rtype" property="rtype" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, user_type, return_fee, commission_fee, addtime, addip,rtype
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from rd_returnfee
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectByUserTypeId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from rd_returnfee
+		where user_type = #{id,jdbcType=INTEGER}
+	</select>
+
+	<select id="selectReturnfeeByMonth" resultType="java.math.BigDecimal" parameterType="java.lang.Integer">
+		select a.return_fee from rd_returnfee_month a
+		where
+		a.monthNum=#{monthLimit}
+	</select>
+
+	<select id="selectAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from rd_returnfee
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from rd_returnfee
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="cn.vfunding.vfunding.biz.returns.model.Returnfee">
+		insert into rd_returnfee (id, user_type, return_fee,
+		commission_fee, addtime, addip,rtype
+		)
+		values
+		(#{id,jdbcType=INTEGER}, #{userType,jdbcType=INTEGER},
+		#{returnFee,jdbcType=DECIMAL},
+		#{commissionFee,jdbcType=DECIMAL}, #{addtime,jdbcType=VARCHAR},
+		#{addip,jdbcType=VARCHAR},
+		#{rtype}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.returns.model.Returnfee">
+		insert into rd_returnfee
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="userType != null">
+				user_type,
+			</if>
+			<if test="returnFee != null">
+				return_fee,
+			</if>
+			<if test="commissionFee != null">
+				commission_fee,
+			</if>
+			<if test="addtime != null">
+				addtime,
+			</if>
+			<if test="addip != null">
+				addip,
+			</if>
+			<if test="rtype != null">
+				rtype,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="userType != null">
+				#{userType,jdbcType=INTEGER},
+			</if>
+			<if test="returnFee != null">
+				#{returnFee,jdbcType=DECIMAL},
+			</if>
+			<if test="commissionFee != null">
+				#{commissionFee,jdbcType=DECIMAL},
+			</if>
+			<if test="addtime != null">
+				#{addtime,jdbcType=VARCHAR},
+			</if>
+			<if test="addip != null">
+				#{addip,jdbcType=VARCHAR},
+			</if>
+			<if test="rtype != null">
+				#{rtype ,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.returns.model.Returnfee">
+		update rd_returnfee
+		<set>
+			<if test="userType != null">
+				user_type = #{userType,jdbcType=INTEGER},
+			</if>
+			<if test="returnFee != null">
+				return_fee = #{returnFee,jdbcType=DECIMAL},
+			</if>
+			<if test="commissionFee != null">
+				commission_fee = #{commissionFee,jdbcType=DECIMAL},
+			</if>
+			<if test="addtime != null">
+				addtime = #{addtime,jdbcType=VARCHAR},
+			</if>
+			<if test="addip != null">
+				addip = #{addip,jdbcType=VARCHAR},
+			</if>
+			<if test="rtype != null">
+				rtype = #{rtype,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.returns.model.Returnfee">
+		update rd_returnfee
+		set user_type = #{userType,jdbcType=INTEGER},
+		return_fee =
+		#{returnFee,jdbcType=DECIMAL},
+		commission_fee = #{commissionFee,jdbcType=DECIMAL},
+		addtime = #{addtime,jdbcType=VARCHAR},
+		addip =
+		#{addip,jdbcType=VARCHAR},
+		rtype =#{rtype}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>

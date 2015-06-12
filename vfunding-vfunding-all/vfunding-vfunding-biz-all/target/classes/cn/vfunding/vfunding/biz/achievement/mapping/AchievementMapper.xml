@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.achievement.dao.AchievementMapper" >
+  <resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.achievement.model.Achievement" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="squad" property="squad" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="condition" property="condition" jdbcType="DECIMAL" />
+    <result column="award" property="award" jdbcType="VARCHAR" />
+    <result column="award_value" property="awardValue" jdbcType="DECIMAL" />
+    <result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, squad,type, `condition`, award, award_value, addtime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from vf_achievement
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from vf_achievement
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.vfunding.biz.achievement.model.Achievement" >
+    insert into vf_achievement (id, name, squad, 
+      type, `condition`, award, 
+      award_value, addtime)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{squad,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{condition,jdbcType=DECIMAL}, #{award,jdbcType=VARCHAR}, 
+      #{awardValue,jdbcType=DECIMAL}, #{addtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.achievement.model.Achievement" useGeneratedKeys="true" keyProperty="id">
+    insert into vf_achievement
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="squad != null" >
+        squad,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="condition != null" >
+        `condition`,
+      </if>
+      <if test="award != null" >
+        award,
+      </if>
+      <if test="awardValue != null" >
+        award_value,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="squad != null" >
+        #{squad,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="condition != null" >
+        #{condition,jdbcType=DECIMAL},
+      </if>
+      <if test="award != null" >
+        #{award,jdbcType=VARCHAR},
+      </if>
+      <if test="awardValue != null" >
+        #{awardValue,jdbcType=DECIMAL},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.achievement.model.Achievement" >
+    update vf_achievement
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="squad != null" >
+        squad = #{squad,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="condition != null" >
+        `condition` = #{condition,jdbcType=DECIMAL},
+      </if>
+      <if test="award != null" >
+        award = #{award,jdbcType=VARCHAR},
+      </if>
+      <if test="awardValue != null" >
+        award_value = #{awardValue,jdbcType=DECIMAL},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.achievement.model.Achievement" >
+    update vf_achievement
+    set name = #{name,jdbcType=VARCHAR},
+      squad = #{squad,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      `condition` = #{condition,jdbcType=DECIMAL},
+      award = #{award,jdbcType=VARCHAR},
+      award_value = #{awardValue,jdbcType=DECIMAL},
+      addtime = #{addtime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

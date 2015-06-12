@@ -1,0 +1,195 @@
+@CHARSET "UTF-8";
+*{
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	list-style: none;
+	font-family: "微软雅黑";
+	text-shadow: none;
+}
+.page{
+	max-width: 640px;
+	min-width: 320px;
+	width:100%;
+	margin:0 auto;
+	height: auto;
+	position: relative;
+}
+.top{
+	max-width: 640px;
+	min-width: 320px;
+	width:100%;
+	width: 100%;
+	background-color: #fff;
+	z-index: 999;
+	position: fixed;
+	top:0;
+}
+.top img {
+	float: left;
+}
+.return{
+	width: 50%;
+	display: block;
+	text-align: center;
+	position: absolute;
+	left:0;
+	top:0;
+	height: 40px;
+	cursor: pointer;
+} 
+.top span{
+	position: absolute;
+	top:20%;
+	left:2%;
+}
+.introduction{
+	width: 95%;
+	height: auto;
+	overflow: hidden;
+	padding: 15px 2.5%;
+	margin-top: 41px;
+	background-color: #fff;
+}
+.introduction span{
+	overflow: hidden;
+	display: block;
+	float: left;
+	width: 50%;
+}
+.introduction span p{
+	display: block;
+	overflow: hidden;
+	margin-top: 10px;
+}
+.introduction span h1{
+	color: red;
+	font-size: 30px;
+}
+.introduction span ul{
+	overflow: hidden;
+}
+.introduction span li{
+	float: right;
+	text-align: right;
+	width: 100%;
+	line-height: 40px;
+}
+.right font{
+	color: red;
+}
+.pro{
+	width: 100%;
+	height: 12px;
+	background-color: #ccc;
+	margin-top: 75px;
+	border-radius:5px;
+}
+.pro2{
+	width: 50%;
+	height: 12px;
+	background-color: #fdb82c;
+	margin-top: 85px;
+	border-radius:5px;
+}
+.left{
+	width: 50%;
+	overflow: hidden;
+	text-align: left;
+	float: left;
+	margin-top:10px;
+}
+.right{
+	width: 50%;
+	overflow: hidden;
+	text-align: right;
+	float: right;
+	margin-top: 10px;
+}
+.text{
+	width: 100%;
+	text-align: center;
+	overflow: hidden;
+	padding-top: 10px;
+	font-size: 14px;
+	color: #666;
+}
+.text font{
+	color: red;
+}
+.fl2{
+	width: 100%;
+	overflow: hidden;
+	line-height: 40px;
+}
+.explain{
+	width: 100%;
+	overflow: hidden;
+}
+.explain li{
+	width: 99%;
+	border-bottom: 1px solid #f0f0f0;
+	line-height: 40px;
+	color: #666;
+	position: relative;
+	padding-left: 1%;
+}
+.explain li span{
+	float: right;
+	text-align: right;
+	margin-right: 15px;
+	width: 70%;
+}
+.explain li img {
+	position: absolute;
+	right: 1px;
+	bottom:1px;
+}
+.explain li a{
+	overflow: hidden;
+	cursor: pointer;
+	width: 100%;
+	display: block;
+	color: #666;
+}
+.bu{
+	width: 100%;
+	height: 80px;
+}
+.foot{
+	max-width:640px;
+	min-width:320px;
+	width: 100%;
+	overflow: hidden;
+	position: fixed;
+	bottom: 0;
+	background-color: #fff;
+	z-index: 999;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-top: 1px solid #f0f0f0;
+}
+.img{
+	margin-left: 2.5%;
+	cursor: pointer;
+}
+.line{
+	width: 80%;
+	float:right;
+	margin-right: 2.5%;
+	background-color: #fdb82c;
+	text-align: center;
+	color: #fff;
+	font-size: 18px;
+	line-height: 40px;
+	border-radius:5px;
+	cursor: pointer;
+}
+.title{
+	width: 95%;
+	overflow: hidden;
+	line-height: 30px;
+	background-color: #c9c9c9;
+	padding: 0 2.5%;
+	font-weight: bold;
+}

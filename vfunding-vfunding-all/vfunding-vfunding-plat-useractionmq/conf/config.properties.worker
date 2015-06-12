@@ -1,0 +1,10 @@
+jms.address=${jms.address}
+jms.open=${jms.open}
+file.server=${file.server}
+email.server=${email.server}
+sms.server=${sms.server}
+voice.server=${voice.server}
+activity.server=${activity.server}
+cjd.server=${cjd.server}
+sina.server=${sina.server}
+redis.address=${redis.address}

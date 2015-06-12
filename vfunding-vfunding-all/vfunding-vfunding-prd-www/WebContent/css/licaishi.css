@@ -1,0 +1,267 @@
+@charset "utf-8";
+/* CSS Document */
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+@import url(accountLeft.css);
+.myAccount{  height:940px; margin:20px 0; clear:both;}
+
+/*****账户总览右栏***/
+.rechargeTakeCash{ width:820px; height:940px; }
+
+.rT{ height:940px;  background:#fff;}
+.rTWrap{ width:790px; height:940px; margin:0 auto; overflow:hidden; position:relative;}
+.txTop{ height:58px;overflow:hidden; }
+b.midLine{ height:1px; font-size:0; width:100%; background:#eeeeee; position:absolute; top:28px; left:0;  overflow:hidden;}
+.txTop h2,.excel{ height:22px; line-height:22px; position:absolute;background-color:#fff;}
+.txTop h2{ top:17px; left:24px; font-size:20px; color:#0065b4; padding:0 6px; }
+.licaishiManage{  height:40px; margin-bottom:20px; }
+.licaishiManage li{ width:158px; height:40px; line-height:40px; text-align:center; margin-right:2px; float:left;  cursor:pointer;}
+.lcs-content{
+   display: none;
+}
+
+h3.lcs-rule{
+    color: #0065b4;
+    font-weight: normal;
+    font-size: 18px;
+}
+
+.lcs-rule-item{
+    line-height: 28px;
+}
+
+.pl10{
+    padding-left: 10px;
+}
+.lcs-step{
+    margin: 20px 0 0 20px;
+}
+
+.lcs-demo{
+    padding: 10px 0;
+    line-height: 24px;
+    margin-bottom: 10px;
+}
+
+.demo{
+    margin-top: 30px;
+}
+.range-item{
+    margin-right: 10px;
+}
+.light-gray{
+    background-color: #f5f7f8;
+}
+.light-blue{
+    background-color: #00a0e9;
+    color: #fff;
+}
+.mid-blue{
+    background-color: #6dabda;
+    color: #fff;
+}
+
+table{
+    border-collapse: collapse;
+}
+.range-item table td{
+    text-align: center;
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    color: #888;
+}
+.mid-blue td{
+	background-color: #6dabda;
+    color: #fff;
+}
+.table-title{
+    padding: 10px 0 4px;
+}
+.table-title-left{
+     color: #00a0e9;
+    font-size: 18px;
+ }
+.table-title-right{
+   line-height: 30px;
+}
+.return-detail{
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+.last-month em,.all-return em{
+    color: #888;
+    font-style: normal;
+}
+.last-month span,.all-return span{
+    color: #ff8636;
+    font-size: 24px;
+}
+.all-return{
+    margin-left: 50px;
+}
+a.look-into{
+    color: #00a0e9;
+    margin-left: 40px;
+    margin-top: 10px;
+}
+.erweima-pic{
+    width: 182px;
+    height: 194px;
+    border: 2px solid #ccc;
+}
+
+.ewm{
+    width: 122px;
+    height: 122px;
+    margin:28px 28px 0;
+}
+.i-invite{
+    color: #00a0e9;
+}
+.erweima p{
+    padding: 10px 0 20px;
+}
+.lcs-invite{
+    padding-left: 20px;
+}
+.return-detail{
+    padding-left: 20px;
+}
+a.yulan{
+    display: block;
+    width: 64px;
+    height: 26px;
+    line-height: 26px;
+    text-align: center;
+    margin: 10px auto;
+    color: #fff;
+    background-color: #00a0e9;
+    cursor: pointer;
+}
+.friend{
+    margin-top: 20px;
+}
+.friend p{
+    line-height: 30px;
+}
+.tel{
+    color: #00a0e9;
+    font-size: 24px;
+    font-weight: bold;
+}
+.copy{
+    margin-top: 20px;
+}
+
+a.btn-copy{
+    padding: 5px 10px;
+    color: #fff;
+    background-color: #00a0e9;
+    cursor: pointer;
+}
+.copy p,.share p{
+    height: 30px;
+    line-height: 30px;
+    margin-bottom: 10px;
+
+}
+
+.copy-box{
+    height: 32px;
+}
+#url{
+    width: 500px;
+    height: 30px;
+    padding: 0 5px;
+    vertical-align: middle;
+}
+.share{
+    margin-top: 20px;
+}
+
+
+.bdsharebuttonbox a span{
+    font-size: 14px;
+    padding:0 10px;
+}
+
+.bdshare-button-style0-24 a, .bdshare-button-style0-24 .bds_more{
+    margin-top: 20px;
+    margin-right: 100px;
+}
+
+#poplayer{
+    width:100%;
+    opacity: 0.5;
+    filter:alpha(opacity=50);
+
+}
+.poplayer-box{
+    width: 309px;
+    height: 580px;
+    position: absolute;
+    top:50%;
+    margin-top: -290px;
+    left: 50%;
+    margin-left: -155px;
+    background: url(../images/account/iphone.png) no-repeat;
+    z-index: 9999;
+}
+
+.btn-close{
+    position: absolute;
+    right: 0;
+    top:0;
+    width: 36px;
+    height: 36px;
+    background: url(../images/account/close.png) no-repeat;
+    cursor: pointer;
+    z-index: 9999;
+}
+
+
+.tipcion {
+    background: url("../images/account/tipicon.png") no-repeat;
+}
+
+.showTip {
+    background-position: 0 0;
+    display: inline-block;
+    height: 16px;
+    margin: -4px 0 0 4px;
+    overflow: hidden;
+    vertical-align: middle;
+    width: 16px;
+}
+
+span.task{
+    color: #00a0e9;
+}
+
+
+.myFriend table{ margin-bottom:20px;}
+.myFriend td{ text-align:center; border-top:1px solid #eee;}
+
+.friendSearch{ height:30px; margin:30px 0 10px; }
+input#friendSearch{ width:202px; padding:6px 5px; border:1px solid #ccc;}
+.friendTable{margin-top:10px;}
+#myFriend{ overflow:hidden;}
+#myFriend td{ border-bottom:1px solid #eee;}
+.friendBg{ background:#f5f7f8;}
+
+a.get-task{
+    background:#00a0e9;
+    border-radius: 3px;
+    color: #fff;
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    margin-top: 40px;
+    text-align: center;
+    width: 140px;
+}
+
+.kill{
+	color: #00a0e9;
+}

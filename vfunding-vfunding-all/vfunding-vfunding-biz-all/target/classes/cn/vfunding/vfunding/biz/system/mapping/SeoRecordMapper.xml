@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.system.dao.SeoRecordMapper" >
+  <resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.system.model.SeoRecord" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="jspName" property="jspname" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="charset" property="charset" jdbcType="VARCHAR" />
+    <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.vfunding.vfunding.biz.system.model.SeoRecordWithBLOBs" extends="BaseResultMap" >
+    <result column="description" property="description" jdbcType="LONGVARCHAR" />
+    <result column="keywords" property="keywords" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, type, url, jspName, title, charset, updateTime
+  </sql>
+  <sql id="Blob_Column_List" >
+    description, keywords
+  </sql>
+  
+  
+  <!-- 后台列表 -->
+  <select id="selectSystemSeoRecordListPage" resultMap="ResultMapWithBLOBs" parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from vf_seo_record
+    where 1=1
+    <if test="entity.type != null and entity.type != ''">
+    and type =#{entity.type,jdbcType=INTEGER}
+    </if>
+    <if test="entity.url != null and entity.url != ''">
+    and url like concat('%',#{entity.url,jdbcType=VARCHAR},'%')
+    </if>
+    <if test="entity.title != null and entity.title != ''">
+    and title like concat('%',#{entity.title,jdbcType=VARCHAR},'%')
+    </if>
+    order by updateTime desc
+  </select>
+  
+  <select id="selectListByUrl" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from vf_seo_record
+    where url like concat('%',#{url,jdbcType=VARCHAR},'%')
+    order by updateTime desc
+  </select>
+  <select id="selectUniqueByUrl" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from vf_seo_record
+    where url = #{url,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from vf_seo_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from vf_seo_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.vfunding.biz.system.model.SeoRecordWithBLOBs" >
+    insert into vf_seo_record (id, type, url, 
+      jspName, title, charset, 
+      updateTime, description, keywords
+      )
+    values (#{id,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, 
+      #{jspname,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{charset,jdbcType=VARCHAR}, 
+      #{updatetime,jdbcType=TIMESTAMP}, #{description,jdbcType=LONGVARCHAR}, #{keywords,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.system.model.SeoRecordWithBLOBs" >
+    insert into vf_seo_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="jspname != null" >
+        jspName,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="charset != null" >
+        charset,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="keywords != null" >
+        keywords,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="jspname != null" >
+        #{jspname,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="charset != null" >
+        #{charset,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="keywords != null" >
+        #{keywords,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.system.model.SeoRecordWithBLOBs" >
+    update vf_seo_record
+    <set >
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="jspname != null" >
+        jspName = #{jspname,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="charset != null" >
+        charset = #{charset,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="keywords != null" >
+        keywords = #{keywords,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.vfunding.vfunding.biz.system.model.SeoRecordWithBLOBs" >
+    update vf_seo_record
+    set type = #{type,jdbcType=INTEGER},
+      url = #{url,jdbcType=VARCHAR},
+      jspName = #{jspname,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      charset = #{charset,jdbcType=VARCHAR},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      description = #{description,jdbcType=LONGVARCHAR},
+      keywords = #{keywords,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.system.model.SeoRecord" >
+    update vf_seo_record
+    set type = #{type,jdbcType=INTEGER},
+      url = #{url,jdbcType=VARCHAR},
+      jspName = #{jspname,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      charset = #{charset,jdbcType=VARCHAR},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,58 @@
+@charset "utf-8";
+/* CSS Document */
+#header{ height:116px; background:#fff;box-shadow:0 0 5px rgba(0,0,0,0.3);}
+#header_top{ height:32px; background-color:#E2E6E8;}
+#tip_bar{ width:1000px; height:32px; margin:0 auto; }
+#tip_left{ width:450px; height:32px;}
+.welcome,.hotline,.host_time{ display:inline-block; line-height:32px;  margin-right:10px;}
+.welcome,#tip_right ul li a:hover{ color:#00a0e9; }
+
+#tip_right { height:32px;}
+#tip_right ul{  height:14px; margin:9px 0; }
+a.base-color{color:#00a0e9;}
+
+#tip_right ul li{  line-height:14px; text-align:center; color:#444444; float:left;cursor:pointer;}
+.border_right{ border-right:2px solid #a6a6a6;}
+.pd20{ padding:0 20px;}
+.pd30{ padding:0 30px;}
+#help{ text-align:right; padding-left:30px; padding-right:0;}
+#logo_navs{ width:1000px; height:84px; margin:0 auto;}
+.logo_img{ width:322px; height:84px;}
+.nav{ width:678px; height:32px; margin:46px 0 0; }
+.nav_ul{ height:32px;}
+.nav_ul li{ height:32px; padding:0 20px; line-height:22px; text-align:center; font-size:18px;  float:left; position:relative; z-index:999; }
+
+.nav_ul li a.font_color{ display:block;  }
+.nav_ul li a.font_color:hover{ color:#00a0e9;}
+#index{width:70px;}
+.nav_items{ width:108px; visibility:hidden; position: absolute; left:8px; top:28px; z-index:9999;}
+
+.box{ width:108px; background: #fff; position: relative; top:10px; left:-10px; border-radius:4px; border:1px solid #bebebe;}
+.arrow{ width:0; height:0; border-width:10px; border-style:dashed dashed solid; border-color:transparent  transparent #bebebe transparent; display:block; position:absolute; top:-20px; left:45px; }
+.arrow i{width:0; height:0; position:absolute; border-width:10px;border-style:dashed dashed solid; display:block; left:-10px; top:-9px; border-color:transparent transparent #fff transparent; }
+.nav_ul li:hover div,.nav_ul li a:hover div{ visibility:visible;}
+.dropdown{ width:100px; margin:0 auto; padding:4px 0;}
+.dropdown a{ height:34px; display:block; line-height:34px; background:#fff; color:#444; font-size:12px;}
+.dropdown a:hover{ background:#00a0e9; color:#fff;}
+#login_after_right{ height:32px;}
+#login_after_right ul{ height:14px; margin:9px 0;}
+
+#login_after_right ul li{  line-height:14px; text-align:center; color:#444444; float:left; cursor:pointer;}
+#login_after_right ul li a{ cursor:pointer;}
+#login_after_right ul li a:hover{ color:#00a0e9;}
+#login_after_left{ width:350px;}
+.ww{ background:url(../images/header/ww.png) no-repeat;}
+.attention{ display:block; width:110px; height:32px;   float:left; position:relative; left:20px;}
+.attention a{ display:inline-block;}
+a.iso-enterprise{display:inline-block;margin:7px 0 0 40px;}
+a.iso-enterprise:hover{color:#00a0e9;}
+a.we{ position:absolute; top:7px; left:0;}
+.hotline{ float:left; position:relative; text-indent:16px;color:#444444;}
+.sina-weibo{ width:16px; height:13px; position:absolute; left:60px; top:9px; background-position:0 -28px; }
+.sina-weibo:hover{ background-position:0 -41px;}
+.tt-weixin{width:18px; height:14px; position:absolute; left:86px; top:9px; background-position:0 0; }
+.tt-weixin:hover{ background-position:0 -14px;}
+
+.login_after_left{ width:450px;}
+.hotline i.tel-icon{ width:10px; height:14px; background-position:0 -54px;  position:absolute; left:0; top:9px;}
+

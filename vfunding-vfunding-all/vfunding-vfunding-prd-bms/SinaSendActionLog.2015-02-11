@@ -1,0 +1,5 @@
+2015-02-11 22:32:41,510 (AccountCashSinaServiceImpl.java:54) INFO [qtp221200805-28] *****[sina 9086  提现   开始]
+2015-02-11 22:33:48,709 (AccountCashSinaServiceImpl.java:91) INFO [qtp221200805-28] 发送请求
+2015-02-11 22:34:06,038 (AccountCashSinaServiceImpl.java:97) INFO [qtp221200805-28] 请求完毕
+2015-02-11 22:34:10,830 (AccountCashSinaServiceImpl.java:130) INFO [qtp221200805-28] #####[sina 9086 提现 失败]:[查询银行卡详细信息失败。原因：001无查询结果]
+2015-02-11 22:34:10,831 (AccountCashSinaServiceImpl.java:145) INFO [qtp221200805-28] *****[sina 9086 提现 结束]

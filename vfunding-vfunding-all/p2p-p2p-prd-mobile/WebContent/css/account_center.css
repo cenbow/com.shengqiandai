@@ -1,0 +1,137 @@
+@CHARSET "UTF-8";
+*{
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+}
+
+.top{
+	width: 100%;
+	position: fixed;
+	top:0;
+	background-color: #fff;
+	z-index: 999;
+}
+.top  a{
+	width: 100%;
+	display: block;
+	text-align: center;
+	border-bottom: thin ridge #b4b4b4;
+	padding-bottom: 0.5em;
+	padding-top: 0.5em;
+} 
+.top span{
+	position: absolute;
+	top:20%;
+	left:2%;
+}
+.gei{
+	width: 100%;
+	height: 2em;
+	background-color: #eeeeee;
+	margin-top: 2.3em;
+}
+.form{
+	width: 100%;
+	position:absolute;
+	top:4.2em;
+
+}
+.form1{
+	width: 100%;
+	position:absolute;
+	top:18.4em;
+
+}
+.form span{
+	position: absolute;
+	top:20%;
+	left: 3%;
+}
+.form1 span{
+	position: absolute;
+	top:20%;
+	left: 3%;
+}
+.form h4{
+	margin-left: 12%;
+	font-size: 18px;
+}
+.form1 h4{
+	margin-left: 12%;
+	font-size: 18px;
+}
+.form li{
+	border-bottom: thin ridge #ccc;
+	background-color: #fff;
+	position: relative;
+}
+.individual{
+	padding-bottom: 0.8em;
+	padding-top: 0.8em;
+}
+.account{
+	width: 85%;
+	margin-left:12%;
+	font-size: 16px;
+	padding-bottom: 0.5em;
+	padding-top:0.5em;
+	color: #666666;
+}
+.right{
+	float: right;
+}
+.account a{
+	width: 100%;
+	height:100%;
+	display: block;
+}
+
+.get{
+	width: 100%;
+	height: 2em;
+	background-color: #eeeeee;
+	margin-top: 12.1em;
+}
+.form1 li{
+	border-bottom: thin ridge #ccc;
+	background-color: #fff;
+	position: relative;
+}
+.return{
+	width: 100%;
+	background-color: #eeeeee;
+	position: absolute;
+	top:28.3em;
+	padding-top: 2.5em;
+	padding-bottom: 3.5em;
+}
+.return a{
+	display:block;
+	width: 90%;
+	margin-left: 5%;
+	background-color: #fdb82c;
+	text-align: center;
+	font-size: 20px;
+	text-shadow: none;
+	line-height: 2.2em;
+	border-radius:0.5em;
+}
+.form1 li  a{
+	width: 100%;
+	height:100%;
+	display: block;
+	position: absolute;
+	top:0;
+	left: 0;
+	cursor: pointer;
+}
+.form li a{
+	width: 100%;
+	height:100%;
+	display: block;
+	position: absolute;
+	top:0;
+	left: 0;
+	cursor: pointer;
+}

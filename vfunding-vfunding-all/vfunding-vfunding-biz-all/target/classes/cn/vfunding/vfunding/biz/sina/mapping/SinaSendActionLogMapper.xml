@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.sina.dao.SinaSendActionLogMapper" >
+  <resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.sina.model.SinaSendActionLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="action" property="action" jdbcType="VARCHAR" />
+    <result column="responseMsg" property="responsemsg" jdbcType="VARCHAR" />
+    <result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+    <result column="balance" property="balance" jdbcType="DECIMAL" />
+    <result column="available_balance" property="availableBalance" jdbcType="DECIMAL" />
+    <result column="bonus" property="bonus" jdbcType="VARCHAR" />
+    <result column="bonus1" property="bonus1" jdbcType="DECIMAL" />
+    <result column="bonus2" property="bonus2" jdbcType="DECIMAL" />
+    <result column="bonus3" property="bonus3" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, action, responseMsg, addtime, balance, available_balance, bonus, bonus1, 
+    bonus2, bonus3
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from vf_sina_send_action_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from vf_sina_send_action_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.vfunding.biz.sina.model.SinaSendActionLog" >
+    insert into vf_sina_send_action_log (id, user_id, action, 
+      responseMsg, addtime, balance, 
+      available_balance, bonus, bonus1, 
+      bonus2, bonus3)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{action,jdbcType=VARCHAR}, 
+      #{responsemsg,jdbcType=VARCHAR}, #{addtime,jdbcType=TIMESTAMP}, #{balance,jdbcType=DECIMAL}, 
+      #{availableBalance,jdbcType=DECIMAL}, #{bonus,jdbcType=VARCHAR}, #{bonus1,jdbcType=DECIMAL}, 
+      #{bonus2,jdbcType=DECIMAL}, #{bonus3,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.sina.model.SinaSendActionLog" >
+    insert into vf_sina_send_action_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="action != null" >
+        action,
+      </if>
+      <if test="responsemsg != null" >
+        responseMsg,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="balance != null" >
+        balance,
+      </if>
+      <if test="availableBalance != null" >
+        available_balance,
+      </if>
+      <if test="bonus != null" >
+        bonus,
+      </if>
+      <if test="bonus1 != null" >
+        bonus1,
+      </if>
+      <if test="bonus2 != null" >
+        bonus2,
+      </if>
+      <if test="bonus3 != null" >
+        bonus3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="action != null" >
+        #{action,jdbcType=VARCHAR},
+      </if>
+      <if test="responsemsg != null" >
+        #{responsemsg,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="balance != null" >
+        #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="availableBalance != null" >
+        #{availableBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="bonus != null" >
+        #{bonus,jdbcType=VARCHAR},
+      </if>
+      <if test="bonus1 != null" >
+        #{bonus1,jdbcType=DECIMAL},
+      </if>
+      <if test="bonus2 != null" >
+        #{bonus2,jdbcType=DECIMAL},
+      </if>
+      <if test="bonus3 != null" >
+        #{bonus3,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.sina.model.SinaSendActionLog" >
+    update vf_sina_send_action_log
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="action != null" >
+        action = #{action,jdbcType=VARCHAR},
+      </if>
+      <if test="responsemsg != null" >
+        responseMsg = #{responsemsg,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="balance != null" >
+        balance = #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="availableBalance != null" >
+        available_balance = #{availableBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="bonus != null" >
+        bonus = #{bonus,jdbcType=VARCHAR},
+      </if>
+      <if test="bonus1 != null" >
+        bonus1 = #{bonus1,jdbcType=DECIMAL},
+      </if>
+      <if test="bonus2 != null" >
+        bonus2 = #{bonus2,jdbcType=DECIMAL},
+      </if>
+      <if test="bonus3 != null" >
+        bonus3 = #{bonus3,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.sina.model.SinaSendActionLog" >
+    update vf_sina_send_action_log
+    set user_id = #{userId,jdbcType=INTEGER},
+      action = #{action,jdbcType=VARCHAR},
+      responseMsg = #{responsemsg,jdbcType=VARCHAR},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      balance = #{balance,jdbcType=DECIMAL},
+      available_balance = #{availableBalance,jdbcType=DECIMAL},
+      bonus = #{bonus,jdbcType=VARCHAR},
+      bonus1 = #{bonus1,jdbcType=DECIMAL},
+      bonus2 = #{bonus2,jdbcType=DECIMAL},
+      bonus3 = #{bonus3,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

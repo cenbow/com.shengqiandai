@@ -1,0 +1,84 @@
+@charset "utf-8";
+/* CSS Document */
+
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+
+.iso{
+
+    width: 940px;
+    margin: 0 auto 30px;
+    background: #fff;
+    position: relative;
+    padding: 0 30px;
+
+}
+
+.iso-top{
+    height: 646px;
+    width: 1273px;
+    position:relative;
+    z-index: 999;
+    background: url("../images/huodong/iso.png") center top no-repeat;
+    margin-left: -136px;
+}
+.iso-info{
+     position: absolute;
+    right: 152px;
+    top:300px;
+    width: 380px;
+
+}
+
+li.font24{
+    font-size: 24px;
+    color: #f55600;
+    padding: 6px 0;
+}
+li.font28,li.font42{
+    padding: 6px 0;
+    color: #e02c03;
+}
+li.font28{
+    font-size: 28px;
+}
+
+li.font42{
+    font-size: 42px;
+}
+
+.iso-cnt{
+    overflow: hidden;
+    margin: 0 auto;
+    background: #fff;
+    margin-top: 58px;
+    padding: 30px 0;
+    border-top: 1px dashed #ccc;
+    border-bottom: 1px dashed #ccc;
+    position: relative;
+    z-index: 10;
+}
+.iso-cnt-license{
+    line-height: 30px;
+    font-size: 16px;
+}
+
+.iso-cnt img{ display: block; margin: 32px 0 0;}
+.iso-other{
+    padding: 40px 0;
+}
+
+.iso-last{
+    margin-top: 20px;
+}
+.iso-other-left{
+    width: 776px;
+}
+.iso-other-right{
+    width: 120px;
+}
+.iso-other-left p{
+    line-height: 36px;
+    font-size: 18px;
+}

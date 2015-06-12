@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.borrow.dao.BorrowAmountMapper" >
+  <resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.borrow.model.BorrowAmount" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="account" property="account" jdbcType="INTEGER" />
+    <result column="newaccount" property="newaccount" jdbcType="DECIMAL" />
+    <result column="oldaccount" property="oldaccount" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="addtime" property="addtime" jdbcType="VARCHAR" />
+    <result column="verify_remark" property="verifyRemark" jdbcType="VARCHAR" />
+    <result column="verify_time" property="verifyTime" jdbcType="VARCHAR" />
+    <result column="verify_user" property="verifyUser" jdbcType="INTEGER" />
+    <result column="addip" property="addip" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.vfunding.vfunding.biz.borrow.model.BorrowAmountWithBLOBs" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+    <result column="remark" property="remark" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, type, account, newaccount, oldaccount, status, addtime, verify_remark, 
+    verify_time, verify_user, addip
+  </sql>
+  <sql id="Blob_Column_List" >
+    content, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from rd_borrow_amount
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from rd_borrow_amount
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.vfunding.biz.borrow.model.BorrowAmountWithBLOBs" >
+    insert into rd_borrow_amount (id, user_id, type, 
+      account, newaccount, oldaccount, 
+      status, addtime, verify_remark, 
+      verify_time, verify_user, addip, 
+      content, remark)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, 
+      #{account,jdbcType=INTEGER}, #{newaccount,jdbcType=DECIMAL}, #{oldaccount,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{addtime,jdbcType=VARCHAR}, #{verifyRemark,jdbcType=VARCHAR}, 
+      #{verifyTime,jdbcType=VARCHAR}, #{verifyUser,jdbcType=INTEGER}, #{addip,jdbcType=VARCHAR}, 
+      #{content,jdbcType=LONGVARCHAR}, #{remark,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.borrow.model.BorrowAmountWithBLOBs" >
+    insert into rd_borrow_amount
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="account != null" >
+        account,
+      </if>
+      <if test="newaccount != null" >
+        newaccount,
+      </if>
+      <if test="oldaccount != null" >
+        oldaccount,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="verifyRemark != null" >
+        verify_remark,
+      </if>
+      <if test="verifyTime != null" >
+        verify_time,
+      </if>
+      <if test="verifyUser != null" >
+        verify_user,
+      </if>
+      <if test="addip != null" >
+        addip,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=INTEGER},
+      </if>
+      <if test="newaccount != null" >
+        #{newaccount,jdbcType=DECIMAL},
+      </if>
+      <if test="oldaccount != null" >
+        #{oldaccount,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyRemark != null" >
+        #{verifyRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyTime != null" >
+        #{verifyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyUser != null" >
+        #{verifyUser,jdbcType=INTEGER},
+      </if>
+      <if test="addip != null" >
+        #{addip,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.borrow.model.BorrowAmountWithBLOBs" >
+    update rd_borrow_amount
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null" >
+        account = #{account,jdbcType=INTEGER},
+      </if>
+      <if test="newaccount != null" >
+        newaccount = #{newaccount,jdbcType=DECIMAL},
+      </if>
+      <if test="oldaccount != null" >
+        oldaccount = #{oldaccount,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyRemark != null" >
+        verify_remark = #{verifyRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyTime != null" >
+        verify_time = #{verifyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyUser != null" >
+        verify_user = #{verifyUser,jdbcType=INTEGER},
+      </if>
+      <if test="addip != null" >
+        addip = #{addip,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.vfunding.vfunding.biz.borrow.model.BorrowAmountWithBLOBs" >
+    update rd_borrow_amount
+    set user_id = #{userId,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR},
+      account = #{account,jdbcType=INTEGER},
+      newaccount = #{newaccount,jdbcType=DECIMAL},
+      oldaccount = #{oldaccount,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      addtime = #{addtime,jdbcType=VARCHAR},
+      verify_remark = #{verifyRemark,jdbcType=VARCHAR},
+      verify_time = #{verifyTime,jdbcType=VARCHAR},
+      verify_user = #{verifyUser,jdbcType=INTEGER},
+      addip = #{addip,jdbcType=VARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR},
+      remark = #{remark,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.borrow.model.BorrowAmount" >
+    update rd_borrow_amount
+    set user_id = #{userId,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR},
+      account = #{account,jdbcType=INTEGER},
+      newaccount = #{newaccount,jdbcType=DECIMAL},
+      oldaccount = #{oldaccount,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      addtime = #{addtime,jdbcType=VARCHAR},
+      verify_remark = #{verifyRemark,jdbcType=VARCHAR},
+      verify_time = #{verifyTime,jdbcType=VARCHAR},
+      verify_user = #{verifyUser,jdbcType=INTEGER},
+      addip = #{addip,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

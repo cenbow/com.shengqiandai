@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>				
+				<value>file:./conf/*.properties</value>
+            </list>
+        </property>
+        <property name="fileEncoding"><value>UTF-8</value></property>
+    </bean>
+
+   <bean id="server" class="org.eclipse.jetty.server.Server" init-method="start" destroy-method="stop">  
+        <property name="connectors">  
+            <list>  
+                <bean id="Connector" class="org.eclipse.jetty.server.nio.SelectChannelConnector">  
+                    <property name="port">  <value>${http.port}</value> </property>
+                </bean>  
+            </list>  
+        </property>  
+        <property name="handler">  
+            <bean id="webAppContext" class="org.eclipse.jetty.webapp.WebAppContext"> 
+            	<property name="defaultsDescriptor" value="cn/vfunding/common/framework/jetty/webdefault.xml" />
+		    	<property name="contextPath"><value>${http.contextPath}</value></property>
+		    	<property name="resourceBase" value="WebContent" />
+		    </bean>
+        </property>  
+    </bean>
+</beans>

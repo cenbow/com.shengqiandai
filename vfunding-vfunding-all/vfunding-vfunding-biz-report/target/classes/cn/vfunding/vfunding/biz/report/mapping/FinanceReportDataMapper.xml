@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.report.dao.FinanceReportDataMapper">
+	<resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.report.model.FinanceReportData">
+		<result column="username" property="userName" />
+		<result column="addtime" property="addTime" />
+	</resultMap>
+	<resultMap id="BaseCashResultMap" type="cn.vfunding.vfunding.biz.report.model.FinanceReportData" extends="BaseResultMap">
+		<result column="hongbao" property="hongbao" />
+		<result column="cashfees" property="cashFees" />
+	</resultMap>
+	<resultMap id="BaseTenderResultMap" type="cn.vfunding.vfunding.biz.report.model.FinanceReportData" extends="BaseResultMap">
+		<result column="type_id" property="typeId" />
+		<result column="rateFee" property="rateFee" />
+		<result column="service_fees" property="serviceFees" />
+		<result column="guarantee_fees" property="guaranteeFees" />
+		<result column="borrow_name" property="borrowName"/>
+		<result column="repay_time" property="repayTime"/>
+		<result column="repay_yestime" property="repayYestime"/>
+		<result column="time_limit" property="timeLimit"/>
+	</resultMap>
+	<resultMap type="cn.vfunding.vfunding.biz.report.model.FinanceReportData" id="SumTenderFeeMap">
+		<result column="sumServiceFees" property="sumServiceFees" />
+		<result column="sumGuaranteeFees" property="sumGuaranteeFees" />
+		<result column="sumWaitServiceFees" property="sumWaitServiceFees" />
+		<result column="sumWaitGuaranteeFees" property="sumWaitGuaranteeFees" />
+	</resultMap>
+
+	<resultMap type="cn.vfunding.vfunding.biz.report.model.FinanceReportData" id="SumCashFeeMap">
+		<result column="sumCashFees" property="sumCashFees" />
+		<result column="sumHongbao" property="sumHongbao" />
+	</resultMap>
+
+	<resultMap id="BaseUserVipResultMap" type="cn.vfunding.vfunding.biz.report.model.FinanceReportData" extends="BaseResultMap">
+		<result column="vipmoney" property="vipMoney" />
+		<result column="vipremark" property="vipRemark" />
+	</resultMap>
+
+	<resultMap type="cn.vfunding.vfunding.biz.report.model.FinanceReportData" id="SumVipMoneyMap">
+		<result column="sumVipMoney" property="sumVipMoney" />
+	</resultMap>
+
+	<resultMap type="cn.vfunding.vfunding.biz.report.model.FinanceReportData" id="UserHongbaoMap">
+		<result column="username" property="userName" />
+		<result column="hongbao" property="hongbao" />
+	</resultMap>
+	<resultMap type="cn.vfunding.vfunding.biz.report.model.FinanceReportData" id="SumUserHongbaoMap">
+		<result column="sumHongbao" property="sumHongbao" />
+	</resultMap>
+	
+	<resultMap type="cn.vfunding.vfunding.biz.report.model.FinanceReportData" id="SumCashRedEnvelopeMap">
+		<result column="username" property="userName" />
+		<result column="unusedRedEnvelope" property="unusedRedEnvelope" />
+		<result column="usedRedEnvelope" property="usedRedEnvelope" />
+		<result column="expiredRedEnvelope" property="expiredRedEnvelope" />
+	</resultMap>
+
+	<resultMap type="cn.vfunding.vfunding.biz.report.model.FinanceReportData" id="SumUsedRedEnvelopeMap">
+		<result column="sumUsedRedEnvelope" property="sumUsedRedEnvelope" />
+	</resultMap>
+
+
+	<!-- 提现手续费 分页 -->
+	<select id="selectCashListPage" resultMap="BaseCashResultMap" parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select b.username,a.fee as
+		cashfees,a.hongbao,DATE_FORMAT(from_unixtime(a.addtime),'%Y-%m-%d
+		%H:%i:%s') as
+		addtime
+		from rd_account_cash a
+		left join
+		rd_user b on
+		a.user_id=b.user_id
+		where 1=1 and a.status=1
+		<if test="entity != null and entity.startTime!=null">
+			and
+			DATE_FORMAT(from_unixtime(a.addtime),'%Y%m%d')>=date_format(#{entity.startTime},'%Y%m%d')
+		</if>
+		<if test="entity != null and entity.endTime!=null">
+			and
+			<![CDATA[	DATE_FORMAT(from_unixtime(a.addtime),'%Y%m%d')<=date_format(#{entity.endTime},'%Y%m%d')  ]]>
+		</if>
+	</select>
+	<!-- 提现手续费 excel -->
+	<select id="selectCash" resultMap="BaseCashResultMap" parameterType="cn.vfunding.vfunding.biz.report.model.FinanceReportData">
+		select b.username,a.fee as
+		cashfees,a.hongbao,DATE_FORMAT(from_unixtime(a.addtime),'%Y-%m-%d
+		%H:%i:%s') as
+		addtime
+		from rd_account_cash a
+		left join
+		rd_user b on
+		a.user_id=b.user_id
+		where 1=1 and a.status=1
+		<if test="startTime!=null">
+			and
+			DATE_FORMAT(from_unixtime(a.addtime),'%Y%m%d')>=date_format(#{startTime},'%Y%m%d')
+		</if>
+		<if test="endTime!=null">
+			and
+			<![CDATA[	DATE_FORMAT(from_unixtime(a.addtime),'%Y%m%d')<=date_format(#{endTime},'%Y%m%d')  ]]>
+		</if>
+	</select>
+	<!-- 提现手续费,红包总数 -->
+	<select id="selectSumCashFee" resultMap="SumCashFeeMap" parameterType="cn.vfunding.vfunding.biz.report.model.FinanceReportData">
+		select round(sum(a.fee),2) as
+		sumCashfees,round(sum(a.hongbao),2) as sumHongbao
+		from
+		rd_account_cash a
+		where 1=1 and a.status=1
+		<if test="startTime!=null">
+			and
+			DATE_FORMAT(from_unixtime(a.addtime),'%Y%m%d')>=date_format(#{startTime},'%Y%m%d')
+		</if>
+		<if test="endTime!=null">
+			and
+			<![CDATA[	DATE_FORMAT(from_unixtime(a.addtime),'%Y%m%d')<=date_format(#{endTime},'%Y%m%d')  ]]>
+		</if>
+	</select>
+
+	<!-- 投资 平台服务费和担保服务费 -->
+	<select id="selectTenderListPage" resultMap="BaseTenderResultMap" parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select
+			b.username,
+			b.type_id,
+			ifnull(d.b_fee,0)-ifnull(c.return_fee,0) rateFee,
+			f.service_fees,
+			f.guarantee_fees,
+			DATE_FORMAT(from_unixtime(a.addtime),'%Y-%m-%d %H:%i:%s') addtime,
+			e.name borrow_name,
+			e.time_limit time_limit,
+			DATE_FORMAT(from_unixtime(f.repay_time),'%Y-%m-%d %H:%i:%s') repay_time,
+			case 
+				when f.repay_yestime is not null and f.repay_yestime &lt;&gt; '' then DATE_FORMAT(from_unixtime(f.repay_yestime),'%Y-%m-%d %H:%i:%s')
+				else f.repay_yestime
+			end repay_yestime
+		from 
+			rd_borrow_tender a 
+		left join 
+			rd_user b 
+		on 
+			a.user_id=b.user_id
+		left join
+			rd_returnfee c 
+		on 
+			b.type_id=c.user_type
+		left join 
+			rd_investors_fee d 
+		on 
+			a.borrow_id=d.b_id
+		left join
+			rd_borrow e
+		on 
+			a.borrow_id = e.id
+		right join
+			rd_borrow_collection f
+		on 
+			f.tender_id = a.id
+		where e.status=3
+		<if test="entity != null and entity.startTime!=null">
+			and
+			DATE_FORMAT(from_unixtime(a.addtime),'%Y%m%d')>=date_format(#{entity.startTime},'%Y%m%d')
+		</if>
+		<if test="entity != null and entity.endTime!=null">
+			and
+			<![CDATA[	DATE_FORMAT(from_unixtime(a.addtime),'%Y%m%d')<=date_format(#{entity.endTime},'%Y%m%d')  ]]>
+		</if>
+		<if test="entity != null and entity.repayYestimeStart!=null">
+			and
+			DATE_FORMAT(from_unixtime(f.repay_yestime),'%Y%m%d')>=date_format(#{entity.repayYestimeStart},'%Y%m%d')
+		</if>
+		<if test="entity != null and entity.repayYestimeEnd!=null">
+			and
+			<![CDATA[	DATE_FORMAT(from_unixtime(f.repay_yestime),'%Y%m%d')<=date_format(#{entity.repayYestimeEnd},'%Y%m%d')  ]]>
+		</if>
+	</select>
+
+	<select id="selectTender" resultMap="BaseTenderResultMap" parameterType="cn.vfunding.vfunding.biz.report.model.FinanceReportData">
+		select
+			b.username,
+			b.type_id,
+			ifnull(d.b_fee,0)-ifnull(c.return_fee,0) rateFee,
+			f.service_fees,
+			f.guarantee_fees,
+			DATE_FORMAT(from_unixtime(a.addtime),'%Y-%m-%d %H:%i:%s') addtime,
+			e.name borrow_name,
+			e.time_limit time_limit,
+			DATE_FORMAT(from_unixtime(f.repay_time),'%Y-%m-%d %H:%i:%s') repay_time,
+			case 
+				when f.repay_yestime is not null and f.repay_yestime &lt;&gt; '' then DATE_FORMAT(from_unixtime(f.repay_yestime),'%Y-%m-%d %H:%i:%s')
+				else f.repay_yestime
+			end repay_yestime
+		from 
+			rd_borrow_tender a 
+		left join 
+			rd_user b 
+		on 
+			a.user_id=b.user_id
+		left join
+			rd_returnfee c 
+		on 
+			b.type_id=c.user_type
+		left join 
+			rd_investors_fee d 
+		on 
+			a.borrow_id=d.b_id
+		left join
+			rd_borrow e
+		on 
+			a.borrow_id = e.id
+		right join
+			rd_borrow_collection f
+		on 
+			f.tender_id = a.id
+		where e.status=3
+		<if test="startTime!=null">
+			and
+			DATE_FORMAT(from_unixtime(a.addtime),'%Y%m%d')>=date_format(#{startTime},'%Y%m%d')
+		</if>
+		<if test="endTime!=null">
+			and
+			<![CDATA[	DATE_FORMAT(from_unixtime(a.addtime),'%Y%m%d')<=date_format(#{endTime},'%Y%m%d')  ]]>
+		</if>
+		<if test="repayYestimeStart!=null">
+			and
+			DATE_FORMAT(from_unixtime(f.repay_yestime),'%Y%m%d')>=date_format(#{repayYestimeStart},'%Y%m%d')
+		</if>
+		<if test="repayYestimeEnd!=null">
+			and
+			<![CDATA[	DATE_FORMAT(from_unixtime(f.repay_yestime),'%Y%m%d')<=date_format(#{repayYestimeEnd},'%Y%m%d')  ]]>
+		</if>
+	</select>
+	<select id="selectSumTenderFee" resultMap="SumTenderFeeMap" parameterType="cn.vfunding.vfunding.biz.report.model.FinanceReportData">
+		select 
+			round(sum(if(a.status=1,a.service_fees,0)),2) sumServiceFees,
+			round(sum(if(a.status=1,a.guarantee_fees,0)),2) sumGuaranteeFees,
+		  	round(sum(if(a.status=0,a.service_fees,0)),2) sumWaitServiceFees,
+			round(sum(if(a.status=0,a.guarantee_fees,0)),2) sumWaitGuaranteeFees
+		from 
+			rd_borrow_collection a
+		left join 
+			rd_borrow_tender b 
+		on 
+			a.tender_id=b.id
+		left join 
+			rd_borrow c 
+		on 
+			b.borrow_id=c.id
+		where 
+			c.status=3
+		<if test="startTime!=null">
+		and
+			DATE_FORMAT(from_unixtime(b.addtime),'%Y%m%d')>=date_format(#{startTime},'%Y%m%d')
+		</if>
+		<if test="endTime!=null">
+		and 
+			<![CDATA[	DATE_FORMAT(from_unixtime(b.addtime),'%Y%m%d')<=date_format(#{endTime},'%Y%m%d')  ]]>
+		</if>
+		<if test="repayYestimeStart!=null">
+		and
+			DATE_FORMAT(from_unixtime(a.repay_yestime),'%Y%m%d')>=date_format(#{repayYestimeStart},'%Y%m%d')
+		</if>
+		<if test="repayYestimeEnd!=null">
+		and 
+			<![CDATA[	DATE_FORMAT(from_unixtime(a.repay_yestime),'%Y%m%d')<=date_format(#{repayYestimeEnd},'%Y%m%d')  ]]>
+		</if>
+			
+		
+		
+	</select>
+
+	<!-- VIP消耗金额 -->
+	<select id="selectUserVipListPage" resultMap="BaseUserVipResultMap" parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select b.userName as username,a.vip_remark as vipRemark,a.vip_money as
+		vipMoney,
+		DATE_FORMAT(from_unixtime(a.vip_verify_time),'%Y-%m-%d
+		%H:%i:%s') as
+		addtime
+		from rd_user_cache a
+		left join rd_user b on
+		a.user_id=b.user_id
+		where 1=1
+		<if test="entity != null and entity.startTime!=null">
+			and
+			DATE_FORMAT(from_unixtime(a.vip_verify_time),'%Y%m%d')>=date_format(#{entity.startTime},'%Y%m%d')
+		</if>
+		<if test="entity != null and entity.endTime!=null">
+			and
+			<![CDATA[	DATE_FORMAT(from_unixtime(a.vip_verify_time),'%Y%m%d')<=date_format(#{entity.endTime},'%Y%m%d')  ]]>
+		</if>
+	</select>
+
+
+	<select id="selectUserVip" resultMap="BaseUserVipResultMap" parameterType="cn.vfunding.vfunding.biz.report.model.FinanceReportData">
+		select b.userName as username,a.vip_remark as vipRemark,a.vip_money as
+		vipMoney,
+		DATE_FORMAT(from_unixtime(a.vip_verify_time),'%Y-%m-%d
+		%H:%i:%s') as
+		addtime
+		from rd_user_cache a
+		left join rd_user b on
+		a.user_id=b.user_id
+		where 1=1
+		<if test="startTime!=null">
+			and
+			DATE_FORMAT(from_unixtime(a.vip_verify_time),'%Y%m%d')>=date_format(#{startTime},'%Y%m%d')
+		</if>
+		<if test="endTime!=null">
+			and
+			<![CDATA[	DATE_FORMAT(from_unixtime(a.vip_verify_time),'%Y%m%d')<=date_format(#{endTime},'%Y%m%d')  ]]>
+		</if>
+	</select>
+	<select id="selectSumVipMoney" resultMap="SumVipMoneyMap" parameterType="cn.vfunding.vfunding.biz.report.model.FinanceReportData">
+		select round(sum(a.vip_money),2) as sumVipMoney from rd_user_cache a
+		where 1=1
+		<if test="startTime!=null">
+			and
+			DATE_FORMAT(from_unixtime(a.vip_verify_time),'%Y%m%d')>=date_format(#{startTime},'%Y%m%d')
+		</if>
+		<if test="endTime!=null">
+			and
+			<![CDATA[	DATE_FORMAT(from_unixtime(a.vip_verify_time),'%Y%m%d')<=date_format(#{endTime},'%Y%m%d')  ]]>
+		</if>
+	</select>
+
+	<!-- 用户红包情况 -->
+
+	<select id="selectUserHongbaoListPage" resultMap="UserHongbaoMap" parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select a.username,a.hongbao from rd_user a
+		where 1=1
+		<if test="entity != null and entity.userName!=null">
+			and username=#{entity.userName}
+		</if>
+		order by a.hongbao
+		desc
+	</select>
+
+	<select id="selectUserHongbao" resultMap="UserHongbaoMap" parameterType="cn.vfunding.vfunding.biz.report.model.FinanceReportData">
+		select a.username,a.hongbao from rd_user a
+		order by
+		a.hongbao desc
+	</select>
+
+	<select id="selectSumUserHongbao" resultMap="SumUserHongbaoMap">
+		select
+		round(sum(a.hongbao),2) as sumHongbao from rd_user a
+	</select>
+	
+	
+	<select id="selectCashRedEnvelopeListPage" resultMap="SumCashRedEnvelopeMap" parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select 
+			b.username , 
+			sum(IF(a.status=0,a.money,0))  unusedRedEnvelope,
+			sum(IF(a.status=1,a.money,0))  usedRedEnvelope,
+			sum(IF(a.status=2,a.money,0))  expiredRedEnvelope
+		from 
+			vf_giftbox_message a,
+			rd_user b 
+		where 
+			b.user_id = a.receive_user
+			<if test="entity!=null and entity.userName!=null and entity.userName!='' ">
+				and b.username = #{entity.userName}
+			</if>
+			<if test="entity!=null and entity.startTime!=null">
+				and a.update_time >= date_format(#{entity.startTime},'%Y%m%d')
+			</if>
+			<if test="entity!=null and entity.endTime!=null">
+				and a.update_time &lt;=date_format(#{entity.endTime},'%Y%m%d')
+			</if>
+		group by 
+			a.receive_user
+	</select>
+	
+	<select id="selectCashRedEnvelope"  resultMap="SumCashRedEnvelopeMap" parameterType="cn.vfunding.vfunding.biz.report.model.FinanceReportData">
+		select 
+			b.username , 
+			sum(IF(a.status=0,a.money,0))  unusedRedEnvelope,
+			sum(IF(a.status=1,a.money,0))  usedRedEnvelope,
+			sum(IF(a.status=2,a.money,0))  expiredRedEnvelope
+		from 
+			vf_giftbox_message a,
+			rd_user b 
+		where 
+			b.user_id = a.receive_user
+		<if test="startTime != null">
+			and a.update_time >= date_format(#{startTime},'%Y%m%d')
+		</if>
+		<if test="endTime != null">
+			and a.update_time &lt;=date_format(#{endTime},'%Y%m%d')
+		</if>
+		<if test="userName != null">
+			and b.userName =#{userName}
+		</if>
+		group by 
+			a.receive_user
+	</select>
+	
+	
+	<select id="selectSumCashRedEnvelope" resultMap="SumCashRedEnvelopeMap" parameterType="cn.vfunding.vfunding.biz.report.model.FinanceReportData">
+		select 
+			sum(IF(a.status=0,a.money,0))  unusedRedEnvelope,
+			sum(IF(a.status=1,a.money,0))  usedRedEnvelope,
+			sum(IF(a.status=2,a.money,0))  expiredRedEnvelope
+		from 
+			vf_giftbox_message a
+		where 
+		 	1=1
+	    <if test="startTime != null">
+			and a.update_time >= date_format(#{startTime},'%Y%m%d')
+		</if>
+		<if test="endTime != null">
+			and a.update_time &lt;=date_format(#{endTime},'%Y%m%d')
+		</if>
+		<if test="userName != null">
+			and b.userName =#{userName}
+		</if>
+	</select>
+	
+	<select id="selectSumUsedRedEnvelope" resultMap="SumUsedRedEnvelopeMap" parameterType="cn.vfunding.vfunding.biz.report.model.FinanceReportData">
+		select sum(money) as sumUsedRedEnvelope from vf_giftbox_message 
+		where status=1
+		<if test="startTime!=null">
+			and update_time >= date_format(#{startTime},'%Y%m%d')
+		</if>
+		<if test="endTime!=null">
+			and update_time &lt;=date_format(#{endTime},'%Y%m%d')
+		</if>
+	
+	</select>
+	
+</mapper>

@@ -1,0 +1,57 @@
+@CHARSET "UTF-8";
+*{
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	list-style: none;
+	font-family: "微软雅黑";
+	text-shadow: none;
+}
+
+.top{
+	width: 100%;
+	position: fixed;
+	top:0;
+	background-color: #fff;
+	z-index: 999;
+}
+.top  a{
+	width: 100%;
+	display: block;
+	text-align: center;
+	border-bottom: thin ridge #b4b4b4;
+	padding-bottom: 0.5em;
+	padding-top: 0.5em;
+} 
+.top span{
+	position: absolute;
+	top:20%;
+	left:2%;
+}
+.form{
+	width: 100%;
+	position: absolute;
+	top:38px;
+}
+.form tr{
+	width: 100%;
+	display: block;
+	text-align: center;
+	background-color: #fff;
+	font-size: 13px;
+	border-bottom: thin solid #f0f0f0; 
+	padding-bottom: 30px;
+	padding-top: 20px;
+
+
+}
+
+.form tr td{
+	display:block;
+	width: 25%;
+	text-align: center;
+	float: left;
+}
+.full{
+	wi
+}

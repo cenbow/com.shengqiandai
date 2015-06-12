@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.system.dao.UserTaskMapper">
+	<resultMap id="BaseResultMap"
+		type="cn.vfunding.vfunding.biz.system.model.UserTask">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="task_id" property="taskId" jdbcType="INTEGER" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="complete_date" property="completeDate"
+			jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, user_id, task_id, status,complete_date
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from vf_user_task
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<!-- 根据用户ID和任务ID查询 -->
+	<select id="selectByUserIdAndTaskId" resultMap="BaseResultMap"
+		parameterType="cn.vfunding.vfunding.biz.system.model.UserTask">
+		select
+		<include refid="Base_Column_List" />
+		from vf_user_task
+		where user_id = #{userId,jdbcType=INTEGER} and
+		task_id=#{taskId,jdbcType=INTEGER}
+
+	</select>
+
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		vf_user_task
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="cn.vfunding.vfunding.biz.system.model.UserTask">
+		insert into vf_user_task (id,
+		user_id, task_id,
+		status,complete_date)
+		values (#{id,jdbcType=INTEGER},
+		#{userId,jdbcType=INTEGER},
+		#{taskId,jdbcType=INTEGER},
+		#{status,jdbcType=INTEGER},#{completeDate,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.system.model.UserTask">
+		insert into vf_user_task
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="taskId != null">
+				task_id,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="completeDate != null">
+				complete_date,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="taskId != null">
+				#{taskId,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="completeDate != null">
+				#{completeDate,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.system.model.UserTask">
+		update vf_user_task
+		<set>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=INTEGER},
+			</if>
+			<if test="taskId != null">
+				task_id = #{taskId,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="completeDate != null">
+				complete_date = #{completeDate,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.system.model.UserTask">
+		update
+		vf_user_task
+		set user_id = #{userId,jdbcType=INTEGER},
+		task_id =
+		#{taskId,jdbcType=INTEGER},
+		status = #{status,jdbcType=INTEGER},
+		complete_date=#{completeDate,jdbcType=TIMESTAMP}
+		where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+</mapper>

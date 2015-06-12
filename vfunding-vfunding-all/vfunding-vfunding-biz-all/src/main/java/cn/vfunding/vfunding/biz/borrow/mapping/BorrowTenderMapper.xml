@@ -1,0 +1,824 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.borrow.dao.BorrowTenderMapper">
+
+	<!-- 基础Map -->
+	<resultMap id="BaseBaseResultMap"
+		type="cn.vfunding.vfunding.biz.borrow.model.BorrowTender">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="money" property="money" jdbcType="VARCHAR" />
+		<result column="account" property="account" jdbcType="VARCHAR" />
+		<result column="addtime" property="addtime" jdbcType="INTEGER" />
+	</resultMap>
+
+	<!-- 分页查询用户投资记录VO lx -->
+	<resultMap type="cn.vfunding.vfunding.biz.common.vo.InvesVO"
+		id="invesVO">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="addtime" property="addtime" jdbcType="VARCHAR" />
+		<result column="borrowName" property="borrowName" jdbcType="VARCHAR" />
+		<result column="apr" property="apr" jdbcType="VARCHAR" />
+		<result column="bfee" property="bfee" jdbcType="VARCHAR" />
+		<result column="gfee" property="gfee" jdbcType="VARCHAR" />
+		<result column="timeLimit" property="timeLimit" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
+		<result column="repaymentAccount" property="repaymentAccount"
+			jdbcType="VARCHAR" />
+		<result column="account" property="account" jdbcType="VARCHAR" />
+		<result column="repaymentYesAccount" property="repaymentYesAccount"
+			jdbcType="VARCHAR" />
+	</resultMap>
+
+
+	<resultMap id="CJDaoUserTednerVO"
+		type="cn.vfunding.vfunding.biz.cjdao.vo.CjdaoUserTenderVO">
+		<result column="borrowId" property="borrowId" jdbcType="INTEGER" />
+		<result column="tenderId" property="tenderId" jdbcType="INTEGER" />
+		<result column="userId" property="userId" jdbcType="INTEGER" />
+	</resultMap>
+
+	<resultMap id="BorrowTenderResultMap"
+		type="cn.vfunding.vfunding.biz.borrow.model.BorrowTender">
+		<result column="money" property="money" jdbcType="VARCHAR" />
+		<result column="account" property="account" jdbcType="VARCHAR" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="tendertime" property="tendertime" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<resultMap id="UserTenderMap"
+		type="cn.vfunding.vfunding.biz.common.vo.UserTenderVO">
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="borrow_id" property="borrowId" jdbcType="INTEGER" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="phone" property="phone" jdbcType="VARCHAR" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="bstatus" property="bstatus" jdbcType="INTEGER" />
+		<result column="account" property="account" jdbcType="DECIMAL" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="tenderAccount" property="tenderAccount"
+			jdbcType="DECIMAL" />
+		<result column="time_limit" property="timeLimit" jdbcType="INTEGER" />
+		<result column="tenderIp" property="tenderIp" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<resultMap id="BaseResultMap"
+		type="cn.vfunding.vfunding.biz.borrow.model.BorrowTender" extends="BaseBaseResultMap">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="site_id" property="siteId" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="borrow_id" property="borrowId" jdbcType="INTEGER" />
+		<result column="money" property="money" jdbcType="VARCHAR" />
+		<result column="account" property="account" jdbcType="VARCHAR" />
+		<result column="repayment_account" property="repaymentAccount"
+			jdbcType="VARCHAR" />
+		<result column="interest" property="interest" jdbcType="VARCHAR" />
+		<result column="service_fees" property="serviceFees" jdbcType="VARCHAR" />
+		<result column="guarantee_fees" property="guaranteeFees"
+			jdbcType="VARCHAR" />
+		<result column="return_fees" property="returnFees" jdbcType="VARCHAR" />
+		<result column="invite_fees" property="inviteFees" jdbcType="VARCHAR" />
+		<result column="repayment_yesaccount" property="repaymentYesaccount"
+			jdbcType="VARCHAR" />
+		<result column="wait_account" property="waitAccount" jdbcType="VARCHAR" />
+		<result column="wait_interest" property="waitInterest"
+			jdbcType="VARCHAR" />
+		<result column="wait_service_fees" property="waitServiceFees"
+			jdbcType="VARCHAR" />
+		<result column="wait_guarantee_fees" property="waitGuaranteeFees"
+			jdbcType="VARCHAR" />
+		<result column="wait_return_fees" property="waitReturnFees"
+			jdbcType="VARCHAR" />
+		<result column="repayment_yesinterest" property="repaymentYesinterest"
+			jdbcType="VARCHAR" />
+		<result column="addtime" property="addtime" jdbcType="INTEGER" />
+		<result column="addip" property="addip" jdbcType="VARCHAR" />
+		<result column="equalInterest" property="equalInterest" /><!-- 按占比例得到用户得到的利息 -->
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, site_id, user_id, status, borrow_id, money, account,
+		repayment_account, interest,
+		service_fees, guarantee_fees, return_fees,
+		invite_fees, repayment_yesaccount,
+		wait_account,
+		wait_interest,
+		wait_service_fees, wait_guarantee_fees, wait_return_fees,
+		repayment_yesinterest,
+		addtime, addip,equalInterest
+	</sql>
+
+
+	<resultMap id="BorrowTednerVOMap"
+		type="cn.vfunding.vfunding.biz.common.vo.BorrowTenderVO">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="tenderUser" property="tenderUser" jdbcType="VARCHAR" />
+		<result column="borrowUser" property="borrowUser" jdbcType="VARCHAR" />
+		<result column="tenderUserId" property="tenderUserId" jdbcType="INTEGER" />
+		<result column="value" property="value" jdbcType="INTEGER" />
+		<result column="borrowName" property="borrowName" jdbcType="VARCHAR" />
+		<result column="apr" property="apr" jdbcType="DECIMAL" />
+		<result column="bfee" property="bfee" jdbcType="DECIMAL" />
+		<result column="gfee" property="gfee" jdbcType="DECIMAL" />
+		<result column="money" property="money" jdbcType="VARCHAR" />
+		<result column="account" property="account" jdbcType="VARCHAR" />
+		<result column="repaymentAccount" property="repaymentAccount"
+			jdbcType="VARCHAR" />
+		<result column="repaymentYesAccount" property="repaymentYesAccount"
+			jdbcType="VARCHAR" />
+		<result column="timeLimit" property="timeLimit" jdbcType="INTEGER" />
+		<result column="addtime" property="addtime" jdbcType="INTEGER" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="credit" property="credit" jdbcType="INTEGER" />
+		<result column="allOrder" property="allOrder" jdbcType="INTEGER" />
+		<result column="noOrder" property="noOrder" jdbcType="INTEGER" />
+		<result column="tendertime" property="tenderTime" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="BorrowTednerVOExtendMap"
+		type="cn.vfunding.vfunding.biz.common.vo.BorrowTenderVO" extends="BorrowTednerVOMap">
+		<result column="borrowStartTime" property="borrowStartTime"
+			jdbcType="VARCHAR" />
+		<result column="borrowEndTime" property="borrowEndTime"
+			jdbcType="VARCHAR" />
+		<result column="eachTime" property="eachTime" jdbcType="VARCHAR" />
+		<result column="bfeeMoney" property="bfeeMoney" jdbcType="DECIMAL" />
+		<result column="gfeeMoney" property="gfeeMoney" jdbcType="DECIMAL" />
+	</resultMap>
+
+	<sql id="BorrowTednerVO_List">
+		id,tenderUser,tenderUserId,borrowUser,`value`,borrowName,apr,bfee,gfee,money,account,
+		repaymentAccount,repaymentYesAccount,timeLimit,addtime,`status`
+	</sql>
+	<!-- 根据borrowID查询tender列表 -->
+	<select id="selectTenderByBorrowId" resultMap="BorrowTenderResultMap"
+		parameterType="java.lang.Integer">
+		select b.username,a.account,a.money,a.status,
+		DATE_FORMAT(from_unixtime(a.addtime),'%Y-%m-%d
+		%H:%i:%s')
+		as
+		tenderTime
+		from
+		rd_borrow_tender a
+		left join
+		rd_user b on
+		a.user_id=b.user_id
+		where
+		a.borrow_id=#{borrowId}
+		order by a.addtime desc
+	</select>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from rd_borrow_tender
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+
+	<!-- 该标投资用户group排序 -->
+	<select id="selectTendersGroupByUserId" resultMap="UserTenderMap"
+		parameterType="java.lang.Integer">
+		select u.username as username,u.user_id as userId,b.id
+		as borrowId,u.phone as phone,u.email as email,b.status as
+		`status`,bt.status as bstatus,
+		b.account as account,b.name as
+		name,sum(bt.account) as tenderAccount,b.time_limit as timeLimit,
+		case
+		bt.addip WHEN 'borrowAuto' THEN 'borrowAuto' ELSE '1' END as tenderIp
+		from
+		rd_borrow b left join rd_borrow_tender bt on b.id = bt.borrow_id
+		left join rd_user u on bt.user_id = u.user_id
+		where
+		b.id=#{id,jdbcType=INTEGER}
+		group by bt.user_id,case bt.addip WHEN 'borrowAuto' THEN 'borrowAuto' ELSE
+		'1' END
+	</select>
+
+	<!-- 标的所有投资者 -->
+	<select id="selectListByBorrowId" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from rd_borrow_tender
+		where borrow_id = #{borrowId,jdbcType=INTEGER}
+	</select>
+	<!-- 体验标投标列表 -->
+	<select id="selectFeelList" resultMap="BorrowTednerVOMap"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select b.name as borrowName,bu.username as borrowUser,uc.credit as
+		credit,b.apr as apr,
+		b.time_limit_day as timeLimit,bt.addtime as
+		addtime,bt.status
+		as status,
+		bt.repayment_account as
+		repaymentAccount,b.account as account,bt.account as money
+		from
+		rd_borrow_tender bt LEFT JOIN rd_borrow b on
+		b.id=bt.borrow_id
+		LEFT JOIN
+		rd_user_cache uc on bt.user_id=uc.user_id LEFT JOIN rd_user bu on
+		bu.user_id=b.user_id
+		where
+		bt.user_id=#{entity.userId,jdbcType=INTEGER}
+		<if test="entity != null and entity.status != null ">
+			and b.`status` in
+			<foreach item="entity.status" index="index" collection="entity.status"
+				open="(" separator="," close=")">
+				#{entity.status,jdbcType=INTEGER}
+			</foreach>
+		</if>
+		<if test="entity.borrowId != null">
+			and b.id = #{entity.borrowId, jdbcType=INTEGER}
+		</if>
+		order by bt.addtime desc
+	</select>
+	<!-- 根据相关参数查询集合 -->
+	<select id="selectListByParam" resultMap="BaseResultMap"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select
+		<include refid="Base_Column_List" />
+		from rd_borrow_tender
+		where user_id=#{entity.userId,jdbcType=INTEGER}
+		<if test="entity != null and entity.status != null ">
+			and `status` in
+			<foreach item="entity.status" index="index" collection="entity.status"
+				open="(" separator="," close=")">
+				#{entity.status,jdbcType=INTEGER}
+			</foreach>
+		</if>
+		<if test="entity.borrowId != null">
+			and borrow_id = #{entity.borrowId, jdbcType=INTEGER}
+		</if>
+	</select>
+	<!-- 我的好友投资列表 -->
+	<select id="selectListByMyFriend" resultMap="BaseResultMap"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select
+		<include refid="Base_Column_List" />
+		from rd_borrow_tender
+		where 1=1
+		<if test="entity != null and entity.userId != null ">
+			and user_id in
+			<foreach item="entity.userId" index="index" collection="entity.userId"
+				open="(" separator="," close=")">
+				#{entity.userId,jdbcType=INTEGER}
+			</foreach>
+		</if>
+		<if test="entity != null and entity.status != null ">
+			and `status` in
+			<foreach item="entity.status" index="index" collection="entity.status"
+				open="(" separator="," close=")">
+				#{entity.status,jdbcType=INTEGER}
+			</foreach>
+		</if>
+		order by account desc
+	</select>
+
+	<select id="selectListByUserIdBorrowId" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from rd_borrow_tender
+		where user_id = #{userId,jdbcType=INTEGER}
+		<if test="borrowId != null">
+			and borrow_id = #{borrowId,jdbcType=INTEGER}
+		</if>
+	</select>
+
+	<!-- 根据用户ID查询出该用户前指定天数内投资总额 -->
+	<select id="selectInvestMoneyByUserIdAndDays" resultType="Integer"
+		parameterType="cn.vfunding.vfunding.biz.borrow.model.UserInvestMoneyVO">
+		select sum(b.account) as investMoney from rd_user a
+		left
+		join
+		rd_borrow_tender b on a.user_id=b.user_id and
+		DATE_FORMAT(from_unixtime(b.addtime),'%Y%m%d')>=date_format(date_sub(curdate(),interval
+		#{days,jdbcType=INTEGER} day),'%Y%m%d')
+		where
+		a.user_id=#{userId,jdbcType=INTEGER}
+	</select>
+
+	<!-- 用户有效投资总额 -->
+	<select id="sumTenderAccountByUserId" resultType="java.math.BigDecimal"
+		parameterType="java.lang.Integer">
+		select ifnull(sum(account),0) from rd_borrow_tender
+		where user_id=#{userId,jdbcType=INTEGER} and status = 1
+	</select>
+
+	<!-- 根据指定时间查询当天所有投资信息 -->
+	<select id="selectByDate" resultMap="BaseBaseResultMap"
+		parameterType="java.lang.String">
+		select a.id as id,a.user_id as
+		user_id,a.money as
+		money,a.account as
+		account,a.addtime as addtime
+		from rd_borrow_tender as
+		a inner JOIN
+		rd_user_from_union as b on a.user_id=b.user_id
+		where
+		DATE_FORMAT(from_unixtime(addtime),'%Y%m%d')=date_format(#{addtime,jdbcType=VARCHAR},'%Y%m%d')
+	</select>
+
+	<!-- 投资列表 -->
+	<select id="selectInvestRecordListPage" resultMap="BorrowTednerVOMap"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select b.id as id,from_unixtime(bt.addtime) as tendertime,b.name as
+		borrowName,(b.apr-fee.b_fee-fee.g_fee) as
+		apr,b.time_limit as
+		timeLimit,bt.`status` as status
+		,bt.repayment_account as
+		repaymentAccount,bt.account as account,bt.repayment_yesaccount as
+		repaymentYesAccount
+		,(select count(c.`order`) from rd_borrow_collection
+		c where c.tender_id=bt.id) as `allOrder`
+		,(select count(c.`order`) from
+		rd_borrow_collection c where c.tender_id=bt.id and `status`=0) as
+		`noOrder`
+		from rd_borrow_tender bt LEFT JOIN
+		rd_borrow b on
+		bt.borrow_id=b.id LEFT JOIN rd_investors_fee fee
+		on b.id=fee.b_id where
+		bt.user_id = #{entity.userId,jdbcType=INTEGER}
+		<if test="entity.status == 1">
+			and bt.status in (1,5)
+		</if>
+		<if test="entity.status == 2">
+			and bt.status in (2)
+		</if>
+		<if test="entity.status == null or entity.status == 12">
+			and bt.status in (1,2,5)
+		</if>
+		<if test="entity.startTime != null">
+	    	<![CDATA[ and bt.addtime >= #{entity.startTime,jdbcType=INTEGER} ]]>
+		</if>
+		<if test="entity.endTime != null">
+	    	<![CDATA[ and bt.addtime <= #{entity.endTime,jdbcType=INTEGER} ]]>
+		</if>
+		order by bt.addtime desc
+	</select>
+	<!-- 借款协议列表 -->
+	<select id="selectAgreementPage" resultMap="BorrowTednerVOExtendMap"
+		parameterType="java.lang.Integer">
+		select bt.user_id as tenderUserId,u.username as
+		tenderUser,bt.account as account,b.time_limit as timeLimit,
+		b.apr as
+		apr,f.b_fee as bfee,f.g_fee as gfee,b.success_time as
+		borrowStartTime,
+		b.end_time as borrowEndTime,b.each_time as
+		eachTime,bt.repayment_account as
+		repaymentAccount
+		,bt.service_fees as
+		bfeeMoney, bt.guarantee_fees as gfeeMoney
+		from rd_borrow b left join
+		rd_investors_fee f on b.id=f.b_id left join
+		rd_borrow_tender bt on
+		b.id=bt.borrow_id
+		left join rd_user u on
+		bt.user_id=u.user_id
+		where
+		b.id=#{id,jdbcType=INTEGER} order by bt.addtime desc;
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		rd_borrow_tender
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="cn.vfunding.vfunding.biz.borrow.model.BorrowTender"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into
+		rd_borrow_tender (id,
+		site_id, user_id,
+		status, borrow_id, money,
+		account, repayment_account,
+		interest,
+		service_fees, guarantee_fees, return_fees,
+		invite_fees,
+		repayment_yesaccount, wait_account,
+		wait_interest, wait_service_fees,
+		wait_guarantee_fees,
+		wait_return_fees, repayment_yesinterest,
+		addtime,
+		addip,equalInterest)
+		values (#{id,jdbcType=INTEGER},
+		#{siteId,jdbcType=INTEGER},
+		#{userId,jdbcType=INTEGER},
+		#{status,jdbcType=INTEGER},
+		#{borrowId,jdbcType=INTEGER},
+		#{money,jdbcType=VARCHAR},
+		#{account,jdbcType=VARCHAR},
+		#{repaymentAccount,jdbcType=VARCHAR},
+		#{interest,jdbcType=VARCHAR},
+		#{serviceFees,jdbcType=VARCHAR}, #{guaranteeFees,jdbcType=VARCHAR},
+		#{returnFees,jdbcType=VARCHAR},
+		#{inviteFees,jdbcType=VARCHAR},
+		#{repaymentYesaccount,jdbcType=VARCHAR},
+		#{waitAccount,jdbcType=VARCHAR},
+		#{waitInterest,jdbcType=VARCHAR},
+		#{waitServiceFees,jdbcType=VARCHAR},
+		#{waitGuaranteeFees,jdbcType=VARCHAR},
+		#{waitReturnFees,jdbcType=VARCHAR},
+		#{repaymentYesinterest,jdbcType=VARCHAR}, #{addtime,jdbcType=INTEGER},
+		#{addip,jdbcType=VARCHAR},#{equalInterest,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.borrow.model.BorrowTender"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into rd_borrow_tender
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="siteId != null">
+				site_id,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="borrowId != null">
+				borrow_id,
+			</if>
+			<if test="money != null">
+				money,
+			</if>
+			<if test="account != null">
+				account,
+			</if>
+			<if test="repaymentAccount != null">
+				repayment_account,
+			</if>
+			<if test="interest != null">
+				interest,
+			</if>
+			<if test="serviceFees != null">
+				service_fees,
+			</if>
+			<if test="guaranteeFees != null">
+				guarantee_fees,
+			</if>
+			<if test="returnFees != null">
+				return_fees,
+			</if>
+			<if test="inviteFees != null">
+				invite_fees,
+			</if>
+			<if test="repaymentYesaccount != null">
+				repayment_yesaccount,
+			</if>
+			<if test="waitAccount != null">
+				wait_account,
+			</if>
+			<if test="waitInterest != null">
+				wait_interest,
+			</if>
+			<if test="waitServiceFees != null">
+				wait_service_fees,
+			</if>
+			<if test="waitGuaranteeFees != null">
+				wait_guarantee_fees,
+			</if>
+			<if test="waitReturnFees != null">
+				wait_return_fees,
+			</if>
+			<if test="repaymentYesinterest != null">
+				repayment_yesinterest,
+			</if>
+			<if test="addtime != null">
+				addtime,
+			</if>
+			<if test="addip != null">
+				addip,
+			</if>
+			<if test="equalInterest != null">
+				equalInterest,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="siteId != null">
+				#{siteId,jdbcType=INTEGER},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="borrowId != null">
+				#{borrowId,jdbcType=INTEGER},
+			</if>
+			<if test="money != null">
+				#{money,jdbcType=VARCHAR},
+			</if>
+			<if test="account != null">
+				#{account,jdbcType=VARCHAR},
+			</if>
+			<if test="repaymentAccount != null">
+				#{repaymentAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="interest != null">
+				#{interest,jdbcType=VARCHAR},
+			</if>
+			<if test="serviceFees != null">
+				#{serviceFees,jdbcType=VARCHAR},
+			</if>
+			<if test="guaranteeFees != null">
+				#{guaranteeFees,jdbcType=VARCHAR},
+			</if>
+			<if test="returnFees != null">
+				#{returnFees,jdbcType=VARCHAR},
+			</if>
+			<if test="inviteFees != null">
+				#{inviteFees,jdbcType=VARCHAR},
+			</if>
+			<if test="repaymentYesaccount != null">
+				#{repaymentYesaccount,jdbcType=VARCHAR},
+			</if>
+			<if test="waitAccount != null">
+				#{waitAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="waitInterest != null">
+				#{waitInterest,jdbcType=VARCHAR},
+			</if>
+			<if test="waitServiceFees != null">
+				#{waitServiceFees,jdbcType=VARCHAR},
+			</if>
+			<if test="waitGuaranteeFees != null">
+				#{waitGuaranteeFees,jdbcType=VARCHAR},
+			</if>
+			<if test="waitReturnFees != null">
+				#{waitReturnFees,jdbcType=VARCHAR},
+			</if>
+			<if test="repaymentYesinterest != null">
+				#{repaymentYesinterest,jdbcType=VARCHAR},
+			</if>
+			<if test="addtime != null">
+				#{addtime,jdbcType=INTEGER},
+			</if>
+			<if test="addip != null">
+				#{addip,jdbcType=VARCHAR},
+			</if>
+			<if test="equalInterest != null">
+				#{equalInterest,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.borrow.model.BorrowTender">
+		update rd_borrow_tender
+		<set>
+			<if test="siteId != null">
+				site_id = #{siteId,jdbcType=INTEGER},
+			</if>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="borrowId != null">
+				borrow_id = #{borrowId,jdbcType=INTEGER},
+			</if>
+			<if test="money != null">
+				money = #{money,jdbcType=VARCHAR},
+			</if>
+			<if test="account != null">
+				account = #{account,jdbcType=VARCHAR},
+			</if>
+			<if test="repaymentAccount != null">
+				repayment_account = #{repaymentAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="interest != null">
+				interest = #{interest,jdbcType=VARCHAR},
+			</if>
+			<if test="serviceFees != null">
+				service_fees = #{serviceFees,jdbcType=VARCHAR},
+			</if>
+			<if test="guaranteeFees != null">
+				guarantee_fees = #{guaranteeFees,jdbcType=VARCHAR},
+			</if>
+			<if test="returnFees != null">
+				return_fees = #{returnFees,jdbcType=VARCHAR},
+			</if>
+			<if test="inviteFees != null">
+				invite_fees = #{inviteFees,jdbcType=VARCHAR},
+			</if>
+			<if test="repaymentYesaccount != null">
+				repayment_yesaccount =
+				#{repaymentYesaccount,jdbcType=VARCHAR},
+			</if>
+			<if test="waitAccount != null">
+				wait_account = #{waitAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="waitInterest != null">
+				wait_interest = #{waitInterest,jdbcType=VARCHAR},
+			</if>
+			<if test="waitServiceFees != null">
+				wait_service_fees = #{waitServiceFees,jdbcType=VARCHAR},
+			</if>
+			<if test="waitGuaranteeFees != null">
+				wait_guarantee_fees =
+				#{waitGuaranteeFees,jdbcType=VARCHAR},
+			</if>
+			<if test="waitReturnFees != null">
+				wait_return_fees = #{waitReturnFees,jdbcType=VARCHAR},
+			</if>
+			<if test="repaymentYesinterest != null">
+				repayment_yesinterest =
+				#{repaymentYesinterest,jdbcType=VARCHAR},
+			</if>
+			<if test="addtime != null">
+				addtime = #{addtime,jdbcType=INTEGER},
+			</if>
+			<if test="addip != null">
+				addip = #{addip,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.borrow.model.BorrowTender">
+		update
+		rd_borrow_tender
+		set site_id = #{siteId,jdbcType=INTEGER},
+		user_id =
+		#{userId,jdbcType=INTEGER},
+		status = #{status,jdbcType=INTEGER},
+		borrow_id = #{borrowId,jdbcType=INTEGER},
+		money =
+		#{money,jdbcType=VARCHAR},
+		account =
+		#{account,jdbcType=VARCHAR},
+		repayment_account = #{repaymentAccount,jdbcType=VARCHAR},
+		interest =
+		#{interest,jdbcType=VARCHAR},
+		service_fees =
+		#{serviceFees,jdbcType=VARCHAR},
+		guarantee_fees =
+		#{guaranteeFees,jdbcType=VARCHAR},
+		return_fees =
+		#{returnFees,jdbcType=VARCHAR},
+		invite_fees =
+		#{inviteFees,jdbcType=VARCHAR},
+		repayment_yesaccount =
+		#{repaymentYesaccount,jdbcType=VARCHAR},
+		wait_account =
+		#{waitAccount,jdbcType=VARCHAR},
+		wait_interest =
+		#{waitInterest,jdbcType=VARCHAR},
+		wait_service_fees =
+		#{waitServiceFees,jdbcType=VARCHAR},
+		wait_guarantee_fees =
+		#{waitGuaranteeFees,jdbcType=VARCHAR},
+		wait_return_fees =
+		#{waitReturnFees,jdbcType=VARCHAR},
+		repayment_yesinterest =
+		#{repaymentYesinterest,jdbcType=VARCHAR},
+		addtime =
+		#{addtime,jdbcType=INTEGER},
+		addip = #{addip,jdbcType=VARCHAR}
+		where id
+		= #{id,jdbcType=INTEGER}
+	</update>
+
+	<!-- 昨日成交额 -->
+	<select id="selectYesterdaySumBorrowAccount" resultType="java.math.BigDecimal">
+		select
+		ROUND(sum(a.account),2) from rd_borrow_tender a
+		where
+		DATE_FORMAT(from_unixtime(a.addtime),'%Y%m%d')=DATE_FORMAT(date_sub(curdate(),interval
+		1 day),'%Y%m%d')
+		and a.status in (1,5)
+	</select>
+
+
+	<!--根据userID查询投资次数 -->
+	<select id="selectByUserId" resultType="java.lang.Integer"
+		parameterType="java.lang.Integer">
+		select count(*) from rd_borrow_tender a
+		where <![CDATA[ a.status<10]]>
+		and user_id=#{userId}
+	</select>
+
+	<!-- 查询用户投资记录 lx -->
+	<select id="selectByIdListPage" resultMap="invesVO"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select
+		b.id as id,
+		bt.addtime as addtime,
+		b.name as
+		borrowName,
+		b.apr as apr,
+		fee.b_fee as bfee,
+		g_fee as gfee,
+		b.time_limit
+		as timeLimit,
+		bt.`status` as status,
+		bt.repayment_account as
+		repaymentAccount,
+		bt.account as account,
+		bt.repayment_yesaccount as
+		repaymentYesAccount
+		from
+		rd_borrow_tender bt LEFT JOIN rd_borrow b on
+		bt.borrow_id=b.id
+		LEFT
+		JOIN rd_investors_fee fee on b.id=fee.b_id
+		LEFT
+		JOIN rd_user u on
+		bt.user_id=u.user_id
+		where bt.user_id=#{entity.userId}
+		order by
+		bt.addtime desc
+	</select>
+
+
+	<!-- 同步财经道的投资信息 -->
+	<select id="selectUserTenderByBorrowId" resultMap="CJDaoUserTednerVO"
+		parameterType="java.lang.Integer">
+		select a.id as borrowId,b.id as tenderId,b.user_id as
+		userId from rd_borrow
+		a
+		left join rd_borrow_tender b on a.id
+		=b.borrow_id
+		left join rd_user c on b.user_id=c.user_id
+		left join
+		vf_third_relationship d on c.user_id=d.v_id
+		where a.id =#{borrowId} and
+		d.id is not null and
+		d.from_type=1
+	</select>
+
+	<select id="selectByParameters" resultMap="BorrowTenderResultMap"
+		parameterType="cn.vfunding.vfunding.biz.borrow.model.BorrowTender">
+		select
+		<include refid="Base_Column_List" />
+		from rd_borrow_tender
+		where 1=1
+		<if test="id != null">
+			and id = #{id,jdbcType=INTEGER}
+		</if>
+		<if test="userId != null">
+			and user_id = #{userId,jdbcType=INTEGER}
+		</if>
+		<if test="status != null">
+			and status = #{status,jdbcType=INTEGER}
+		</if>
+		<if test="borrowId != null">
+			and borrow_id = #{borrowId,jdbcType=INTEGER}
+		</if>
+
+	</select>
+
+	<select id="selectBrrowTenderByUserId" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select * from rd_borrow_tender where user_id =
+		#{userId,jdbcType=INTEGER}
+		order by id
+	</select>
+
+	<select id="selectBrrowTenderAccountThanOneThousandByUserId"
+		resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select * from rd_borrow_tender
+		where user_id = #{userId,jdbcType=INTEGER} and account >=1000
+		order by
+		id
+	</select>
+
+	<select id="selectByUserIdandTenderStatus" resultMap="BaseResultMap">
+		select
+		rbt.* from
+		rd_borrow_tender rbt , rd_borrow rb
+		where
+		rbt.user_id =#{userId}
+		and
+		rbt.borrow_id = rb.id
+		and
+		rb.status = #{tenderStatus}
+		order by rbt.addtime asc
+	</select>
+
+	<select id="hasAppTenderThanTwoThousand" resultType="java.lang.Integer">
+		select
+		count(*) as hasAppTenderThanTwoThousand from rd_borrow_tender where
+		user_id = #{userId}
+		and addip = 'app'
+		and account >= 2000
+	</select>
+
+
+	<select id="myTotalTenderAccountForApril" resultType="java.math.BigDecimal">
+		select ifnull(sum(account),0) as sumtender
+		from rd_borrow_tender a
+		where a.user_id=#{userId}
+		<![CDATA[ 
+		and FROM_UNIXTIME(a.addtime) >= '2015-04-11 00:00:00'
+		and FROM_UNIXTIME(a.addtime) <=  '2015-05-04 23:59:59'
+		 ]]>
+	</select>
+
+</mapper>

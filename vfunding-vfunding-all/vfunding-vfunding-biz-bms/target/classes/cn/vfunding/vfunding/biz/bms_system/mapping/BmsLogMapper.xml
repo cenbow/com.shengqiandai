@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.bms_system.dao.BmsLogMapper" >
+  <resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.bms_system.model.BmsLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="operation_time" property="operationTime" jdbcType="TIMESTAMP" />
+    <result column="operation_desc" property="operationDesc" jdbcType="VARCHAR" />
+    <result column="success" property="success" jdbcType="VARCHAR" />
+    <result column="request_address" property="requestAddress" jdbcType="VARCHAR" />
+    <result column="error_info" property="errorInfo" jdbcType="VARCHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, user_id, operation_time, operation_desc, success, request_address,error_info
+  </sql>
+  
+  <!-- 后台日志列表 -->
+  <select id="selectSystemBmsLogListPage" resultMap="BaseResultMap" parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+    select l.id, l.operation_time, l.operation_desc, l.success, l.request_address,l.error_info,e.emp_name username
+    from vf_bms_log l left join vf_employee e on l.user_id = e.emp_id 
+    where 1=1
+    <if test="entity.success != null and entity.success != '' ">
+		and l.success = #{entity.success,jdbcType=VARCHAR}
+	</if>
+    <if test="entity.username != null and entity.username != ''">
+		and e.emp_name like
+		concat('%',#{entity.username,jdbcType=VARCHAR},'%')
+	</if>
+    <if test="entity.startTime != null and entity.startTime != ''">
+		<![CDATA[ and l.operation_time >= #{entity.startTime,jdbcType=VARCHAR} ]]>
+	</if>
+	<if test="entity.endTime != null and entity.endTime != ''">
+		<![CDATA[ and l.operation_time <= #{entity.endTime,jdbcType=VARCHAR} ]]>
+	</if>
+    order by l.operation_time desc
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from vf_bms_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from vf_bms_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.vfunding.biz.bms_system.model.BmsLog" >
+    insert into vf_bms_log (id, user_id, operation_time, 
+      operation_desc, success, request_address,error_info
+      )
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{operationTime,jdbcType=TIMESTAMP}, 
+      #{operationDesc,jdbcType=VARCHAR}, #{success,jdbcType=VARCHAR}, #{requestAddress,jdbcType=VARCHAR}, #{errorInfo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.bms_system.model.BmsLog" >
+    insert into vf_bms_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="operationTime != null" >
+        operation_time,
+      </if>
+      <if test="operationDesc != null" >
+        operation_desc,
+      </if>
+      <if test="success != null" >
+        success,
+      </if>
+      <if test="requestAddress != null" >
+        request_address,
+      </if>
+      <if test="errorInfo != null" >
+        error_info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="operationTime != null" >
+        #{operationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operationDesc != null" >
+        #{operationDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="success != null" >
+        #{success,jdbcType=VARCHAR},
+      </if>
+      <if test="requestAddress != null" >
+        #{requestAddress,jdbcType=VARCHAR},
+      </if> <if test="errorInfo != null" >
+        #{errorInfo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.bms_system.model.BmsLog" >
+    update vf_bms_log
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="operationTime != null" >
+        operation_time = #{operationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operationDesc != null" >
+        operation_desc = #{operationDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="success != null" >
+        success = #{success,jdbcType=VARCHAR},
+      </if>
+      <if test="requestAddress != null" >
+        request_address = #{requestAddress,jdbcType=VARCHAR},
+      </if>
+       <if test="errorInfo != null" >
+        error_info = #{errorInfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.bms_system.model.BmsLog" >
+    update vf_bms_log
+    set user_id = #{userId,jdbcType=INTEGER},
+      operation_time = #{operationTime,jdbcType=TIMESTAMP},
+      operation_desc = #{operationDesc,jdbcType=VARCHAR},
+      success = #{success,jdbcType=VARCHAR},
+      request_address = #{requestAddress,jdbcType=VARCHAR},
+      error_info = #{errorInfo,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

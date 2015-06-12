@@ -1,0 +1,6 @@
+2015-01-29 01:06:50,658 cn.vfunding.vfunding.biz.notify.service.impl.RechargeNotifyServiceImpl.recharge(RechargeNotifyServiceImpl.java:37) "#" 新浪通知网银充值消息开始
+2015-01-29 01:06:50,663 cn.vfunding.vfunding.biz.notify.service.impl.RechargeNotifyServiceImpl.recharge(RechargeNotifyServiceImpl.java:38) "#" 参数列表:deposit_amount=1.10,sign=669f9128ffe453f158e8a9c863e9312e,_input_charset=utf-8,notify_time=20150129010734,deposit_status=SUCCESS,outer_trade_no=1422430545383,sign_type=MD5,notify_type=deposit_status_sync,inner_trade_no=102142243069929566830,notify_id=2aa267dbe2474710907d17158d768d9a,version=1.0
+2015-01-29 01:06:50,664 cn.vfunding.vfunding.biz.notify.service.impl.RechargeNotifyServiceImpl.recharge(RechargeNotifyServiceImpl.java:51) "#" 通知状态:SUCCESS
+2015-01-29 01:06:50,665 cn.vfunding.vfunding.biz.notify.service.impl.RechargeNotifyServiceImpl.recharge(RechargeNotifyServiceImpl.java:53) "#" 新浪通知网银充值消息--流水号【1422430545383】--更新SUCCESS充值记录开始
+2015-01-29 01:06:50,706 cn.vfunding.vfunding.biz.notify.service.impl.RechargeNotifyServiceImpl.recharge(RechargeNotifyServiceImpl.java:59) "#" 新浪通知网银充值消息--流水号【1422430545383】--更新SUCCESS充值记录完成
+2015-01-29 01:06:50,707 cn.vfunding.vfunding.biz.notify.service.impl.RechargeNotifyServiceImpl.recharge(RechargeNotifyServiceImpl.java:77) "#" 新浪通知网银充值消息完成

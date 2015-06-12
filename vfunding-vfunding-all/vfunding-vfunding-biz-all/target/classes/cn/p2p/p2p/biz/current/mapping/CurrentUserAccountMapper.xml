@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.p2p.p2p.biz.current.dao.CurrentUserAccountMapper">
+	<resultMap id="BaseResultMap"
+		type="cn.p2p.p2p.biz.current.model.CurrentUserAccount">
+		<id column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="total" property="total" jdbcType="DECIMAL" />
+		<result column="use_money" property="useMoney" jdbcType="DECIMAL" />
+		<result column="no_use_money" property="noUseMoney" jdbcType="DECIMAL" />
+		<result column="use_interest" property="useInterest" jdbcType="DECIMAL" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		user_id, total, use_money, no_use_money, use_interest
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from p2p_current_user_account
+		where user_id =
+		#{userId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		p2p_current_user_account
+		where user_id = #{userId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="cn.p2p.p2p.biz.current.model.CurrentUserAccount">
+		insert into
+		p2p_current_user_account (user_id, total, use_money,
+		no_use_money,
+		use_interest)
+		values (#{userId,jdbcType=INTEGER},
+		#{total,jdbcType=DECIMAL},
+		#{useMoney,jdbcType=DECIMAL},
+		#{noUseMoney,jdbcType=DECIMAL}, #{useInterest,jdbcType=DECIMAL})
+	</insert>
+	<insert id="insertSelective" parameterType="cn.p2p.p2p.biz.current.model.CurrentUserAccount">
+		insert into p2p_current_user_account
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="total != null">
+				total,
+			</if>
+			<if test="useMoney != null">
+				use_money,
+			</if>
+			<if test="noUseMoney != null">
+				no_use_money,
+			</if>
+			<if test="useInterest != null">
+				use_interest,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="total != null">
+				#{total,jdbcType=DECIMAL},
+			</if>
+			<if test="useMoney != null">
+				#{useMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="noUseMoney != null">
+				#{noUseMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="useInterest != null">
+				#{useInterest,jdbcType=DECIMAL},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.p2p.p2p.biz.current.model.CurrentUserAccount">
+		update p2p_current_user_account
+		<set>
+			<if test="total != null">
+				total = #{total,jdbcType=DECIMAL},
+			</if>
+			<if test="useMoney != null">
+				use_money = #{useMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="noUseMoney != null">
+				no_use_money = #{noUseMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="useInterest != null">
+				use_interest = #{useInterest,jdbcType=DECIMAL},
+			</if>
+		</set>
+		where user_id = #{userId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.p2p.p2p.biz.current.model.CurrentUserAccount">
+		update
+		p2p_current_user_account
+		set total = #{total,jdbcType=DECIMAL},
+		use_money = #{useMoney,jdbcType=DECIMAL},
+		no_use_money =
+		#{noUseMoney,jdbcType=DECIMAL},
+		use_interest =
+		#{useInterest,jdbcType=DECIMAL}
+		where user_id =
+		#{userId,jdbcType=INTEGER}
+	</update>
+
+	<select id="selectAllCurentAccount" resultMap="BaseResultMap">
+		select * from p2p_current_user_account
+	</select>
+</mapper>

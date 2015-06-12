@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.achievement.dao.AchievementLogMapper" >
+  <resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.achievement.model.AchievementLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="achievement_id" property="achievementId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, achievement_id, user_id, status, addtime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from vf_achievement_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from vf_achievement_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.vfunding.biz.achievement.model.AchievementLog" >
+    insert into vf_achievement_log (id, achievement_id, user_id, 
+      status, addtime)
+    values (#{id,jdbcType=INTEGER}, #{achievementId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{addtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.achievement.model.AchievementLog" useGeneratedKeys="true" keyProperty="id">
+    insert into vf_achievement_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="achievementId != null" >
+        achievement_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="achievementId != null" >
+        #{achievementId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.achievement.model.AchievementLog" >
+    update vf_achievement_log
+    <set >
+      <if test="achievementId != null" >
+        achievement_id = #{achievementId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.achievement.model.AchievementLog" >
+    update vf_achievement_log
+    set achievement_id = #{achievementId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      addtime = #{addtime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectByAchievementIdAndUserId" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from vf_achievement_log
+    where achievement_id = #{achievementId,jdbcType=INTEGER} and user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="sumHikesForApril" resultType="java.math.BigDecimal">
+	select ifnull(sum(award_value),0) from vf_achievement_log a
+	left join vf_achievement b on a.achievement_id = b.id
+	where a.user_id = #{userId,jdbcType=INTEGER} and b.award = 'hikes' and b.squad='fifteen_april' and a.status=1
+  </select>
+  
+</mapper>

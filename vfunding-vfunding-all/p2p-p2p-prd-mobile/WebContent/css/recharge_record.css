@@ -1,0 +1,84 @@
+@CHARSET "UTF-8";
+*{
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	list-style: none;
+	font-family: "微软雅黑";
+	text-shadow: none;
+}
+
+.top{
+	width: 100%;
+	position: fixed;
+	top:0;
+	background-color: #fff;
+	z-index: 999;
+}
+.top  a{
+	width: 100%;
+	display: block;
+	text-align: center;
+	border-bottom: thin ridge #b4b4b4;
+	padding-bottom: 0.5em;
+	padding-top: 0.5em;
+} 
+.top span{
+	position: absolute;
+	top:20%;
+	left:2%;
+}
+.tiao1{
+	width: 100%;
+	height: 10px;
+	position: absolute;
+	top:39px;
+	left:0;
+	background-color: #f0f0f0;
+}
+.recharge{
+	width: 95%;
+	position: absolute;
+	top:49px;
+	left:0;
+	background-color: #fdb82c;
+	color: #fff;
+	padding: 20px 2.5%;
+}
+.rechargen p{
+	font-size: 16px;
+}
+.tiao2{
+	width: 100%;
+	height: 10px;
+	position: absolute;
+	top:147px;
+	left:0;
+	background-color: #f0f0f0;
+}
+.recharge_date{
+	width: 100%;
+	position: absolute;
+	top:157px;
+	left:0;
+	padding-bottom: 35px;
+}
+.outli{
+	width: 100%;
+	background-color: #fff;
+	border-top: thin solid #d2d2d2;
+	height: 50px;
+	line-height: 50px;
+	font-size: 18px;
+	color: #000;
+}
+.outli li{
+	width: 25%;
+	float: left;
+	margin-left: 10px;
+}
+.outli span{
+	float: right;
+	margin-right: 10px;
+	color: red;
+}

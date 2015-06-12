@@ -1,0 +1,31 @@
+@charset "utf-8";
+.mysocialshare{ height:72px;}
+
+.mysocialshare.bubble{display:block;width:72px;height:72px;position:relative;z-index:1;}
+.mysocialshare.bubble .msb_main{display:block;width:72px;height:72px;position:absolute;top:0;left:0;z-index:2;cursor:pointer;text-indent:-9999px;}
+.mysocialshare.bubble .msb_main img{width:72px;height:72px;cursor:pointer;border:none;}
+.mysocialshare.bubble .msb_main:hover{}
+.mysocialshare.bubble .msb_network_button{width:74px;height:74px;position:absolute;top:9px;left:9px;z-index:1;cursor:pointer;text-indent:-9999px;display:none;background:no-repeat;}
+.mysocialshare.bubble .msb_network_button.jieshao{background:url(../images/jieshao.png);}
+
+
+.mysocialshare.bubble .msb_network_button.baozhang{background:url(../images/baozhang.png);}
+.mysocialshare.bubble .msb_network_button.zhuanye{background:url(../images/zhuanye.png);}
+
+.mysocialshare.bubble .msb_network_button.touming{background:url(../images/touming.png);}
+.mysocialshare.bubble .msb_network_button.youshi{background:url(../images/youshi.png);}
+
+
+.mysocialshare.bubble .msb_network_button:hover{background-position:0 -74px;}
+
+/* plugin_container */
+.plugin_container{width:72px;height:72px;position: absolute; left:0; top:0; z-index:99;}
+.plugin_container img{display:block;float:left;}
+.paragraph_container{width:380px;background-color:#FFF;margin:20px 0;display:block;float:left;padding:40px;border-radius:3px;box-shadow:0px 0px 5px #DDD;}
+.paragraph_container.full{clear:both;width:860px;margin-top:0;float:none;}
+.paragraph_container h3{color:#414042;font-family:Helvetica, Arial, "Lucida Grande", sans-serif;font-weight:bold;font-size:24px;margin:0 0 20px;text-align:center;}
+.paragraph_container p{font-family:Georgia, Times, "Times New Roman", serif;font-size:16px;line-height:30px;margin:0;color:#414042;text-align:center;}
+.paragraph_container ul{font-family:Georgia, Times, "Times New Roman", serif;font-size:16px;line-height:30px;color:#414042;}
+.paragraph_container.left{margin-left:0;margin-right:20px;}
+.mysocialshare.bubble{position:absolute !important;}
+

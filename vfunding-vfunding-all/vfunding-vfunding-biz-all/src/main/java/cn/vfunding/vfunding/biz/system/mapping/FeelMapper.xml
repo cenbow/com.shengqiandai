@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.system.dao.FeelMapper">
+	<resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.system.model.Feel">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="group_name" property="groupName" jdbcType="VARCHAR" />
+		<result column="no" property="no" jdbcType="VARCHAR" />
+		<result column="code" property="code" jdbcType="VARCHAR" />
+		<result column="addtime" property="addtime" jdbcType="INTEGER" />
+		<result column="money" property="money" jdbcType="DECIMAL" />
+	</resultMap>
+
+	<resultMap id="BaseResultMap2" type="cn.vfunding.vfunding.biz.common.vo.FeelVO">
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="no" property="no" jdbcType="VARCHAR" />
+		<result column="useStatus" property="useStatus" jdbcType="INTEGER" />
+		<result column="addtime" property="addtime" jdbcType="INTEGER" />
+		<result column="bindingStatus" property="bindingStatus"
+			jdbcType="VARCHAR" />
+		<result column="bid" property="bid" jdbcType="INTEGER" />
+		<result column="bname" property="bname" jdbcType="VARCHAR" />
+		<result column="limitDay" property="limitDay" jdbcType="INTEGER" />
+		<result column="repayTime" property="repayTime" jdbcType="INTEGER" />
+		<result column="interest" property="interest" jdbcType="DECIMAL" />
+		<result column="account" property="account" jdbcType="DECIMAL" />
+		<result column="repayStatus" property="repayStatus" jdbcType="INTEGER" />
+		<result column="currentPage" property="currentPage" jdbcType="INTEGER" />
+		<result column="pageSize" property="pageSize" jdbcType="INTEGER" />
+		<result column="count" property="count" jdbcType="INTEGER" />
+		<result column="firstRecharge" property="firstRecharge" jdbcType="VARCHAR" />
+	    <result column="tenders" property="tenders" jdbcType="VARCHAR" />
+	    <result column="groupname" property="groupname" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, `status`, user_id,group_name,no,code,money, addtime
+	</sql>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from rd_feel
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from rd_feel order by no desc
+	</select>
+	<select id="selectByNo" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from rd_feel where 
+    <![CDATA[ 
+    	no >= #{startNo,jdbcType=INTEGER} and no <= #{endNo,jdbcType=INTEGER}
+	 ]]>
+	</select>
+
+	<!-- 按组名查询
+	select rf.no as no,ifnull(rf.`status`,0) as useStatus ,rf.addtime as addtime,ifnull(ifnull(u.username,rf.group_name),'无') as username 
+	,ifnull(ifnull(u.username,rf.group_name),0) as bindingStatus
+	from rd_feel rf
+	left join rd_user u on rf.user_id=u.user_id where 1=1
+	 -->
+	<select id="selectFeelsListPage" resultMap="BaseResultMap2"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+	select a.no,a.status useStatus,a.addtime as addtime,
+	ifnull(ifnull(e.username,a.group_name),'无') as username,c.username as tenders,d.money,d.rechargeTime firstRecharge from rd_feel a 
+	left join 
+	(select b.user_id,right(b.remark,16) as code from rd_account_feel_log b where type='recharge') b on a.code=b.code
+	left join rd_user c on b.user_id=c.user_id
+	left join 
+	(select d.user_id,d.money,min(addtime) as rechargeTime  from rd_account_recharge d where d.status=1 group by user_id) d on c.user_id=d.user_id
+	left join rd_user e on a.user_id=e.user_id
+	where 1=1
+		<if test="entity!=null and entity.username != null">
+			and a.group_name like concat('%',#{entity.username,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="entity!=null and entity.useStatus != null">
+			and a.`status`=#{entity.useStatus,jdbcType=INTEGER}
+		</if>
+		<if test="entity!=null and entity.bindingStatus != null">
+		     and a.group_name is not null
+		</if>
+		<if test="entity.startNo != null">
+    	<![CDATA[ 
+	    	and a.no >= #{entity.startNo,jdbcType=INTEGER}
+		 ]]>
+	    </if>
+	    <if test="entity.endNo != null">
+	    	<![CDATA[ 
+		    	and a.no <= #{entity.endNo,jdbcType=INTEGER} 
+			 ]]>
+	    </if>
+	    <if test="entity.startTime != null and entity.startTime != ''">
+			<![CDATA[ and a.addtime >= #{entity.startTime,jdbcType=VARCHAR} ]]>
+		</if>
+		<if test="entity.endTime != null and entity.endTime != ''">
+			<![CDATA[ and a.addtime <= #{entity.endTime,jdbcType=VARCHAR} ]]>
+		</if>
+		order by d.money desc
+	</select>
+
+
+	<select id="selectByNoStatus" resultMap="BaseResultMap"
+		parameterType="cn.vfunding.vfunding.biz.system.model.Feel">
+		select
+		<include refid="Base_Column_List" />
+		from rd_feel
+		where no like concat('',#{feel.no,jdbcType=INTEGER},'%')
+		<if test="feel.money != null">
+			and money = #{feel.money,jdbcType=DECIMAL}
+		</if>
+		<if test="feel.status != null">
+			and `status`= #{feel.status,jdbcType=INTEGER}
+		</if>
+		order by no desc
+	</select>
+
+	<insert id="insert" parameterType="cn.vfunding.vfunding.biz.system.model.Feel">
+		insert into rd_feel (id, `status`, user_id,group_name,no,code,money,
+		addtime)
+		values (#{id,jdbcType=INTEGER}, #{status,jdbcType=INTEGER},
+		#{userId,jdbcType=INTEGER}, #{groupName,jdbcType=VARCHAR},
+		#{no,jdbcType=VARCHAR},
+		#{code,jdbcType=VARCHAR}, #{money,jdbcType=DECIMAL}, #{addtime,jdbcType=INTEGER})
+	</insert>
+	<update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.system.model.Feel">
+		update rd_feel
+		set user_id = #{userId,jdbcType=INTEGER},
+		group_name = #{groupName,jdbcType=VARCHAR},
+		`status` = #{status,jdbcType=INTEGER},
+		no = #{no,jdbcType=VARCHAR},
+		code = #{code,jdbcType=VARCHAR},
+		addtime = #{addtime,jdbcType=INTEGER},
+		money = #{money,jdbcType=DECIMAL},
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.system.model.Feel">
+		update rd_feel
+		<set>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=INTEGER},
+			</if>
+			<if test="groupName != null">
+				group_name = #{groupName,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				`status` = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="no != null">
+				no = #{no,jdbcType=VARCHAR},
+			</if>
+			<if test="code != null">
+				code = #{code,jdbcType=VARCHAR},
+			</if>
+			<if test="addtime != null">
+				addtime = #{addtime,jdbcType=INTEGER},
+			</if>
+			<if test="money != null">
+				money = #{money,jdbcType=DECIMAL},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<select id="selectByUserId" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from rd_feel
+		where user_id = #{userId,jdbcType=INTEGER}
+	</select>
+	<select id="selectByStatus" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from rd_feel
+		where `status` = #{status,jdbcType=INTEGER}
+	</select>
+	<select id="selectByCode" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from rd_feel
+		where code = #{code,jdbcType=VARCHAR}
+	</select>
+</mapper>

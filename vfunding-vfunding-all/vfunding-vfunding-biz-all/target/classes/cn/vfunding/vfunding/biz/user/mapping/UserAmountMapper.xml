@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.user.dao.UserAmountMapper" >
+  <resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.user.model.UserAmount" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="credit" property="credit" jdbcType="DECIMAL" />
+    <result column="credit_use" property="creditUse" jdbcType="DECIMAL" />
+    <result column="credit_nouse" property="creditNouse" jdbcType="DECIMAL" />
+    <result column="borrow_vouch" property="borrowVouch" jdbcType="DECIMAL" />
+    <result column="borrow_vouch_use" property="borrowVouchUse" jdbcType="DECIMAL" />
+    <result column="borrow_vouch_nouse" property="borrowVouchNouse" jdbcType="DECIMAL" />
+    <result column="tender_vouch" property="tenderVouch" jdbcType="DECIMAL" />
+    <result column="tender_vouch_use" property="tenderVouchUse" jdbcType="DECIMAL" />
+    <result column="tender_vouch_nouse" property="tenderVouchNouse" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, credit, credit_use, credit_nouse, borrow_vouch, borrow_vouch_use, borrow_vouch_nouse, 
+    tender_vouch, tender_vouch_use, tender_vouch_nouse
+  </sql>
+  
+  <!-- 多参数查询 -->
+  <select id="selectByParam" resultMap="BaseResultMap" parameterType="cn.vfunding.vfunding.biz.user.model.UserAmount" >
+    select 
+    <include refid="Base_Column_List" />
+    from rd_user_amount
+    where 1=1
+    <if test="id != null">
+    	and id = #{id,jdbcType=INTEGER}
+    </if>
+    <if test="userId != null">
+    	and user_id = #{userId,jdbcType=INTEGER}
+    </if>
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from rd_user_amount
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from rd_user_amount
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <delete id="deleteByUserId" parameterType="java.lang.Integer" >
+    delete from rd_user_amount
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.vfunding.biz.user.model.UserAmount" >
+    insert into rd_user_amount (id, user_id, credit, 
+      credit_use, credit_nouse, borrow_vouch, 
+      borrow_vouch_use, borrow_vouch_nouse, tender_vouch, 
+      tender_vouch_use, tender_vouch_nouse)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{credit,jdbcType=DECIMAL}, 
+      #{creditUse,jdbcType=DECIMAL}, #{creditNouse,jdbcType=DECIMAL}, #{borrowVouch,jdbcType=DECIMAL}, 
+      #{borrowVouchUse,jdbcType=DECIMAL}, #{borrowVouchNouse,jdbcType=DECIMAL}, #{tenderVouch,jdbcType=DECIMAL}, 
+      #{tenderVouchUse,jdbcType=DECIMAL}, #{tenderVouchNouse,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.user.model.UserAmount" >
+    insert into rd_user_amount
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="credit != null" >
+        credit,
+      </if>
+      <if test="creditUse != null" >
+        credit_use,
+      </if>
+      <if test="creditNouse != null" >
+        credit_nouse,
+      </if>
+      <if test="borrowVouch != null" >
+        borrow_vouch,
+      </if>
+      <if test="borrowVouchUse != null" >
+        borrow_vouch_use,
+      </if>
+      <if test="borrowVouchNouse != null" >
+        borrow_vouch_nouse,
+      </if>
+      <if test="tenderVouch != null" >
+        tender_vouch,
+      </if>
+      <if test="tenderVouchUse != null" >
+        tender_vouch_use,
+      </if>
+      <if test="tenderVouchNouse != null" >
+        tender_vouch_nouse,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="credit != null" >
+        #{credit,jdbcType=DECIMAL},
+      </if>
+      <if test="creditUse != null" >
+        #{creditUse,jdbcType=DECIMAL},
+      </if>
+      <if test="creditNouse != null" >
+        #{creditNouse,jdbcType=DECIMAL},
+      </if>
+      <if test="borrowVouch != null" >
+        #{borrowVouch,jdbcType=DECIMAL},
+      </if>
+      <if test="borrowVouchUse != null" >
+        #{borrowVouchUse,jdbcType=DECIMAL},
+      </if>
+      <if test="borrowVouchNouse != null" >
+        #{borrowVouchNouse,jdbcType=DECIMAL},
+      </if>
+      <if test="tenderVouch != null" >
+        #{tenderVouch,jdbcType=DECIMAL},
+      </if>
+      <if test="tenderVouchUse != null" >
+        #{tenderVouchUse,jdbcType=DECIMAL},
+      </if>
+      <if test="tenderVouchNouse != null" >
+        #{tenderVouchNouse,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.user.model.UserAmount" >
+    update rd_user_amount
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="credit != null" >
+        credit = #{credit,jdbcType=DECIMAL},
+      </if>
+      <if test="creditUse != null" >
+        credit_use = #{creditUse,jdbcType=DECIMAL},
+      </if>
+      <if test="creditNouse != null" >
+        credit_nouse = #{creditNouse,jdbcType=DECIMAL},
+      </if>
+      <if test="borrowVouch != null" >
+        borrow_vouch = #{borrowVouch,jdbcType=DECIMAL},
+      </if>
+      <if test="borrowVouchUse != null" >
+        borrow_vouch_use = #{borrowVouchUse,jdbcType=DECIMAL},
+      </if>
+      <if test="borrowVouchNouse != null" >
+        borrow_vouch_nouse = #{borrowVouchNouse,jdbcType=DECIMAL},
+      </if>
+      <if test="tenderVouch != null" >
+        tender_vouch = #{tenderVouch,jdbcType=DECIMAL},
+      </if>
+      <if test="tenderVouchUse != null" >
+        tender_vouch_use = #{tenderVouchUse,jdbcType=DECIMAL},
+      </if>
+      <if test="tenderVouchNouse != null" >
+        tender_vouch_nouse = #{tenderVouchNouse,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.user.model.UserAmount" >
+    update rd_user_amount
+    set user_id = #{userId,jdbcType=INTEGER},
+      credit = #{credit,jdbcType=DECIMAL},
+      credit_use = #{creditUse,jdbcType=DECIMAL},
+      credit_nouse = #{creditNouse,jdbcType=DECIMAL},
+      borrow_vouch = #{borrowVouch,jdbcType=DECIMAL},
+      borrow_vouch_use = #{borrowVouchUse,jdbcType=DECIMAL},
+      borrow_vouch_nouse = #{borrowVouchNouse,jdbcType=DECIMAL},
+      tender_vouch = #{tenderVouch,jdbcType=DECIMAL},
+      tender_vouch_use = #{tenderVouchUse,jdbcType=DECIMAL},
+      tender_vouch_nouse = #{tenderVouchNouse,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

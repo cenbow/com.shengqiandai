@@ -1,0 +1,81 @@
+@charset "utf-8";
+/* CSS Document */
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+body{ font-family:"微软雅黑"}
+.register2{ width:970px; height:520px; margin:30px auto; background-color:#fff; padding:20px;font-size:12px;}
+.reg_content{ height:520px;}
+.reg_logo{ height:50px; position:relative;}
+
+.reg_logo_pic{ width:162px; height:50px; background:url(http://static.vfunding.cn/images/register/res_bg.png) no-repeat; position:absolute; top:0; left:0;}
+.go_login{ width:166px; line-height:22px; position:absolute; right:0; bottom:0; color:#00a0e9; text-align:right; }
+a.go_login:hover{color:#00afff;}
+.reg_conditions{ height:530px; margin-top:10px; border-top:1px solid #e7e7e7; padding-top:20px;}
+div.reg_conditions .reg_step{ height:51px; display:block; }
+.reg_step li{ width:323px; height:51px; float:left; background:#eeeeee;}
+
+.reg_step li.step1{background:url(http://static.vfunding.cn/images/register/step_arrow.png) no-repeat right 0 #00a0e9;}
+
+.reg_step li.step1 .step_msg,.reg_step li.step2 .step_msg,.reg_step li.step3 .step_msg{ width:110px; height:51px; line-height:51px; padding-left:84px; float:left; display:inline; position: relative;  font-size:18px;}
+span.step_msg .dot24{ width:24px; height:24px;  position:absolute; left:52px; top:13px; line-height:24px; text-align:center; font-size:18px;  font-family:Arial, Helvetica, sans-serif; color:#888888;}
+
+.reg_step li.step2{ background:url(http://static.vfunding.cn/images/register/step_arrow.png) no-repeat right -59px #00a0e9;}
+.reg_step li.step2 .step_msg,.reg_step li.step3 .step_msg{ color:#888888;}
+.reg_step li.step1 .step_msg .dot24,.reg_step li.step2 .step_msg .dot24,.reg_step li.step3 .step_msg .dot24{ color:#888888; background:url(http://static.vfunding.cn/images/register/dot24.png) no-repeat;}
+
+
+.reg_step li.step1 .whiteColor,.reg_step li.step2 .whiteColor{ color:#fff;}
+
+.ui-form-item .submit_btn{ font-family:"微软雅黑";}
+
+.form_validator{ width:600px; height:450px; margin:0 auto; padding-top:20px; }
+.ui-form-item{ height:70px; padding-bottom:5px; position:relative;}
+.ui-form-item .ui-input{ padding:10px 9px; font-size:14px; width:184px;}
+
+
+.ui-form .pl60{ padding-left:60px;}
+.ui-form .input_tip{
+	position: absolute;
+	color: #ABABAB;
+	left: 233px;
+	top: 12px;
+	display: block;
+}
+.ui-form .submit_btn{ width:225px; height:50px; background:#ff8636; font-size:24px; color:#fff; border:0 none; cursor:pointer; outline:none; display:block; border-radius:4px;}
+.ui-form .submit_btn:hover{background:#ffa836;}
+
+.ui-form .h40{ height:40px;}
+
+label.error,label.valid{ height:24px; line-height:24px; background:url(http://static.vfunding.cn/images/register/wrong.png) no-repeat 10px 0; padding:0 0 4px 40px; color:#888;}
+label.valid{ background:url(http://static.vfunding.cn/images/register/right.png) no-repeat 10px 0; }
+
+
+#mobile{ background-position:0 -76px;}
+#authCode{background-position:0 -152px;}
+
+
+.ui-form-item .getPhoneCode,.ui-form-item .getVoiceCode{ width:78px; height:30px; background:#00a0e9; display:block; font-size:14px; text-align:center; line-height:30px; color:#fff; font-family:"微软雅黑" }
+.ui-form-item .getPhoneCode{position:absolute; top:4px; left:170px;}
+.ui-form-item .getVoiceCode{position:absolute; top:4px; left:258px; }
+
+
+.verifyTip{ height:30px;  text-align:center; font-size:14px; color:#888888;}
+
+.verifyTip a{ color:#00a0e9;}
+.us_bg{ background:url(http://static.vfunding.cn/images/register/us_bg.png) no-repeat;}
+.ui-form .check_code{ height:50px;}
+
+
+
+
+a:focus, a:active,
+button::-moz-focus-inner,
+input[type="reset"]::-moz-focus-inner,
+input[type="button"]::-moz-focus-inner,
+input[type="submit"]::-moz-focus-inner,
+select::-moz-focus-inner,
+input[type="file"] > input[type="button"]::-moz-focus-inner {
+border: 0;
+outline : 0;
+}

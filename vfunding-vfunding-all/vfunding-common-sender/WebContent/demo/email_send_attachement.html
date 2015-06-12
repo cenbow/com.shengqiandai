@@ -1,0 +1,19 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="../send/email/attachment" accept-charset="utf-8" method="post" id="sendEmail" name="sendEmail" enctype="multipart/form-data">
+					邮箱(多个邮箱使用;隔开):<input   name="addressesString"  id="addressesString"  type="text"><br>
+					邮件标题:<input   name="title"  id="title"  type="text"><br>
+					邮件内容:<input   name="content"  id="content"  type="text"><br>
+					邮件类型（根据数据字典传递）:<input   name="type"  id="type"  type="text"><br>
+					附件1:<input  type="file" name="attachments">
+					附件2:<input  type="file" name="attachments">
+					<input type="submit"  value="提交">
+			</form>
+</body>
+</html>

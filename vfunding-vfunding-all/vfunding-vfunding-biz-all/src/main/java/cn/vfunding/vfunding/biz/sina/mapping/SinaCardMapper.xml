@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.sina.dao.SinaCardMapper" >
+  <resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.sina.model.SinaCard" >
+  	<id column="sc_id" property="scId" jdbcType="INTEGER" />
+    <result column="sina_card" property="sinaCard" jdbcType="VARCHAR" />
+    <result column="is_verified" property="isVerified" jdbcType="VARCHAR" />
+    <result column="card_id" property="cardId" jdbcType="VARCHAR" />
+    <result column="account_name" property="accountName" jdbcType="VARCHAR" />
+    <result column="add_time" property="addTime" jdbcType="DATE" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="bank_phone" property="bankPhone" jdbcType="VARCHAR" />
+    <result column="bank" property="bank" jdbcType="VARCHAR" />
+    <result column="weight" property="weight" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sc_id,sina_card, is_verified, card_id, account_name, add_time, user_id, status,province,city,bank_phone,bank,weight
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from vf_sina_card
+    where sc_id = #{scId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from vf_sina_card
+    where sc_id = #{scId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.vfunding.biz.sina.model.SinaCard" >
+    insert into vf_sina_card (sina_card, is_verified, card_id, 
+      account_name, add_time, user_id, 
+      status,province,city,bank_phone,bank,weight)
+    values (#{sinaCard,jdbcType=VARCHAR}, #{isVerified,jdbcType=VARCHAR}, #{cardId,jdbcType=VARCHAR}, 
+      #{accountName,jdbcType=VARCHAR}, #{addTime,jdbcType=DATE}, #{userId,jdbcType=INTEGER}, 
+      #{status,jdbcType=VARCHAR},#{province},#{city},#{bankPhone},#{bank},#{weight})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.sina.model.SinaCard" useGeneratedKeys="true"
+	keyProperty="scId">
+    insert into vf_sina_card
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sinaCard != null" >
+        sina_card,
+      </if>
+      <if test="isVerified != null" >
+        is_verified,
+      </if>
+      <if test="cardId != null" >
+        card_id,
+      </if>
+      <if test="accountName != null" >
+        account_name,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="bankPhone != null" >
+        bank_phone,
+      </if>
+      <if test="bank != null" >
+        bank,
+      </if>
+      <if test="weight != null" >
+        weight,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sinaCard != null" >
+        #{sinaCard,jdbcType=VARCHAR},
+      </if>
+      <if test="isVerified != null" >
+        #{isVerified,jdbcType=VARCHAR},
+      </if>
+      <if test="cardId != null" >
+        #{cardId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountName != null" >
+        #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=DATE},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="bankPhone != null" >
+        #{bankPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="bank != null" >
+        #{bank,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.sina.model.SinaCard" >
+    update vf_sina_card
+    <set >
+    <if test="isVerified != null" >
+        sina_card = #{sinaCard,jdbcType=VARCHAR},
+      </if>
+      <if test="isVerified != null" >
+        is_verified = #{isVerified,jdbcType=VARCHAR},
+      </if>
+      <if test="cardId != null" >
+        card_id = #{cardId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountName != null" >
+        account_name = #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=DATE},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="bankPhone != null" >
+        bank_phone = #{bankPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="bank != null" >
+        bank = #{bank,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        weight = #{weight,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sc_id = #{scId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.sina.model.SinaCard" >
+    update vf_sina_card
+    set is_verified = #{isVerified,jdbcType=VARCHAR},
+      card_id = #{cardId,jdbcType=VARCHAR},
+      account_name = #{accountName,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=DATE},
+      user_id = #{userId,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      bank_phone = #{bankPhone},
+      bank = #{bank},
+      weight = #{weight},
+      sina_card = #{sina_card}
+    where sc_id = #{scId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectSelective" resultMap="BaseResultMap" parameterType="cn.vfunding.vfunding.biz.sina.model.SinaCard" >
+  select 
+  <include refid="Base_Column_List" />
+  from vf_sina_card
+  where 1 = 1
+  		<if test="scId != null" >
+	    and sc_id = #{scId,jdbcType=VARCHAR}
+	  </if>
+	  <if test="isVerified != null" >
+	    and is_verified = #{isVerified,jdbcType=VARCHAR}
+	  </if>
+	  <if test="cardId != null" >
+	    and card_id = #{cardId,jdbcType=VARCHAR}
+	  </if>
+	  <if test="accountName != null" >
+	    and account_name = #{accountName,jdbcType=VARCHAR}
+	  </if>
+	  <if test="addTime != null" >
+	    and add_time = #{addTime,jdbcType=DATE}
+	  </if>
+	  <if test="userId != null" >
+	    and user_id = #{userId,jdbcType=INTEGER}
+	  </if>
+	  <if test="status != null" >
+	    and status = #{status,jdbcType=VARCHAR}
+	  </if>
+	  <if test="province != null" >
+	    and province = #{province,jdbcType=VARCHAR}
+	  </if>
+	  <if test="city != null" >
+	    and city = #{city,jdbcType=VARCHAR}
+	  </if>
+	  <if test="bankPhone != null" >
+	    and bank_phone = #{bankPhone,jdbcType=VARCHAR}
+	  </if>
+	  <if test="bank != null" >
+	    and bank = #{bank,jdbcType=VARCHAR}
+	  </if>
+	  <if test="weight != null" >
+	    and weight = #{weight,jdbcType=VARCHAR}
+	  </if>
+	  order by add_time
+  </select>
+  
+  <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from vf_sina_card
+    where user_id = #{userId,jdbcType=VARCHAR}
+    order by add_time
+  </select>
+  
+  <select id="selectQuickPayByUserId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from vf_sina_card
+    where user_id = #{userId,jdbcType=VARCHAR}
+    and is_verified = 'Y'
+    and status = '0'
+    order by weight desc
+  </select>
+  
+  <update id="updateQuickPayCardWeight" parameterType="cn.vfunding.vfunding.biz.sina.model.SinaCard" >
+    update vf_sina_card
+    set weight = 0
+    where user_id = #{userId,jdbcType=VARCHAR}
+    and is_verified = 'Y'
+    and status = '0'
+  </update>
+  
+</mapper>

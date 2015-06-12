@@ -1,0 +1,70 @@
+.index_bg{ background:url(../images/index/index_bg.png) no-repeat;}
+#footer{ height:240px; background:#e2e6e8; clear:both; overflow:hidden;}
+.liner{ height:10px; background:url(../images/liner.png) repeat-x;}
+.footer_info{ width:1000px; height:100px; margin:10px auto 0; border-bottom:1px solid #d3d9db; clear:both;}
+
+.footer-nav{ height:16px;}
+.footer-nav li{ padding:0 14px; line-height:16px; float:left;}
+.footer-nav li a{ color:#888;}
+.footer-nav li a:hover{ color:#00a0e9;}
+
+.kind-tools{ height:44px; margin-top:22px;}
+
+.kind-tools li{ height:44px; line-height:44px; float:left;}
+
+.kind-tools li.kt1{ width:87px; text-align:center;}
+.kind-tools li.kt2,.kind-tools li.kt4{ width:110px;}
+.kind-tools li.kt3{width:87px; padding-left:32PX;}
+
+
+
+.kindtool{ background:url(../images/account/kindtool.png) no-repeat;}
+
+a.wb-sina,a.wb-tencent,a.andriod,a.apple{ width:44px; height:44px; display:block; }
+
+
+a.wb-sina{ background-position:0 0;}
+a.wb-sina:hover{background-position:-44px 0;}
+
+a.wb-tencent{ background-position:0 -44px;}
+a.wb-tencent:hover{ background-position:-44px -44px;}
+
+a.andriod{ background-position:0 -88px;}
+a.andriod:hover{ background-position:-44px -88px;}
+a.apple{ background-position:0 -132px;}
+a.apple:hover{ background-position:-44px -132px;}
+span.kefu-time,span.kefu-qq{ height:16px; line-height:16px; font-size:14px;}
+h2.kefu-tel{ height:26px; line-height:26px;  margin:12px 0; font-size:30px;}
+
+
+
+.footer_info_left,.footer_info_right{eight:120px; font-size:14px; color:#888;}
+
+
+
+.footer_info_left{ width:580px;}
+.footer_info_right{ width:300px;}
+
+
+
+
+
+
+.license{ width:542px; height:36px; margin:12px auto 10px; }
+.license a{height:36px; margin-right:20px; display:inline-block;}
+.license1{ width:96px; margin-left:20px; }
+.license1{ background-position:0 -358px;}
+.license1:hover{ background-position:0 -408px;}
+.license2{ width:65px; background-position:-96px -358px;}
+.license2:hover{background-position:-96px -408px;}
+.license3{ width:42px; background-position:-162px -358px;}
+.license3:hover{ background-position:-162px -408px;}
+.license4{ width:28px; background-position:-204px -358px;}
+.license4:hover{ background-position:-204px -408px;}
+.license5{ width:95px; background-position:-250px -358px;}
+.license5:hover{ background-position:-250px -408px;}
+.license6{ width:75px; height:28px; margin-top:4px; background-position:0 -453px;}
+.license6:hover{ background-position:-78px -453px;}
+
+.copyright{  height:20px; margin:4px auto; text-align:center; line-height:20px;font-size:12px; color:#888888;}
+

@@ -1,0 +1,1375 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.user.dao.UserBackupMapper" >
+  <resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.user.model.UserBackup" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_tel" property="userTel" jdbcType="VARCHAR" />
+    <result column="user_email" property="userEmail" jdbcType="VARCHAR" />
+    <result column="user_phone" property="userPhone" jdbcType="VARCHAR" />
+    <result column="user_qq" property="userQq" jdbcType="VARCHAR" />
+    <result column="user_address" property="userAddress" jdbcType="VARCHAR" />
+    <result column="user_nation" property="userNation" jdbcType="VARCHAR" />
+    <result column="user_realname" property="userRealname" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+    <result column="publish" property="publish" jdbcType="VARCHAR" />
+    <result column="marry" property="marry" jdbcType="VARCHAR" />
+    <result column="child" property="child" jdbcType="VARCHAR" />
+    <result column="education" property="education" jdbcType="VARCHAR" />
+    <result column="income" property="income" jdbcType="VARCHAR" />
+    <result column="shebao" property="shebao" jdbcType="VARCHAR" />
+    <result column="shebaoid" property="shebaoid" jdbcType="VARCHAR" />
+    <result column="housing" property="housing" jdbcType="VARCHAR" />
+    <result column="car" property="car" jdbcType="VARCHAR" />
+    <result column="late" property="late" jdbcType="VARCHAR" />
+    <result column="house_address" property="houseAddress" jdbcType="VARCHAR" />
+    <result column="house_area" property="houseArea" jdbcType="VARCHAR" />
+    <result column="house_year" property="houseYear" jdbcType="VARCHAR" />
+    <result column="house_status" property="houseStatus" jdbcType="VARCHAR" />
+    <result column="house_holder1" property="houseHolder1" jdbcType="VARCHAR" />
+    <result column="house_holder2" property="houseHolder2" jdbcType="VARCHAR" />
+    <result column="house_right1" property="houseRight1" jdbcType="VARCHAR" />
+    <result column="house_right2" property="houseRight2" jdbcType="VARCHAR" />
+    <result column="house_loanyear" property="houseLoanyear" jdbcType="VARCHAR" />
+    <result column="house_loanprice" property="houseLoanprice" jdbcType="VARCHAR" />
+    <result column="house_balance" property="houseBalance" jdbcType="VARCHAR" />
+    <result column="house_bank" property="houseBank" jdbcType="VARCHAR" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="company_type" property="companyType" jdbcType="VARCHAR" />
+    <result column="company_industry" property="companyIndustry" jdbcType="VARCHAR" />
+    <result column="company_office" property="companyOffice" jdbcType="VARCHAR" />
+    <result column="company_jibie" property="companyJibie" jdbcType="VARCHAR" />
+    <result column="company_worktime1" property="companyWorktime1" jdbcType="VARCHAR" />
+    <result column="company_worktime2" property="companyWorktime2" jdbcType="VARCHAR" />
+    <result column="company_workyear" property="companyWorkyear" jdbcType="VARCHAR" />
+    <result column="company_tel" property="companyTel" jdbcType="VARCHAR" />
+    <result column="company_address" property="companyAddress" jdbcType="VARCHAR" />
+    <result column="company_weburl" property="companyWeburl" jdbcType="VARCHAR" />
+    <result column="company_reamrk" property="companyReamrk" jdbcType="VARCHAR" />
+    <result column="private_type" property="privateType" jdbcType="VARCHAR" />
+    <result column="private_date" property="privateDate" jdbcType="VARCHAR" />
+    <result column="private_place" property="privatePlace" jdbcType="VARCHAR" />
+    <result column="private_rent" property="privateRent" jdbcType="VARCHAR" />
+    <result column="private_term" property="privateTerm" jdbcType="VARCHAR" />
+    <result column="private_taxid" property="privateTaxid" jdbcType="VARCHAR" />
+    <result column="private_commerceid" property="privateCommerceid" jdbcType="VARCHAR" />
+    <result column="private_income" property="privateIncome" jdbcType="VARCHAR" />
+    <result column="private_employee" property="privateEmployee" jdbcType="VARCHAR" />
+    <result column="finance_repayment" property="financeRepayment" jdbcType="VARCHAR" />
+    <result column="finance_property" property="financeProperty" jdbcType="VARCHAR" />
+    <result column="finance_amount" property="financeAmount" jdbcType="VARCHAR" />
+    <result column="finance_car" property="financeCar" jdbcType="VARCHAR" />
+    <result column="finance_caramount" property="financeCaramount" jdbcType="VARCHAR" />
+    <result column="finance_creditcard" property="financeCreditcard" jdbcType="VARCHAR" />
+    <result column="mate_name" property="mateName" jdbcType="VARCHAR" />
+    <result column="mate_salary" property="mateSalary" jdbcType="VARCHAR" />
+    <result column="mate_phone" property="matePhone" jdbcType="VARCHAR" />
+    <result column="mate_tel" property="mateTel" jdbcType="VARCHAR" />
+    <result column="mate_type" property="mateType" jdbcType="VARCHAR" />
+    <result column="mate_office" property="mateOffice" jdbcType="VARCHAR" />
+    <result column="mate_address" property="mateAddress" jdbcType="VARCHAR" />
+    <result column="mate_income" property="mateIncome" jdbcType="VARCHAR" />
+    <result column="education_record" property="educationRecord" jdbcType="VARCHAR" />
+    <result column="education_school" property="educationSchool" jdbcType="VARCHAR" />
+    <result column="education_study" property="educationStudy" jdbcType="VARCHAR" />
+    <result column="education_time1" property="educationTime1" jdbcType="VARCHAR" />
+    <result column="education_time2" property="educationTime2" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="post" property="post" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="area" property="area" jdbcType="VARCHAR" />
+    <result column="linkman1" property="linkman1" jdbcType="VARCHAR" />
+    <result column="relation1" property="relation1" jdbcType="VARCHAR" />
+    <result column="tel1" property="tel1" jdbcType="VARCHAR" />
+    <result column="phone1" property="phone1" jdbcType="VARCHAR" />
+    <result column="linkman2" property="linkman2" jdbcType="VARCHAR" />
+    <result column="relation2" property="relation2" jdbcType="VARCHAR" />
+    <result column="tel2" property="tel2" jdbcType="VARCHAR" />
+    <result column="phone2" property="phone2" jdbcType="VARCHAR" />
+    <result column="linkman3" property="linkman3" jdbcType="VARCHAR" />
+    <result column="relation3" property="relation3" jdbcType="VARCHAR" />
+    <result column="tel3" property="tel3" jdbcType="VARCHAR" />
+    <result column="phone3" property="phone3" jdbcType="VARCHAR" />
+    <result column="msn" property="msn" jdbcType="VARCHAR" />
+    <result column="qq" property="qq" jdbcType="VARCHAR" />
+    <result column="wangwang" property="wangwang" jdbcType="VARCHAR" />
+    <result column="ability" property="ability" jdbcType="VARCHAR" />
+    <result column="interest" property="interest" jdbcType="VARCHAR" />
+    <result column="others" property="others" jdbcType="VARCHAR" />
+    <result column="addtime" property="addtime" jdbcType="VARCHAR" />
+    <result column="addip" property="addip" jdbcType="VARCHAR" />
+    <result column="updatetime" property="updatetime" jdbcType="VARCHAR" />
+    <result column="updateip" property="updateip" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.vfunding.vfunding.biz.user.model.UserBackup" extends="BaseResultMap" >
+    <result column="experience" property="experience" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, user_tel, user_email, user_phone, user_qq, user_address, user_nation, 
+    user_realname, name, source, publish, marry, child, education, income, shebao, shebaoid, 
+    housing, car, late, house_address, house_area, house_year, house_status, house_holder1, 
+    house_holder2, house_right1, house_right2, house_loanyear, house_loanprice, house_balance, 
+    house_bank, company_name, company_type, company_industry, company_office, company_jibie, 
+    company_worktime1, company_worktime2, company_workyear, company_tel, company_address, 
+    company_weburl, company_reamrk, private_type, private_date, private_place, private_rent, 
+    private_term, private_taxid, private_commerceid, private_income, private_employee, 
+    finance_repayment, finance_property, finance_amount, finance_car, finance_caramount, 
+    finance_creditcard, mate_name, mate_salary, mate_phone, mate_tel, mate_type, mate_office, 
+    mate_address, mate_income, education_record, education_school, education_study, education_time1, 
+    education_time2, tel, phone, post, address, province, city, area, linkman1, relation1, 
+    tel1, phone1, linkman2, relation2, tel2, phone2, linkman3, relation3, tel3, phone3, 
+    msn, qq, wangwang, ability, interest, others, addtime, addip, updatetime, updateip, 
+    sex
+  </sql>
+  <sql id="Blob_Column_List" >
+    experience
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from rd_user_backup
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from rd_user_backup
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.vfunding.biz.user.model.UserBackup" >
+    insert into rd_user_backup (id, user_id, user_tel, 
+      user_email, user_phone, user_qq, 
+      user_address, user_nation, user_realname, 
+      name, source, publish, 
+      marry, child, education, 
+      income, shebao, shebaoid, 
+      housing, car, late, 
+      house_address, house_area, house_year, 
+      house_status, house_holder1, house_holder2, 
+      house_right1, house_right2, house_loanyear, 
+      house_loanprice, house_balance, house_bank, 
+      company_name, company_type, company_industry, 
+      company_office, company_jibie, company_worktime1, 
+      company_worktime2, company_workyear, company_tel, 
+      company_address, company_weburl, company_reamrk, 
+      private_type, private_date, private_place, 
+      private_rent, private_term, private_taxid, 
+      private_commerceid, private_income, private_employee, 
+      finance_repayment, finance_property, finance_amount, 
+      finance_car, finance_caramount, finance_creditcard, 
+      mate_name, mate_salary, mate_phone, 
+      mate_tel, mate_type, mate_office, 
+      mate_address, mate_income, education_record, 
+      education_school, education_study, education_time1, 
+      education_time2, tel, phone, 
+      post, address, province, 
+      city, area, linkman1, 
+      relation1, tel1, phone1, 
+      linkman2, relation2, tel2, 
+      phone2, linkman3, relation3, 
+      tel3, phone3, msn, 
+      qq, wangwang, ability, 
+      interest, others, addtime, 
+      addip, updatetime, updateip, 
+      sex, experience)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{userTel,jdbcType=VARCHAR}, 
+      #{userEmail,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR}, #{userQq,jdbcType=VARCHAR}, 
+      #{userAddress,jdbcType=VARCHAR}, #{userNation,jdbcType=VARCHAR}, #{userRealname,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, #{publish,jdbcType=VARCHAR}, 
+      #{marry,jdbcType=VARCHAR}, #{child,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR}, 
+      #{income,jdbcType=VARCHAR}, #{shebao,jdbcType=VARCHAR}, #{shebaoid,jdbcType=VARCHAR}, 
+      #{housing,jdbcType=VARCHAR}, #{car,jdbcType=VARCHAR}, #{late,jdbcType=VARCHAR}, 
+      #{houseAddress,jdbcType=VARCHAR}, #{houseArea,jdbcType=VARCHAR}, #{houseYear,jdbcType=VARCHAR}, 
+      #{houseStatus,jdbcType=VARCHAR}, #{houseHolder1,jdbcType=VARCHAR}, #{houseHolder2,jdbcType=VARCHAR}, 
+      #{houseRight1,jdbcType=VARCHAR}, #{houseRight2,jdbcType=VARCHAR}, #{houseLoanyear,jdbcType=VARCHAR}, 
+      #{houseLoanprice,jdbcType=VARCHAR}, #{houseBalance,jdbcType=VARCHAR}, #{houseBank,jdbcType=VARCHAR}, 
+      #{companyName,jdbcType=VARCHAR}, #{companyType,jdbcType=VARCHAR}, #{companyIndustry,jdbcType=VARCHAR}, 
+      #{companyOffice,jdbcType=VARCHAR}, #{companyJibie,jdbcType=VARCHAR}, #{companyWorktime1,jdbcType=VARCHAR}, 
+      #{companyWorktime2,jdbcType=VARCHAR}, #{companyWorkyear,jdbcType=VARCHAR}, #{companyTel,jdbcType=VARCHAR}, 
+      #{companyAddress,jdbcType=VARCHAR}, #{companyWeburl,jdbcType=VARCHAR}, #{companyReamrk,jdbcType=VARCHAR}, 
+      #{privateType,jdbcType=VARCHAR}, #{privateDate,jdbcType=VARCHAR}, #{privatePlace,jdbcType=VARCHAR}, 
+      #{privateRent,jdbcType=VARCHAR}, #{privateTerm,jdbcType=VARCHAR}, #{privateTaxid,jdbcType=VARCHAR}, 
+      #{privateCommerceid,jdbcType=VARCHAR}, #{privateIncome,jdbcType=VARCHAR}, #{privateEmployee,jdbcType=VARCHAR}, 
+      #{financeRepayment,jdbcType=VARCHAR}, #{financeProperty,jdbcType=VARCHAR}, #{financeAmount,jdbcType=VARCHAR}, 
+      #{financeCar,jdbcType=VARCHAR}, #{financeCaramount,jdbcType=VARCHAR}, #{financeCreditcard,jdbcType=VARCHAR}, 
+      #{mateName,jdbcType=VARCHAR}, #{mateSalary,jdbcType=VARCHAR}, #{matePhone,jdbcType=VARCHAR}, 
+      #{mateTel,jdbcType=VARCHAR}, #{mateType,jdbcType=VARCHAR}, #{mateOffice,jdbcType=VARCHAR}, 
+      #{mateAddress,jdbcType=VARCHAR}, #{mateIncome,jdbcType=VARCHAR}, #{educationRecord,jdbcType=VARCHAR}, 
+      #{educationSchool,jdbcType=VARCHAR}, #{educationStudy,jdbcType=VARCHAR}, #{educationTime1,jdbcType=VARCHAR}, 
+      #{educationTime2,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{post,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, 
+      #{city,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, #{linkman1,jdbcType=VARCHAR}, 
+      #{relation1,jdbcType=VARCHAR}, #{tel1,jdbcType=VARCHAR}, #{phone1,jdbcType=VARCHAR}, 
+      #{linkman2,jdbcType=VARCHAR}, #{relation2,jdbcType=VARCHAR}, #{tel2,jdbcType=VARCHAR}, 
+      #{phone2,jdbcType=VARCHAR}, #{linkman3,jdbcType=VARCHAR}, #{relation3,jdbcType=VARCHAR}, 
+      #{tel3,jdbcType=VARCHAR}, #{phone3,jdbcType=VARCHAR}, #{msn,jdbcType=VARCHAR}, 
+      #{qq,jdbcType=VARCHAR}, #{wangwang,jdbcType=VARCHAR}, #{ability,jdbcType=VARCHAR}, 
+      #{interest,jdbcType=VARCHAR}, #{others,jdbcType=VARCHAR}, #{addtime,jdbcType=VARCHAR}, 
+      #{addip,jdbcType=VARCHAR}, #{updatetime,jdbcType=VARCHAR}, #{updateip,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{experience,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.user.model.UserBackup" >
+    insert into rd_user_backup
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userTel != null" >
+        user_tel,
+      </if>
+      <if test="userEmail != null" >
+        user_email,
+      </if>
+      <if test="userPhone != null" >
+        user_phone,
+      </if>
+      <if test="userQq != null" >
+        user_qq,
+      </if>
+      <if test="userAddress != null" >
+        user_address,
+      </if>
+      <if test="userNation != null" >
+        user_nation,
+      </if>
+      <if test="userRealname != null" >
+        user_realname,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="publish != null" >
+        publish,
+      </if>
+      <if test="marry != null" >
+        marry,
+      </if>
+      <if test="child != null" >
+        child,
+      </if>
+      <if test="education != null" >
+        education,
+      </if>
+      <if test="income != null" >
+        income,
+      </if>
+      <if test="shebao != null" >
+        shebao,
+      </if>
+      <if test="shebaoid != null" >
+        shebaoid,
+      </if>
+      <if test="housing != null" >
+        housing,
+      </if>
+      <if test="car != null" >
+        car,
+      </if>
+      <if test="late != null" >
+        late,
+      </if>
+      <if test="houseAddress != null" >
+        house_address,
+      </if>
+      <if test="houseArea != null" >
+        house_area,
+      </if>
+      <if test="houseYear != null" >
+        house_year,
+      </if>
+      <if test="houseStatus != null" >
+        house_status,
+      </if>
+      <if test="houseHolder1 != null" >
+        house_holder1,
+      </if>
+      <if test="houseHolder2 != null" >
+        house_holder2,
+      </if>
+      <if test="houseRight1 != null" >
+        house_right1,
+      </if>
+      <if test="houseRight2 != null" >
+        house_right2,
+      </if>
+      <if test="houseLoanyear != null" >
+        house_loanyear,
+      </if>
+      <if test="houseLoanprice != null" >
+        house_loanprice,
+      </if>
+      <if test="houseBalance != null" >
+        house_balance,
+      </if>
+      <if test="houseBank != null" >
+        house_bank,
+      </if>
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="companyType != null" >
+        company_type,
+      </if>
+      <if test="companyIndustry != null" >
+        company_industry,
+      </if>
+      <if test="companyOffice != null" >
+        company_office,
+      </if>
+      <if test="companyJibie != null" >
+        company_jibie,
+      </if>
+      <if test="companyWorktime1 != null" >
+        company_worktime1,
+      </if>
+      <if test="companyWorktime2 != null" >
+        company_worktime2,
+      </if>
+      <if test="companyWorkyear != null" >
+        company_workyear,
+      </if>
+      <if test="companyTel != null" >
+        company_tel,
+      </if>
+      <if test="companyAddress != null" >
+        company_address,
+      </if>
+      <if test="companyWeburl != null" >
+        company_weburl,
+      </if>
+      <if test="companyReamrk != null" >
+        company_reamrk,
+      </if>
+      <if test="privateType != null" >
+        private_type,
+      </if>
+      <if test="privateDate != null" >
+        private_date,
+      </if>
+      <if test="privatePlace != null" >
+        private_place,
+      </if>
+      <if test="privateRent != null" >
+        private_rent,
+      </if>
+      <if test="privateTerm != null" >
+        private_term,
+      </if>
+      <if test="privateTaxid != null" >
+        private_taxid,
+      </if>
+      <if test="privateCommerceid != null" >
+        private_commerceid,
+      </if>
+      <if test="privateIncome != null" >
+        private_income,
+      </if>
+      <if test="privateEmployee != null" >
+        private_employee,
+      </if>
+      <if test="financeRepayment != null" >
+        finance_repayment,
+      </if>
+      <if test="financeProperty != null" >
+        finance_property,
+      </if>
+      <if test="financeAmount != null" >
+        finance_amount,
+      </if>
+      <if test="financeCar != null" >
+        finance_car,
+      </if>
+      <if test="financeCaramount != null" >
+        finance_caramount,
+      </if>
+      <if test="financeCreditcard != null" >
+        finance_creditcard,
+      </if>
+      <if test="mateName != null" >
+        mate_name,
+      </if>
+      <if test="mateSalary != null" >
+        mate_salary,
+      </if>
+      <if test="matePhone != null" >
+        mate_phone,
+      </if>
+      <if test="mateTel != null" >
+        mate_tel,
+      </if>
+      <if test="mateType != null" >
+        mate_type,
+      </if>
+      <if test="mateOffice != null" >
+        mate_office,
+      </if>
+      <if test="mateAddress != null" >
+        mate_address,
+      </if>
+      <if test="mateIncome != null" >
+        mate_income,
+      </if>
+      <if test="educationRecord != null" >
+        education_record,
+      </if>
+      <if test="educationSchool != null" >
+        education_school,
+      </if>
+      <if test="educationStudy != null" >
+        education_study,
+      </if>
+      <if test="educationTime1 != null" >
+        education_time1,
+      </if>
+      <if test="educationTime2 != null" >
+        education_time2,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="post != null" >
+        post,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="linkman1 != null" >
+        linkman1,
+      </if>
+      <if test="relation1 != null" >
+        relation1,
+      </if>
+      <if test="tel1 != null" >
+        tel1,
+      </if>
+      <if test="phone1 != null" >
+        phone1,
+      </if>
+      <if test="linkman2 != null" >
+        linkman2,
+      </if>
+      <if test="relation2 != null" >
+        relation2,
+      </if>
+      <if test="tel2 != null" >
+        tel2,
+      </if>
+      <if test="phone2 != null" >
+        phone2,
+      </if>
+      <if test="linkman3 != null" >
+        linkman3,
+      </if>
+      <if test="relation3 != null" >
+        relation3,
+      </if>
+      <if test="tel3 != null" >
+        tel3,
+      </if>
+      <if test="phone3 != null" >
+        phone3,
+      </if>
+      <if test="msn != null" >
+        msn,
+      </if>
+      <if test="qq != null" >
+        qq,
+      </if>
+      <if test="wangwang != null" >
+        wangwang,
+      </if>
+      <if test="ability != null" >
+        ability,
+      </if>
+      <if test="interest != null" >
+        interest,
+      </if>
+      <if test="others != null" >
+        others,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="addip != null" >
+        addip,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+      <if test="updateip != null" >
+        updateip,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="experience != null" >
+        experience,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userTel != null" >
+        #{userTel,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmail != null" >
+        #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null" >
+        #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="userQq != null" >
+        #{userQq,jdbcType=VARCHAR},
+      </if>
+      <if test="userAddress != null" >
+        #{userAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="userNation != null" >
+        #{userNation,jdbcType=VARCHAR},
+      </if>
+      <if test="userRealname != null" >
+        #{userRealname,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="publish != null" >
+        #{publish,jdbcType=VARCHAR},
+      </if>
+      <if test="marry != null" >
+        #{marry,jdbcType=VARCHAR},
+      </if>
+      <if test="child != null" >
+        #{child,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null" >
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="income != null" >
+        #{income,jdbcType=VARCHAR},
+      </if>
+      <if test="shebao != null" >
+        #{shebao,jdbcType=VARCHAR},
+      </if>
+      <if test="shebaoid != null" >
+        #{shebaoid,jdbcType=VARCHAR},
+      </if>
+      <if test="housing != null" >
+        #{housing,jdbcType=VARCHAR},
+      </if>
+      <if test="car != null" >
+        #{car,jdbcType=VARCHAR},
+      </if>
+      <if test="late != null" >
+        #{late,jdbcType=VARCHAR},
+      </if>
+      <if test="houseAddress != null" >
+        #{houseAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="houseArea != null" >
+        #{houseArea,jdbcType=VARCHAR},
+      </if>
+      <if test="houseYear != null" >
+        #{houseYear,jdbcType=VARCHAR},
+      </if>
+      <if test="houseStatus != null" >
+        #{houseStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="houseHolder1 != null" >
+        #{houseHolder1,jdbcType=VARCHAR},
+      </if>
+      <if test="houseHolder2 != null" >
+        #{houseHolder2,jdbcType=VARCHAR},
+      </if>
+      <if test="houseRight1 != null" >
+        #{houseRight1,jdbcType=VARCHAR},
+      </if>
+      <if test="houseRight2 != null" >
+        #{houseRight2,jdbcType=VARCHAR},
+      </if>
+      <if test="houseLoanyear != null" >
+        #{houseLoanyear,jdbcType=VARCHAR},
+      </if>
+      <if test="houseLoanprice != null" >
+        #{houseLoanprice,jdbcType=VARCHAR},
+      </if>
+      <if test="houseBalance != null" >
+        #{houseBalance,jdbcType=VARCHAR},
+      </if>
+      <if test="houseBank != null" >
+        #{houseBank,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyType != null" >
+        #{companyType,jdbcType=VARCHAR},
+      </if>
+      <if test="companyIndustry != null" >
+        #{companyIndustry,jdbcType=VARCHAR},
+      </if>
+      <if test="companyOffice != null" >
+        #{companyOffice,jdbcType=VARCHAR},
+      </if>
+      <if test="companyJibie != null" >
+        #{companyJibie,jdbcType=VARCHAR},
+      </if>
+      <if test="companyWorktime1 != null" >
+        #{companyWorktime1,jdbcType=VARCHAR},
+      </if>
+      <if test="companyWorktime2 != null" >
+        #{companyWorktime2,jdbcType=VARCHAR},
+      </if>
+      <if test="companyWorkyear != null" >
+        #{companyWorkyear,jdbcType=VARCHAR},
+      </if>
+      <if test="companyTel != null" >
+        #{companyTel,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddress != null" >
+        #{companyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="companyWeburl != null" >
+        #{companyWeburl,jdbcType=VARCHAR},
+      </if>
+      <if test="companyReamrk != null" >
+        #{companyReamrk,jdbcType=VARCHAR},
+      </if>
+      <if test="privateType != null" >
+        #{privateType,jdbcType=VARCHAR},
+      </if>
+      <if test="privateDate != null" >
+        #{privateDate,jdbcType=VARCHAR},
+      </if>
+      <if test="privatePlace != null" >
+        #{privatePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="privateRent != null" >
+        #{privateRent,jdbcType=VARCHAR},
+      </if>
+      <if test="privateTerm != null" >
+        #{privateTerm,jdbcType=VARCHAR},
+      </if>
+      <if test="privateTaxid != null" >
+        #{privateTaxid,jdbcType=VARCHAR},
+      </if>
+      <if test="privateCommerceid != null" >
+        #{privateCommerceid,jdbcType=VARCHAR},
+      </if>
+      <if test="privateIncome != null" >
+        #{privateIncome,jdbcType=VARCHAR},
+      </if>
+      <if test="privateEmployee != null" >
+        #{privateEmployee,jdbcType=VARCHAR},
+      </if>
+      <if test="financeRepayment != null" >
+        #{financeRepayment,jdbcType=VARCHAR},
+      </if>
+      <if test="financeProperty != null" >
+        #{financeProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="financeAmount != null" >
+        #{financeAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="financeCar != null" >
+        #{financeCar,jdbcType=VARCHAR},
+      </if>
+      <if test="financeCaramount != null" >
+        #{financeCaramount,jdbcType=VARCHAR},
+      </if>
+      <if test="financeCreditcard != null" >
+        #{financeCreditcard,jdbcType=VARCHAR},
+      </if>
+      <if test="mateName != null" >
+        #{mateName,jdbcType=VARCHAR},
+      </if>
+      <if test="mateSalary != null" >
+        #{mateSalary,jdbcType=VARCHAR},
+      </if>
+      <if test="matePhone != null" >
+        #{matePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="mateTel != null" >
+        #{mateTel,jdbcType=VARCHAR},
+      </if>
+      <if test="mateType != null" >
+        #{mateType,jdbcType=VARCHAR},
+      </if>
+      <if test="mateOffice != null" >
+        #{mateOffice,jdbcType=VARCHAR},
+      </if>
+      <if test="mateAddress != null" >
+        #{mateAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="mateIncome != null" >
+        #{mateIncome,jdbcType=VARCHAR},
+      </if>
+      <if test="educationRecord != null" >
+        #{educationRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="educationSchool != null" >
+        #{educationSchool,jdbcType=VARCHAR},
+      </if>
+      <if test="educationStudy != null" >
+        #{educationStudy,jdbcType=VARCHAR},
+      </if>
+      <if test="educationTime1 != null" >
+        #{educationTime1,jdbcType=VARCHAR},
+      </if>
+      <if test="educationTime2 != null" >
+        #{educationTime2,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="post != null" >
+        #{post,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="linkman1 != null" >
+        #{linkman1,jdbcType=VARCHAR},
+      </if>
+      <if test="relation1 != null" >
+        #{relation1,jdbcType=VARCHAR},
+      </if>
+      <if test="tel1 != null" >
+        #{tel1,jdbcType=VARCHAR},
+      </if>
+      <if test="phone1 != null" >
+        #{phone1,jdbcType=VARCHAR},
+      </if>
+      <if test="linkman2 != null" >
+        #{linkman2,jdbcType=VARCHAR},
+      </if>
+      <if test="relation2 != null" >
+        #{relation2,jdbcType=VARCHAR},
+      </if>
+      <if test="tel2 != null" >
+        #{tel2,jdbcType=VARCHAR},
+      </if>
+      <if test="phone2 != null" >
+        #{phone2,jdbcType=VARCHAR},
+      </if>
+      <if test="linkman3 != null" >
+        #{linkman3,jdbcType=VARCHAR},
+      </if>
+      <if test="relation3 != null" >
+        #{relation3,jdbcType=VARCHAR},
+      </if>
+      <if test="tel3 != null" >
+        #{tel3,jdbcType=VARCHAR},
+      </if>
+      <if test="phone3 != null" >
+        #{phone3,jdbcType=VARCHAR},
+      </if>
+      <if test="msn != null" >
+        #{msn,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null" >
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="wangwang != null" >
+        #{wangwang,jdbcType=VARCHAR},
+      </if>
+      <if test="ability != null" >
+        #{ability,jdbcType=VARCHAR},
+      </if>
+      <if test="interest != null" >
+        #{interest,jdbcType=VARCHAR},
+      </if>
+      <if test="others != null" >
+        #{others,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=VARCHAR},
+      </if>
+      <if test="addip != null" >
+        #{addip,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateip != null" >
+        #{updateip,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="experience != null" >
+        #{experience,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.user.model.UserBackup" >
+    update rd_user_backup
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userTel != null" >
+        user_tel = #{userTel,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmail != null" >
+        user_email = #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null" >
+        user_phone = #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="userQq != null" >
+        user_qq = #{userQq,jdbcType=VARCHAR},
+      </if>
+      <if test="userAddress != null" >
+        user_address = #{userAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="userNation != null" >
+        user_nation = #{userNation,jdbcType=VARCHAR},
+      </if>
+      <if test="userRealname != null" >
+        user_realname = #{userRealname,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="publish != null" >
+        publish = #{publish,jdbcType=VARCHAR},
+      </if>
+      <if test="marry != null" >
+        marry = #{marry,jdbcType=VARCHAR},
+      </if>
+      <if test="child != null" >
+        child = #{child,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null" >
+        education = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="income != null" >
+        income = #{income,jdbcType=VARCHAR},
+      </if>
+      <if test="shebao != null" >
+        shebao = #{shebao,jdbcType=VARCHAR},
+      </if>
+      <if test="shebaoid != null" >
+        shebaoid = #{shebaoid,jdbcType=VARCHAR},
+      </if>
+      <if test="housing != null" >
+        housing = #{housing,jdbcType=VARCHAR},
+      </if>
+      <if test="car != null" >
+        car = #{car,jdbcType=VARCHAR},
+      </if>
+      <if test="late != null" >
+        late = #{late,jdbcType=VARCHAR},
+      </if>
+      <if test="houseAddress != null" >
+        house_address = #{houseAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="houseArea != null" >
+        house_area = #{houseArea,jdbcType=VARCHAR},
+      </if>
+      <if test="houseYear != null" >
+        house_year = #{houseYear,jdbcType=VARCHAR},
+      </if>
+      <if test="houseStatus != null" >
+        house_status = #{houseStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="houseHolder1 != null" >
+        house_holder1 = #{houseHolder1,jdbcType=VARCHAR},
+      </if>
+      <if test="houseHolder2 != null" >
+        house_holder2 = #{houseHolder2,jdbcType=VARCHAR},
+      </if>
+      <if test="houseRight1 != null" >
+        house_right1 = #{houseRight1,jdbcType=VARCHAR},
+      </if>
+      <if test="houseRight2 != null" >
+        house_right2 = #{houseRight2,jdbcType=VARCHAR},
+      </if>
+      <if test="houseLoanyear != null" >
+        house_loanyear = #{houseLoanyear,jdbcType=VARCHAR},
+      </if>
+      <if test="houseLoanprice != null" >
+        house_loanprice = #{houseLoanprice,jdbcType=VARCHAR},
+      </if>
+      <if test="houseBalance != null" >
+        house_balance = #{houseBalance,jdbcType=VARCHAR},
+      </if>
+      <if test="houseBank != null" >
+        house_bank = #{houseBank,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyType != null" >
+        company_type = #{companyType,jdbcType=VARCHAR},
+      </if>
+      <if test="companyIndustry != null" >
+        company_industry = #{companyIndustry,jdbcType=VARCHAR},
+      </if>
+      <if test="companyOffice != null" >
+        company_office = #{companyOffice,jdbcType=VARCHAR},
+      </if>
+      <if test="companyJibie != null" >
+        company_jibie = #{companyJibie,jdbcType=VARCHAR},
+      </if>
+      <if test="companyWorktime1 != null" >
+        company_worktime1 = #{companyWorktime1,jdbcType=VARCHAR},
+      </if>
+      <if test="companyWorktime2 != null" >
+        company_worktime2 = #{companyWorktime2,jdbcType=VARCHAR},
+      </if>
+      <if test="companyWorkyear != null" >
+        company_workyear = #{companyWorkyear,jdbcType=VARCHAR},
+      </if>
+      <if test="companyTel != null" >
+        company_tel = #{companyTel,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddress != null" >
+        company_address = #{companyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="companyWeburl != null" >
+        company_weburl = #{companyWeburl,jdbcType=VARCHAR},
+      </if>
+      <if test="companyReamrk != null" >
+        company_reamrk = #{companyReamrk,jdbcType=VARCHAR},
+      </if>
+      <if test="privateType != null" >
+        private_type = #{privateType,jdbcType=VARCHAR},
+      </if>
+      <if test="privateDate != null" >
+        private_date = #{privateDate,jdbcType=VARCHAR},
+      </if>
+      <if test="privatePlace != null" >
+        private_place = #{privatePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="privateRent != null" >
+        private_rent = #{privateRent,jdbcType=VARCHAR},
+      </if>
+      <if test="privateTerm != null" >
+        private_term = #{privateTerm,jdbcType=VARCHAR},
+      </if>
+      <if test="privateTaxid != null" >
+        private_taxid = #{privateTaxid,jdbcType=VARCHAR},
+      </if>
+      <if test="privateCommerceid != null" >
+        private_commerceid = #{privateCommerceid,jdbcType=VARCHAR},
+      </if>
+      <if test="privateIncome != null" >
+        private_income = #{privateIncome,jdbcType=VARCHAR},
+      </if>
+      <if test="privateEmployee != null" >
+        private_employee = #{privateEmployee,jdbcType=VARCHAR},
+      </if>
+      <if test="financeRepayment != null" >
+        finance_repayment = #{financeRepayment,jdbcType=VARCHAR},
+      </if>
+      <if test="financeProperty != null" >
+        finance_property = #{financeProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="financeAmount != null" >
+        finance_amount = #{financeAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="financeCar != null" >
+        finance_car = #{financeCar,jdbcType=VARCHAR},
+      </if>
+      <if test="financeCaramount != null" >
+        finance_caramount = #{financeCaramount,jdbcType=VARCHAR},
+      </if>
+      <if test="financeCreditcard != null" >
+        finance_creditcard = #{financeCreditcard,jdbcType=VARCHAR},
+      </if>
+      <if test="mateName != null" >
+        mate_name = #{mateName,jdbcType=VARCHAR},
+      </if>
+      <if test="mateSalary != null" >
+        mate_salary = #{mateSalary,jdbcType=VARCHAR},
+      </if>
+      <if test="matePhone != null" >
+        mate_phone = #{matePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="mateTel != null" >
+        mate_tel = #{mateTel,jdbcType=VARCHAR},
+      </if>
+      <if test="mateType != null" >
+        mate_type = #{mateType,jdbcType=VARCHAR},
+      </if>
+      <if test="mateOffice != null" >
+        mate_office = #{mateOffice,jdbcType=VARCHAR},
+      </if>
+      <if test="mateAddress != null" >
+        mate_address = #{mateAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="mateIncome != null" >
+        mate_income = #{mateIncome,jdbcType=VARCHAR},
+      </if>
+      <if test="educationRecord != null" >
+        education_record = #{educationRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="educationSchool != null" >
+        education_school = #{educationSchool,jdbcType=VARCHAR},
+      </if>
+      <if test="educationStudy != null" >
+        education_study = #{educationStudy,jdbcType=VARCHAR},
+      </if>
+      <if test="educationTime1 != null" >
+        education_time1 = #{educationTime1,jdbcType=VARCHAR},
+      </if>
+      <if test="educationTime2 != null" >
+        education_time2 = #{educationTime2,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="post != null" >
+        post = #{post,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="linkman1 != null" >
+        linkman1 = #{linkman1,jdbcType=VARCHAR},
+      </if>
+      <if test="relation1 != null" >
+        relation1 = #{relation1,jdbcType=VARCHAR},
+      </if>
+      <if test="tel1 != null" >
+        tel1 = #{tel1,jdbcType=VARCHAR},
+      </if>
+      <if test="phone1 != null" >
+        phone1 = #{phone1,jdbcType=VARCHAR},
+      </if>
+      <if test="linkman2 != null" >
+        linkman2 = #{linkman2,jdbcType=VARCHAR},
+      </if>
+      <if test="relation2 != null" >
+        relation2 = #{relation2,jdbcType=VARCHAR},
+      </if>
+      <if test="tel2 != null" >
+        tel2 = #{tel2,jdbcType=VARCHAR},
+      </if>
+      <if test="phone2 != null" >
+        phone2 = #{phone2,jdbcType=VARCHAR},
+      </if>
+      <if test="linkman3 != null" >
+        linkman3 = #{linkman3,jdbcType=VARCHAR},
+      </if>
+      <if test="relation3 != null" >
+        relation3 = #{relation3,jdbcType=VARCHAR},
+      </if>
+      <if test="tel3 != null" >
+        tel3 = #{tel3,jdbcType=VARCHAR},
+      </if>
+      <if test="phone3 != null" >
+        phone3 = #{phone3,jdbcType=VARCHAR},
+      </if>
+      <if test="msn != null" >
+        msn = #{msn,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null" >
+        qq = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="wangwang != null" >
+        wangwang = #{wangwang,jdbcType=VARCHAR},
+      </if>
+      <if test="ability != null" >
+        ability = #{ability,jdbcType=VARCHAR},
+      </if>
+      <if test="interest != null" >
+        interest = #{interest,jdbcType=VARCHAR},
+      </if>
+      <if test="others != null" >
+        others = #{others,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=VARCHAR},
+      </if>
+      <if test="addip != null" >
+        addip = #{addip,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = #{updatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateip != null" >
+        updateip = #{updateip,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="experience != null" >
+        experience = #{experience,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.vfunding.vfunding.biz.user.model.UserBackup" >
+    update rd_user_backup
+    set user_id = #{userId,jdbcType=INTEGER},
+      user_tel = #{userTel,jdbcType=VARCHAR},
+      user_email = #{userEmail,jdbcType=VARCHAR},
+      user_phone = #{userPhone,jdbcType=VARCHAR},
+      user_qq = #{userQq,jdbcType=VARCHAR},
+      user_address = #{userAddress,jdbcType=VARCHAR},
+      user_nation = #{userNation,jdbcType=VARCHAR},
+      user_realname = #{userRealname,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR},
+      publish = #{publish,jdbcType=VARCHAR},
+      marry = #{marry,jdbcType=VARCHAR},
+      child = #{child,jdbcType=VARCHAR},
+      education = #{education,jdbcType=VARCHAR},
+      income = #{income,jdbcType=VARCHAR},
+      shebao = #{shebao,jdbcType=VARCHAR},
+      shebaoid = #{shebaoid,jdbcType=VARCHAR},
+      housing = #{housing,jdbcType=VARCHAR},
+      car = #{car,jdbcType=VARCHAR},
+      late = #{late,jdbcType=VARCHAR},
+      house_address = #{houseAddress,jdbcType=VARCHAR},
+      house_area = #{houseArea,jdbcType=VARCHAR},
+      house_year = #{houseYear,jdbcType=VARCHAR},
+      house_status = #{houseStatus,jdbcType=VARCHAR},
+      house_holder1 = #{houseHolder1,jdbcType=VARCHAR},
+      house_holder2 = #{houseHolder2,jdbcType=VARCHAR},
+      house_right1 = #{houseRight1,jdbcType=VARCHAR},
+      house_right2 = #{houseRight2,jdbcType=VARCHAR},
+      house_loanyear = #{houseLoanyear,jdbcType=VARCHAR},
+      house_loanprice = #{houseLoanprice,jdbcType=VARCHAR},
+      house_balance = #{houseBalance,jdbcType=VARCHAR},
+      house_bank = #{houseBank,jdbcType=VARCHAR},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      company_type = #{companyType,jdbcType=VARCHAR},
+      company_industry = #{companyIndustry,jdbcType=VARCHAR},
+      company_office = #{companyOffice,jdbcType=VARCHAR},
+      company_jibie = #{companyJibie,jdbcType=VARCHAR},
+      company_worktime1 = #{companyWorktime1,jdbcType=VARCHAR},
+      company_worktime2 = #{companyWorktime2,jdbcType=VARCHAR},
+      company_workyear = #{companyWorkyear,jdbcType=VARCHAR},
+      company_tel = #{companyTel,jdbcType=VARCHAR},
+      company_address = #{companyAddress,jdbcType=VARCHAR},
+      company_weburl = #{companyWeburl,jdbcType=VARCHAR},
+      company_reamrk = #{companyReamrk,jdbcType=VARCHAR},
+      private_type = #{privateType,jdbcType=VARCHAR},
+      private_date = #{privateDate,jdbcType=VARCHAR},
+      private_place = #{privatePlace,jdbcType=VARCHAR},
+      private_rent = #{privateRent,jdbcType=VARCHAR},
+      private_term = #{privateTerm,jdbcType=VARCHAR},
+      private_taxid = #{privateTaxid,jdbcType=VARCHAR},
+      private_commerceid = #{privateCommerceid,jdbcType=VARCHAR},
+      private_income = #{privateIncome,jdbcType=VARCHAR},
+      private_employee = #{privateEmployee,jdbcType=VARCHAR},
+      finance_repayment = #{financeRepayment,jdbcType=VARCHAR},
+      finance_property = #{financeProperty,jdbcType=VARCHAR},
+      finance_amount = #{financeAmount,jdbcType=VARCHAR},
+      finance_car = #{financeCar,jdbcType=VARCHAR},
+      finance_caramount = #{financeCaramount,jdbcType=VARCHAR},
+      finance_creditcard = #{financeCreditcard,jdbcType=VARCHAR},
+      mate_name = #{mateName,jdbcType=VARCHAR},
+      mate_salary = #{mateSalary,jdbcType=VARCHAR},
+      mate_phone = #{matePhone,jdbcType=VARCHAR},
+      mate_tel = #{mateTel,jdbcType=VARCHAR},
+      mate_type = #{mateType,jdbcType=VARCHAR},
+      mate_office = #{mateOffice,jdbcType=VARCHAR},
+      mate_address = #{mateAddress,jdbcType=VARCHAR},
+      mate_income = #{mateIncome,jdbcType=VARCHAR},
+      education_record = #{educationRecord,jdbcType=VARCHAR},
+      education_school = #{educationSchool,jdbcType=VARCHAR},
+      education_study = #{educationStudy,jdbcType=VARCHAR},
+      education_time1 = #{educationTime1,jdbcType=VARCHAR},
+      education_time2 = #{educationTime2,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      post = #{post,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      linkman1 = #{linkman1,jdbcType=VARCHAR},
+      relation1 = #{relation1,jdbcType=VARCHAR},
+      tel1 = #{tel1,jdbcType=VARCHAR},
+      phone1 = #{phone1,jdbcType=VARCHAR},
+      linkman2 = #{linkman2,jdbcType=VARCHAR},
+      relation2 = #{relation2,jdbcType=VARCHAR},
+      tel2 = #{tel2,jdbcType=VARCHAR},
+      phone2 = #{phone2,jdbcType=VARCHAR},
+      linkman3 = #{linkman3,jdbcType=VARCHAR},
+      relation3 = #{relation3,jdbcType=VARCHAR},
+      tel3 = #{tel3,jdbcType=VARCHAR},
+      phone3 = #{phone3,jdbcType=VARCHAR},
+      msn = #{msn,jdbcType=VARCHAR},
+      qq = #{qq,jdbcType=VARCHAR},
+      wangwang = #{wangwang,jdbcType=VARCHAR},
+      ability = #{ability,jdbcType=VARCHAR},
+      interest = #{interest,jdbcType=VARCHAR},
+      others = #{others,jdbcType=VARCHAR},
+      addtime = #{addtime,jdbcType=VARCHAR},
+      addip = #{addip,jdbcType=VARCHAR},
+      updatetime = #{updatetime,jdbcType=VARCHAR},
+      updateip = #{updateip,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      experience = #{experience,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.user.model.UserBackup" >
+    update rd_user_backup
+    set user_id = #{userId,jdbcType=INTEGER},
+      user_tel = #{userTel,jdbcType=VARCHAR},
+      user_email = #{userEmail,jdbcType=VARCHAR},
+      user_phone = #{userPhone,jdbcType=VARCHAR},
+      user_qq = #{userQq,jdbcType=VARCHAR},
+      user_address = #{userAddress,jdbcType=VARCHAR},
+      user_nation = #{userNation,jdbcType=VARCHAR},
+      user_realname = #{userRealname,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR},
+      publish = #{publish,jdbcType=VARCHAR},
+      marry = #{marry,jdbcType=VARCHAR},
+      child = #{child,jdbcType=VARCHAR},
+      education = #{education,jdbcType=VARCHAR},
+      income = #{income,jdbcType=VARCHAR},
+      shebao = #{shebao,jdbcType=VARCHAR},
+      shebaoid = #{shebaoid,jdbcType=VARCHAR},
+      housing = #{housing,jdbcType=VARCHAR},
+      car = #{car,jdbcType=VARCHAR},
+      late = #{late,jdbcType=VARCHAR},
+      house_address = #{houseAddress,jdbcType=VARCHAR},
+      house_area = #{houseArea,jdbcType=VARCHAR},
+      house_year = #{houseYear,jdbcType=VARCHAR},
+      house_status = #{houseStatus,jdbcType=VARCHAR},
+      house_holder1 = #{houseHolder1,jdbcType=VARCHAR},
+      house_holder2 = #{houseHolder2,jdbcType=VARCHAR},
+      house_right1 = #{houseRight1,jdbcType=VARCHAR},
+      house_right2 = #{houseRight2,jdbcType=VARCHAR},
+      house_loanyear = #{houseLoanyear,jdbcType=VARCHAR},
+      house_loanprice = #{houseLoanprice,jdbcType=VARCHAR},
+      house_balance = #{houseBalance,jdbcType=VARCHAR},
+      house_bank = #{houseBank,jdbcType=VARCHAR},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      company_type = #{companyType,jdbcType=VARCHAR},
+      company_industry = #{companyIndustry,jdbcType=VARCHAR},
+      company_office = #{companyOffice,jdbcType=VARCHAR},
+      company_jibie = #{companyJibie,jdbcType=VARCHAR},
+      company_worktime1 = #{companyWorktime1,jdbcType=VARCHAR},
+      company_worktime2 = #{companyWorktime2,jdbcType=VARCHAR},
+      company_workyear = #{companyWorkyear,jdbcType=VARCHAR},
+      company_tel = #{companyTel,jdbcType=VARCHAR},
+      company_address = #{companyAddress,jdbcType=VARCHAR},
+      company_weburl = #{companyWeburl,jdbcType=VARCHAR},
+      company_reamrk = #{companyReamrk,jdbcType=VARCHAR},
+      private_type = #{privateType,jdbcType=VARCHAR},
+      private_date = #{privateDate,jdbcType=VARCHAR},
+      private_place = #{privatePlace,jdbcType=VARCHAR},
+      private_rent = #{privateRent,jdbcType=VARCHAR},
+      private_term = #{privateTerm,jdbcType=VARCHAR},
+      private_taxid = #{privateTaxid,jdbcType=VARCHAR},
+      private_commerceid = #{privateCommerceid,jdbcType=VARCHAR},
+      private_income = #{privateIncome,jdbcType=VARCHAR},
+      private_employee = #{privateEmployee,jdbcType=VARCHAR},
+      finance_repayment = #{financeRepayment,jdbcType=VARCHAR},
+      finance_property = #{financeProperty,jdbcType=VARCHAR},
+      finance_amount = #{financeAmount,jdbcType=VARCHAR},
+      finance_car = #{financeCar,jdbcType=VARCHAR},
+      finance_caramount = #{financeCaramount,jdbcType=VARCHAR},
+      finance_creditcard = #{financeCreditcard,jdbcType=VARCHAR},
+      mate_name = #{mateName,jdbcType=VARCHAR},
+      mate_salary = #{mateSalary,jdbcType=VARCHAR},
+      mate_phone = #{matePhone,jdbcType=VARCHAR},
+      mate_tel = #{mateTel,jdbcType=VARCHAR},
+      mate_type = #{mateType,jdbcType=VARCHAR},
+      mate_office = #{mateOffice,jdbcType=VARCHAR},
+      mate_address = #{mateAddress,jdbcType=VARCHAR},
+      mate_income = #{mateIncome,jdbcType=VARCHAR},
+      education_record = #{educationRecord,jdbcType=VARCHAR},
+      education_school = #{educationSchool,jdbcType=VARCHAR},
+      education_study = #{educationStudy,jdbcType=VARCHAR},
+      education_time1 = #{educationTime1,jdbcType=VARCHAR},
+      education_time2 = #{educationTime2,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      post = #{post,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      linkman1 = #{linkman1,jdbcType=VARCHAR},
+      relation1 = #{relation1,jdbcType=VARCHAR},
+      tel1 = #{tel1,jdbcType=VARCHAR},
+      phone1 = #{phone1,jdbcType=VARCHAR},
+      linkman2 = #{linkman2,jdbcType=VARCHAR},
+      relation2 = #{relation2,jdbcType=VARCHAR},
+      tel2 = #{tel2,jdbcType=VARCHAR},
+      phone2 = #{phone2,jdbcType=VARCHAR},
+      linkman3 = #{linkman3,jdbcType=VARCHAR},
+      relation3 = #{relation3,jdbcType=VARCHAR},
+      tel3 = #{tel3,jdbcType=VARCHAR},
+      phone3 = #{phone3,jdbcType=VARCHAR},
+      msn = #{msn,jdbcType=VARCHAR},
+      qq = #{qq,jdbcType=VARCHAR},
+      wangwang = #{wangwang,jdbcType=VARCHAR},
+      ability = #{ability,jdbcType=VARCHAR},
+      interest = #{interest,jdbcType=VARCHAR},
+      others = #{others,jdbcType=VARCHAR},
+      addtime = #{addtime,jdbcType=VARCHAR},
+      addip = #{addip,jdbcType=VARCHAR},
+      updatetime = #{updatetime,jdbcType=VARCHAR},
+      updateip = #{updateip,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

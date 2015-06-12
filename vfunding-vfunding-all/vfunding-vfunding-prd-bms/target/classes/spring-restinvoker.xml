@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-3.2.xsd 
+	http://www.springframework.org/schema/mvc 
+	http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
+
+	<!-- 文件服务对象 -->
+	<bean id="fileRestInvokerFactory"
+		class="cn.vfunding.common.framework.utils.http.RestInvokerFactory">
+		<property name="baseURL">
+			<value>${file.server}</value>
+		</property>
+	</bean>
+
+
+	<!-- 实名认证服务对象 -->
+	<bean id="realNameRestInvokerFactory"
+		class="cn.vfunding.common.framework.utils.http.RestInvokerFactory">
+		<property name="baseURL">
+			<value>${realname.server}</value>
+		</property>
+	</bean>
+
+	<!--财经道服务对象 -->
+	<bean id="cjdRestInvokerFactory"
+		class="cn.vfunding.common.framework.utils.http.RestInvokerFactory">
+		<property name="baseURL">
+			<value>${cjd.server}</value>
+		</property>
+	</bean>
+
+	<!--活动服务对象 -->
+	<bean id="activityRestInvokerFactory"
+		class="cn.vfunding.common.framework.utils.http.RestInvokerFactory">
+		<property name="baseURL">
+			<value>${activity.server}</value>
+		</property>
+	</bean>
+
+	<!--新浪托管服务对象 -->
+	<bean id="sinaRestInvokerFactory"
+		class="cn.vfunding.common.framework.utils.http.RestInvokerFactory">
+		<property name="baseURL">
+			<value>${sina.server}</value>
+		</property>
+	</bean>
+
+	<!-- jms消息发送中心服务对象 -->
+	<bean id="jmsSenderCenterRestInvokerFactory"
+		class="cn.vfunding.common.framework.utils.http.RestInvokerFactory">
+		<property name="baseURL">
+			<value>${jms.send.center.server}</value>
+		</property>
+	</bean>
+
+
+</beans>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.p2p.p2p.biz.current.dao.CurrentAccountRuleMapper" >
+  <resultMap id="BaseResultMap" type="cn.p2p.p2p.biz.current.model.CurrentAccountRule" >
+    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="most_hold_money" property="mostHoldMoney" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_id, most_hold_money
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from p2p_current_account_rule
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from p2p_current_account_rule
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.p2p.p2p.biz.current.model.CurrentAccountRule" >
+    insert into p2p_current_account_rule (user_id, most_hold_money)
+    values (#{userId,jdbcType=INTEGER}, #{mostHoldMoney,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.p2p.p2p.biz.current.model.CurrentAccountRule" >
+    insert into p2p_current_account_rule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="mostHoldMoney != null" >
+        most_hold_money,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="mostHoldMoney != null" >
+        #{mostHoldMoney,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.p2p.p2p.biz.current.model.CurrentAccountRule" >
+    update p2p_current_account_rule
+    <set >
+      <if test="mostHoldMoney != null" >
+        most_hold_money = #{mostHoldMoney,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.p2p.p2p.biz.current.model.CurrentAccountRule" >
+    update p2p_current_account_rule
+    set most_hold_money = #{mostHoldMoney,jdbcType=DECIMAL}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+</mapper>

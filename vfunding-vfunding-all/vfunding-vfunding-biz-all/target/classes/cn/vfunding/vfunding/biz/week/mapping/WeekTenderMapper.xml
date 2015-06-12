@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.week.dao.WeekTenderMapper">
+	<resultMap id="BaseResultMap"
+		type="cn.vfunding.vfunding.biz.week.model.WeekTender">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="week_id" property="weekId" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="buy_share" property="buyShare" jdbcType="DECIMAL" />
+		<result column="realbuy_share" property="realbuyShare"
+			jdbcType="DECIMAL" />
+		<result column="money" property="money" jdbcType="DECIMAL" />
+		<result column="interest" property="interest" jdbcType="DECIMAL" />
+		<result column="platform_fee" property="platformFee" jdbcType="DECIMAL" />
+		<result column="guarantee_fee" property="guaranteeFee"
+			jdbcType="DECIMAL" />
+		<result column="repayment_account" property="repaymentAccount"
+			jdbcType="DECIMAL" />
+		<result column="repayment_yesaccount" property="repaymentYesaccount"
+			jdbcType="DECIMAL" />
+		<result column="repayment_time" property="repaymentTime"
+			jdbcType="TIMESTAMP" />
+		<result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+		<result column="add_ip" property="addIp" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<resultMap id="pageListResultMap"
+		type="cn.vfunding.vfunding.biz.week.model.WeekTender" extends="BaseResultMap">
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<!-- <collection property="users" ofType="cn.vfunding.vfunding.biz.user.model.User" 
+			column="user_id"> <result column="username" property="username" jdbcType="VARCHAR" 
+			/> </collection> -->
+		<!-- <association property="user" javaType="cn.vfunding.vfunding.biz.user.model.User" 
+			column="user_id"> <result column="username" property="username" jdbcType="VARCHAR" 
+			/> </association> -->
+	</resultMap>
+
+	<resultMap id="assetsResultMap"
+		type="cn.vfunding.vfunding.biz.week.vo.HoldingAssetsVO" extends="BaseResultMap">
+		<result column="holding_Assets" property="holdingAssets"
+			jdbcType="DECIMAL" />
+		<result column="total_Revenue" property="totalRevenue"
+			jdbcType="DECIMAL" />
+		<result column="collect_Revenue" property="collectRevenue"
+			jdbcType="DECIMAL" />
+	</resultMap>
+
+	<resultMap id="weeekTenderListResultMap" type="cn.vfunding.vfunding.biz.week.vo.WeekTenderVO">
+		<result column="week_id" property="weekId" jdbcType="INTEGER" />
+		<result column="realname" property="realname" jdbcType="VARCHAR" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="money" property="money" jdbcType="DECIMAL" />
+		<result column="realbuy_share" property="realbuyShare"
+			jdbcType="DECIMAL" />
+		<result column="repayment_account" property="repaymentAccount"
+			jdbcType="DECIMAL" />
+		<result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+		<result column="repayment_time" property="repaymentTime"
+			jdbcType="TIMESTAMP" />
+	</resultMap>
+
+
+	<resultMap id="BorrowTednerVOMap"
+		type="cn.vfunding.vfunding.biz.common.vo.BorrowTenderVO">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="tenderUser" property="tenderUser" jdbcType="VARCHAR" />
+		<result column="borrowUser" property="borrowUser" jdbcType="VARCHAR" />
+		<result column="tenderUserId" property="tenderUserId" jdbcType="INTEGER" />
+		<result column="value" property="value" jdbcType="INTEGER" />
+		<result column="borrowName" property="borrowName" jdbcType="VARCHAR" />
+		<result column="apr" property="apr" jdbcType="DECIMAL" />
+		<result column="bfee" property="bfee" jdbcType="DECIMAL" />
+		<result column="gfee" property="gfee" jdbcType="DECIMAL" />
+		<result column="money" property="money" jdbcType="VARCHAR" />
+		<result column="account" property="account" jdbcType="VARCHAR" />
+		<result column="repaymentAccount" property="repaymentAccount"
+			jdbcType="VARCHAR" />
+		<result column="repaymentYesAccount" property="repaymentYesAccount"
+			jdbcType="VARCHAR" />
+		<result column="timeLimit" property="timeLimit" jdbcType="INTEGER" />
+		<result column="addtime" property="addtime" jdbcType="INTEGER" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="credit" property="credit" jdbcType="INTEGER" />
+		<result column="allOrder" property="allOrder" jdbcType="INTEGER" />
+		<result column="noOrder" property="noOrder" jdbcType="INTEGER" />
+	</resultMap>
+	<resultMap id="BorrowTednerVOExtendMap"
+		type="cn.vfunding.vfunding.biz.common.vo.BorrowTenderVO" extends="BorrowTednerVOMap">
+		<result column="borrowStartTime" property="borrowStartTime"
+			jdbcType="VARCHAR" />
+		<result column="borrowEndTime" property="borrowEndTime"
+			jdbcType="VARCHAR" />
+		<result column="eachTime" property="eachTime" jdbcType="VARCHAR" />
+		<result column="bfeeMoney" property="bfeeMoney" jdbcType="DECIMAL" />
+		<result column="gfeeMoney" property="gfeeMoney" jdbcType="DECIMAL" />
+	</resultMap>
+
+
+
+	<sql id="Base_Column_List">
+		id, week_id, user_id, status, buy_share, realbuy_share,
+		money, interest,
+		platform_fee,
+		guarantee_fee, repayment_account,
+		repayment_yesaccount, repayment_time, add_time,
+		add_ip
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from vf_week_tender
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		vf_week_tender
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="cn.vfunding.vfunding.biz.week.model.WeekTender">
+		insert into vf_week_tender
+		(id, week_id, user_id,
+		status, buy_share, realbuy_share,
+		money,
+		interest, platform_fee,
+		guarantee_fee, repayment_account,
+		repayment_yesaccount,
+		repayment_time, add_time, add_ip
+		)
+		values
+		(#{id,jdbcType=INTEGER}, #{weekId,jdbcType=INTEGER},
+		#{userId,jdbcType=INTEGER},
+		#{status,jdbcType=INTEGER},
+		#{buyShare,jdbcType=DECIMAL}, #{realbuyShare,jdbcType=DECIMAL},
+		#{money,jdbcType=DECIMAL}, #{interest,jdbcType=DECIMAL},
+		#{platformFee,jdbcType=DECIMAL},
+		#{guaranteeFee,jdbcType=DECIMAL},
+		#{repaymentAccount,jdbcType=DECIMAL},
+		#{repaymentYesaccount,jdbcType=DECIMAL},
+		#{repaymentTime,jdbcType=TIMESTAMP}, #{addTime,jdbcType=TIMESTAMP},
+		#{addIp,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.week.model.WeekTender"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into vf_week_tender
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="weekId != null">
+				week_id,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="buyShare != null">
+				buy_share,
+			</if>
+			<if test="realbuyShare != null">
+				realbuy_share,
+			</if>
+			<if test="money != null">
+				money,
+			</if>
+			<if test="interest != null">
+				interest,
+			</if>
+			<if test="platformFee != null">
+				platform_fee,
+			</if>
+			<if test="guaranteeFee != null">
+				guarantee_fee,
+			</if>
+			<if test="repaymentAccount != null">
+				repayment_account,
+			</if>
+			<if test="repaymentYesaccount != null">
+				repayment_yesaccount,
+			</if>
+			<if test="repaymentTime != null">
+				repayment_time,
+			</if>
+			<if test="addTime != null">
+				add_time,
+			</if>
+			<if test="addIp != null">
+				add_ip,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="weekId != null">
+				#{weekId,jdbcType=INTEGER},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="buyShare != null">
+				#{buyShare,jdbcType=DECIMAL},
+			</if>
+			<if test="realbuyShare != null">
+				#{realbuyShare,jdbcType=DECIMAL},
+			</if>
+			<if test="money != null">
+				#{money,jdbcType=DECIMAL},
+			</if>
+			<if test="interest != null">
+				#{interest,jdbcType=DECIMAL},
+			</if>
+			<if test="platformFee != null">
+				#{platformFee,jdbcType=DECIMAL},
+			</if>
+			<if test="guaranteeFee != null">
+				#{guaranteeFee,jdbcType=DECIMAL},
+			</if>
+			<if test="repaymentAccount != null">
+				#{repaymentAccount,jdbcType=DECIMAL},
+			</if>
+			<if test="repaymentYesaccount != null">
+				#{repaymentYesaccount,jdbcType=DECIMAL},
+			</if>
+			<if test="repaymentTime != null">
+				#{repaymentTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="addTime != null">
+				#{addTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="addIp != null">
+				#{addIp,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.week.model.WeekTender">
+		update vf_week_tender
+		<set>
+			<if test="weekId != null">
+				week_id = #{weekId,jdbcType=INTEGER},
+			</if>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="buyShare != null">
+				buy_share = #{buyShare,jdbcType=DECIMAL},
+			</if>
+			<if test="realbuyShare != null">
+				realbuy_share = #{realbuyShare,jdbcType=DECIMAL},
+			</if>
+			<if test="money != null">
+				money = #{money,jdbcType=DECIMAL},
+			</if>
+			<if test="interest != null">
+				interest = #{interest,jdbcType=DECIMAL},
+			</if>
+			<if test="platformFee != null">
+				platform_fee = #{platformFee,jdbcType=DECIMAL},
+			</if>
+			<if test="guaranteeFee != null">
+				guarantee_fee = #{guaranteeFee,jdbcType=DECIMAL},
+			</if>
+			<if test="repaymentAccount != null">
+				repayment_account = #{repaymentAccount,jdbcType=DECIMAL},
+			</if>
+			<if test="repaymentYesaccount != null">
+				repayment_yesaccount =
+				#{repaymentYesaccount,jdbcType=DECIMAL},
+			</if>
+			<if test="repaymentTime != null">
+				repayment_time = #{repaymentTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="addTime != null">
+				add_time = #{addTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="addIp != null">
+				add_ip = #{addIp,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.week.model.WeekTender">
+		update
+		vf_week_tender
+		set week_id = #{weekId,jdbcType=INTEGER},
+		user_id =
+		#{userId,jdbcType=INTEGER},
+		status = #{status,jdbcType=INTEGER},
+		buy_share = #{buyShare,jdbcType=DECIMAL},
+		realbuy_share =
+		#{realbuyShare,jdbcType=DECIMAL},
+		money = #{money,jdbcType=DECIMAL},
+		interest = #{interest,jdbcType=DECIMAL},
+		platform_fee =
+		#{platformFee,jdbcType=DECIMAL},
+		guarantee_fee =
+		#{guaranteeFee,jdbcType=DECIMAL},
+		repayment_account =
+		#{repaymentAccount,jdbcType=DECIMAL},
+		repayment_yesaccount =
+		#{repaymentYesaccount,jdbcType=DECIMAL},
+		repayment_time =
+		#{repaymentTime,jdbcType=TIMESTAMP},
+		add_time =
+		#{addTime,jdbcType=TIMESTAMP},
+		add_ip = #{addIp,jdbcType=VARCHAR}
+		where
+		id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<select id="selectWeekTenderListPage" resultMap="pageListResultMap"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select
+		a.id,a.week_id,a.user_id,a.status,a.buy_share,a.realbuy_share,a.money,a.interest,
+		a.repayment_account,a.repayment_yesaccount,
+		a.repayment_time,a.add_time,
+		a.add_ip
+		,b.username from vf_week_tender a
+		left join rd_user b on
+		a.user_id=b.user_id
+		where
+		week_id=#{entity.weekId,jdbcType=INTEGER}
+	</select>
+
+	<update id="updateStatusByDate" parameterType="java.lang.String">
+		update
+		vf_week_tender set status=2 where
+		date_format(add_time,'%Y-%m-%d')=#{date} and status=1
+	</update>
+
+	<select id="selectByAddTime" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select * from vf_week_tender
+		where
+		date_format(add_time,'%Y-%m-%d')=#{date} and
+		status=1
+	</select>
+
+
+	<select id="selectByDateGroupWeekId" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		week_id,sum(money) as money from vf_week_tender
+		where
+		date_format(add_time,'%Y-%m-%d')=#{date} and
+		status=1
+		group by week_id
+	</select>
+
+	<select id="selectHoldingAssetsByUserId" resultMap="assetsResultMap"
+		parameterType="java.lang.Integer">
+		SELECT
+		A.holding_Assets,A.collect_Revenue,
+		B.total_Revenue From (
+		SELECT
+		v.user_id,
+		sum(v.money) + sum(v.interest)
+		AS holding_Assets,
+		sum(v.interest) AS collect_Revenue
+		FROM
+		vf_week_tender v
+		WHERE
+		v. STATUS
+		in (1,2)
+		AND v.user_id =
+		#{userId,jdbcType=INTEGER}
+		) A
+		LEFT JOIN (
+		SELECT
+		v.user_id,
+		sum(v.interest) AS total_Revenue
+		FROM
+		vf_week_tender v
+		WHERE
+		v. STATUS = 3
+		AND v.user_id = #{userId,jdbcType=INTEGER}
+		) B ON
+		A.user_id = B.user_id;
+	</select>
+
+	<select id="selectByUserId" resultMap="BaseResultMap"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select
+		<include refid="Base_Column_List" />
+		from vf_week_tender
+		<if test="entity != null and entity.start != null and entity.end != null ">
+			where user_id = #{entity.userId,jdbcType=INTEGER}
+			and
+			add_time BETWEEN #{entity.start,jdbcType=INTEGER} and
+			#{entity.end,jdbcType=INTEGER}
+		</if>
+		order by add_time desc
+	</select>
+
+	<select id="selectWeekTenderByWeekIdAndRepaymentTimeListPage"
+		resultMap="weeekTenderListResultMap" parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select
+		b.realname,b.username
+		,a.week_id,a.money,a.realbuy_share,a.repayment_account,a.add_time,a.repayment_time
+		from vf_week_tender a
+		left join rd_user b on b.user_id = a.user_id
+		where 1 = 1
+		<if test="entity != null and entity.weekId != null and entity.weekId !='' ">
+			and a.week_id = #{entity.weekId,jdbcType=INTEGER}
+		</if>
+		<if
+			test="entity != null and entity.repaymentTime != null and entity.repaymentTime !='' ">
+			and a.repayment_time =
+			#{entity.repaymentTime,jdbcType=TIMESTAMP}
+		</if>
+	</select>
+
+
+	<select id="selectByParameters" resultMap="BaseResultMap"
+		parameterType="cn.vfunding.vfunding.biz.week.model.WeekTender">
+		select
+		<include refid="Base_Column_List" />
+		from vf_week_tender where 1=1
+		<if test="weekId != null">
+			and week_id = #{weekId,jdbcType=INTEGER}
+		</if>
+		<if test="userId != null">
+			and user_id = #{userId,jdbcType=INTEGER}
+		</if>
+		<if test="status != null">
+			and status = #{status,jdbcType=INTEGER}
+		</if>
+		<if test="buyShare != null">
+			and buy_share = #{buyShare,jdbcType=DECIMAL}
+		</if>
+		<if test="realbuyShare != null">
+			and realbuy_share = #{realbuyShare,jdbcType=DECIMAL}
+		</if>
+		<if test="money != null">
+			and money = #{money,jdbcType=DECIMAL}
+		</if>
+		<if test="interest != null">
+			and interest = #{interest,jdbcType=DECIMAL}
+		</if>
+		<if test="platformFee != null">
+			and platform_fee = #{platformFee,jdbcType=DECIMAL}
+		</if>
+		<if test="guaranteeFee != null">
+			and guarantee_fee = #{guaranteeFee,jdbcType=DECIMAL}
+		</if>
+		<if test="repaymentAccount != null">
+			and repayment_account =
+			#{repaymentAccount,jdbcType=DECIMAL}
+		</if>
+		<if test="repaymentYesaccount != null">
+			and repayment_yesaccount =
+			#{repaymentYesaccount,jdbcType=DECIMAL}
+		</if>
+		<if test="repaymentTime != null">
+			and repayment_time =
+			#{repaymentTime,jdbcType=TIMESTAMP}
+		</if>
+		<if test="addTime != null">
+			and add_time = #{addTime,jdbcType=TIMESTAMP}
+		</if>
+		<if test="addIp != null">
+			and add_ip = #{addIp,jdbcType=VARCHAR}
+		</if>
+	</select>
+
+
+
+	<!-- 借款协议列表 -->
+	<select id="selectAgreementPage" resultMap="BorrowTednerVOExtendMap">
+select d.time_limit as timeLimit,c.user_id as tenderUserId,c.username as tenderUser
+,b.week_rate as apr,b.platform_rate as bfee,b.guarantee_rate as gfee
+,a.money as account,a.interest,a.repayment_account as repaymentAccount,a.repayment_time as borrowEndTime,date_format(a.add_time,'%Y-%m-%d') as borrowStartTime from vf_week_tender a 
+left join vf_week_rate b on a.week_id = b.week_id
+left join rd_user c on a.user_id = c.user_id
+left join vf_week d on a.week_id = d.id
+where a.week_id=${weekId}
+	</select>
+
+
+
+
+</mapper>

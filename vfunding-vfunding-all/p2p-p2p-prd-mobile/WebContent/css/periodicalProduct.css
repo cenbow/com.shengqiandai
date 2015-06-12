@@ -1,0 +1,202 @@
+@CHARSET "UTF-8";
+*{
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	list-style: none;
+	font-family: "微软雅黑";
+	text-shadow: none;
+}
+.page{
+	max-width: 640px;
+	min-width: 320px;
+	width:100%;
+	margin:0 auto;
+	height: auto;
+}
+.top{
+	max-width: 640px;
+	min-width: 320px;
+	width:100%;
+	width: 100%;
+	background-color: #fff;
+	z-index: 999;
+	position: fixed;
+	top:0;
+	border-bottom: 1px solid #f0f0f0;
+}
+.top img {
+	float: left;
+}
+.top  a{
+	width: 100%;
+	display: block;
+	text-align: center;
+	padding-bottom: 0.5em;
+	padding-top: 0.5em;
+} 
+.top span{
+	position: absolute;
+	top:20%;
+	left:2%;
+}
+.navigation{
+	width: 100%;
+	height:40px;
+	margin-top: 40px;
+	background-color: #fff;
+	border-bottom: 3px solid #f0f0f0;
+	
+}
+.navigation li{
+	width: 50%;
+	overflow: hidden;
+	float: left;
+	text-align: center;
+}
+.navigation li a{
+	width: 50%;
+	line-height: 41px;
+	display: block;
+	margin-left: 25%;
+	font-size: 16px;
+	cursor: pointer;	
+}
+.cur{
+	border-bottom: 3px solid #008ef2;
+	color:#008ef2; 
+}
+.line{
+	width: 95%;
+	padding: 0 2.5%;
+	overflow: hidden;
+	line-height: 40px;
+	border-bottom: 1px solid #f0f0f0;
+	background-color: #fff;
+}
+.center{
+	width: 100%;
+	background-color: #fff;
+	overflow: hidden;
+	position: relative;
+	padding-bottom: 20px;
+	border-bottom: 1px solid #f0f0f0;
+}
+.center img {
+	margin-left: 37%;
+	margin-top: 20px;
+}
+.leftUp{
+	position: absolute;
+	top:20px;
+	left: 2.5%;
+	overflow: hidden;
+}
+.center span{
+	font-size: 26px;
+}
+.center p{
+	color: #666;
+	font-size: 13px;
+}
+.leftDown{
+	position: absolute;
+	left:2.5%;
+	bottom: 20px;
+	overflow: hidden;
+}
+.rightUp{
+	position: absolute;
+	right: 2.5%;
+	overflow: hidden;
+	top:20px;
+	text-align:right; 
+}
+.rightDown{
+	position: absolute;
+	right: 2.5%;
+	bottom: 20px;
+	overflow: hidden;
+	text-align:right; 
+}
+.remind{
+	width: 95%;
+	padding: 0 2.5%;
+	overflow: hidden;
+	line-height: 50px;
+	background-color: #fff;
+	color: #666;
+}
+.remind p{
+	float: left;
+}
+.remind p font{
+	color: green;
+}
+.remind a{
+	float: right;
+	display: block;
+	overflow: hidden;
+	border: 1px solid #008ef2;
+	color: #008ef2;
+	text-align: center;
+	line-height: 25px;
+	margin-top: 12.5px;
+	padding: 0 5px;
+}
+.deul{
+	width: 100%;
+	margin-top: 15px;
+	overflow: hidden;
+}
+.deulLi{
+	width: 95%;
+	padding: 0 2.5%;
+	float: left;
+	background-color: #fff;
+	color: #666;
+}
+.deulLi ul{
+	overflow: hidden;
+}
+.deulLi ul li{
+	width: 25%;
+	float: left;
+	text-align: center;
+	padding: 10px 0;
+	border-bottom: 1px solid #f0f0f0;
+}
+.deulLi ul li span{
+	font-size: 13px;
+}
+.deulLi ul li p font{
+	font-size: 20px;
+}
+.foot{
+	max-width:640px;
+	min-width:320px;
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	height: 50px;
+	border-top: thin solid #f0f0f0;
+	background-color: #fff;
+}
+.foot ul{
+	width: 100%;
+	height: 100%;
+}
+.foot ul li{
+	width: 25%;
+	height:100%;
+	float: left;
+	text-align: center;
+}
+.foot ul li h4{
+	margin-top: -7px;
+	color: #666;
+}
+.bu{
+	width: 100%;
+	height: 65px;
+}

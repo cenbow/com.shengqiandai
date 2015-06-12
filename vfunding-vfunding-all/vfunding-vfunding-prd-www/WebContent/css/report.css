@@ -1,0 +1,141 @@
+@charset "utf-8";
+/* CSS Document */
+body, html {
+	margin: 0;
+	overflow: hidden;
+	transition: opacity 400ms ease 0s;
+}
+
+body, .onepage-wrapper, html {
+	display: block;
+	height: 100%;
+	padding: 0;
+	position: static;
+	width: 100%;
+}
+
+.onepage-wrapper {
+	display: block;
+	height: 100%;
+	padding: 0;
+	position: relative;
+	width: 100%;
+}
+
+.onepage-wrapper .section {
+	width: 100%;
+}
+
+.onepage-pagination {
+	list-style: outside none none;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	right: 10px;
+	top: 20%;
+	z-index: 5;
+}
+
+.page img {
+	border: 0px solid #fff;
+	width: 100%;
+}
+
+.main {
+	margin: 0 auto;
+	width: 80%;
+}
+
+.onepage-pagination li {
+	padding: 0;
+	text-align: center;
+}
+
+.onepage-pagination li a {
+	display: block;
+	height: 4px;
+	padding: 10px;
+	width: 4px;
+}
+
+.onepage-pagination li a:before {
+	background: none repeat scroll 0 0 rgba(0, 0, 0, 0.85);
+	border-radius: 10px;
+	content: "";
+	height: 4px;
+	position: absolute;
+	width: 4px;
+}
+
+.onepage-pagination li a.active:before {
+	background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+	border: 1px solid black;
+	height: 10px;
+	left: 8px;
+	margin-top: -4px;
+	width: 10px;
+}
+
+.disabled-onepage-scroll, .disabled-onepage-scroll .wrapper {
+	overflow: auto;
+}
+
+.disabled-onepage-scroll .onepage-wrapper .section {
+	left: auto !important;
+	position: relative !important;
+	top: auto !important;
+}
+
+.disabled-onepage-scroll .onepage-wrapper {
+	min-height: 100%;
+	transform: none !important;
+}
+
+.disabled-onepage-scroll .onepage-pagination {
+	display: none;
+}
+
+body.disabled-onepage-scroll, .disabled-onepage-scroll .onepage-wrapper,
+	html {
+	position: inherit;
+}
+
+body {
+	background-color: #F1F1F1
+}
+
+.return {
+	background-color: #FFFFFF;
+	padding: 5px 10px;
+	display: inline-block;
+	position: fixed;
+	right: 20px;
+	top: 10px;
+	z-index: 100000;
+	color: #535353;
+	text-decoration: none;
+	font-size: 12px;
+	-moz-border-radius: 2px; /* Gecko browsers */
+	-webkit-border-radius: 2px; /* Webkit browsers */
+	border-radius: 2px; /* W3C syntax */
+	filter: alpha(opacity = 60); /*IE滤镜*/
+	-webkit-opacity: 0.6;
+	-moz-opacity: 0.6; /*Firefox私有*/
+	opacity: 0.6; /*其他*/
+}
+
+.return:hover {
+	border-radius: 2px; /* W3C syntax */
+	filter: alpha(opacity = 80); /*IE滤镜*/
+	-webkit-opacity: 0.8;
+	-moz-opacity: 0.8; /*Firefox私有*/
+	opacity: 0.8; /*其他*/
+}
+
+p.title {
+	position: relative;
+	top: 35%;
+	font: 700 40px "Microsoft Yahei";
+	color: #fff;
+	text-align: center;
+}

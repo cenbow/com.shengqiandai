@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.message.dao.GiftboxMessageMapper">
+	<resultMap id="BaseResultMap"
+		type="cn.vfunding.vfunding.biz.message.model.GiftboxMessage">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="send_user" property="sendUser" jdbcType="INTEGER" />
+		<result column="receive_user" property="receiveUser" jdbcType="INTEGER" />
+		<result column="money" property="money" jdbcType="DECIMAL" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="tender_id" property="tenderId" jdbcType="INTEGER" />
+		<result column="is_look" property="isLook" jdbcType="INTEGER" />
+		<result column="type" property="type" jdbcType="INTEGER" />
+		<result column="content" property="content" jdbcType="VARCHAR" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="take_time" property="takeTime" jdbcType="TIMESTAMP" />
+		<result column="lose_time" property="loseTime" jdbcType="TIMESTAMP" />
+		<result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+		<result column="addip" property="addip" jdbcType="VARCHAR" />
+
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, send_user, receive_user, money, title, status, is_look,
+		type,
+		content, update_time,
+		take_time, lose_time, addtime,
+		addip,tender_id
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from vf_giftbox_message
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<!-- 查询将要过期的礼品盒信息 -->
+	<select id="selectByLose" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from vf_giftbox_message
+		where `status`=0 and TO_DAYS(lose_time) - TO_DAYS(now()) =2;
+	</select>
+	<!-- 查询礼品盒louchen 2014-12-19 -->
+	<select id="selectGiftboxMessageListPage" resultMap="BaseResultMap"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select
+		<include refid="Base_Column_List" />
+		from vf_giftbox_message
+		where 1=1
+		<if test="entity != null and entity.type != null  ">
+			and type = #{entity.type,jdbcType=INTEGER}
+		</if>
+		<if test="entity != null and entity.status != null  ">
+			and status = #{entity.status,jdbcType=INTEGER}
+		</if>
+		<if test="entity != null and entity.isLook != null  ">
+			and is_look = #{entity.isLook,jdbcType=INTEGER}
+		</if>
+		<if test="entity != null and entity.receiveUser != null  ">
+			and receive_user = #{entity.receiveUser,jdbcType=INTEGER}
+		</if>
+		order by is_look asc, take_time
+	</select>
+	<!-- 查询礼品盒个人未使用的礼品 louchen 2014-12-19 -->
+	<select id="selectUnUseByUserId" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from vf_giftbox_message
+		where receive_user = #{userId,jdbcType=INTEGER}
+		and status = 0
+	</select>
+	<!-- 查询礼品盒个人未查看的礼品 louchen 2014-12-19 -->
+	<select id="selectUnLookByUserId" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from vf_giftbox_message
+		where receive_user = #{userId,jdbcType=INTEGER}
+		and is_look = 0
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		vf_giftbox_message
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert"
+		parameterType="cn.vfunding.vfunding.biz.message.model.GiftboxMessage">
+		insert into vf_giftbox_message (id, send_user,
+		receive_user,
+		money, title, status,
+		is_look, type, content,
+		update_time,
+		take_time, lose_time,
+		addtime, addip,tender_id)
+		values
+		(#{id,jdbcType=INTEGER}, #{sendUser,jdbcType=INTEGER},
+		#{receiveUser,jdbcType=INTEGER},
+		#{money,jdbcType=DECIMAL},
+		#{title,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},
+		#{isLook,jdbcType=INTEGER}, #{type,jdbcType=INTEGER},
+		#{content,jdbcType=VARCHAR},
+		#{updateTime,jdbcType=TIMESTAMP},
+		#{takeTime,jdbcType=TIMESTAMP}, #{loseTime,jdbcType=TIMESTAMP},
+		#{addtime,jdbcType=TIMESTAMP},
+		#{addip,jdbcType=VARCHAR},#{tenderId,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.message.model.GiftboxMessage" useGeneratedKeys="true" keyProperty="id">
+		insert into vf_giftbox_message
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="sendUser != null">
+				send_user,
+			</if>
+			<if test="receiveUser != null">
+				receive_user,
+			</if>
+			<if test="money != null">
+				money,
+			</if>
+			<if test="title != null">
+				title,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="isLook != null">
+				is_look,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="content != null">
+				content,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+			<if test="takeTime != null">
+				take_time,
+			</if>
+			<if test="loseTime != null">
+				lose_time,
+			</if>
+			<if test="addtime != null">
+				addtime,
+			</if>
+			<if test="addip != null">
+				addip,
+			</if>
+			<if test="tenderId != null">
+				tender_id,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="sendUser != null">
+				#{sendUser,jdbcType=INTEGER},
+			</if>
+			<if test="receiveUser != null">
+				#{receiveUser,jdbcType=INTEGER},
+			</if>
+			<if test="money != null">
+				#{money,jdbcType=DECIMAL},
+			</if>
+			<if test="title != null">
+				#{title,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="isLook != null">
+				#{isLook,jdbcType=INTEGER},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=INTEGER},
+			</if>
+			<if test="content != null">
+				#{content,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="takeTime != null">
+				#{takeTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="loseTime != null">
+				#{loseTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="addtime != null">
+				#{addtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="addip != null">
+				#{addip,jdbcType=VARCHAR},
+			</if>
+			<if test="tenderId != null">
+				#{tenderId,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="cn.vfunding.vfunding.biz.message.model.GiftboxMessage">
+		update vf_giftbox_message
+		<set>
+			<if test="sendUser != null">
+				send_user = #{sendUser,jdbcType=INTEGER},
+			</if>
+			<if test="receiveUser != null">
+				receive_user = #{receiveUser,jdbcType=INTEGER},
+			</if>
+			<if test="money != null">
+				money = #{money,jdbcType=DECIMAL},
+			</if>
+			<if test="title != null">
+				title = #{title,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="isLook != null">
+				is_look = #{isLook,jdbcType=INTEGER},
+			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=INTEGER},
+			</if>
+			<if test="content != null">
+				content = #{content,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="takeTime != null">
+				take_time = #{takeTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="loseTime != null">
+				lose_time = #{loseTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="addtime != null">
+				addtime = #{addtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="addip != null">
+				addip = #{addip,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="cn.vfunding.vfunding.biz.message.model.GiftboxMessage">
+		update vf_giftbox_message
+		set send_user =
+		#{sendUser,jdbcType=INTEGER},
+		receive_user =
+		#{receiveUser,jdbcType=INTEGER},
+		money = #{money,jdbcType=DECIMAL},
+		title = #{title,jdbcType=VARCHAR},
+		status = #{status,jdbcType=INTEGER},
+		is_look = #{isLook,jdbcType=INTEGER},
+		type = #{type,jdbcType=INTEGER},
+		content = #{content,jdbcType=VARCHAR},
+		update_time =
+		#{updateTime,jdbcType=TIMESTAMP},
+		take_time =
+		#{takeTime,jdbcType=TIMESTAMP},
+		lose_time =
+		#{loseTime,jdbcType=TIMESTAMP},
+		addtime =
+		#{addtime,jdbcType=TIMESTAMP},
+		addip = #{addip,jdbcType=VARCHAR}
+		where
+		id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectAllListPage" resultMap="BaseResultMap"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select
+		<include refid="Base_Column_List" />
+		from vf_giftbox_message
+		where 1=1
+		<if test="entity != null and entity.title != null and entity.title != '' ">
+			and title like
+			CONCAT('%',#{entity.title,jdbcType=VARCHAR},'%')
+		</if>
+		<if
+			test="entity != null and entity.addTime != null and entity.addTime != '' ">
+			<![CDATA[ and addTime >= #{entity.startTime,jdbcType=TIMESTAMP} ]]>
+		</if>
+		<if
+			test="entity != null and entity.addTime != null and entity.addTime != '' ">
+			<![CDATA[ and addTime <= #{entity.endTime,jdbcType=TIMESTAMP} ]]>
+		</if>
+		<if test="entity != null and entity.status != null">
+			and status = #{entity.status}
+		</if>
+		order by addTime desc
+	</select>
+	
+	<select id="selectUseMoney" resultType="java.lang.String" parameterType="java.util.Map">
+		select SUM(money) from vf_giftbox_message
+		WHERE
+		receive_user = #{userId}
+		AND
+		status = 0
+		<![CDATA[ and #{time} >= take_time ]]>
+		<![CDATA[ and #{time} <= lose_time ]]>
+	</select>
+	
+	<select id="selectNoUseMoney" resultType="java.lang.String" parameterType="java.util.Map">
+		select SUM(money) from vf_giftbox_message
+		WHERE
+		receive_user = #{userId}
+		AND
+		status = 0
+		<![CDATA[ and #{time} < take_time ]]>
+	</select>
+	
+	<select id="selectUseMoneyAny" resultMap="BaseResultMap" parameterType="java.util.Map">
+		select
+		<include refid="Base_Column_List" />
+		from vf_giftbox_message
+		where 1=1 
+		and
+		receive_user = #{userId}
+		AND
+		status = 0
+		<!-- 所有未使用,即使过期的礼品使用后也会更新礼品进入过期列表 2015-02-05 -->
+<!-- 		<![CDATA[ and #{time} >= take_time ]]> -->
+<!-- 		<![CDATA[ and #{time} <= lose_time ]]> -->
+	</select>
+	
+	<!-- 已使用 -->
+	<select id="selectHongbaoSumUsed" resultType="java.lang.String" parameterType="java.lang.Integer">
+		select SUM(money) from vf_giftbox_message
+		WHERE
+		receive_user = #{userId}
+		AND
+		status = 1
+	</select>
+	<!-- 已过期 -->
+	<select id="selectHongbaoSumExpire" resultType="java.lang.String" parameterType="java.lang.Integer">
+		select SUM(money) from vf_giftbox_message
+		WHERE
+		receive_user = #{userId}
+		AND
+		(
+		status = 2 
+		OR
+			(status = 0 
+<!-- 			and ( <![CDATA[  NOW() < take_time ]]>  or <![CDATA[  NOW() > lose_time ]]>  ) -->
+			and  <![CDATA[  NOW() > lose_time ]]>  
+			)
+		)
+	</select>
+	<!-- 根据状态是未过期未使用(缺省),但实际已经超过失效时间的红包 -->
+	<select id="selectHongbaoExpireByStatus" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from vf_giftbox_message
+		where status = #{status}
+		and <![CDATA[  NOW() > lose_time ]]>
+		order by addTime desc
+	</select>
+	
+	
+	<select id="selectInviteFeesByGiftboxSumMoney" resultType="BigDecimal" parameterType="java.lang.Integer">
+	select IFNULL(SUM(money),0) from vf_giftbox_message where type = 3 and receive_user = #{userId} and status = 0
+	</select>
+	
+  <select id="selectByUserIdAndTitleAndStatus" resultMap="BaseResultMap" >
+  	select
+  	<include refid="Base_Column_List" />
+    from vf_giftbox_message
+    where 
+    receive_user = #{userId}
+    and title = #{title}
+    and status = #{status}
+   	order by addtime desc
+  </select>
+
+</mapper>

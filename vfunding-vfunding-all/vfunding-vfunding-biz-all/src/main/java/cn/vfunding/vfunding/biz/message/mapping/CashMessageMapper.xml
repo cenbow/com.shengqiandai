@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.vfunding.vfunding.biz.message.dao.CashMessageMapper" >
+  <resultMap id="BaseResultMap" type="cn.vfunding.vfunding.biz.message.model.CashMessage" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="send_user" property="sendUser" jdbcType="INTEGER" />
+    <result column="receive_user" property="receiveUser" jdbcType="INTEGER" />
+    <result column="money" property="money" jdbcType="DECIMAL" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="is_look" property="isLook" jdbcType="INTEGER" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+    <result column="addip" property="addip" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, send_user, receive_user, money, title, is_look, content, addtime, addip
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from vf_cash_message
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from vf_cash_message
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.vfunding.vfunding.biz.message.model.CashMessage" >
+    insert into vf_cash_message (id, send_user, receive_user, 
+      money, title, is_look, 
+      content, addtime, addip
+      )
+    values (#{id,jdbcType=INTEGER}, #{sendUser,jdbcType=INTEGER}, #{receiveUser,jdbcType=INTEGER}, 
+      #{money,jdbcType=DECIMAL}, #{title,jdbcType=VARCHAR}, #{isLook,jdbcType=INTEGER}, 
+      #{content,jdbcType=VARCHAR}, #{addtime,jdbcType=TIMESTAMP}, #{addip,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.vfunding.vfunding.biz.message.model.CashMessage" useGeneratedKeys="true" keyProperty="id">
+    insert into vf_cash_message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sendUser != null" >
+        send_user,
+      </if>
+      <if test="receiveUser != null" >
+        receive_user,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="isLook != null" >
+        is_look,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="addip != null" >
+        addip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sendUser != null" >
+        #{sendUser,jdbcType=INTEGER},
+      </if>
+      <if test="receiveUser != null" >
+        #{receiveUser,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="isLook != null" >
+        #{isLook,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addip != null" >
+        #{addip,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.message.model.CashMessage" >
+    update vf_cash_message
+    <set >
+      <if test="sendUser != null" >
+        send_user = #{sendUser,jdbcType=INTEGER},
+      </if>
+      <if test="receiveUser != null" >
+        receive_user = #{receiveUser,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="isLook != null" >
+        is_look = #{isLook,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addip != null" >
+        addip = #{addip,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.vfunding.vfunding.biz.message.model.CashMessage" >
+    update vf_cash_message
+    set send_user = #{sendUser,jdbcType=INTEGER},
+      receive_user = #{receiveUser,jdbcType=INTEGER},
+      money = #{money,jdbcType=DECIMAL},
+      title = #{title,jdbcType=VARCHAR},
+      is_look = #{isLook,jdbcType=INTEGER},
+      content = #{content,jdbcType=VARCHAR},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      addip = #{addip,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 查询提现券 jianwei -->
+	<select id="selectCashMessageListPage" resultMap="BaseResultMap"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select
+		<include refid="Base_Column_List" />
+		from vf_cash_message
+		where 1=1
+		<if test="entity != null and entity.receiveUser != null  ">
+			and receive_user = #{entity.receiveUser,jdbcType=INTEGER}
+		</if>
+		order by addtime desc
+	</select>
+	
+	<!-- 查询礼品盒个人未查看的礼品 louchen 2014-12-19 -->
+	<select id="selectUnLookByUserId" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from vf_cash_message
+		where receive_user = #{userId,jdbcType=INTEGER}
+		and is_look = 0
+	</select>
+  
+</mapper>

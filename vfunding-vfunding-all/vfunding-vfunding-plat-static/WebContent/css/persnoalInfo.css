@@ -1,0 +1,70 @@
+@charset "utf-8";
+/* CSS Document */
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+@import url(accountLeft.css);
+.content{ overflow:visible;}
+.myAccount{ height:940px; margin:30px 0; clear:both;}
+
+
+
+/*****账户总览右栏***/
+.rechargeTakeCash{ width:820px; height:940px; }
+
+.rT{height:940px;  background:#fff; }
+.rTWrap{ width:780px; height:940px; margin:0 auto;  position:relative;}
+.txTop{ height:58px;overflow:hidden; }
+b.midLine{ height:1px; font-size:0; width:100%; background:#eeeeee; position:absolute; top:28px; left:0;  overflow:hidden;}
+.txTop h2,.excel{ height:22px; line-height:22px; position:absolute;background-color:#fff;}
+.txTop h2{ top:17px; left:24px; font-size:20px; color:#0065b4; padding:0 6px; z-index:9; }
+
+.infobar{ height:40px;}
+.infobar li{ width:158px; height:40px; float:left; line-height:40px; text-align:center;  margin-left:2px; display:inline; cursor:pointer;}
+.grayBg{background:#f5f7f8;}
+
+.infoBg{ background:#0065b4; color:#fff;}
+
+
+.persnoalInfo{ margin-top:30px; display:none;}
+.per-left{ width:222px; height:200px;}
+.per-right{ width:558px;}
+.avantarPic{ width:86px; height:114px;  margin:20px 0 0 40px;}
+.avantarPic dt{ width:84px; height:84px; padding:1px; border:1px solid #ececec;}
+
+.avantarPic dd{ margin-top:10px; text-align:center;}
+.avantarPic dd a:hover,.gocheck a{ color:#00a0e9;}
+
+
+.txtRight{ text-align:right;}
+.txtRight font{ color:#ff8636;}
+.gocheck,.phoneChecked{ height:16px; text-indent:26px; line-height:16px; }
+.gocheck{background-position:0 -16px;} 
+.phoneChecked{ background-position:0 -32px;}
+
+
+.year,.month,.day,.school,.live-address,.zhiwei{ height:28px; padding:0 5px; vertical-align:middle; line-height:30px;}
+.year,.month,.day{ width:70px;}
+.school,.live-address,.zhiwei{ width:262px;}
+.btn116{ margin-top:10px; display:block;}
+.fileInput{ width:350px; height:28px; padding:0 5px; border:1px solid #ccc; line-height:30px;}
+.file{ width:192px; height:28px; padding:0 5px;}
+
+.uploadBtn{ width:64px; height:30px; position:relative; overflow:hidden; background:url(../images/account/upfile.png) no-repeat; margin-left:10px; display:inline;}
+
+.uploadfile{ width:64px; height:30px; opacity:0; filter:alpha(opacity=0); cursor:pointer;}
+.uploadExplain{ display:block; padding-left:10px; line-height:28px; color:#ccc;}
+#upfile{ position:absolute; top:-100px;}
+.beizhu{ width:426px; height:28px; line-height:30px; padding:0 5px;}
+.upItemsForm{ margin-top:56px;}
+.upItemsForm td{ text-align:center; border-bottom:1px solid #eee;}
+
+.xueli,.company-industry,.company-scale,.income,.uploadType{ width:126px;height:28px; line-height:28px;}
+
+
+
+.chosen-container .chosen-drop{width:196px;*width:174px; }
+.chosen-container-single .chosen-search input[type="text"]{ padding:4px 0;}
+
+.chosen-container-single .chosen-single{ width:186px;height:28px; line-height:28px;}
+

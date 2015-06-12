@@ -1,0 +1,25 @@
+@charset "utf-8";
+/* CSS Document */
+@import url(base.css);
+@import url(top.css);
+@import url(bottom.css);
+#wrapper{margin:20px auto;}
+.pro_name{ width:98px; height:42px; line-height:42px; text-align:right;}
+.bid-opt{width:560px;margin:0 auto;padding:40px 0 10px;}
+.bid-opt .items2 li.txt{ width:98px;}
+.profit-calc .btn-submit{ padding-left:112px;}
+.product{ height:60px; padding-left:16px;}
+.chosen-container-single .chosen-single{width:242px;height:42px; line-height:42px;}
+.chosen-container .chosen-container-single{ width:242px; *width:242px;}
+.chosen-container-single .chosen-search input[type="text"]{ padding:4px 0;}
+.chosen-container-single .chosen-single div{right:-2px;top:10px;}
+.chosen-container .chosen-drop{width:252px; *width:250px;}
+.calResult{ width:872px; height:92px; margin:0 auto; background:#f5f7f8;}
+.r1{ width:130px; height:92px; text-align:center; line-height:40px;}
+.r2{ width:742px; height:92px;}
+.benxi,.lixi,.monthIncome{ width:220px; height:92px;line-height:40px; margin-right:20px; display: inline;}
+span#earnBxNum,span#lxNum,span#earnBxNumMonth{ color:#ff8636; font-size:24px;}
+
+
+
+

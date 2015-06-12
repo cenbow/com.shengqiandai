@@ -1,0 +1,317 @@
+ @charset "utf-8";
+/* CSS Document */
+* {
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	font-family: "微软雅黑";
+	list-style: none;
+}
+
+.top {
+	width: 1100px;
+	height: 81px;
+	margin: 0 auto;
+}
+.top a {
+	width: 100px;
+	height: 30px;
+	display: block;
+	float: right;
+	text-align: center;
+	line-height: 30px;
+	margin-top: 30px;
+	color: #999;
+	cursor: pointer;
+}
+.top a:hover {
+	color: #09F;
+}
+.flexslider {
+	position: relative;
+	width: 100%;
+	height: 456px;
+	overflow: hidden;
+	background: url(/images/loading.gif) 50% no-repeat;
+}
+.slides {
+	position: relative;
+	z-index: 1;
+}
+.slides li {
+	height: 456px;
+}
+.flex-control-nav {
+	position: absolute;
+	bottom: 10px;
+	z-index: 2;
+	width: 100%;
+	text-align: center;
+}
+.flex-control-nav li {
+	display: inline-block;
+	width: 14px;
+	height: 14px;
+	margin: 0 5px;
+	display: inline;
+	zoom: 1;
+}
+.flex-control-nav a {
+	display: inline-block;
+	width: 13px;
+	height: 13px;
+	line-height: 40px;
+	overflow: hidden;
+	background: url(/images/dot.png) right 0 no-repeat;
+	cursor: pointer;
+}
+.flex-control-nav .flex-active {
+	background-position: 0 0;
+}
+.flex-direction-nav li a {
+	display: block;
+	width: 50px;
+	height: 50px;
+	overflow: hidden;
+	cursor: pointer;
+	position: absolute;
+}
+.auxiliary{
+	width: 1100px;
+	height: 455px;
+	position: relative;
+	margin: 0 auto;
+	
+}
+.enroll {
+	width: 310px;
+	height: 435px;
+	position: absolute;
+	right:0;
+	top:12px;
+	z-index: 1;
+	background: rgba(0,0,0, .5);
+	color: #FFF;
+}
+.whyText {
+	width: 1100px;
+	height: 81px;
+	margin: 0 auto;
+	background-image: url(/images/why.png);
+}
+.interpretationText {
+	width: 1100px;
+	height: 110px;
+	margin: 0 auto;
+	font-size: 13px;
+}
+.interpretationText li {
+	height: 110px;
+	float: left;
+	color: #999;
+}
+.oneli{
+	width: 25%;
+}
+.twoli{
+	width: 32%;
+}
+.threeli{
+	width: 22%;
+}
+.fourli{
+	width: 21%;
+}
+
+.twospan{
+	width: 250px;
+}
+.img {
+	width: 80px;
+	height: 80px;
+	float: left;
+	margin-top: 5px;
+}
+#full{
+	width: 100px;
+	height: 40px;
+	display: block;
+	font-size: 25px;
+	font-weight: bold;
+}
+.hight{
+		color: #fc995e;
+}
+.low{
+	color: #519eef;
+}
+.door{
+	color: #f3cd34;
+}
+.head{
+	color: #64d993;
+}
+font{
+	font-size: 30px;
+}
+.one {
+	background-image: url(/images/zl-moduleone.png);
+	background-repeat: no-repeat;
+}
+.two {
+	background-image: url(/images/zl-moduletwo.png);
+	background-repeat: no-repeat;
+}
+.three {
+	background-image: url(/images/zl-modulethree.png);
+	background-repeat: no-repeat;
+
+}
+.four {
+	background-image: url(/images/zl-modulefour.png);
+	background-repeat: no-repeat;
+}
+.interpretationText span {
+	height: 80px;
+	display: block;
+	float: left;
+	margin-left: 10px;
+}
+.interpretationText span p {
+	line-height: 20px;
+	font-size: 14px;
+}
+.safe {
+	width: 1100px;
+	height: 200px;
+	margin: 0 auto;
+	margin-top: 45px;
+}
+.whysafe {
+	height: 50px;
+	width: 1100px;
+	background-image: url(/images/whysafe.png);
+}
+.vlogo {
+	width: 1100px;
+	height: 100px;
+	float: left;
+	background-image: url(/images/vlogo.png);
+	background-repeat: no-repeat;
+}
+.vlogo span {
+	width: 833px;
+	height: 100px;
+	margin-left: 265px;
+	display: block;
+	font-size: 14px;
+	color: #999;
+}
+.vlogo span p {
+	line-height: 25px;
+	margin-top: 15px;
+}
+.bankSafe {
+	width: 833px;
+	height: 52px;
+	float: right;
+	background-image: url(/images/banksafe.png);
+}
+.investment {
+	width: 1100px;
+	height: 528px;
+	margin: 0 auto;
+	background-image: url(/images/touzi.png);
+	margin-top: 40px;
+}
+.sprog {
+	width: 1100px;
+	height: 486px;
+	margin: 0 auto;
+	background-image: url(/images/sprog.png);
+	margin-top: 40px;
+}
+.report {
+	width: 1100px;
+	height: 451px;
+	margin: 0 auto;
+	margin-top: 40px;
+}
+.reportTop {
+	width: 1100px;
+	height: 46px;
+	background-image: url(/images/reportTop.png);
+}
+.reportImg {
+	width: 368px;
+	height: 413px;
+	float: left;
+	background-image: url(/images/report.png);
+}
+.media {
+	width: 730px;
+	height: 300px;
+	float: left;
+	margin-top: 35px;
+}
+.media li {
+	width: 29%;
+	height: 77px;
+	float: left;
+	margin-left: 25px;
+	margin-top: 20px;
+}
+.media li a {
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+
+.login {
+	background-image: url(/images/wang.png);
+}
+.guoji {
+	background-position: 0 0;
+}
+.tenxun {
+	background-position: -235px 0;
+}
+.hexun {
+	background-position: -470px 0;
+}
+.xinlang {
+	background-position: 0 -100px;
+}
+.shsb {
+	background-position: -235px -100px;
+}
+.cj {
+	background-position: -470px -100px;
+}
+.dfcf {
+	background-position: 0 -201px;
+}
+.zgrb {
+	background-position: -235px -201px;
+}
+.fh {
+	background-position: -470px -201px;
+}
+.g-ipt {
+	padding-bottom: 4px;
+	padding-left: 4px;
+	padding-right: 4px;
+	padding-top: 4px;
+}
+.g-ipt-active {
+	padding-bottom: 4px;
+	padding-left: 4px;
+	padding-right: 4px;
+	padding-top: 4px;
+}
+.returnTop{
+	width:104px;
+	height:114px;
+	position:absolute;
+	right:50px;
+	top:180px;}

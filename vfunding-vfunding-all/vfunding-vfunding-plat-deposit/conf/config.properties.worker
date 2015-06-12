@@ -1,0 +1,11 @@
+http.port=${http.port}
+http.contextPath=${http.contextPath}
+http.workerName=${http.workerName}
+file.server=${file.server}
+jms.address=${jms.address}
+jms.open=${jms.open}
+php.returnBaseUrl=${php.returnBaseUrl}
+email.server=${email.server}
+sms.server=${sms.server}
+voice.server=${voice.server}
+zookeeper.server=${zookeeper.server}
