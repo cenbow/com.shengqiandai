@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>微积金综合业务管理平台</title>
+<title>生钱袋综合业务管理平台</title>
 <jsp:include page="inc.jsp"></jsp:include>
 <script type="text/javascript">
 	var index_tabs;
@@ -76,7 +76,7 @@
 		<div
 			data-options="region:'west',href:'${ctx }/layout/newwest.jsp',split:true,iconCls:'icon-tip'"
 			title="菜单导航" style="width: 200px; overflow: hidden;"></div>
-		<div data-options="region:'center'" title="欢迎使用微积金综合业务管理平台"
+		<div data-options="region:'center'" title="欢迎使用生钱袋综合业务管理平台"
 			style="overflow: hidden;">
 			<div id="index_tabs" style="overflow: hidden;">
 				<div title="首页" data-options="border:false"
