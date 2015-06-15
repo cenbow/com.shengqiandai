@@ -49,7 +49,7 @@
 <div class="easyui-layout" data-options="fit:true,border:false">
 	<div data-options="region:'center',border:false">
 		<form id="addBorrowform" method="post" style="text-align: center;" enctype="multipart/form-data">
-		<h3 style="background-color: #0081c2; height: 30px; color: #ffffff; line-height: 30px;">添加产品</h3>
+		<h3 style="background-color: #0081c2; height: 30px; color: #ffffff; line-height: 30px;">8戒发标</h3>
 			<table width="750" cellpadding="0" cellspacing="0" style="margin:20px 0  0 200px;">
 			<tr>
 			    <td width="120" height="48" class="txtRight">发标人ID：</td>

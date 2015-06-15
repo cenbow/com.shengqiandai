@@ -9,7 +9,7 @@ import cn.vfunding.common.framework.utils.beans.StringUtil;
 import cn.vfunding.vfunding.common.model.BaseModel;
 
 @SuppressWarnings("serial")
-public class Borrow extends BaseModel {
+public class BorrowOld extends BaseModel {
 
 	private Integer id;
 
@@ -210,29 +210,6 @@ public class Borrow extends BaseModel {
 	 * 发送cjd接口时候 fastjson转换需要这个成员
 	 */
 	private String sortName;
-	
-	
-	/**
-	 * 
-	 * 新增产品相关属性
-	 */
-	
-	
-	private int productType;//产品类型
-	
-	private int productGroup;//产品系列
-	
-	private int qxDate;//起息日
-	
-	private int hkType;//还款类型
-	
-	private int yyTags;//运营标签
-	  
-	private int bzTags;//标准便签
-	  
-	private String  buyButtonName;//购买按钮名称
-	
-	
 
 	public Date getContractStart() {
 		return contractStart;
@@ -1075,6 +1052,4 @@ public class Borrow extends BaseModel {
 		this.tenderTime = tenderTime;
 	}
 
-	
-	
 }

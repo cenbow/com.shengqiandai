@@ -1,14 +1,21 @@
-//产品列表
+var dg;
 $(function() {
-	//alert('11');
-	$('#dg').datagrid(
+	$('#aprStr').html($('#apr').val() - $('#gfee').val() - ($('#bfee').val()==''?0:$('#bfee').val()));
+	
+	$('#gfee,#bfee').keyup(function(){
+		$('#aprStr').html($('#apr').val() - $('#gfee').val() - ($('#bfee').val()==''?0:$('#bfee').val()));
+	});
+	
+	dg = $('#dg')
+			.datagrid(
 					{
 						url : '/system/borrow/theTrialBorrowList',
 						fit : true,
 						fitColumns : true,
-						height:500,
+						border : false,
 						pagination : true,
-						
+						fit : true,
+						fitColumns : true,
 						pageSize : 15,
 						checkOnSelect : false,
 						selectOnCheck : false,
@@ -20,84 +27,119 @@ $(function() {
 						columns : [ [
 								{
 									field : 'id',
-									title : '产品id',
+									title : '借款编号',
 									align : 'center',
-									width : 20
+									width : 30
 								},
 								{
-									field : 'name1',
-									title : '产品类型',
-									align : 'center',
-									width : 20
+									field : 'username',
+									title : '发标用户',
+									align : 'left',
+									width : 50
+								},
+								{
+									field : 'ownername',
+									title : '借款客户',
+									align : 'left',
+									width : 30
 								},
 								{
 									field : 'name',
-									title : '产品名称',
-									align : 'center',
-									width : 20
-								},
-								{
-									field : 'apr',
-									title : '收益率',
-									align : 'center',
-									width : 20
-								},
-								{
-									field : 'timeLimit',
-									title : '期限',
-									align : 'center',
-									width : 20
-								},
-								{
-									field : 'addtime',
-									title : '跟新时间',
-									align : 'center',
-									width : 20
-								},
-								{
-									field : 'name6',
-									title : '标签',
-									align : 'center',
-									width : 20
-								},
-								{
-									field : 'account',
-									title : '募集金额',
-									align : 'center',
-									width : 20
-								},
-								{
-									field : 'ksje',
-									title : '可售金额',
-									align : 'center',
-									width : 20,
-									formatter:function(value,row,index){
-										var res=(row.account-row.accoutn_yes);
-										return res;
+									title : '借款标题',
+									align : 'left',
+									width : 120,
+									formatter : function(value, row, index) {
+										if (row.biaoType == 'fast') {
+											return '<span style="color: red;">【抵押标】</span>'
+													+ value;
+										} else if (row.biaoType == 'xin') {
+											return '<span style="color: red;">【信用标】</span>'
+													+ value;
+										} else if (row.biaoType == 'jin') {
+											return '<span style="color: red;">【净值标】</span>'
+													+ value;
+										} else if (row.biaoType == 'lz') {
+											return '<span style="color: red;">【流转标】</span>'
+													+ value;
+										} else if(row.biaoType == 'huodong'){
+											return '<span style="color: red;">【活动标】</span>'
+											+ value;
+										} else if(row.biaoType == 'tian'){
+											return '<span style="color: red;">【天标】</span>'
+											+ value;
+										}
 									}
 								},
 								{
-									field : 'name9',
-									title : '上线状态',
-									align : 'center',
-									width : 20
-								} ,
-								{
-									field : 'name11',
-									title : '交易状态',
-									align : 'center',
-									width : 20
+									field : 'account',
+									title : '借款金额',
+									align : 'left',
+									width : 50,
+									formatter : function(value, row, index) {
+										return value + "元";
+									}
 								},
 								{
-									field : 'opt',
+									field : 'apr',
+									title : '年利率',
+									align : 'left',
+									width : 30,
+									formatter : function(value, row, index) {
+										return value + "%";
+									}
+								},
+								{
+									field : 'timeLimit',
+									title : '借款期限',
+									align : 'left',
+									width : 40,
+									formatter : function(value, row, index) {
+										if (value > 0) {
+											return value + "个月";
+										} else {
+											return row.timeLimitDay + "天"
+										}
+									}
+								},
+								{
+									field : 'mortgageTypeid',
+									title : '抵押类型',
+									width : 40,
+									align : 'center',
+									formatter : function(value, row, index) {
+										if (value == 1) {
+											return "汽车抵押";
+										} else if (value == 2) {
+											return "债权抵押";
+										}
+									}
+								},
+								{
+									field : 'addTimeStr1',
+									title : '发标时间',
+									width : 60,
+									align : 'center'
+								},
+								{
+									field : 'status',
 									title : '操作',
 									align : 'center',
-									width : 20
-								}   
-								
-								
-								] ],
-						toolbar : '#searchToolBar',
+									width : 50,
+									formatter : function(value, row, index) {
+										if (value == 0) {
+											if ($.canEdit) {
+												return "<a href='javascript:trialing(" + row.id + ")'>进行初审</a>";
+											} else {
+												return "无权限";
+											}
+										} else if (value == 1) {
+											return "初审通过";
+										} else if (value == 2) {
+											return "初审未通过";
+										}
+									}
+								} ] ],
+						toolbar : '#searchTool',
 						onLoadSuccess : function() {
 							parent.$.messager.progress('close');
 							parent.$.modalDialog.openner_dataGrid = dg;
@@ -105,36 +147,6 @@ $(function() {
 					});
 
 });
-
-//打开添加dialog
-function openAddDialog(){
-	$("#add-dlg").dialog('setTitle','添加');
-	$("#add-dlg").dialog('open');
-}
-//添加产品
-function add(){
-	alert('add');
-}
-
-
-function addBorrow(){
-	parent.$.modalDialog({
-		title : '添加借款标',
-		width : 1200,
-		height : 600,
-		href : '/system/borrow/addBorrowPage',
-		buttons : [ {
-			text : '添加',
-			iconCls:'icon-save',
-			handler : function() {
-				var f = parent.$.modalDialog.handler.find('#addBorrowform');
-				f.submit();
-			}
-		} ]
-	});
-}
-
-
 function queryDetail() {
 	dg.datagrid('load', {
 		'username' : $('#userName').val(),
