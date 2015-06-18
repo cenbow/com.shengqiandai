@@ -4,11 +4,30 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <title>产品列表</title>
-<jsp:include page="${pageContext.request.contextPath }/inc.jsp"></jsp:include>
-<script type="text/javascript"
+
+
+<!-- 引入bootstrap样式-->
+<link href="${ctx }/js/bootstrap-2.3.1/css/bootstrap.min.css"
+	rel="stylesheet" media="screen">
+	 
+<!-- 引入easyUI 1.4.2-->
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/js/easyui/jquery-easyui-1.4.2/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/js/easyui/jquery-easyui-1.4.2/themes/icon.css"  media="screen">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/js/easyui/jquery-easyui-1.4.2/demo/demo.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath }/js/easyui/jquery-easyui-1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/js/easyui/jquery-easyui-1.4.2/jquery.easyui.min.js"></script>
+	<script type="text/javascript"
+	src="${pageContext.request.contextPath }/js/easyui/jquery-easyui-1.4.2/locale/easyui-lang-zh_CN.js" charset="utf-8"></script>
+	
+	
+	<script type="text/javascript"
 	src="${pageContext.request.contextPath }/js/borrow/theTrialBorrowList.js"></script>
-<c:if test="${canEdit==true }">
+	
+	
+
+ <c:if test="${canEdit==true }">
 	<script type="text/javascript">
 		$.canEdit = true;
 	</script>
@@ -19,7 +38,8 @@ $(function(){
 	parent.$.messager.progress('close');
 })
 
-</script>
+</script> 
+<%-- <jsp:include page="${pageContext.request.contextPath }/inc.jsp"></jsp:include> --%>
 </head>
 <body class="easyui-layout" data-options="fit : true,border : false">
 <div id="searchToolBar">
@@ -48,14 +68,28 @@ $(function(){
 <!-- 产品表格 -->
 <table id="dg"></table>
 <!--  添加-->
-<div id="add-dlg" class="easyui-dialog"  style="width:800px;height:400px;"   
+<div id="add-dlg" class="easyui-dialog"  style="width:800px;height:500px;"   
         data-options="maximizable:true,resizable:true,modal:true,closed: true,buttons:'#add-buts'">
 <form id="add-form"  method="post" action="">
-  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <table width="100%" border="0" cellpadding="5" cellspacing="5">
     <tr>
       <td>产品类型：</td>
       <td>
-      <input type="text" name="productType" /></td>
+     
+      
+      <select id="productType" class="easyui-combobox" name="productType" >   
+		    <option value="aa">基金</option>   
+		    <option>保险</option>   
+		    <option>保理</option>   
+		    <option>小贷</option>   
+		    <option>不良资产</option>   
+		     <option>融资租赁</option>   
+		     <option>票据</option>   
+		    
+		    
+		</select> 
+      
+      </td>
       <td>产品系列：</td>
       <td><input type="text" name="productGroup" /></td>
     </tr>
@@ -67,15 +101,32 @@ $(function(){
     </tr>
     <tr>
       <td>理财期限：</td>
-      <td><input type="text" name="timeLimit"  /></td>
+      <td>
+      
+      <input name="timeLimit" class="easyui-datetimebox" required data-options="editable:false" />
+      </td>
       <td>起息日：</td>
-      <td><input type="text" name="qxDate"  /></td>
+      <td>
+      
+       <input name="qxDate" class="easyui-datetimebox" required  data-options="editable:false" />
+      </td>
     </tr>
     <tr>
       <td>还款日：</td>
-      <td><input type="text" name="endTime"  /></td>
+      <td>
+      
+      <input name="endTime" class="easyui-datetimebox" required  data-options="editable:false" />
+      </td>
       <td>还款类型：</td>
-      <td><input type="text" name="hkType"  /></td>
+      <td>
+      
+       <select id="hkType" class="easyui-combobox" name="hkType" >   
+		    <option value="aa">到期自动还款至银行卡</option>   
+		    <option>每月本息还款</option>   
+		    
+		    
+		</select> 
+      </td>
     </tr>
     <tr>
       <td>募集金额：</td>
@@ -96,6 +147,39 @@ $(function(){
       <td><input type="text" name="buyButtonName"  /></td>
     </tr>
   </table>
+  
+  <br>
+  <!-- 项目描述 -->
+	  <table width="100%" border="0" cellpadding="5" cellspacing="5">
+		  <tr>
+		    <td colspan="2">项目描述</td>
+		  </tr>
+		  <tr>
+		    <td>项目描述：</td>
+		    <td>
+		    <input name="projectDesc" class="easyui-textbox" data-options="multiline:true" 
+		     style="width:300px;height:100px" />
+		     
+		     </td>
+		  </tr>
+		  <tr>
+		    <td>资金用途：</td>
+		    <td>
+		    
+		     <input name="projectDesc" class="easyui-textbox" data-options="multiline:true" 
+		     style="width:300px;height:100px">
+		    </td>
+		  </tr>
+		  <tr>
+		    <td>风控措施：</td>
+		    <td>&nbsp;</td>
+		  </tr>
+		  <tr>
+		    <td>营业执照：</td>
+		    <td>&nbsp;</td>
+		  </tr>
+	</table>
+  
 </form>
 
 </div> 

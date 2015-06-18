@@ -218,17 +218,21 @@ public class Borrow extends BaseModel {
 	 */
 	
 	
-	private int productType;//产品类型
+	private Integer productType;//产品类型
 	
-	private int productGroup;//产品系列
+	private Integer productGroup;//产品系列
 	
-	private int qxDate;//起息日
+	private Integer jyStatus;//交易状态
 	
-	private int hkType;//还款类型
+	private Integer qxDate;//起息日
 	
-	private int yyTags;//运营标签
+	private Integer hkType;//还款类型
+	
+	private BigDecimal ljMoney;//累加金额
+	
+	private Integer yyTags;//运营标签
 	  
-	private int bzTags;//标准便签
+	private Integer bzTags;//标准便签
 	  
 	private String  buyButtonName;//购买按钮名称
 	
@@ -325,7 +329,7 @@ public class Borrow extends BaseModel {
 	private String statusStr;
 
 	public String getStatusStr() {
-		String statusStr = "";
+		/*String statusStr = "";
 		if (tenderTime != null && status == 1) {
 			if (tenderTime.after(new Date())) {
 				statusStr = "预告";
@@ -336,7 +340,7 @@ public class Borrow extends BaseModel {
 			statusStr = "还款中";
 		} else if (status == 3 && repaymentAccount.doubleValue() == repaymentYesaccount.doubleValue()) {
 			statusStr = "已还款";
-		}
+		}*/
 		return statusStr;
 	}
 
@@ -1075,6 +1079,83 @@ public class Borrow extends BaseModel {
 		this.tenderTime = tenderTime;
 	}
 
+	//产品相关
+	
+	public Integer getProductType() {
+		return productType;
+	}
+
+	public void setProductType(Integer productType) {
+		this.productType = productType;
+	}
+
+	public Integer getProductGroup() {
+		return productGroup;
+	}
+
+	public void setProductGroup(Integer productGroup) {
+		this.productGroup = productGroup;
+	}
+
+	public Integer getJyStatus() {
+		return jyStatus;
+	}
+
+	public void setJyStatus(Integer jyStatus) {
+		this.jyStatus = jyStatus;
+	}
+
+	public Integer getQxDate() {
+		return qxDate;
+	}
+
+	public void setQxDate(Integer qxDate) {
+		this.qxDate = qxDate;
+	}
+
+	public Integer getHkType() {
+		return hkType;
+	}
+
+	public void setHkType(Integer hkType) {
+		this.hkType = hkType;
+	}
+
+	public BigDecimal getLjMoney() {
+		return ljMoney;
+	}
+
+	public void setLjMoney(BigDecimal ljMoney) {
+		this.ljMoney = ljMoney;
+	}
+
+	public Integer getYyTags() {
+		return yyTags;
+	}
+
+	public void setYyTags(Integer yyTags) {
+		this.yyTags = yyTags;
+	}
+
+	public Integer getBzTags() {
+		return bzTags;
+	}
+
+	public void setBzTags(Integer bzTags) {
+		this.bzTags = bzTags;
+	}
+
+	public String getBuyButtonName() {
+		return buyButtonName;
+	}
+
+	public void setBuyButtonName(String buyButtonName) {
+		this.buyButtonName = buyButtonName;
+	}
+
+
+	
+	
 	
 	
 }

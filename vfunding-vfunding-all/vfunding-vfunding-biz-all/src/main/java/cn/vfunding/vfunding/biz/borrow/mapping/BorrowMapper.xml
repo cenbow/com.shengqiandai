@@ -23,6 +23,17 @@
 		<result column="tender_time" property="tenderTime" jdbcType="TIMESTAMP" />
 		<result column="lowest_account" property="lowestAccount"
 			jdbcType="DECIMAL" />
+		<!-- 产品相关 -->
+		 <result column="product_type" property="productType" jdbcType="INTEGER" />
+	    <result column="product_group" property="productGroup" jdbcType="INTEGER" />
+	     <result column="jy_status" property="jyStatus" jdbcType="INTEGER" />
+	    
+	    <result column="qx_date" property="qxDate" jdbcType="TIMESTAMP" />
+	    <result column="hk_type" property="hkType" jdbcType="INTEGER" />
+	    <result column="lj_money" property="ljMoney" jdbcType="DECIMAL" />
+	    <result column="yy_tags" property="yyTags" jdbcType="INTEGER" />
+	    <result column="bz_tags" property="bzTags" jdbcType="INTEGER" />
+	    <result column="buy_button_name" property="buyButtonName" jdbcType="VARCHAR" />
 	</resultMap>
 
 	<resultMap type="cn.vfunding.vfunding.biz.common.vo.VerifyBorrowVO"
@@ -1647,7 +1658,9 @@
 	<select id="selectTheTrialListPage" resultMap="TheTrialListResultMap"
 		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
 		select a.id,a.user_id,c.username,
-		a.status,a.name,a.account,a.time_limit,a.time_limit_day,a.apr,a.addtime,
+		a.status,a.name,a.account,a.account_yes,a.time_limit,a.time_limit_day,a.apr,a.addtime,
+		a. product_type, a.product_group,a.jy_status, a.qx_date, a.hk_type, a.lj_money, a.yy_tags, a.bz_tags, 
+    	a.buy_button_name,
 		b.owner_name,a.biao_type,a.mortgage_type_id from rd_borrow a
 		left join
 		rd_mortgage_car
@@ -1656,20 +1669,24 @@
 		left join rd_user c on
 		a.user_id=c.user_id
 		where 1=1
+		<!--
 		<if test="entity.status != null">
 			and a.status = #{entity.status,jdbcType=INTEGER}
 		</if>
-		<if test="entity.status == null or entity.status == ''">
+		 <if test="entity.status == null or entity.status == ''">
 			and a.status in (0,1,2)
-		</if>
+		</if> 
 		<if test="entity.biaoType !=null and entity.biaoType != ''">
 			and a.biao_type = #{entity.biaoType,jdbcType=VARCHAR}
 		</if>
+		
+		order by a.status,a.addtime desc
+		-->
 		<if test="entity.username != null and entity.username != ''">
 			and c.username like
 			concat('%',#{entity.username,jdbcType=VARCHAR},'%')
 		</if>
-		order by a.status,a.addtime desc
+		order by a.addtime desc
 	</select>
 
 

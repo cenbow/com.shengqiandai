@@ -25,7 +25,7 @@ $(function() {
 									width : 20
 								},
 								{
-									field : 'name1',
+									field : 'productType',
 									title : '产品类型',
 									align : 'center',
 									width : 20
@@ -55,7 +55,7 @@ $(function() {
 									width : 20
 								},
 								{
-									field : 'name6',
+									field : 'bzTags',
 									title : '标签',
 									align : 'center',
 									width : 20
@@ -72,18 +72,33 @@ $(function() {
 									align : 'center',
 									width : 20,
 									formatter:function(value,row,index){
-										var res=(row.account-row.accoutn_yes);
+										var res=(row.account-row.accountYes);
+										//alert(row.accountYes);
 										return res;
 									}
 								},
 								{
-									field : 'name9',
+									field : 'statusName',
 									title : '上线状态',
 									align : 'center',
-									width : 20
+									width : 20,
+									formatter: function(value,row,index){
+
+										var f=row.status;
+										
+										var res="";
+										if(f==1){
+											res="上线首页"
+										}else if(f==2){
+											res="已上线";
+										}else if(f==3){
+											res="已下线";
+										}
+										return res;
+									}
 								} ,
 								{
-									field : 'name11',
+									field : 'jyStatus',
 									title : '交易状态',
 									align : 'center',
 									width : 20
@@ -92,7 +107,11 @@ $(function() {
 									field : 'opt',
 									title : '操作',
 									align : 'center',
-									width : 20
+									width : 20,
+									formatter:function(value,row,index){
+										var res="操作";
+										return res;
+									}
 								}   
 								
 								
