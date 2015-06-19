@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.p2p.p2p.biz.sqdpaylog.dao.SqdPayLogMapper" >
+  <resultMap id="BaseResultMap" type="cn.p2p.p2p.biz.sqdpaylog.model.SqdPayLog" >
+    <id column="pay_log_id" property="payLogId" jdbcType="INTEGER" />
+    <result column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="trade_no" property="tradeNo" jdbcType="INTEGER" />
+    <result column="pay_money" property="payMoney" jdbcType="DECIMAL" />
+    <result column="result_pay" property="resultPay" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="add_date" property="addDate" jdbcType="TIMESTAMP" />
+    <result column="add_ip" property="addIp" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    pay_log_id, product_id, user_id, trade_no, pay_money, result_pay, remark, add_date, 
+    add_ip
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sqd_pay_log
+    where pay_log_id = #{payLogId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sqd_pay_log
+    where pay_log_id = #{payLogId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.p2p.p2p.biz.sqdpaylog.model.SqdPayLog" >
+    insert into sqd_pay_log ( product_id, user_id, 
+      trade_no, pay_money, result_pay, 
+      remark, add_date, add_ip
+      )
+    values ( #{productId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{tradeNo,jdbcType=INTEGER}, #{payMoney,jdbcType=DECIMAL}, #{resultPay,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{addDate,jdbcType=TIMESTAMP}, #{addIp,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.p2p.p2p.biz.sqdpaylog.model.SqdPayLog" >
+    insert into sqd_pay_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="payLogId != null" >
+        pay_log_id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="tradeNo != null" >
+        trade_no,
+      </if>
+      <if test="payMoney != null" >
+        pay_money,
+      </if>
+      <if test="resultPay != null" >
+        result_pay,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="addDate != null" >
+        add_date,
+      </if>
+      <if test="addIp != null" >
+        add_ip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="payLogId != null" >
+        #{payLogId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="tradeNo != null" >
+        #{tradeNo,jdbcType=INTEGER},
+      </if>
+      <if test="payMoney != null" >
+        #{payMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="resultPay != null" >
+        #{resultPay,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="addDate != null" >
+        #{addDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addIp != null" >
+        #{addIp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.p2p.p2p.biz.sqdpaylog.model.SqdPayLog" >
+    update sqd_pay_log
+    <set >
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="tradeNo != null" >
+        trade_no = #{tradeNo,jdbcType=INTEGER},
+      </if>
+      <if test="payMoney != null" >
+        pay_money = #{payMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="resultPay != null" >
+        result_pay = #{resultPay,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="addDate != null" >
+        add_date = #{addDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addIp != null" >
+        add_ip = #{addIp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pay_log_id = #{payLogId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.p2p.p2p.biz.sqdpaylog.model.SqdPayLog" >
+    update sqd_pay_log
+    set product_id = #{productId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      trade_no = #{tradeNo,jdbcType=INTEGER},
+      pay_money = #{payMoney,jdbcType=DECIMAL},
+      result_pay = #{resultPay,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      add_date = #{addDate,jdbcType=TIMESTAMP},
+      add_ip = #{addIp,jdbcType=VARCHAR}
+    where pay_log_id = #{payLogId,jdbcType=INTEGER}
+  </update>
+</mapper>

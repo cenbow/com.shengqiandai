@@ -1,6 +1,7 @@
 package cn.p2p.p2p.prd.mobile.method.request.vo;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 import cn.p2p.p2p.biz.mobile.base.model.MobileBaseRequest;
 
@@ -101,6 +102,28 @@ public class GeneralRequestVO extends MobileBaseRequest {
 	private String dateTime;
 	
 	
+	/**
+	 * sqd支付记录相关
+	 * @return
+	 */
+		//支付记录产品id
+
+	    private Integer productId;
+	    //支付记录用户id
+	    private Integer userId;
+	    //支付记录订单id
+	    private Integer tradeNo;
+	    //支付金额
+	    private BigDecimal payMoney;
+	    //连连支付返回的支付结果
+	    private String resultPay;
+	    //备注
+	    private String remark;
+	    //支付记录添加日期
+	    private Date addDate;
+	    //支付记录添加ip
+	    private String addIp;
+	    
 	
 	public Integer getScId() {
 		return scId;
@@ -264,4 +287,54 @@ public class GeneralRequestVO extends MobileBaseRequest {
 	public void setTenderType(Integer tenderType) {
 		this.tenderType = tenderType;
 	}
+	public Integer getProductId() {
+		return productId;
+	}
+	public void setProductId(Integer productId) {
+		this.productId = productId;
+	}
+	public Integer getUserId() {
+		return userId;
+	}
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+	public Integer getTradeNo() {
+		return tradeNo;
+	}
+	public void setTradeNo(Integer tradeNo) {
+		this.tradeNo = tradeNo;
+	}
+	public BigDecimal getPayMoney() {
+		return payMoney;
+	}
+	public void setPayMoney(BigDecimal payMoney) {
+		this.payMoney = payMoney;
+	}
+	public String getResultPay() {
+		return resultPay;
+	}
+	public void setResultPay(String resultPay) {
+		this.resultPay = resultPay;
+	}
+	public String getRemark() {
+		return remark;
+	}
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+	public Date getAddDate() {
+		return addDate;
+	}
+	public void setAddDate(Date addDate) {
+		this.addDate = addDate;
+	}
+	public String getAddIp() {
+		return addIp;
+	}
+	public void setAddIp(String addIp) {
+		this.addIp = addIp;
+	}
+	
+	
 }

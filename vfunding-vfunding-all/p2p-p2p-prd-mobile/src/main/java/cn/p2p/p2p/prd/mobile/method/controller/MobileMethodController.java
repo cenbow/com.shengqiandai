@@ -1,6 +1,9 @@
 package cn.p2p.p2p.prd.mobile.method.controller;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +13,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.p2p.p2p.biz.mobile.base.model.MobileBaseRequest;
 import cn.p2p.p2p.biz.mobile.base.model.MobileBaseResponse;
+import cn.p2p.p2p.biz.rechargeandtender.model.RechargeAndTender;
+import cn.p2p.p2p.biz.sqdpaylog.model.SqdPayLog;
+import cn.p2p.p2p.biz.sqdpaylog.service.ISqdPayLogService;
+import cn.p2p.p2p.mobile.interceptors.CheckToken;
 import cn.p2p.p2p.prd.mobile.method.all.AccountBankMethod;
 import cn.p2p.p2p.prd.mobile.method.all.AccountCashMethod;
 import cn.p2p.p2p.prd.mobile.method.all.AccountLogMethod;
@@ -36,8 +43,15 @@ import cn.p2p.p2p.prd.mobile.method.request.vo.PasswordVO;
 import cn.p2p.p2p.prd.mobile.method.request.vo.QueryBorrowListVO;
 import cn.p2p.p2p.prd.mobile.method.vo.DeleteBankVO;
 import cn.p2p.p2p.prd.mobile.utils.JsonValidation;
+import cn.p2p.p2p.prd.mobile.vo.RechargeMobileaAdvanceVO;
+import cn.vfunding.common.framework.utils.beans.EmptyUtil;
 import cn.vfunding.common.framework.utils.beans.EncryptionUtil;
 import cn.vfunding.common.framework.utils.http.RestInvoker;
+import cn.vfunding.common.framework.utils.rest.annotation.RestDescription;
+import cn.vfunding.vfunding.biz.account.model.AccountRecharge;
+import cn.vfunding.vfunding.biz.sina.model.SinaCard;
+import cn.vfunding.vfunding.biz.sina.vo.returns.CreateHostingDepositReturnVO;
+import cn.vfunding.vfunding.biz.user.model.UserWithBLOBs;
 import cn.vfunding.vfunding.biz.usertoken.service.IUserTokenService;
 import cn.vfunding.vfunding.common.jmssender.JmsSenderObj;
 import cn.vfunding.vfunding.common.jmssender.SenderObjBuilder;
@@ -93,6 +107,10 @@ public class MobileMethodController {
 
 	@Autowired
 	private InterestDaysMethod interestDaysMethod;
+	
+	//sqd支付记录服务
+	@Autowired
+	private ISqdPayLogService sqdPayLogService;
 
 	@RequestMapping(value = "/mobile")
 	@ResponseBody
@@ -232,7 +250,11 @@ public class MobileMethodController {
 					return this.interestDaysMethod.selectByUserIdListPage(JSON.parseObject(requestJson, PageUtilVO.class));
 				} else if (mbRequest.getMethodName().equals("sinaBankList")) {// 查询银行列表
 					return this.accountBankMethod.sinaBankList();
-				} else {
+				}
+				else if (mbRequest.getMethodName().equals("addPayLog")) {// 添加支付记录
+					return this.addPayLog(JSON.parseObject(requestJson, GeneralRequestVO.class));
+				}
+				else {
 					return new MobileBaseResponse("mehodName_fail", "调用接口不存在");
 				}
 			} else {
@@ -301,6 +323,34 @@ public class MobileMethodController {
 		JmsSenderObj obj = SenderObjBuilder.buildJmsSenderObj(content,
 				message.getClass(), destinationName);
 		return obj;
+	}
+	
+	//添加sqd支付记录,hyc
+	@RestDescription("添加支付记录")
+	@CheckToken
+	public MobileBaseResponse addPayLog(GeneralRequestVO generalRequest) throws Exception {
+			System.out.println(generalRequest.getProductId());
+			System.out.println(generalRequest.getUserId());
+			System.out.println(generalRequest.getTradeNo());
+			System.out.println(generalRequest.getPayMoney());
+			System.out.println(generalRequest.getResultPay());
+			System.out.println(generalRequest.getRemark());
+			System.out.println(generalRequest.getAddIp());
+			
+		
+			SqdPayLog sqdPayLog=new SqdPayLog();
+			sqdPayLog.setProductId(generalRequest.getProductId());
+			sqdPayLog.setUserId(generalRequest.getUserId());
+			sqdPayLog.setTradeNo(generalRequest.getTradeNo());
+			sqdPayLog.setPayMoney(generalRequest.getPayMoney());
+			sqdPayLog.setResultPay(generalRequest.getResultPay());
+			sqdPayLog.setRemark(generalRequest.getRemark());
+			sqdPayLog.setAddDate(new Date());
+			sqdPayLog.setAddIp(generalRequest.getAddIp());
+			sqdPayLogService.insert(sqdPayLog);
+			System.out.println("添加支付记录成功");
+			return new MobileBaseResponse("success", "添加成功");
+		
 	}
 	
 }
