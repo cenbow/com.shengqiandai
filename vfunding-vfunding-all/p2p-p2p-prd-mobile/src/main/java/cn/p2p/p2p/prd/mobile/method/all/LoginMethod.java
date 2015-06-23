@@ -107,7 +107,9 @@ public class LoginMethod {
 		if (!phoneCheck.getResponseCode().equals("success")) {
 			return phoneCheck;
 		}
-		if (!this.phoneVerifyCodeMethod.checkVerifyCode(generalRequest.getPhone(), generalRequest.getVerifCode())) {
+		boolean b=this.phoneVerifyCodeMethod.checkVerifyCode(generalRequest.getPhone(), generalRequest.getVerifCode());
+		System.out.println("b:"+b);
+		if (b!=true) {
 			return new MobileBaseResponse("code_fail", "验证码错误");
 		}
 		if (EmptyUtil.isNotEmpty(generalRequest.getInviteUserid())) {
