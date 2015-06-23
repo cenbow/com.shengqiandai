@@ -22,6 +22,18 @@
     from sqd_pay_log
     where pay_log_id = #{payLogId,jdbcType=INTEGER}
   </select>
+  
+  <!-- 查询所有支付记录（分页） -->
+  <select id="selectAllPayLog" resultMap="BaseResultMap" parameterType="cn.vfunding.common.framework.utils.page.PageSearch" >
+    select 
+    <include refid="Base_Column_List" />
+    from sqd_pay_log
+   <where>
+       
+   </where>
+   order by add_date
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from sqd_pay_log
     where pay_log_id = #{payLogId,jdbcType=INTEGER}

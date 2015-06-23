@@ -45,6 +45,13 @@
 			<type>jar</type>
 			
 		</dependency>
+		<!-- 添加biz-all依赖 -->
+		<dependency>
+			<groupId>vfunding</groupId>
+			<artifactId>vfunding-vfunding-biz-all</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<type>jar</type>
+		</dependency>
 	</dependencies>
 	<build>
 		<pluginManagement>
