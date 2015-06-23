@@ -48,7 +48,9 @@ import cn.vfunding.common.framework.utils.beans.EmptyUtil;
 import cn.vfunding.common.framework.utils.beans.EncryptionUtil;
 import cn.vfunding.common.framework.utils.http.RestInvoker;
 import cn.vfunding.common.framework.utils.rest.annotation.RestDescription;
+import cn.vfunding.vfunding.biz.account.model.Account;
 import cn.vfunding.vfunding.biz.account.model.AccountRecharge;
+import cn.vfunding.vfunding.biz.account.service.IAccountService;
 import cn.vfunding.vfunding.biz.sina.model.SinaCard;
 import cn.vfunding.vfunding.biz.sina.vo.returns.CreateHostingDepositReturnVO;
 import cn.vfunding.vfunding.biz.user.model.UserWithBLOBs;
@@ -112,6 +114,10 @@ public class MobileMethodController {
 	@Autowired
 	private ISqdPayLogService sqdPayLogService;
 
+	//用户资金服务
+	@Autowired
+	private IAccountService accountService;
+	
 	@RequestMapping(value = "/mobile")
 	@ResponseBody
 	public MobileBaseResponse mobile(@RequestBody String requestJson) throws Exception {
@@ -326,31 +332,39 @@ public class MobileMethodController {
 	}
 	
 	//添加sqd支付记录,hyc
-	@RestDescription("添加支付记录")
-	@CheckToken
-	public MobileBaseResponse addPayLog(GeneralRequestVO generalRequest) throws Exception {
-			System.out.println(generalRequest.getProductId());
-			System.out.println(generalRequest.getUserId());
-			System.out.println(generalRequest.getTradeNo());
-			System.out.println(generalRequest.getPayMoney());
-			System.out.println(generalRequest.getResultPay());
-			System.out.println(generalRequest.getRemark());
-			System.out.println(generalRequest.getAddIp());
-			
-		
-			SqdPayLog sqdPayLog=new SqdPayLog();
-			sqdPayLog.setProductId(generalRequest.getProductId());
-			sqdPayLog.setUserId(generalRequest.getUserId());
-			sqdPayLog.setTradeNo(generalRequest.getTradeNo());
-			sqdPayLog.setPayMoney(generalRequest.getPayMoney());
-			sqdPayLog.setResultPay(generalRequest.getResultPay());
-			sqdPayLog.setRemark(generalRequest.getRemark());
-			sqdPayLog.setAddDate(new Date());
-			sqdPayLog.setAddIp(generalRequest.getAddIp());
-			sqdPayLogService.insert(sqdPayLog);
-			System.out.println("添加支付记录成功");
-			return new MobileBaseResponse("success", "添加成功");
-		
-	}
+			@RestDescription("添加支付记录")
+			@CheckToken
+			public MobileBaseResponse addPayLog(GeneralRequestVO generalRequest) throws Exception {
+					System.out.println(generalRequest.getProductId());
+					System.out.println(generalRequest.getUserId());
+					System.out.println(generalRequest.getTradeNo());
+					System.out.println(generalRequest.getPayMoney());
+					System.out.println(generalRequest.getResultPay());
+					System.out.println(generalRequest.getRemark());
+					System.out.println(generalRequest.getAddIp());
+					
+				
+					SqdPayLog sqdPayLog=new SqdPayLog();
+					sqdPayLog.setProductId(generalRequest.getProductId());
+					sqdPayLog.setUserId(generalRequest.getUserId());
+					sqdPayLog.setTradeNo(generalRequest.getTradeNo());
+					sqdPayLog.setPayMoney(generalRequest.getPayMoney());
+					sqdPayLog.setResultPay(generalRequest.getResultPay());
+					sqdPayLog.setRemark(generalRequest.getRemark());
+					sqdPayLog.setAddDate(new Date());
+					sqdPayLog.setAddIp(generalRequest.getAddIp());
+					sqdPayLogService.insert(sqdPayLog);
+					System.out.println("添加支付记录成功");
+					//修改用户资金表
+					Account account=accountService.selectByPrimaryKey(generalRequest.getUserId());
+					if(null!=account){//账户不为空
+						//修改余额
+						account.setTotal(account.getTotal().add(generalRequest.getPayMoney()));
+						accountService.updateByPrimaryKey(account);
+					}
+					
+					return new MobileBaseResponse("success", "添加成功");
+				
+			}
 	
 }

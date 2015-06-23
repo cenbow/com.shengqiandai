@@ -26,6 +26,12 @@
 			<version>0.0.1-SNAPSHOT</version>
 			<type>jar</type>
 		</dependency>
+		<dependency>
+			<groupId>vfunding</groupId>
+			<artifactId>vfunding-vfunding-biz-all</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<type>jar</type>
+		</dependency>
 	</dependencies>
 	<build>
 		<pluginManagement>
