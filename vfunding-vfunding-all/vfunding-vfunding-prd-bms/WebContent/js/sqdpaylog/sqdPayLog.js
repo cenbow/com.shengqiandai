@@ -1,9 +1,29 @@
+	//formatBorrow
+	function formatBorrow(value,row,index){	
+			var res=value.name;
+			
+			return res;
+		}
+	//formatUser
+	function formatUser(value,row,index){ 
+		var uname="";
+		if(null!=value){
+			uname=value.username;
+		}
+		
+       return uname;
+    }; 
 //列表
+
+
+
 $(function() {
-	//alert('11');
+	//关闭进度条
+	parent.$.messager.progress('close');
+
 	$('#dg').datagrid(
 					{
-						url : '/system/sqdPayLog/listPayLog',
+						url : '/system/sqdPayLog/listPayLog?date='+(new Date()),
 						fit : true,
 						fitColumns : true,
 						height:500,
@@ -14,27 +34,29 @@ $(function() {
 						selectOnCheck : false,
 						singleSelect : true,
 						pageList : [ 10, 15, 20, 25, 30 ],
-						queryParams : {
-							'status' : $('#status').val()
-						},
+						
 						columns : [ [
 								{
-									field : 'id',
-									title : 'payLogId',
+									field : 'payLogId',
+									title : 'id',
 									align : 'center',
 									width : 20
 								},
 								{
-									field : 'productId',
-									title : '产品id',
+									field : 'borrow',
+									title : '产品名称',
 									align : 'center',
-									width : 20
+									width : 20,
+									
+									formatter: formatBorrow
+
 								},
 								{
-									field : 'userId',
-									title : '用户id',
+									field : 'user',
+									title : '用户名称',
 									align : 'center',
-									width : 20
+									width : 20,
+									formatter: formatUser
 								},
 								{
 									field : 'tradeNo',
@@ -85,12 +107,14 @@ $(function() {
 								
 								
 								] ],
-						toolbar : '#searchToolBar',
+						toolbar : '#serchForm',
 						onLoadSuccess : function() {
 							parent.$.messager.progress('close');
-							parent.$.modalDialog.openner_dataGrid = dg;
+							//parent.$.modalDialog.openner_dataGrid = dg;
 						}
 					});
+
+
 
 });
 

@@ -11,23 +11,41 @@
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="add_date" property="addDate" jdbcType="TIMESTAMP" />
     <result column="add_ip" property="addIp" jdbcType="VARCHAR" />
+    <!-- 关联产品 -->
+    <association property="borrow"  resultMap="borrowMap"></association>
+    <!-- 关联用户 -->
+    <association property="user" resultMap="userMap"></association>
   </resultMap>
+  
+  <!-- borrowMap -->
+  <resultMap type="cn.vfunding.vfunding.biz.borrow.model.Borrow" id="borrowMap">
+    <id column="user_id" property="id" jdbcType="INTEGER" />
+	<result column="name" property="name" jdbcType="VARCHAR" />  
+	<result column="account" property="account" jdbcType="DECIMAL" />
+  </resultMap>
+  <!-- userMap -->
+  <resultMap type="cn.vfunding.vfunding.biz.user.model.User" id="userMap">
+   <id column="u_id" property="userId" jdbcType="INTEGER" />
+	<result column="username" property="username" jdbcType="VARCHAR" />
+  </resultMap>
+  
   <sql id="Base_Column_List" >
-    pay_log_id, product_id, user_id, trade_no, pay_money, result_pay, remark, add_date, 
+    pay_log_id, product_id, p.user_id, trade_no, pay_money, result_pay, remark, add_date, 
     add_ip
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from sqd_pay_log
     where pay_log_id = #{payLogId,jdbcType=INTEGER}
   </select>
   
   <!-- 查询所有支付记录（分页） -->
   <select id="selectAllPayLog" resultMap="BaseResultMap" parameterType="cn.vfunding.common.framework.utils.page.PageSearch" >
     select 
-    <include refid="Base_Column_List" />
-    from sqd_pay_log
+    <include refid="Base_Column_List" />,b.name,b.account, u.username 
+    from sqd_pay_log p left join rd_borrow b on p.product_id=b.id
+    left join rd_user u on p.user_id=u.user_id
+    
    <where>
        
    </where>

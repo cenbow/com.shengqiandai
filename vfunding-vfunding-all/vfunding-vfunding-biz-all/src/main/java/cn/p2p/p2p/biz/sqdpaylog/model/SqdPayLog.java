@@ -3,6 +3,9 @@ package cn.p2p.p2p.biz.sqdpaylog.model;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import cn.vfunding.vfunding.biz.borrow.model.Borrow;
+import cn.vfunding.vfunding.biz.user.model.User;
+
 
 /**
  * sqd支付记录表
@@ -28,6 +31,10 @@ public class SqdPayLog {
     private Date addDate;
 
     private String addIp;
+    
+    private Borrow borrow;//产品
+    
+    private User user;//用户
 
     public Integer getPayLogId() {
         return payLogId;
@@ -102,4 +109,22 @@ public class SqdPayLog {
     public void setAddIp(String addIp) {
         this.addIp = addIp == null ? null : addIp.trim();
     }
+
+	public Borrow getBorrow() {
+		return borrow;
+	}
+
+	public void setBorrow(Borrow borrow) {
+		this.borrow = borrow;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+    
+    
 }

@@ -7,13 +7,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>sqd支付记录</title>
-<!-- 引入bootstrap样式-->
-<link href="${ctx }/js/bootstrap-2.3.1/css/bootstrap.min.css"
-	rel="stylesheet" media="screen">
-	 
+
 <!-- 引入easyUI 1.4.2-->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/js/easyui/jquery-easyui-1.4.2/themes/default/easyui.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/js/easyui/jquery-easyui-1.4.2/themes/icon.css"  media="screen">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/js/easyui/jquery-easyui-1.4.2/themes/icon.css" >
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/js/easyui/jquery-easyui-1.4.2/demo/demo.css">
     <script type="text/javascript" src="${pageContext.request.contextPath }/js/easyui/jquery-easyui-1.4.2/jquery.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath }/js/easyui/jquery-easyui-1.4.2/jquery.easyui.min.js"></script>
@@ -40,6 +37,47 @@ $(function(){
 	
 </head>
 <body>
+<!-- 搜索框 -->
+<div id="serchForm">
+<form id="form1" name="form1" method="post" action="">
+  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td>产品名称：</td>
+      <td>
+     <input type="text" name="productName" id="productName" />
+      
+      </td>
+      <td>用户名称：</td>
+      <td>
+      <input type="text" name="username" id="username" />
+      </td>
+    </tr>
+    <tr>
+      <td>支付状态：</td>
+      <td>
+      <input type="text" name="resultPay" id="resultPay" />
+      </td>
+      <td>支付日期：</td>
+      <td>
+      <input type="text" name="addDate" id="addDate" />
+      </td>
+    </tr>
+   
+     <tr>
+      <td colspan="4">
+     <a id="btn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">搜索</a>  
+      
+      </td>
+    </tr>
+   
+  </table>
+  
+
+
+
+  
+</form>
+</div>
 <!-- 表格 -->
 <table id="dg"></table>
 </body>

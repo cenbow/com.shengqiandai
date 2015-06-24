@@ -58,14 +58,11 @@ public class SqdPayLogController extends BaseController{
 	@RequestMapping("/listPayLog")
 	@ResponseBody
 	public PageResult<SqdPayLog> listPayLog(PageSearch pageSearch, SearchVO search) {
-		System.out.println("------------------list----------");
+		
 		PageResult<SqdPayLog> results = new PageResult<SqdPayLog>();
 		pageSearch.setEntity(search);
 		List<SqdPayLog> payLogList = sqdPayLogService.selectAllPayLog(pageSearch);
-		for(SqdPayLog sqdPayLog:payLogList){
-			System.out.println(sqdPayLog.getPayLogId());
-			System.out.println(sqdPayLog.getPayMoney());
-		}
+		
 		results.setRows(payLogList);
 		results.setTotal(pageSearch.getTotalResult());
 		return results;
