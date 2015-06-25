@@ -28,7 +28,9 @@
 	    <result column="product_group" property="productGroup" jdbcType="INTEGER" />
 	     <result column="jy_status" property="jyStatus" jdbcType="INTEGER" />
 	    
-	    <result column="qx_date" property="qxDate" jdbcType="TIMESTAMP" />
+	    <result column="qx_date" property="qxDate"  />
+	     <result column="hk_date" property="hkDate"  />
+	    
 	    <result column="hk_type" property="hkType" jdbcType="INTEGER" />
 	    <result column="lj_money" property="ljMoney" jdbcType="DECIMAL" />
 	    <result column="yy_tags" property="yyTags" jdbcType="INTEGER" />
@@ -96,6 +98,11 @@
 
 	<resultMap type="cn.vfunding.vfunding.biz.borrow.model.Borrow"
 		extends="Base_BaseResultMap" id="detailsResultMap">
+		<!-- status -->
+	    <result column="status" property="status" jdbcType="TINYINT" />
+	    <!-- account_yes -->
+	    
+	    
 		<result column="award" property="award" jdbcType="TINYINT" />
 		<result column="style" property="style" jdbcType="TINYINT" />
 		<result column="mortgage_id" property="mortgageId" jdbcType="INTEGER" />
@@ -933,6 +940,16 @@
 			<if test="status != null">
 				status = #{status,jdbcType=TINYINT},
 			</if>
+			
+			<!-- 产品起息日，还款日 -->
+			<if test="qxDate != null">
+			    qx_date = #{qxDate},
+			</if>
+			<if test="qxDate != null">
+			    hk_date = #{hkDate},
+			</if>
+			
+			
 			<if test="order != null">
 				`order` = #{order,jdbcType=INTEGER},
 			</if>
@@ -1567,7 +1584,7 @@
 	<!-- borrowDetails信息 -->
 	<select id="selectBorrowById" resultMap="detailsResultMap"
 		parameterType="java.lang.Integer">
-		select
+		select	a.status,
 		a.id,a.name,a.user_id,c.username,a.account,a.account_yes,a.time_limit,a.lowest_account,a.most_account,a.vouch_user,a.award,a.isday,a.time_limit_day,a.apr,a.mortgage_id,
 		a.content,a.verify_time,a.addtime,a.mortgage_type_id,
 		a.apr-ifnull(b.b_fee,0)-ifnull(b.g_fee,0) as

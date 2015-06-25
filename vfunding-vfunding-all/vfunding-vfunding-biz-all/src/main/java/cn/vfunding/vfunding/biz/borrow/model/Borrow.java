@@ -224,7 +224,9 @@ public class Borrow extends BaseModel {
 	
 	private Integer jyStatus;//交易状态
 	
-	private Integer qxDate;//起息日
+	private Date qxDate;//起息日
+	
+	private Date hkDate;//还款日
 	
 	private Integer hkType;//还款类型
 	
@@ -1105,12 +1107,22 @@ public class Borrow extends BaseModel {
 		this.jyStatus = jyStatus;
 	}
 
-	public Integer getQxDate() {
+	
+
+	public Date getQxDate() {
 		return qxDate;
 	}
 
-	public void setQxDate(Integer qxDate) {
+	public void setQxDate(Date qxDate) {
 		this.qxDate = qxDate;
+	}
+
+	public Date getHkDate() {
+		return hkDate;
+	}
+
+	public void setHkDate(Date hkDate) {
+		this.hkDate = hkDate;
 	}
 
 	public Integer getHkType() {

@@ -2,6 +2,7 @@ package cn.p2p.p2p.prd.mobile.method.controller;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
 
@@ -44,6 +45,7 @@ import cn.p2p.p2p.prd.mobile.method.request.vo.QueryBorrowListVO;
 import cn.p2p.p2p.prd.mobile.method.vo.DeleteBankVO;
 import cn.p2p.p2p.prd.mobile.utils.JsonValidation;
 import cn.p2p.p2p.prd.mobile.vo.RechargeMobileaAdvanceVO;
+import cn.vfunding.common.framework.utils.beans.DateUtil;
 import cn.vfunding.common.framework.utils.beans.EmptyUtil;
 import cn.vfunding.common.framework.utils.beans.EncryptionUtil;
 import cn.vfunding.common.framework.utils.http.RestInvoker;
@@ -51,6 +53,12 @@ import cn.vfunding.common.framework.utils.rest.annotation.RestDescription;
 import cn.vfunding.vfunding.biz.account.model.Account;
 import cn.vfunding.vfunding.biz.account.model.AccountRecharge;
 import cn.vfunding.vfunding.biz.account.service.IAccountService;
+import cn.vfunding.vfunding.biz.borrow.model.Borrow;
+import cn.vfunding.vfunding.biz.borrow.model.BorrowTender;
+import cn.vfunding.vfunding.biz.borrow.service.IBorrowService;
+import cn.vfunding.vfunding.biz.borrow.service.IBorrowTenderService;
+import cn.vfunding.vfunding.biz.borrow.service.impl.BorrowServiceImpl;
+import cn.vfunding.vfunding.biz.borrow.service.impl.BorrowTenderServiceImpl;
 import cn.vfunding.vfunding.biz.sina.model.SinaCard;
 import cn.vfunding.vfunding.biz.sina.vo.returns.CreateHostingDepositReturnVO;
 import cn.vfunding.vfunding.biz.user.model.UserWithBLOBs;
@@ -114,9 +122,17 @@ public class MobileMethodController {
 	@Autowired
 	private ISqdPayLogService sqdPayLogService;
 
+	//标的服务
+	@Autowired
+	private IBorrowService BorrowService;
+	
 	//用户资金服务
 	@Autowired
 	private IAccountService accountService;
+	
+	//标的投资服务
+	@Autowired
+	private IBorrowTenderService	borrowTenderService;
 	
 	@RequestMapping(value = "/mobile")
 	@ResponseBody
@@ -331,19 +347,43 @@ public class MobileMethodController {
 		return obj;
 	}
 	
-	//添加sqd支付记录,hyc
-			@RestDescription("添加支付记录")
+			//用户购买,hyc
+			@RestDescription("用户购买")
 			@CheckToken
 			public MobileBaseResponse addPayLog(GeneralRequestVO generalRequest) throws Exception {
-					System.out.println(generalRequest.getProductId());
-					System.out.println(generalRequest.getUserId());
-					System.out.println(generalRequest.getTradeNo());
-					System.out.println(generalRequest.getPayMoney());
-					System.out.println(generalRequest.getResultPay());
-					System.out.println(generalRequest.getRemark());
-					System.out.println(generalRequest.getAddIp());
-					
 				
+				
+					Borrow borrow=BorrowService.selectBorrowById(generalRequest.getProductId());
+					synchronized (this) {
+						//System.out.println("borrowStatus:"+borrow.getStatus());
+						if(borrow.getStatus()==3){
+							//满标
+							return new MobileBaseResponse("buy_fail", "满标不能购买");
+						}
+						
+						if(borrow.getAccountYes().doubleValue()>=borrow.getAccount().doubleValue()){
+							//修改为满标
+							Borrow updBorrow=new Borrow();
+							Byte b=new Byte("3");
+							updBorrow.setId(borrow.getId());
+							updBorrow.setStatus(b);//满标状态
+							//生成起息日，还款日
+							Calendar c=Calendar.getInstance();
+							updBorrow.setQxDate(c.getTime());//起息日
+							c.add(Calendar.DATE, borrow.getTimeLimit());
+							updBorrow.setHkDate(c.getTime());//还款日=起息日+标的期限
+							System.out.println("qxDate:"+updBorrow.getQxDate().toLocaleString());
+							
+							System.out.println("hkDate:"+updBorrow.getHkDate().toLocaleString());
+							
+							BorrowService.updateByPrimaryKeySelective(updBorrow);		
+							return new MobileBaseResponse("buy_fail", "满标不能购买");
+						}
+						
+						
+					}
+					
+					//添加支付记录
 					SqdPayLog sqdPayLog=new SqdPayLog();
 					sqdPayLog.setProductId(generalRequest.getProductId());
 					sqdPayLog.setUserId(generalRequest.getUserId());
@@ -354,16 +394,53 @@ public class MobileMethodController {
 					sqdPayLog.setAddDate(new Date());
 					sqdPayLog.setAddIp(generalRequest.getAddIp());
 					sqdPayLogService.insert(sqdPayLog);
-					System.out.println("添加支付记录成功");
+					//System.out.println("添加sqd支付记录成功");
+					
+					
+					//添加用户投资记录
+					BorrowTender borrowTender=new BorrowTender();
+					borrowTender.setUserId(generalRequest.getUserId());
+					borrowTender.setBorrowId(generalRequest.getProductId());
+					
+					//投资金额
+					borrowTender.setAccount(generalRequest.getPayMoney().toString());
+					System.out.println("投资有效金额:"+borrowTender.getAccount());
+					borrowTender.setRepaymentAccount("0");//需回款总额
+					borrowTender.setRepaymentYesaccount("0");//已回款金额
+					borrowTender.setAddip(generalRequest.getAddIp());
+					//获取时间戳
+					borrowTender.setAddtime(Integer.parseInt(DateUtil.getTime()));
+					
+					//投资状态
+					
+					if(generalRequest.getResultPay().equals("success")){
+						borrowTender.setStatus(1);//投资成功
+					}else{
+						borrowTender.setStatus(5);//投资待审
+					}
+					borrowTenderService.insertSelective(borrowTender);
+					//System.out.println("添加用户投资记录成功");
+					
+					
 					//修改用户资金表
 					Account account=accountService.selectByPrimaryKey(generalRequest.getUserId());
 					if(null!=account){//账户不为空
 						//修改余额
 						account.setTotal(account.getTotal().add(generalRequest.getPayMoney()));
 						accountService.updateByPrimaryKey(account);
+						//System.out.println("修改用户资金成功");
+					}
+					//修改产品已购金额
+					synchronized (this) {
+						
+						//不是满标
+							borrow.setAccountYes(borrow.getAccountYes().add(generalRequest.getPayMoney()));//增加已购金额
+							BorrowService.updateByPrimaryKeySelective(borrow);
+							//修改产品已购金额成功
+							//System.out.println("增加产品已购金额成功");
 					}
 					
-					return new MobileBaseResponse("success", "添加成功");
+					return new MobileBaseResponse("buy_success", "购买成功");
 				
 			}
 	
