@@ -24,18 +24,17 @@
 		<result column="lowest_account" property="lowestAccount"
 			jdbcType="DECIMAL" />
 		<!-- 产品相关 -->
-		 <result column="product_type" property="productType" jdbcType="INTEGER" />
-	    <result column="product_group" property="productGroup" jdbcType="INTEGER" />
-	     <result column="jy_status" property="jyStatus" jdbcType="INTEGER" />
-	    
-	    <result column="qx_date" property="qxDate"  />
-	     <result column="hk_date" property="hkDate"  />
-	    
-	    <result column="hk_type" property="hkType" jdbcType="INTEGER" />
-	    <result column="lj_money" property="ljMoney" jdbcType="DECIMAL" />
-	    <result column="yy_tags" property="yyTags" jdbcType="INTEGER" />
-	    <result column="bz_tags" property="bzTags" jdbcType="INTEGER" />
-	    <result column="buy_button_name" property="buyButtonName" jdbcType="VARCHAR" />
+		 <result column="product_type" jdbcType="INTEGER" property="productType" />
+	    <result column="product_group" jdbcType="INTEGER" property="productGroup" />
+	    <result column="jy_status" jdbcType="INTEGER" property="jyStatus" />
+	    <result column="qx_date" jdbcType="TIMESTAMP" property="qxDate" />
+	    <result column="hk_date" jdbcType="TIMESTAMP" property="hkDate" />
+	    <result column="hk_type" jdbcType="INTEGER" property="hkType" />
+	    <result column="lj_money" jdbcType="DECIMAL" property="ljMoney" />
+	    <result column="yy_tags" jdbcType="INTEGER" property="yyTags" />
+	    <result column="bz_tags" jdbcType="INTEGER" property="bzTags" />
+	    <result column="buy_button_name" jdbcType="VARCHAR" property="buyButtonName" />
+		
 	</resultMap>
 
 	<resultMap type="cn.vfunding.vfunding.biz.common.vo.VerifyBorrowVO"
@@ -219,6 +218,28 @@
 		<result column="content" property="content" jdbcType="LONGVARCHAR" />
 	</resultMap>
 
+	
+	<!-- sqd自动还款查询 
+	 初审列表
+	<select id="selectTheTrialListPage" resultMap="TheTrialListResultMap"
+		parameterType="cn.vfunding.common.framework.utils.page.PageSearch">
+		select a.id,a.user_id,c.username,
+		a.status,a.name,a.account,a.account_yes,a.time_limit,a.time_limit_day,a.apr,a.addtime,
+		a. product_type, a.product_group,a.jy_status, a.qx_date,a.hk_date, a.hk_type, a.lj_money, a.yy_tags, a.bz_tags, 
+    	a.buy_button_name,
+		b.owner_name,a.biao_type,a.mortgage_type_id from rd_borrow a
+		left join
+		rd_mortgage_car
+		b on
+		a.mortgage_id=b.id
+		left join rd_user c on
+		a.user_id=c.user_id
+		where a.status!=3
+		
+	</select>
+	-->
+	
+	
 	<select id="selectByConvertContent" resultMap="convertContentMap">
 		select id,content,mortgage_type_id,mortgage_id from rd_borrow where
 		content is not null and content <![CDATA[ <> '']]>
@@ -705,6 +726,39 @@
 			<if test="contractEnd != null">
 				contract_end,
 			</if>
+			
+			<!-- sqd产品相关 -->
+			 <if test="productType != null">
+        product_type,
+      </if>
+      <if test="productGroup != null">
+        product_group,
+      </if>
+      <if test="jyStatus != null">
+        jy_status,
+      </if>
+      <if test="qxDate != null">
+        qx_date,
+      </if>
+      <if test="hkDate != null">
+        hk_date,
+      </if>
+      <if test="hkType != null">
+        hk_type,
+      </if>
+      <if test="ljMoney != null">
+        lj_money,
+      </if>
+      <if test="yyTags != null">
+        yy_tags,
+      </if>
+      <if test="bzTags != null">
+        bz_tags,
+      </if>
+      <if test="buyButtonName != null">
+        buy_button_name,
+      </if>
+			
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="id != null">
@@ -923,6 +977,39 @@
 			<if test="contractEnd != null">
 				#{contractEnd,jdbcType=DATE},
 			</if>
+			
+			<!-- 产品相关 -->
+			 <if test="productType != null">
+        #{productType,jdbcType=INTEGER},
+      </if>
+      <if test="productGroup != null">
+        #{productGroup,jdbcType=INTEGER},
+      </if>
+      <if test="jyStatus != null">
+        #{jyStatus,jdbcType=INTEGER},
+      </if>
+      <if test="qxDate != null">
+        #{qxDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hkDate != null">
+        #{hkDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hkType != null">
+        #{hkType,jdbcType=INTEGER},
+      </if>
+      <if test="ljMoney != null">
+        #{ljMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="yyTags != null">
+        #{yyTags,jdbcType=INTEGER},
+      </if>
+      <if test="bzTags != null">
+        #{bzTags,jdbcType=INTEGER},
+      </if>
+      <if test="buyButtonName != null">
+        #{buyButtonName,jdbcType=VARCHAR},
+      </if>
+			
 		</trim>
 	</insert>
 	<update id="updateByPrimaryKeySelective" parameterType="cn.vfunding.vfunding.biz.borrow.model.Borrow">

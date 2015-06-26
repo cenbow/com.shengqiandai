@@ -114,7 +114,7 @@ http://www.springframework.org/schema/task/spring-task-3.2.xsd
 		</property>
 	</bean>
 	
-	<!-- sqd后台产品到期，自动还款给客户代理 -->
+	<!-- sqd后台产品到期，自动还款给客户代理 
 	<bean id="borrowServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
 		<property name="proxyInterfaces"
 			value="cn.vfunding.vfunding.biz.cron.service.IProductCronService" />
@@ -125,7 +125,7 @@ http://www.springframework.org/schema/task/spring-task-3.2.xsd
 			</list>
 		</property>
 	</bean>
-	
+	-->
 
 	<!-- 网站联盟介绍来的用户的状态服务的 AOP代理对象 -->
 	<bean id="userFromUnionCronServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">

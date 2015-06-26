@@ -8,13 +8,14 @@
 <title>产品列表</title>
 
 
-<!-- 引入bootstrap样式-->
+<!-- 引入bootstrap样式
 <link href="${ctx }/js/bootstrap-2.3.1/css/bootstrap.min.css"
 	rel="stylesheet" media="screen">
-	 
+-->
+
 <!-- 引入easyUI 1.4.2-->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/js/easyui/jquery-easyui-1.4.2/themes/default/easyui.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/js/easyui/jquery-easyui-1.4.2/themes/icon.css"  media="screen">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/js/easyui/jquery-easyui-1.4.2/themes/icon.css"  >
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/js/easyui/jquery-easyui-1.4.2/demo/demo.css">
     <script type="text/javascript" src="${pageContext.request.contextPath }/js/easyui/jquery-easyui-1.4.2/jquery.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath }/js/easyui/jquery-easyui-1.4.2/jquery.easyui.min.js"></script>
@@ -70,7 +71,7 @@ $(function(){
 <!--  添加-->
 <div id="add-dlg" class="easyui-dialog"  style="width:800px;height:500px;"   
         data-options="maximizable:true,resizable:true,modal:true,closed: true,buttons:'#add-buts'">
-<form id="add-form"  method="post" action="">
+<form id="add-form"  method="post" action="" novalidate="true">
   <table width="100%" border="0" cellpadding="5" cellspacing="5">
     <tr>
       <td>产品类型：</td>
@@ -91,19 +92,28 @@ $(function(){
       
       </td>
       <td>产品系列：</td>
-      <td><input type="text" name="productGroup" /></td>
+      <td>
+      
+      <input class="easyui-textbox" type="text" name="productGroup" data-options="required:false">
+      </td>
     </tr>
     <tr>
       <td>产品名称：</td>
-      <td><input type="text" name="name"  /></td>
-      <td>预期收益率：</td>
-      <td><input type="text" name="apr" /></td>
-    </tr>
-    <tr>
-      <td>理财期限：</td>
       <td>
       
-      <input name="timeLimit" class="easyui-datetimebox" required data-options="editable:false" />
+      <input class="easyui-textbox" type="text" name="name" data-options="required:false">
+      </td>
+      <td>预期收益率：(%)</td>
+      <td>
+      
+        <input class="easyui-textbox" type="text" name="apr" data-options="required:false">
+      </td>
+    </tr>
+    <tr>
+      <td>理财期限：(天)</td>
+      <td>
+        <input class="easyui-textbox" type="text" name="timeLimit" data-options="required:false">
+      
       </td>
       <td>起息日：</td>
       <td>
@@ -115,7 +125,7 @@ $(function(){
       <td>还款日：</td>
       <td>
       
-      <input name="endTime" class="easyui-datetimebox" required  data-options="editable:false" />
+      <input name="hkDate" class="easyui-datetimebox" required  data-options="editable:false" />
       </td>
       <td>还款类型：</td>
       <td>
@@ -129,22 +139,40 @@ $(function(){
       </td>
     </tr>
     <tr>
-      <td>募集金额：</td>
-      <td><input type="text" name="account"  /></td>
-      <td>起购金额：</td>
-      <td><input type="text" name="lowestAccount"  /></td>
+      <td>募集金额：(元)</td>
+      <td>
+      
+        <input class="easyui-textbox" type="text" name="account" data-options="required:false">
+      </td>
+      <td>起购金额：(元)</td>
+      <td>
+      
+        <input class="easyui-textbox" type="text" name="lowestAccount" data-options="required:false">
+      </td>
     </tr>
     <tr>
-      <td>累加金额：</td>
-      <td><input type="text" name="ljMoney"  /></td>
+      <td>累加金额：(元)</td>
+      <td>
+      
+        <input class="easyui-textbox" type="text" name="ljMoney" data-options="required:false">
+      </td>
       <td>运营标签：</td>
-      <td><input type="text" name="yyTags"  /></td>
+      <td>
+      
+        <input class="easyui-textbox" type="text" name="yyTags" data-options="required:false">
+      </td>
     </tr>
     <tr>
       <td>标准标签：</td>
-      <td><input type="text" name="bzTags"  /></td>
+      <td>
+      
+        <input class="easyui-textbox" type="text" name="bzTags" data-options="required:false">
+      </td>
       <td>购买按钮：</td>
-      <td><input type="text" name="buyButtonName"  /></td>
+      <td>
+      
+        <input class="easyui-textbox" type="text" name="buyButtonName" data-options="required:false">
+      </td>
     </tr>
   </table>
   
@@ -152,13 +180,21 @@ $(function(){
   <!-- 项目描述 -->
 	  <table width="100%" border="0" cellpadding="5" cellspacing="5">
 		  <tr>
-		    <td colspan="2">项目描述</td>
+		    <td colspan="2"><h3>项目描述</h3></td>
 		  </tr>
+		  <tr>
+		    <td>募集金额：</td>
+		    <td>
+		    <input class="easyui-textbox" type="text" name="mjMoney" data-options="required:false">
+		    
+		    </td>
+		  </tr>
+		  
 		  <tr>
 		    <td>项目描述：</td>
 		    <td>
 		    <input name="projectDesc" class="easyui-textbox" data-options="multiline:true" 
-		     style="width:300px;height:100px" />
+		     style="width:400px;height:100px" />
 		     
 		     </td>
 		  </tr>
@@ -167,19 +203,55 @@ $(function(){
 		    <td>
 		    
 		     <input name="projectDesc" class="easyui-textbox" data-options="multiline:true" 
-		     style="width:300px;height:100px">
+		     style="width:400px;height:100px">
 		    </td>
 		  </tr>
+		  
 		  <tr>
-		    <td>风控措施：</td>
-		    <td>&nbsp;</td>
-		  </tr>
-		  <tr>
-		    <td>营业执照：</td>
-		    <td>&nbsp;</td>
+		    <td>项目描述图片：</td>
+		    <td>
+		    <input type="file" id="sqdProjectDescImg" name="sqdProjectDescImg" />
+		    </td>
 		  </tr>
 	</table>
-  
+   <br>
+  <!-- 资金保障 -->
+	  <table width="100%" border="0" cellpadding="5" cellspacing="5">
+		  <tr>
+		    <td colspan="2"><h3>资金保障</h3></td>
+		  </tr>
+		  <tr>
+		    <td>募集金额：</td>
+		    <td>
+		    <input class="easyui-textbox" type="text" name="mjMoney" data-options="required:false">
+		    
+		    </td>
+		  </tr>
+		  
+		  <tr>
+		    <td>资金描述：</td>
+		    <td>
+		    <input name="projectDesc" class="easyui-textbox" data-options="multiline:true" 
+		     style="width:400px;height:100px" />
+		     
+		     </td>
+		  </tr>
+		  <tr>
+		    <td>资金用途：</td>
+		    <td>
+		    
+		     <input name="projectDesc" class="easyui-textbox" data-options="multiline:true" 
+		     style="width:400px;height:100px">
+		    </td>
+		  </tr>
+		  
+		  <tr>
+		    <td>资金描述图片：</td>
+		    <td>
+		    <input type="file" id="sqdProjectDescImg" name="sqdProjectDescImg" />
+		    </td>
+		  </tr>
+	</table>
 </form>
 
 </div> 

@@ -278,5 +278,10 @@ public interface IBorrowService {
 	@NeedLock
 	String updateRepayDayBorrow(String string, String remoteAddr);
 
-
+	
+	/**
+	 * sqd添加产品
+	 * @author huangyuancheng
+	 */
+	public int addSqdProduct(Borrow borrow);
 }

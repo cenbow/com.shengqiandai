@@ -1186,5 +1186,138 @@ public class BorrowController extends BaseController {
 		return j;
 	}
 	
-	
+	/**
+	 * @author huangyuancheng
+	 * @param borrow
+	 * @param username
+	 * @param bvo
+	 * @param mortgageCar
+	 * @param request
+	 * @param multipartRequest
+	 * @return
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/addSqdProduct")
+	@ResponseBody
+	public Json addSqdProduct(Borrow borrow,String username,BorrowVO bvo,MortgageCar mortgageCar,
+			HttpServletRequest request,MultipartHttpServletRequest multipartRequest) throws IOException{
+		Json j = new Json();
+		j.setSuccess(false);
+		String result = "";
+		if(EmptyUtil.isEmpty(borrow.getAccount())){
+			result = "发标金额不能为空";
+		} else if(EmptyUtil.isEmpty(borrow.getContent())){
+			result = "发标内容不能为空";
+		} else if(EmptyUtil.isEmpty(borrow.getName())){
+			result = "发标名称不能为空";
+		} else if(EmptyUtil.isEmpty(borrow.getApr())){
+			result = "发标利率不能为空";
+		} else if(EmptyUtil.isEmpty(borrow.getTimeLimit())){
+			result = "发标期限不能为空";
+		} else if(EmptyUtil.isEmpty(borrow.getUserId())){
+			result = "发标人不可为空";
+		} else {
+			User checkUser = this.userService.selectByPrimaryKey(borrow.getUserId());
+			if(checkUser == null){
+				result = "该借款人ID不存在";
+				j.setMsg(result);
+				return j;
+			}else if(checkUser.getTypeId() != 40){
+				result = "该借款人ID不存在";
+				j.setMsg(result);
+				return j;
+			}
+			borrow.setTimeLimitDay(borrow.getTimeLimit().byteValue());
+			MultipartEntityBuilder card_pic1 = MultipartEntityBuilderUtil.createMultipartEntityBuilderByMultipartFile(multipartRequest.getFile("card_pic1"));
+			MultipartEntityBuilder card_pic2 = MultipartEntityBuilderUtil.createMultipartEntityBuilderByMultipartFile(multipartRequest.getFile("card_pic2"));
+			MultipartEntityBuilder car_pic1 = MultipartEntityBuilderUtil.createMultipartEntityBuilderByMultipartFile(multipartRequest.getFile("car_pic1"));
+			MultipartEntityBuilder other3 = MultipartEntityBuilderUtil.createMultipartEntityBuilderByMultipartFile(multipartRequest.getFile("other3"));
+			MultipartEntityBuilder other2 = MultipartEntityBuilderUtil.createMultipartEntityBuilderByMultipartFile(multipartRequest.getFile("other2"));
+			MultipartEntityBuilder other1 = MultipartEntityBuilderUtil.createMultipartEntityBuilderByMultipartFile(multipartRequest.getFile("other1"));
+			MultipartEntityBuilder carcard_pic3 = MultipartEntityBuilderUtil.createMultipartEntityBuilderByMultipartFile(multipartRequest.getFile("carcard_pic3"));
+			MultipartEntityBuilder car_pic2 = MultipartEntityBuilderUtil.createMultipartEntityBuilderByMultipartFile(multipartRequest.getFile("car_pic2"));
+			MultipartEntityBuilder car_pic3 = MultipartEntityBuilderUtil.createMultipartEntityBuilderByMultipartFile(multipartRequest.getFile("car_pic3"));
+			MultipartEntityBuilder car_pic4 = MultipartEntityBuilderUtil.createMultipartEntityBuilderByMultipartFile(multipartRequest.getFile("car_pic4"));
+			MultipartEntityBuilder carcard_pic1 = MultipartEntityBuilderUtil.createMultipartEntityBuilderByMultipartFile(multipartRequest.getFile("carcard_pic1"));
+			MultipartEntityBuilder carcard_pic2 = MultipartEntityBuilderUtil.createMultipartEntityBuilderByMultipartFile(multipartRequest.getFile("carcard_pic2"));
+			String card_pic1_ = null;
+			if (EmptyUtil.isNotEmpty(card_pic1)&&multipartRequest.getFile("card_pic1").getSize()!=0) {
+				card_pic1_ = this.attestationService.uploadAttestation(card_pic1);
+			}
+			String card_pic2_ = null;
+			if (EmptyUtil.isNotEmpty(card_pic2)&&multipartRequest.getFile("card_pic2").getSize()!=0) {
+				card_pic2_ = this.attestationService.uploadAttestation(card_pic2);
+			}
+			String car_pic1_ = null;
+			if (EmptyUtil.isNotEmpty(car_pic1)&&multipartRequest.getFile("car_pic1").getSize()!=0) {
+				car_pic1_ = this.attestationService.uploadAttestation(car_pic1);
+			}
+			String other3_ = null;
+			if (EmptyUtil.isNotEmpty(other3)&&multipartRequest.getFile("other3").getSize()!=0) {
+				other3_ = this.attestationService.uploadAttestation(other3);
+			}
+			String other2_ = null;
+			if (EmptyUtil.isNotEmpty(other2)&&multipartRequest.getFile("other2").getSize()!=0) {
+				other2_ = this.attestationService.uploadAttestation(other2);
+			}
+			String other1_ = null;
+			if (EmptyUtil.isNotEmpty(other1)&&multipartRequest.getFile("other1").getSize()!=0) {
+				other1_ = this.attestationService.uploadAttestation(other1);
+			}
+			String carcard_pic3_ = null;
+			if (EmptyUtil.isNotEmpty(carcard_pic3)&&multipartRequest.getFile("carcard_pic3").getSize()!=0) {
+				carcard_pic3_ = this.attestationService.uploadAttestation(carcard_pic3);
+			}
+			String car_pic2_ = null;
+			if (EmptyUtil.isNotEmpty(car_pic2)&&multipartRequest.getFile("car_pic2").getSize()!=0) {
+				car_pic2_ = this.attestationService.uploadAttestation(car_pic2);
+			}
+			String car_pic3_ = null;
+			if (EmptyUtil.isNotEmpty(car_pic3)&&multipartRequest.getFile("car_pic3").getSize()!=0) {
+				car_pic3_ = this.attestationService.uploadAttestation(car_pic3);
+			}
+			String car_pic4_ = null;
+			if (EmptyUtil.isNotEmpty(car_pic4)&&multipartRequest.getFile("car_pic4").getSize()!=0) {
+				car_pic4_ = this.attestationService.uploadAttestation(car_pic4);
+			}
+			String carcard_pic1_ = null;
+			if (EmptyUtil.isNotEmpty(carcard_pic1)&&multipartRequest.getFile("carcard_pic1").getSize()!=0) {
+				carcard_pic1_ = this.attestationService.uploadAttestation(carcard_pic1);
+			}
+			String carcard_pic2_ = null;
+			if (EmptyUtil.isNotEmpty(carcard_pic2)&&multipartRequest.getFile("carcard_pic2").getSize()!=0) {
+				carcard_pic2_ = this.attestationService.uploadAttestation(carcard_pic2);
+			}
+			borrow.setSiteId((short) 1);
+//			borrow.setUserId(15); //TODO 发标用户
+			borrow.setStatus((byte) 0);
+			borrow.setAddtime(Integer.parseInt(DateUtil.getTime()));
+			borrow.setAccountYes(BigDecimal.ZERO);
+			borrow.setAddip(request.getRemoteAddr());
+			
+			if(EmptyUtil.isNotEmpty(borrow.getIsday()) && borrow.getIsday() == 1){
+				borrow.setBiaoType("tian");
+			} else {
+				borrow.setBiaoType("fast");
+			}
+			UserSession user = new UserSession();
+			user.setUserId(borrow.getUserId());
+			MortgageType mortgagetype = new MortgageType();
+			mortgagetype.setTypeName(bvo.getTypeName());
+			mortgageCar.setRegisterDate(DateUtil.getDateToString(
+					bvo.getRegister_Date(), "yyyy-MM-dd"));
+			mortgageCar.setCertificationDate(DateUtil.getDateToString(
+					bvo.getCertification_Date(), "yyyy-MM-dd"));
+			mortgageCar.setCheckValidDate(DateUtil.getDateToString(
+					bvo.getCheckValid_Date(), "yyyy-MM"));
+			borrow.setAddip(request.getRemoteAddr());
+			
+			borrowService.insert8jieBorrow(user, borrow, bvo, mortgagetype, mortgageCar, request,
+					card_pic1_,card_pic2_,car_pic1_, other3_,other2_,other1_, carcard_pic3_,
+					car_pic2_,car_pic3_,car_pic4_,carcard_pic1_,carcard_pic2_);
+			j.setSuccess(true);
+		}
+		j.setMsg(result);
+		return j;
+	}
 }

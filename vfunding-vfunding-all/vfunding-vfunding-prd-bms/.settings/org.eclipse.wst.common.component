@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="vfunding-vfunding-prd-bms">
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <dependent-module archiveName="vfunding-vfunding-biz-report-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/vfunding-vfunding-biz-report/vfunding-vfunding-biz-report">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="vfunding-vfunding-biz-deposit-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/vfunding-vfunding-biz-deposit/vfunding-vfunding-biz-deposit">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="vfunding-common-framework-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/vfunding-common-framework/vfunding-common-framework">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="vfunding-vfunding-biz-mq-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/vfunding-vfunding-biz-mq/vfunding-vfunding-biz-mq">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="vfunding-vfunding-biz-bms-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/vfunding-vfunding-biz-bms/vfunding-vfunding-biz-bms">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="vfunding-vfunding-biz-redislog-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/vfunding-vfunding-biz-redislog/vfunding-vfunding-biz-redislog">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="p2p-p2p-biz-mobile-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/p2p-p2p-biz-mobile/p2p-p2p-biz-mobile">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="vfunding-vfunding-biz-all-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/vfunding-vfunding-biz-all/vfunding-vfunding-biz-all">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="vfunding-vfunding-common-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/vfunding-vfunding-common/vfunding-vfunding-common">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="vfunding-vfunding-prd-bms"/>
+        <property name="java-output-path" value="/vfunding-vfunding-prd-bms/target/classes"/>
+    </wb-module>
+</project-modules>

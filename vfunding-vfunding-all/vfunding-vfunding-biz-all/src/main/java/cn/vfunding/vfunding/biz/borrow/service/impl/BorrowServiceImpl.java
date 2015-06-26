@@ -2182,4 +2182,10 @@ public class BorrowServiceImpl implements IBorrowService {
 		return borrowMapper.updateByPrimaryKeySelective(record);
 	}
 
+	@Override
+	public int addSqdProduct(Borrow borrow) {
+		//添加sqd产品
+		return borrowMapper.insertSelective(borrow);
+	}
+
 }

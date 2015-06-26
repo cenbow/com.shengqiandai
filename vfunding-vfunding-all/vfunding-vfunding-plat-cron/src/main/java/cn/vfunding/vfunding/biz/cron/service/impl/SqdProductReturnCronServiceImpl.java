@@ -17,7 +17,7 @@ public class SqdProductReturnCronServiceImpl {
 	private IBorrowService borrowService;
 	
 	public void autoRetrunMoney(){
-		List<Borrow> blist=borrowService.selectBorrowById(1);
+		
 	}
 	
 }
